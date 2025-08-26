@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      .m{fill:#000}
+      .y{fill:#d9a324}
+      .w{fill:#fff}
+    </style>
+  </defs>
+  <!-- Simple placeholder: B + drum -->
+  <rect width="128" height="128" rx="18" class="w"/>
+  <g transform="translate(12,10)">
+    <path class="m" d="M20 90V18h24q12 0 18 5.5T68 40q0 15-14 20 8 2 12 8t4 14q0 12-6.5 20T44 110H20V90Zm16-44h10q7 0 10.5-3.5T60 40q0-5-3.5-8T46 28H36v18Zm0 44h10q8 0 12-4t4-12q0-7-4-11t-12-4H36v31Z"/>
+    <g transform="translate(60,20)">
+      <rect x="10" y="6" width="28" height="48" rx="6" class="y" stroke="#000" stroke-width="4"/>
+      <rect x="10" y="0" width="28" height="10" rx="6" class="w" stroke="#000" stroke-width="4"/>
+      <rect x="10" y="54" width="28" height="10" rx="6" class="w" stroke="#000" stroke-width="4"/>
+    </g>
+  </g>
+</svg>
