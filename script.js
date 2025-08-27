@@ -124,9 +124,8 @@ const strings = {
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
     "pricing.perhour":"/ hora",
-    "pricing.basic.l1":"Flexibilidad: sin compromiso, se agenda cuando quieras",
+    "pricing.basic.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.basic.l2":"Expira en 30 días",
-    "pricing.basic.l3":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
 
     "pricing.monthly.title":"Subscripción Mensual",
     "pricing.monthly.note":"($110/clase - Ahorra 8%)",
