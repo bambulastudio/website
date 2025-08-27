@@ -153,20 +153,35 @@
         </ul>
       </div>
       <form class="form" action="https://formspree.io/f/mdkloyyj" method="POST">
+        <!-- Subject line for your email -->
+        <input type="hidden" name="_subject" value="New message from Bambula Studio site">
+      
+        <!-- Redirect after submit -->
+        <input type="hidden" name="_next" value="https://www.bambulastudio.com/#contact">
+      
+        <!-- Spam honeypot (invisible to users) -->
+        <div style="position:absolute;left:-5000px" aria-hidden="true">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+      
         <label>
-          <span data-i18n="form.name">Name</span>
+          <span>Name</span>
           <input type="text" name="name" required>
         </label>
+      
         <label>
-          <span data-i18n="form.email">Email</span>
+          <span>Email</span>
           <input type="email" name="email" required>
         </label>
+      
         <label>
-          <span data-i18n="form.msg">Message</span>
+          <span>Message</span>
           <textarea name="message" rows="5" required></textarea>
         </label>
-        <button type="submit" class="btn" data-i18n="form.send">Send</button>
-        <p class="form-note" data-i18n="form.note">This form uses Formspree’s free tier. Replace the action URL with your own.</p>
+      
+        <button type="submit" class="btn">Send</button>
+      
+        <p class="form-note">We’ll get back to you soon. Powered by Formspree.</p>
       </form>
     </div>
   </section>
