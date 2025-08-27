@@ -26,7 +26,6 @@ const strings = {
     "about.f1":"Private lessons: 1 hr",
     "about.f2":"Recordings for home practice",
     "about.f3":"Tradition-centered, community-rooted",
-
     "classes.title":"Private Classes (Buleo)",
     "classes.subtitle":"Clear, flexible options. Our signature palette: black, white, mustard.",
     "pricing.basic.title":"Basic",
@@ -85,7 +84,7 @@ const strings = {
     "nav.contact":"Contacto",
 
     "hero.title":"Ritmo con raíz. Cultura viva.",
-    "hero.subtitle":"Clases privadas de Bomba (buleo), talleres comunitarios y educación cultural—con cariño y disciplina.",
+    "hero.subtitle":"Clases privadas de percusión de Bomba, talleres comunitarios y educación cultural con compromiso y disciplina",
     "hero.cta1":"Ver clases",
     "hero.cta2":"Hacer una pregunta",
 
