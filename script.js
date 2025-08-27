@@ -106,7 +106,7 @@ const strings = {
     "about.f2":"Grabaciones para práctica en casa",
     "about.f3":"Centrado en la tradición, con raíces comunitarias",
 
-    "classes.group.basic":"Buleo Básico con Barril de Bomba Puertorriqueña",
+    "classes.group.basic":"Buleo Básico",
     "classes.group.l1":"Historia de la bomba como tradición puertorriqueña",
     "classes.group.l2":"Partes del barril: cuerpo, cuero y cuidado básico",
     "classes.group.l3":"Postura y colocación de manos",
@@ -119,7 +119,7 @@ const strings = {
     "classes.group.intermediate":"Buleo Intermedio",
     "classes.group.advanced":"Buleo Avanzado",
 
-    "classes.title":"Clases Privadas (Buleo)",
+    "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
     "classes.subtitle":"Opciones claras y flexibles. ",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
