@@ -227,7 +227,7 @@ const strings = {
     // POLÍTICAS
     "policies.title":"Políticas",
     "policies.transport":"Transporte: si la clase se realiza en un lugar distinto a mi residencia, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
-    "policies.expire":"Vencimiento: todos los paquetes expiran 365 días después de la compra; clases no usadas no son reembolsables ni transferibles.",
+    "policies.expire":"Vencimiento: todos los paquetes expiran; clases no usadas no son reembolsables ni transferibles.",
     "policies.record":"Grabaciones: no se permite grabar a la maestra durante la clase. Se pueden coordinar grabaciones educativas específicas al finalizar.",
     "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
 
