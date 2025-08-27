@@ -112,8 +112,9 @@ const strings = {
     "classes.group.l3":"Postura y colocación de manos",
     "classes.group.l4":"Sonidos: abierto/seco, caja, campana",
     "classes.group.l5":"Rudimentos básicos de buleo",
-    "classes.group.l6":"Ritmos: sicá, yubá, cuembé, holandé",
-    "classes.group.l7":"Ejercicios de resistencia y práctica personal",
+    "classes.group.l6":"Mantener el buleo en tiempo",
+    "classes.group.l7":"Ritmos: sicá, yubá, cuembé, holandé",
+    "classes.group.l8":"Ejercicios de resistencia y práctica personal",
 
     "classes.group.intermediate":"Buleo Intermedio",
     "classes.group.advanced":"Buleo Avanzado",
@@ -124,7 +125,8 @@ const strings = {
     "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Flexibilidad: sin compromiso, se agenda cuando quieras",
-    "pricing.basic.l2":"Contenido: tema a elección (fundamentos, repaso de ritmos o refuerzo técnico)",
+    "pricing.basic.l2":"Expira en 30 días",
+    "pricing.basic.l3":"Tema a elección (fundamentos, repaso de ritmos o refuerzo técnico)",
 
     "pricing.monthly.title":"Subscripción Mensual",
     "pricing.monthly.note":"($110/clase - Ahorra 8%)",
