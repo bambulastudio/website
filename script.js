@@ -126,7 +126,7 @@ const strings = {
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Flexibilidad: sin compromiso, se agenda cuando quieras",
     "pricing.basic.l2":"Expira en 30 días",
-    "pricing.basic.l3":"Tema a elección (fundamentos, repaso de ritmos o refuerzo técnico)",
+    "pricing.basic.l3":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
 
     "pricing.monthly.title":"Subscripción Mensual",
     "pricing.monthly.note":"($110/clase - Ahorra 8%)",
