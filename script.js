@@ -121,7 +121,7 @@ const strings = {
     "pricing.full.l3":"Resistencia y práctica personal",
     "pricing.cta":"Reservar",
 
-    "classes.note":"Si no sabes tu nivel, hacemos una evaluación inicial de $15 para colocarte correctamente.",
+    "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
 
     "workshops.title":"Talleres Grupales",
     "workshops.p1":"Para 3+ personas: introducción a la Bomba (buleo básico), familia rítmica (sicá, yubá, cuembé, holandé) y contexto cultural. $60 por persona por hora.",
