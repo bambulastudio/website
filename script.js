@@ -107,7 +107,7 @@ const strings = {
     "classes.group.basic":"Buleo Básico",
     "classes.group.intermediate":"Buleo Intermedio",
     "classes.group.advanced":"Buleo Avanzado",
-    "classes.title":"Clases Privadas (Buleo Básico)",
+    "classes.title":"Clases Privadas (Buleo)",
     "classes.subtitle":"Opciones claras y flexibles. ",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
