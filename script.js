@@ -193,8 +193,12 @@ const strings = {
 
     // CLASES – nuevos paquetes
     "pricing.intermediate.title":"Intermedio",
+    "pricing.intermediate.single.na":"120 / hora",
+    "pricing.intermediate.single.note":"No se ofrece sesión individual en este nivel.",
+
     "pricing.intermediate.price4":"$460 / 4 clases",
     "pricing.intermediate.price16":"Completo (16): $1,680 → $105 / hora",
+    "pricing.intermediate.price16_head":"$1,680 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
     "pricing.intermediate.l3":"Ejercicios de coordinación y resistencia",
@@ -202,9 +206,6 @@ const strings = {
     "pricing.intermediate.l5":"Respuestas básicas a los llamados",
     "pricing.intermediate.l6":"Cantar coros sin dejar de bulear",
     "pricing.intermediate.l7":"Dinámica de energía (subir y bajar)",
-    "pricing.intermediate.single.na":"—",
-    "pricing.intermediate.single.note":"No se ofrece sesión individual en este nivel.",
-    "pricing.intermediate.price16_head":"$1,680 ($105/clase)",
 
     "pricing.advanced.single.na":"—",
     "pricing.advanced.single.note":"No se ofrece sesión individual en este nivel.",
