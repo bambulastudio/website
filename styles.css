@@ -103,3 +103,15 @@ details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;ma
   list-style-position: outside;
 }
 #about li{ margin-bottom: .6rem; line-height: 1.55; }
+
+.subsection {
+  font-size: 1.4rem;
+  margin: 2.5rem 0 1rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* Two-column variant for smaller groups */
+@media(min-width:900px){
+  .pricing--two { grid-template-columns: repeat(2, 1fr); }
+}
