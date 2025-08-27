@@ -79,18 +79,27 @@ details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;ma
 /* Footer */
 .site-footer{padding:28px 0;border-top:1px solid #eee;background:#fafafa}
 
-/* ---- About layout tweaks ---- */
-#about .container.grid {           /* make the short column not stretch */
-  align-items: start;
+
+/* --- About layout: tighter two-column grid --- */
+#about .container.grid{
+  /* text takes the rest; card uses its own width */
+  grid-template-columns: 1fr auto;
+  gap: 1.5rem;              /* was 2rem */
+  align-items: start;       /* don't stretch the short column */
 }
-#about .card {                     /* optional: keep the box comfortably sized */
-  max-width: 320px;
+
+#about .card{
+  max-width: 320px;         /* keeps the box compact */
+  width: 100%;
 }
-#about ul {
-  margin: 0 0 1rem 1.2rem; /* space before/after and indent */
+
+#about p{
+  max-width: 60ch;          /* nice readable line length for the text */
+}
+
+#about ul{
+  margin: 0.25rem 0 1rem 1.2rem;
   padding: 0;
+  list-style-position: outside;
 }
-#about li {
-  margin-bottom: 0.6rem;
-  line-height: 1.5;
-}
+#about li{ margin-bottom: .6rem; line-height: 1.55; }
