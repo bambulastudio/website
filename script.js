@@ -158,15 +158,15 @@ const strings = {
     "pricing.basic.l2":"Expira en 30 días",
 
     "pricing.monthly.title":"Subscripción Mensual",
-    "pricing.monthly.note":"($110 / hr)",
-    "pricing.monthly.l1":"4 sesiones privadas (1 hr c/u)",
+    "pricing.monthly.note":"($110 / hora)",
+    "pricing.monthly.l1":"4 sesiones privadas (1 hora c/u)",
     "pricing.monthly.l2":"Expira en 60 días",
     "pricing.monthly.l3":"Grabaciones de práctica",
     "pricing.monthly.l4":"Ahorra 8%",
 
     "pricing.full.title":"Curso Completo",
-    "pricing.full.note":"($100 / hr — más popular)",
-    "pricing.full.l1":"16 sesiones privadas (1 hr c/u)",
+    "pricing.full.note":"($100 / hora — más popular)",
+    "pricing.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.full.l2":"Expira en 365 días",
     "pricing.full.l3":"Resistencia y práctica personal",
     "pricing.full.l4":"Ahorra 17%",
@@ -175,7 +175,7 @@ const strings = {
     // CLASES – nuevos paquetes
     "pricing.intermediate.title":"Intermedio",
     "pricing.intermediate.price4":"$460 / 4 clases",
-    "pricing.intermediate.price16":"Completo (16): $1,680 → $105 / hr",
+    "pricing.intermediate.price16":"Completo (16): $1,680 → $105 / hora",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
     "pricing.intermediate.l3":"Ejercicios de coordinación y resistencia",
@@ -186,7 +186,7 @@ const strings = {
 
     "pricing.advanced.title":"Avanzado",
     "pricing.advanced.price4":"$480 / 4 clases",
-    "pricing.advanced.price16":"Completo (16): $1,760 → $110 / hr",
+    "pricing.advanced.price16":"Completo (16): $1,760 → $110 / hora",
     "pricing.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
     "pricing.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
     "pricing.advanced.l3":"Variaciones profundas de sicá, yubá, cuembé, holandé, calindá",
