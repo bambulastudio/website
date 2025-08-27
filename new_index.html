@@ -1,288 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Meta tags and page setup -->
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Bámbula Studio — Bomba Puertorriqueña</title>
-  <meta name="description" content="Clases privadas y talleres de barril de bomba con Bámbula Studio. Puerto Rican Bomba drum lessons (buleo), community workshops, and culture."/>
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,700&display=swap" rel="stylesheet">
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
-  <!-- Favicon -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-</head>
-<body>
-<!-- ===== Site Header ===== -->
-<header class="site-header">
+<section id="classes" class="section section--alt">
   <div class="container">
-    <div class="brand">
-      <!-- Logo and wordmark -->
-      <img src="assets/logo.png" alt="Bámbula Studio logo" class="logo">
-      <span class="wordmark">Bámbula Studio</span>
-    </div>
-    <!-- Navigation links -->
-    <nav class="nav">
-      <a href="#about" data-i18n="nav.about">About</a>
-      <a href="#classes" data-i18n="nav.classes">Classes</a>
-      <a href="#workshops" data-i18n="nav.workshops">Workshops</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      <a href="#contact" class="btn btn--small" data-i18n="nav.contact">Contact</a>
-    </nav>
-    <!-- Language toggle button -->
-    <button id="langToggle" class="lang" aria-label="Toggle language">ES</button>
-  </div>
-</header>
+    <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
+    <p data-i18n="classes.subtitle">Clear, flexible options.</p>
 
-<main>
-  <!-- ===== Hero Section ===== -->
-  <section class="hero">
-    <div class="container">
-      <div class="hero__text">
-        <h1 data-i18n="hero.title">Rooted rhythm. Living culture.</h1>
-        <p class="lead" data-i18n="hero.subtitle">Private Bomba drum lessons (buleo), community workshops, and cultural education—con cariño y disciplina.</p>
-        <div class="actions">
-          <a href="#classes" class="btn" data-i18n="hero.cta1">See classes</a>
-          <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Ask a question</a>
-        </div>
-      </div>
-      <!-- Decorative hero art -->
-      <div class="hero__art" aria-hidden="true">
-        <div class="circle"></div>
-        <div class="drum"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== About Section ===== -->
-  <section id="about" class="section">
-    <div class="container grid">
-      <div>
-        <h2 data-i18n="about.title">What is Bámbula Studio?</h2>
-        <p data-i18n="about.p1"></p>
+    <!-- ===== BASIC / BEGINNER ===== -->
+    <h3 class="subsection" data-i18n="classes.group.basic">Buleo Básico</h3>
+    <div class="pricing">
+      <!-- Basic 1 Session -->
+      <article class="price-card">
+        <h3 data-i18n="pricing.basic.title">Basic</h3>
+        <div class="note" data-i18n="pricing.single.credit">If you enroll in the 16-class package within 30 days, this session is credited.</div>
+        <p class="price">$120 <span data-i18n="pricing.perhour">/ hour</span></p>
         <ul>
-          <li data-i18n="about.p2"></li>
-          <li data-i18n="about.p3"></li>
-          <li data-i18n="about.p4"></li>
-          <li data-i18n="about.p5"></li>
+          <li data-i18n="pricing.basic.l1">Posture &amp; hand placement</li>
+          <li data-i18n="pricing.basic.l2">Sounds: abierto/seco, caja, campana</li>
+          <li data-i18n="pricing.basic.l3">Keep buleo in time</li>
         </ul>
-        <p data-i18n="about.p6"></p>
-      </div>
-      <!-- Quick facts card -->
-      <div class="card">
-        <h3 data-i18n="about.quick">Quick facts</h3>
+        <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+      </article>
+
+      <!-- Monthly (4) -->
+      <article class="price-card">
+        <h3 data-i18n="pricing.monthly.title">Monthly (4)</h3>
+        <p class="price">$440 <span data-i18n="pricing.monthly.note">($110/class)</span></p>
         <ul>
-          <li data-i18n="about.f1">Private lessons: 1 hr</li>
-          <li data-i18n="about.f2">Recordings for home practice</li>
-          <li data-i18n="about.f3">Tradition-centered, community-rooted</li>
+          <li data-i18n="pricing.monthly.l1">4 private classes (1 hr each)</li>
+          <li data-i18n="pricing.monthly.l2">Use within 365 days</li>
+          <li data-i18n="pricing.monthly.l3">Practice recordings</li>
         </ul>
-      </div>
-    </div>
-  </section>
+        <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+      </article>
 
-  <!-- ===== Classes Section ===== -->
-  <section id="classes" class="section section--alt">
-    <div class="container">
-      <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
-      <p data-i18n="classes.subtitle">Clear, flexible options.</p>
-
-      <!-- ===== BASIC / BEGINNER ===== -->
-      <h3 class="subsection" data-i18n="classes.group.basic">Buleo Básico</h3>
-      <div class="pricing">
-        <!-- Basic 1 Session -->
-        <article class="price-card">
-          <h3 data-i18n="pricing.basic.title">Basic</h3>
-          <div class="note" data-i18n="pricing.single.credit">If you enroll in the 16-class package within 30 days, this session is credited.</div>
-          <p class="price">$120 <span data-i18n="pricing.perhour">/ hour</span></p>
-          <ul>
-            <li data-i18n="pricing.basic.l1">Posture &amp; hand placement</li>
-            <li data-i18n="pricing.basic.l2">Sounds: abierto/seco, caja, campana</li>
-            <li data-i18n="pricing.basic.l3">Keep buleo in time</li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-
-        <!-- Monthly (4) -->
-        <article class="price-card">
-          <h3 data-i18n="pricing.monthly.title">Monthly (4)</h3>
-          <p class="price">$440 <span data-i18n="pricing.monthly.note">($110/class)</span></p>
-          <ul>
-            <li data-i18n="pricing.monthly.l1">4 private classes (1 hr each)</li>
-            <li data-i18n="pricing.monthly.l2">Use within 365 days</li>
-            <li data-i18n="pricing.monthly.l3">Practice recordings</li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-
-        <!-- Complete (16) -->
-        <article class="price-card">
-          <h3 data-i18n="pricing.full.title">Complete (16)</h3>
-          <p class="price">$1,600 <span data-i18n="pricing.full.note">($100/class)</span></p>
-          <ul>
-            <li data-i18n="pricing.full.l1">16 private classes (1 hr)</li>
-            <li data-i18n="pricing.full.l2">Use within 365 days</li>
-            <li data-i18n="pricing.full.l3">Endurance &amp; personal practice</li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-      </div>
-
-      <!-- ===== INTERMEDIATE ===== -->
-      <h3 class="subsection" data-i18n="classes.group.intermediate">Intermedio</h3>
-      <div class="pricing pricing--two">
-        <article class="price-card">
-          <h3 data-i18n="pricing.intermediate.title">Intermediate</h3>
-          <p class="price" data-i18n="pricing.intermediate.price4">$460 <span>/ 4 classes</span></p>
-          <ul>
-            <li data-i18n="pricing.intermediate.l1">Intermediate rudiments (control &amp; variations)</li>
-            <li data-i18n="pricing.intermediate.l2">Buleo interaction with primo</li>
-            <li data-i18n="pricing.intermediate.l3">Coordination &amp; endurance drills</li>
-            <li data-i18n="pricing.intermediate.l4">Rhythms: sicá, yubá, cuembé, holandé + calindá</li>
-            <li data-i18n="pricing.intermediate.l5">Basic responses to llamados</li>
-            <li data-i18n="pricing.intermediate.l6">Sing coros while buleando</li>
-            <li data-i18n="pricing.intermediate.l7">Energy dynamics (up/down)</li>
-          </ul>
-          <div class="note" data-i18n="pricing.intermediate.price16">Complete (16): $1,680 → $105/class</div>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-      </div>
-
-      <!-- ===== ADVANCED ===== -->
-      <h3 class="subsection" data-i18n="classes.group.advanced">Avanzado</h3>
-      <div class="pricing pricing--two">
-        <article class="price-card">
-          <h3 data-i18n="pricing.advanced.title">Advanced</h3>
-          <p class="price" data-i18n="pricing.advanced.price4">$480 <span>/ 4 classes</span></p>
-          <ul>
-            <li data-i18n="pricing.advanced.l1">Advanced rudiments (combinations &amp; long endurance)</li>
-            <li data-i18n="pricing.advanced.l2">Rhythms: all above + seis corrido &amp; corvé</li>
-            <li data-i18n="pricing.advanced.l3">Deep variations of sicá, yubá, cuembé, holandé, calindá</li>
-            <li data-i18n="pricing.advanced.l4">Maintain intensity &amp; cadence for long stretches</li>
-            <li data-i18n="pricing.advanced.l5">Sing coros while complex buleo variations</li>
-            <li data-i18n="pricing.advanced.l6">Pro-level control &amp; variation drills</li>
-          </ul>
-          <div class="note" data-i18n="pricing.advanced.price16">Complete (16): $1,760 → $110/class</div>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-      </div>
-
-      <!-- Note for unsure students -->
-      <div class="note" data-i18n="classes.note">If you’re unsure of your level, we can do a $15 initial evaluation to place you correctly.</div>
-    </div>
-  </section>
-  <!-- ===== Workshops Section ===== -->
-  <section id="workshops" class="section">
-    <div class="container grid">
-      <div>
-        <h2 data-i18n="workshops.title">Group Workshops</h2>
-        <p data-i18n="workshops.p1">For 3+ people: intro to Bomba (buleo basics), rhythm family (sicá, yubá, cuembé, holandé), and cultural context. Priced at $60 per person per hour.</p>
-        <p data-i18n="workshops.p2">We also offer campus talks and chapel services. Typical budget: travel & lodging up to $2,500 + $2,000 honorarium.</p>
-      </div>
-      <!-- Workshops includes card -->
-      <div class="card">
-        <h3 data-i18n="workshops.includes">Includes</h3>
+      <!-- Complete (16) -->
+      <article class="price-card">
+        <h3 data-i18n="pricing.full.title">Complete (16)</h3>
+        <p class="price">$1,600 <span data-i18n="pricing.full.note">($100/class)</span></p>
         <ul>
-          <li data-i18n="workshops.i1">All-level friendly</li>
-          <li data-i18n="workshops.i2">Call-and-response practice</li>
-          <li data-i18n="workshops.i3">Culture & history</li>
+          <li data-i18n="pricing.full.l1">16 private classes (1 hr)</li>
+          <li data-i18n="pricing.full.l2">Use within 365 days</li>
+          <li data-i18n="pricing.full.l3">Endurance &amp; personal practice</li>
         </ul>
-      </div>
+        <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+      </article>
     </div>
-  </section>
 
-  <!-- ===== FAQ Section ===== -->
-  <section id="faq" class="section section--alt">
-    <div class="container">
-      <h2 data-i18n="faq.title">FAQ</h2>
-      <!-- FAQ items -->
-      <details>
-        <summary data-i18n="faq.q1">Do I need my own drum?</summary>
-        <p data-i18n="faq.a1">No. If you have one, bring it. If not, we’ll adapt with practice surfaces and technique.</p>
-      </details>
-      <details>
-        <summary data-i18n="faq.q2">Are lessons in Spanish or English?</summary>
-        <p data-i18n="faq.a2">Either—your choice. The tradition is Puerto Rican; we honor both languages.</p>
-      </details>
-      <details>
-        <summary data-i18n="faq.q3">Where are lessons held?</summary>
-        <p data-i18n="faq.a3">In-person (DFW area) or we can arrange a suitable space. No virtual lessons listed by default.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ===== Contact Section ===== -->
-  <section id="contact" class="section">
-    <div class="container grid">
-      <div>
-        <h2 data-i18n="contact.title">Contact</h2>
-        <p data-i18n="contact.p1">...</p>
-        <ul class="contact-list">
-          <li><strong>Email:</strong> <a href="mailto:contact@bambulastudio.com">contact@bambulastudio.com</a></li>
-          <li><strong>Instagram:</strong> <a href="https://instagram.com/bambula_studio" target="_blank" rel="noopener">@bambula_studio</a></li>
+    <!-- ===== INTERMEDIATE ===== -->
+    <h3 class="subsection" data-i18n="classes.group.intermediate">Intermedio</h3>
+    <div class="pricing pricing--two">
+      <article class="price-card">
+        <h3 data-i18n="pricing.intermediate.title">Intermediate</h3>
+        <p class="price" data-i18n="pricing.intermediate.price4">$460 <span>/ 4 classes</span></p>
+        <ul>
+          <li data-i18n="pricing.intermediate.l1">Intermediate rudiments (control &amp; variations)</li>
+          <li data-i18n="pricing.intermediate.l2">Buleo interaction with primo</li>
+          <li data-i18n="pricing.intermediate.l3">Coordination &amp; endurance drills</li>
+          <li data-i18n="pricing.intermediate.l4">Rhythms: sicá, yubá, cuembé, holandé + calindá</li>
+          <li data-i18n="pricing.intermediate.l5">Basic responses to llamados</li>
+          <li data-i18n="pricing.intermediate.l6">Sing coros while buleando</li>
+          <li data-i18n="pricing.intermediate.l7">Energy dynamics (up/down)</li>
         </ul>
-      </div>
-      <!-- Contact form (Formspree) -->
-      <form class="form" action="https://formspree.io/f/mdkloyyj" method="POST">
-        <!-- Subject line for your email -->
-        <input type="hidden" name="_subject" value="New message from Bambula Studio site">
-        <!-- Redirect after submit -->
-        <input type="hidden" name="_next" value="https://www.bambulastudio.com/#contact">
-        <!-- Spam honeypot (invisible to users) -->
-        <div style="position:absolute;left:-5000px" aria-hidden="true">
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
-        </div>
-        <!-- Name field -->
-        <label>
-          <span>Name</span>
-          <input type="text" name="name" required>
-        </label>
-        <!-- Email field -->
-        <label>
-          <span>Email</span>
-          <input type="email" name="email" required>
-        </label>
-        <!-- Message field -->
-        <label>
-          <span>Message</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <!-- Submit button -->
-        <button type="submit" class="btn">Send</button>
-        <p class="form-note">We’ll get back to you soon. Powered by Formspree.</p>
-      </form>
+        <div class="note" data-i18n="pricing.intermediate.price16">Complete (16): $1,680 → $105/class</div>
+        <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+      </article>
     </div>
-  </section>
-  <section id="policies" class="section">
-  <div class="container">
-    <h2 data-i18n="policies.title">Policies</h2>
-    <div class="card">
-      <ul>
-        <li data-i18n="policies.transport">
-          Transportation: if a lesson is held away from my home, an additional $0.65 per mile (round-trip) applies.
-        </li>
-        <li data-i18n="policies.expire">
-          Package expiration: all packages expire 365 days after purchase; unused classes are non-refundable and non-transferable.
-        </li>
-        <li data-i18n="policies.record">
-          Recordings: recording the teacher during class isn’t allowed. Specific educational recordings can be coordinated at the end of class.
-        </li>
-      </ul>
+
+    <!-- ===== ADVANCED ===== -->
+    <h3 class="subsection" data-i18n="classes.group.advanced">Avanzado</h3>
+    <div class="pricing pricing--two">
+      <article class="price-card">
+        <h3 data-i18n="pricing.advanced.title">Advanced</h3>
+        <p class="price" data-i18n="pricing.advanced.price4">$480 <span>/ 4 classes</span></p>
+        <ul>
+          <li data-i18n="pricing.advanced.l1">Advanced rudiments (combinations &amp; long endurance)</li>
+          <li data-i18n="pricing.advanced.l2">Rhythms: all above + seis corrido &amp; corvé</li>
+          <li data-i18n="pricing.advanced.l3">Deep variations of sicá, yubá, cuembé, holandé, calindá</li>
+          <li data-i18n="pricing.advanced.l4">Maintain intensity &amp; cadence for long stretches</li>
+          <li data-i18n="pricing.advanced.l5">Sing coros while complex buleo variations</li>
+          <li data-i18n="pricing.advanced.l6">Pro-level control &amp; variation drills</li>
+        </ul>
+        <div class="note" data-i18n="pricing.advanced.price16">Complete (16): $1,760 → $110/class</div>
+        <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+      </article>
     </div>
+
+    <!-- Note for unsure students -->
+    <div class="note" data-i18n="classes.note">If you’re unsure of your level, we can do a $15 initial evaluation to place you correctly.</div>
   </div>
 </section>
-</main>
-
-<!-- ===== Site Footer ===== -->
-<footer class="site-footer">
-  <div class="container">
-    <small>&copy; <span id="year"></span> Bámbula Studio. <span data-i18n="footer.rights">All rights reserved.</span></small>
-  </div>
-</footer>
-
-<!-- Main JavaScript file -->
-<script src="script.js"></script>
-</body>
-</html>
