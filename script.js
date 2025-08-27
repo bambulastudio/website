@@ -27,7 +27,7 @@ const strings = {
     "about.f2":"Recordings for home practice",
     "about.f3":"Tradition-centered, community-rooted",
     "classes.title":"Private Classes (Buleo)",
-    "classes.subtitle":"Clear, flexible options. Our signature palette: black, white, mustard.",
+    "classes.subtitle":"Clear, flexible options.",
     "pricing.basic.title":"Basic",
     "pricing.perhour":"/ hour",
     "pricing.basic.l1":"Posture & hand placement",
@@ -101,7 +101,7 @@ const strings = {
     "about.f3":"Centrado en la tradición, con raíces comunitarias",
 
     "classes.title":"Clases Privadas (Buleo Básico)",
-    "classes.subtitle":"Opciones claras y flexibles. Paleta: blanco, negro y mostaza—nuestra firma.",
+    "classes.subtitle":"Opciones claras y flexibles.",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Postura y colocación de manos",
