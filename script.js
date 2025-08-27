@@ -101,7 +101,7 @@ const strings = {
     "about.f3":"Centrado en la tradición, con raíces comunitarias",
 
     "classes.title":"Clases Privadas (Buleo Básico)",
-    "classes.subtitle":"Opciones claras y flexibles.",
+    "classes.subtitle":"Opciones claras y flexibles. ",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Postura y colocación de manos",
