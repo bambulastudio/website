@@ -3,6 +3,80 @@ const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
 const strings = {
+  en: {
+    "nav.about":"About",
+    "nav.classes":"Classes",
+    "nav.workshops":"Workshops",
+    "nav.faq":"FAQ",
+    "nav.contact":"Contact",
+
+    "hero.title":"Rooted rhythm. Living culture.",
+    "hero.subtitle":"Private Bomba drum lessons (buleo), community workshops, and cultural education—with care and discipline.",
+    "hero.cta1":"See classes",
+    "hero.cta2":"Ask a question",
+
+    "about.title":"What is Bámbula Studio?",
+    "about.p1":"At Bámbula Studio, we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
+    "about.p2":"• Teaching: Bomba classes and workshops for all ages and levels, where students learn traditional rhythms, songs, and dances.",
+    "about.p3":"• Preservation: Keeping Puerto Rican tradition alive in the diaspora—creating spaces where Bomba flourishes as ancestral heritage.",
+    "about.p4":"• Community: Cultivating cultural gatherings in the Dallas–Fort Worth area that strengthen identity and belonging.",
+    "about.p5":"• Ancestral memory: Each class and every drumbeat becomes an act of remembering who we are as a people, honoring our Afro-Caribbean roots.",
+    "about.p6":"Through every activity we seek to celebrate, share, and pass Puerto Rican culture to new generations.",
+    "about.quick":"Quick facts",
+    "about.f1":"Private lessons: 1 hr",
+    "about.f2":"Recordings for home practice",
+    "about.f3":"Tradition-centered, community-rooted",
+
+    "classes.title":"Private Classes (Buleo)",
+    "classes.subtitle":"Clear, flexible options. Our signature palette: black, white, mustard.",
+    "pricing.basic.title":"Basic",
+    "pricing.perhour":"/ hour",
+    "pricing.basic.l1":"Posture & hand placement",
+    "pricing.basic.l2":"Sounds: abierto/seco, caja, campana",
+    "pricing.basic.l3":"Keep buleo in time",
+
+    "pricing.monthly.title":"Monthly (4)",
+    "pricing.monthly.note":"($110/class)",
+    "pricing.monthly.l1":"4 private classes (1 hr each)",
+    "pricing.monthly.l2":"Use within 365 days",
+    "pricing.monthly.l3":"Practice recordings",
+
+    "pricing.full.title":"Complete (16)",
+    "pricing.full.note":"($100/class)",
+    "pricing.full.l1":"16 private classes (1 hr)",
+    "pricing.full.l2":"Use within 365 days",
+    "pricing.full.l3":"Endurance & personal practice",
+    "pricing.cta":"Book",
+
+    "classes.note":"Not sure of your level? We can do a $15 initial evaluation to place you correctly.",
+
+    "workshops.title":"Group Workshops",
+    "workshops.p1":"For 3+ people: intro to Bomba (buleo basics), rhythm family (sicá, yubá, cuembé, holandé), and cultural context. $60 per person per hour.",
+    "workshops.p2":"We also offer campus talks and chapel services. Typical budget: travel & lodging up to $2,500 + $2,000 honorarium.",
+
+    "workshops.includes":"Includes",
+    "workshops.i1":"All-level friendly",
+    "workshops.i2":"Call-and-response practice",
+    "workshops.i3":"Culture & history",
+
+    "faq.title":"FAQ",
+    "faq.q1":"Do I need my own drum?",
+    "faq.a1":"No. If you have one, bring it. If not, we’ll adapt with practice surfaces and technique.",
+    "faq.q2":"Are lessons in Spanish or English?",
+    "faq.a2":"Either—your choice. The tradition is Puerto Rican; we honor both languages.",
+    "faq.q3":"Where are lessons held?",
+    "faq.a3":"In-person (DFW area) or we can arrange a suitable space. No virtual lessons listed by default.",
+
+    "contact.title":"Contact",
+    "contact.p1":"Reach out to get started and I’ll send all the info.",
+    "form.name":"Name",
+    "form.email":"Email",
+    "form.msg":"Message",
+    "form.send":"Send",
+    "form.note":"This form uses Formspree’s free plan.",
+    "footer.rights":"All rights reserved."
+  },
+
   es: {
     "nav.about":"Sobre",
     "nav.classes":"Clases",
@@ -21,7 +95,8 @@ const strings = {
     "about.p3":"• Preservación: Mantener viva la tradición puertorriqueña en la diáspora, creando espacios donde la Bomba florece como herencia ancestral.",
     "about.p4":"• Comunidad: Fomentar encuentros culturales en el área de Dallas–Fort Worth que fortalezcan la identidad y el sentido de pertenencia.",
     "about.p5":"• Memoria ancestral: Cada clase y cada toque de tambor se convierten en un acto de recordar quiénes somos como pueblo, y en una forma de honrar nuestras raíces afrocaribeñas.",
-    "about.p6":"Con cada actividad buscamos que la cultura puertorriqueña sea celebrada, compartida y transmitida a nuevas generaciones.",    "about.quick":"Datos rápidos",
+    "about.p6":"Con cada actividad buscamos que la cultura puertorriqueña sea celebrada, compartida y transmitida a nuevas generaciones.",
+    "about.quick":"Datos rápidos",
     "about.f1":"Clases privadas: 1 hora",
     "about.f2":"Grabaciones para práctica en casa",
     "about.f3":"Centrado en la tradición, con raíces comunitarias",
@@ -72,7 +147,7 @@ const strings = {
     "form.email":"Correo",
     "form.msg":"Mensaje",
     "form.send":"Enviar",
-    "form.note":"Este formulario usa el plan gratis de Formspree. Cambia la URL con la tuya.",
+    "form.note":"Este formulario usa el plan gratis de Formspree.",
     "footer.rights":"Todos los derechos reservados."
   }
 };
