@@ -192,11 +192,13 @@ const strings = {
     "pricing.cta":"Reservar",
 
     // CLASES – nuevos paquetes
-    "pricing.intermediate.title":"Intermedio",
-    "pricing.intermediate.single.na":"120 / hora",
+    "pricing.intermediate.title":"Clase Individual (1 Sesión)",
+    "pricing.intermediate.single.na":"$120 / hora",
     "pricing.intermediate.single.note":"No se ofrece sesión individual en este nivel.",
 
+    "pricing.intermediate.monthly.title":"Subscripción Mensual",
     "pricing.intermediate.price4":"$460 / 4 clases",
+    "pricing.intermediate.full.title":"Curso Completo",
     "pricing.intermediate.price16":"Completo (16): $1,680 → $105 / hora",
     "pricing.intermediate.price16_head":"$1,680 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
