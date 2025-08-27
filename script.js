@@ -104,7 +104,7 @@ const strings = {
     "classes.title":"Clases Privadas (Buleo Básico)",
     "classes.subtitle":"Opciones claras y flexibles. ",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
-    "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta clase.",
+    "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Postura y colocación de manos",
     "pricing.basic.l2":"Sonidos: abierto/seco, caja, campana",
