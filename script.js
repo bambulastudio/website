@@ -212,7 +212,7 @@ const strings = {
     "pricing.advanced.title":"Clase Individual (1 Sesión)",
     "pricing.advanced.single.na":"$130 / hora",
     "pricing.advanced.single.note":"-",
-    "pricing.advanced.title":"Subcripción Mensual",
+    "pricing.advanced.monthly.title":"Subcripción Mensual",
     "pricing.advanced.price4":"$480 ($120 / hora)",
     "pricing.advanced.full.title":"Curso Completo",
     "pricing.advanced.price16_head":"$1,760 ($110 / hora)",
