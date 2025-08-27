@@ -184,7 +184,7 @@ const strings = {
     "pricing.monthly.l4":"Ahorra 8%",
 
     "pricing.full.title":"Curso Completo",
-    "pricing.full.note":"($100 / hora — más popular)",
+    "pricing.full.note":"($100 / hora) - más popular",
     "pricing.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.full.l2":"Expira en 365 días (desde la compra)",
     "pricing.full.l3":"Resistencia y práctica personal",
