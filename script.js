@@ -227,9 +227,9 @@ const strings = {
     "pricing.intermediate.title":"Clase Individual (1 Sesión)",
     // Intermedio: sesión individual 
     "pricing.intermediate.single.na":"—",
-    "pricing.intermediate.single.note":"No se ofrece sesión individual en este nivel.",
-    "pricing.intermediate.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
-    "pricing.intermediate.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
+    "pricing.intermediate.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
+    "pricing.intermediate.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
+    "pricing.intermediate.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
 
     "pricing.intermediate.monthly.title":"Subscripción Mensual",
     "pricing.intermediate.price4":"$460 ($115 / hora)",
@@ -257,7 +257,10 @@ const strings = {
     "pricing.advanced.title":"Clase Individual (1 Sesión)",
     // Avanzado: sesión individual 
     "pricing.advanced.single.na":"—",
-    "pricing.advanced.single.note":"No se ofrece sesión individual en este nivel.",
+    "pricing.advanced.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
+    "pricing.advanced.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
+    "pricing.advanced.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
+
     "pricing.advanced.monthly.title":"Subcripción Mensual",
     "pricing.advanced.price4":"$480 ($120 / hora)",
     "pricing.advanced.full.title":"Curso Completo",
