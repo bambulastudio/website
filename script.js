@@ -30,6 +30,29 @@ const strings = {
     "classes.group.basic":"Basic Buleo",
     "classes.group.intermediate":"Intermediate Buleo",
     "classes.group.advanced":"Advanced Buleo",
+    "classes.group.basic.l1":"History of Bomba as Puerto Rican tradition",
+    "classes.group.basic.l2":"Parts of the barrel: body, skin, and basic care",
+    "classes.group.basic.l3":"Posture and hand placement",
+    "classes.group.basic.l4":"Sounds: open/closed, caja, campana",
+    "classes.group.basic.l5":"Basic buleo rudiments",
+    "classes.group.basic.l6":"Keep the buleo in time",
+    "classes.group.basic.l7":"Rhythms: sicá, yubá, cuembé, holandé",
+    "classes.group.basic.l8":"Endurance exercises and personal practice",
+
+    "classes.group.intermediate.l1":"Intermediate rudiments (control & variations)",
+    "classes.group.intermediate.l2":"Buleo interaction with the primo",
+    "classes.group.intermediate.l3":"Coordination & endurance drills",
+    "classes.group.intermediate.l4":"Rhythms: sicá, yubá, cuembé, holandé + calindá",
+    "classes.group.intermediate.l5":"Basic responses to llamados",
+    "classes.group.intermediate.l6":"Sing coros while buleando",
+    "classes.group.intermediate.l7":"Energy dynamics (up/down)",
+
+    "classes.group.advanced.l1":"Advanced rudiments (combinations & long endurance)",
+    "classes.group.advanced.l2":"Rhythms: all above + seis corrido & corvé",
+    "classes.group.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l4":"Maintain intensity & cadence for long stretches",
+    "classes.group.advanced.l5":"Sing coros while complex buleo variations",
+    "classes.group.advanced.l6":"Pro-level control & variation drills",
     
     "classes.title":"Private Classes (Buleo)",
     "classes.subtitle":"Clear, flexible options.",
@@ -153,7 +176,7 @@ const strings = {
   },
 
   es: {
-    "nav.about":"Acerca de Bámbula Studio",
+    "nav.about":"Acerca",
     "nav.classes":"Clases",
     "nav.workshops":"Talleres",
     "nav.faq":"Preguntas",
@@ -316,7 +339,7 @@ const strings = {
     "faq.q2":"¿Las clases son en español o inglés?",
     "faq.a2":"Como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
     "faq.q3":"¿Dónde se ofrecen las clases?",
-    "faq.a3":"Presencial (área DFW) o coordinamos un espacio. No listamos virtual por defecto.",
+    "faq.a3":"Presencial (área DFW) o coordinamos un espacio. No se ofrecen clases virtuales.",
 
     "contact.title":"Contacto",
     "contact.p1":"Contactanos para empezar!",
@@ -461,6 +484,33 @@ document.getElementById('langToggle').addEventListener('click', ()=>{
   const current = localStorage.getItem('bambula_lang') || 'en';
   setLang(current==='en'?'es':'en');
 });
+
+// Mobile nav toggle
+const siteHeader = document.querySelector('.site-header');
+const menuToggle = document.getElementById('menuToggle');
+const siteNav = document.getElementById('siteNav');
+if (menuToggle && siteHeader) {
+  menuToggle.addEventListener('click', ()=>{
+    const open = siteHeader.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  // Close menu when a nav link is clicked (on small screens)
+  if (siteNav) {
+    siteNav.querySelectorAll('a').forEach(a=>{
+      a.addEventListener('click', ()=>{
+        siteHeader.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+  // Close menu when resizing up to desktop
+  window.addEventListener('resize', ()=>{
+    if (window.innerWidth >= 900) {
+      siteHeader.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded','false');
+    }
+  });
+}
 
 // Recalculate alignment on resize (debounced)
 let __noteResizeTO;

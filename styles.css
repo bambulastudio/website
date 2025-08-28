@@ -10,10 +10,13 @@
   --ring: rgba(217,163,36,0.45);
   --success:#1a7f37;      /* green for savings */
   --success-bg:#eaf6ec;   /* subtle green background */
+  --header-offset: 72px;  /* anchor offset for sticky header */
 }
 
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--fg)}
+/* Ensure in-page anchor jumps account for sticky header height */
+html{scroll-padding-top: var(--header-offset)}
 body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helvetica Neue',Arial,sans-serif;line-height:1.6}
 
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
@@ -22,14 +25,18 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 
 /* --- Header --- */
 .site-header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #eee;z-index:10}
-.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding:2px 20px}
 .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
-.logo{width:40px;height:40px}
+.logo{height:84px;width:auto}
 .wordmark{letter-spacing:.3px}
+/* .wordmark { font-size: 1.25rem; font-weight: 800; } */
+.wordmark { font-size: clamp(1rem, 2.4vw, 1.5rem); }
 
 .nav{display:flex;gap:1rem;align-items:center}
 .nav a{color:var(--fg);text-decoration:none;font-weight:600}
 .nav a:hover{color:var(--mustard)}
+.menu{display:none;border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;margin-right:.5rem}
+.menu:hover{border-color:var(--mustard)}
 .btn{display:inline-block;padding:.75rem 1rem;border:2px solid var(--mustard);background:var(--mustard);color:#000;text-decoration:none;font-weight:800;border-radius:8px;transition:transform .05s ease, box-shadow .2s ease}
 .btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px -6px var(--ring)}
 .btn--ghost{background:transparent;color:var(--fg)}
@@ -40,7 +47,7 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 
 /* --- Hero --- */
 .hero{padding:72px 0 40px;border-bottom:1px solid #eee}
-.hero .container{display:grid;grid-template-columns:1.2fr 1fr;gap:2rem;align-items:center}
+.hero .container{display:grid;grid-template-columns:1fr;gap:1.25rem;align-items:center}
 .hero__text h1{font-size:clamp(2rem,4vw,3rem);line-height:1.1;margin:.25rem 0}
 .lead{color:#333;max-width:60ch}
 .hero__art{position:relative;min-height:240px}
@@ -166,10 +173,55 @@ details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;ma
 
 /* Two-column variant for smaller groups */
 @media(min-width:900px){
+  .hero .container{grid-template-columns:1.2fr 1fr;gap:2rem}
   .pricing--two { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* --- Mobile nav --- */
+@media(max-width:899px){
+  .menu{display:inline-block}
+  .nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #eee;padding:10px 20px;flex-direction:column;gap:.5rem}
+  .site-header.open .nav{display:flex}
+  .nav a{padding:.5rem 0}
+}
+
+/* Small-screen hero tweaks */
+@media(max-width:599px){
+  .hero{padding:56px 0 28px}
+  .hero__art .circle,.hero__art .drum{display:none}
 }
 
 /* --- Feature toggles --- */
 /* Hide Workshops section and its nav link when opted out */
 [data-hide-workshops="true"] #workshops{ display:none; }
 [data-hide-workshops="true"] .nav a[href="#workshops"]{ display:none; }
+
+/* About: stack on mobile so the card doesn't squeeze content */
+@media(max-width:900px){
+  #about .container.grid{ grid-template-columns: 1fr; }
+  #about .card{ justify-self: center; }
+}
+
+/* Sticky group headers on mobile: keep the description visible while pricing scrolls */
+@media(max-width:900px){
+  .class-group{ position: relative; }
+  /* Keep the description fixed and fully opaque so content underneath isn't visible */
+  .class-group .group-head{
+    position: sticky;
+    top: calc(var(--header-offset) + 8px);
+    z-index: 3;
+    padding: 6px 0;
+    box-shadow: 0 8px 14px -12px rgba(0,0,0,.35);
+  }
+  /* Solid backgrounds depending on section tone */
+  .section--alt .class-group .group-head{ background: var(--card); }
+  .section:not(.section--alt) .class-group .group-head{ background: var(--bg); }
+  .class-group .pricing{ margin-top: .5rem; }
+}
+/* Mobile type & header tweaks */
+@media(max-width:600px){
+  .logo{height:48px}
+  .wordmark{font-size:clamp(1rem, 5vw, 1.25rem)}
+  .lead{font-size:1rem; line-height:1.6}
+  #classes ul li{line-height:1.6}
+}
