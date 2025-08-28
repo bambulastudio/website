@@ -15,13 +15,15 @@
   <!-- Favicon -->
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body data-hide-workshops="true">
 <!-- ===== Site Header ===== -->
 <header class="site-header">
   <div class="container">
     <div class="brand">
       <!-- Logo and wordmark -->
-      <img src="assets/logo_noname.png" alt="Bámbula Studio logo" class="logo">
+      <!-- <img src="assets/logo_noname.png" alt="Bámbula Studio logo" class="logo"> -->
+      <img src="assets/babytree_logo.png" alt="Bámbula Studio logo" class="logo">
+      <!-- <img src="assets/ilan_logo.png" alt="Bámbula Studio logo" class="logo"> -->
       <span class="wordmark">Bámbula Studio</span>
     </div>
     <!-- Navigation links -->
@@ -50,9 +52,11 @@
         </div>
       </div>
       <!-- Decorative hero art -->
-      <div class="hero__art" aria-hidden="true">
-        <div class="circle"></div>
-        <div class="drum"></div>
+      <div class="hero__art hero__art--image" aria-hidden="true">
+        <!-- Toggle: remove hero__art--image class above to return to shapes -->
+        <img class="art" style="--art-size: 100%;" src="assets/bambula_patterns.png" alt="" />
+        <!-- <div class="circle"></div>
+        <div class="drum"></div> -->
       </div>
     </div>
   </section>

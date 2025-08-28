@@ -47,6 +47,36 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 .hero__art .circle{position:absolute;right:10%;top:10%;width:220px;height:220px;border-radius:50%;background:var(--mustard);filter:contrast(110%) saturate(120%);opacity:.9}
 .hero__art .drum{position:absolute;right:18%;top:18%;width:140px;height:140px;border-radius:14px;border:8px solid #000;background:#caa66b;transform:rotate(8deg)}
 
+/* Hero art: image mode */
+.hero__art--image{min-height:280px}
+.hero__art--image img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:14px}
+/* Option: dim image slightly so text reads well */
+.hero__art--image::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg, rgba(255,255,255,0.0), rgba(255,255,255,0.0));border-radius:14px}
+
+/* Image at 50% size, centered */
+.hero__art--image.hero__art--50{min-height:280px;display:grid;place-items:center}
+.hero__art--image.hero__art--50 img{position:static;width:50%;height:auto;object-fit:contain;border-radius:12px}
+/* Hide shape overlays when testing image-only at 50% */
+.hero__art--image.hero__art--50 .circle,
+.hero__art--image.hero__art--50 .drum{display:none}
+
+/* Size just the PNG (keep hero art layout) */
+.hero__art--image img.art-50{position:static;width:50%;height:auto;object-fit:contain;display:block;margin:0 auto;border-radius:12px}
+/* Presets for quick A/B sizing */
+.hero__art--image img.art-40{position:static;width:40%;height:auto;object-fit:contain;display:block;margin:0 auto;border-radius:12px}
+.hero__art--image img.art-60{position:static;width:60%;height:auto;object-fit:contain;display:block;margin:0 auto;border-radius:12px}
+
+/* CSS variable-based sizing for the PNG only */
+.hero__art--image img.art{
+  position: static;
+  width: var(--art-size, 50%);
+  height: auto;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 12px;
+}
+
 /* --- Sections --- */
 .section{padding:64px 0}
 .section--alt{background:var(--card)}
@@ -138,3 +168,8 @@ details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;ma
 @media(min-width:900px){
   .pricing--two { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* --- Feature toggles --- */
+/* Hide Workshops section and its nav link when opted out */
+[data-hide-workshops="true"] #workshops{ display:none; }
+[data-hide-workshops="true"] .nav a[href="#workshops"]{ display:none; }

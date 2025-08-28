@@ -33,8 +33,8 @@ const strings = {
     
     "classes.title":"Private Classes (Buleo)",
     "classes.subtitle":"Clear, flexible options.",
-    "pricing.basic.title":"Basic",
-    "pricing.single.credit":"If you enroll in the Complet Course package within 30 days from booking, this session is credited.",
+    "pricing.basic.title":"Single Class",
+    "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
     "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
     "pricing.basic.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
@@ -57,6 +57,14 @@ const strings = {
     // BASIC – Complete card (title + note)
     "pricing.basic.full.title":"Complete Course",
     "pricing.basic.full.note":"($100 / hour) - most popular",
+    
+    // INTERMEDIATE – section titles for monthly/full cards
+    "pricing.intermediate.monthly.title":"Intermediate",
+    "pricing.intermediate.full.title":"Intermediate",
+
+    // ADVANCED – section titles for monthly/full cards
+    "pricing.advanced.monthly.title":"Monthly Subscription",
+    "pricing.advanced.full.title":"Complete Course",
     "pricing.cta":"Book",
 
     // CLASSES – new packages
@@ -117,9 +125,9 @@ const strings = {
 
     "classes.note":"Not sure of your level? We can do a $15 initial evaluation to place you correctly.",
 
-    "workshops.title":"Group Workshops",
-    "workshops.p1":"For 3+ people: intro to Bomba (buleo basics), rhythm family (sicá, yubá, cuembé, holandé), and cultural context. $60 per person per hour.",
-    "workshops.p2":"We also offer campus talks and chapel services. Typical budget: travel & lodging up to $2,500 + $2,000 honorarium.",
+    "workshops.title":"Group Packages",
+    "workshops.p1":"Group Workshops - Coming Soon",
+    "workshops.p2":"We offer educational talks. Contact for details.",
 
     "workshops.includes":"Includes",
     "workshops.i1":"All-level friendly",
@@ -135,7 +143,7 @@ const strings = {
     "faq.a3":"In-person (DFW area) or we can arrange a suitable space. No virtual lessons listed by default.",
 
     "contact.title":"Contact",
-    "contact.p1":"Reach out to get started and I’ll send all the info.",
+    "contact.p1":"Reach out to get started!",
     "form.name":"Name",
     "form.email":"Email",
     "form.msg":"Message",
@@ -145,7 +153,7 @@ const strings = {
   },
 
   es: {
-    "nav.about":"About",
+    "nav.about":"Acerca de Bámbula Studio",
     "nav.classes":"Clases",
     "nav.workshops":"Talleres",
     "nav.faq":"Preguntas",
@@ -292,8 +300,10 @@ const strings = {
     "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
 
     "workshops.title":"Talleres Grupales",
-    "workshops.p1":"Para 3+ personas: introducción a la Bomba (buleo básico), familia rítmica (sicá, yubá, cuembé, holandé) y contexto cultural. $60 por persona por hora.",
-    "workshops.p2":"También hacemos charlas y servicios de capilla. Presupuesto típico: viaje y estadía hasta $2,500 + honorarios de $2,000.",
+    // "workshops.p1":"Para 3+ personas: introducción a la Bomba (buleo básico), familia rítmica (sicá, yubá, cuembé, holandé) y contexto cultural. $60 por persona por hora.",
+    // "workshops.p2":"También hacemos charlas y servicios de capilla. Presupuesto típico: viaje y estadía hasta $2,500 + honorarios de $2,000.",
+    "workshops.p1":"Próximamente disponible",
+    "workshops.p2":"Ofrecemos charlas. Contacta para más detalles.",
 
     "workshops.includes":"Incluye",
     "workshops.i1":"Apto para todos los niveles",
@@ -309,7 +319,7 @@ const strings = {
     "faq.a3":"Presencial (área DFW) o coordinamos un espacio. No listamos virtual por defecto.",
 
     "contact.title":"Contacto",
-    "contact.p1":"Contáctame para empezar y te enviaré toda la información.",
+    "contact.p1":"Contactanos para empezar!",
     "form.name":"Nombre",
     "form.email":"Correo",
     "form.msg":"Mensaje",
