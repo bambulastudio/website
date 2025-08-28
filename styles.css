@@ -35,14 +35,15 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 .nav{display:flex;gap:1rem;align-items:center}
 .nav a{color:var(--fg);text-decoration:none;font-weight:600}
 .nav a:hover{color:var(--mustard)}
-.menu{display:none;border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;margin-right:.5rem}
+.menu{display:none;border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;margin-right:.5rem;font-size:0;line-height:1}
+.menu::before{content:"\2630"; /* hamburger */ font-size:1.25rem;}
 .menu:hover{border-color:var(--mustard)}
 .btn{display:inline-block;padding:.75rem 1rem;border:2px solid var(--mustard);background:var(--mustard);color:#000;text-decoration:none;font-weight:800;border-radius:8px;transition:transform .05s ease, box-shadow .2s ease}
 .btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px -6px var(--ring)}
 .btn--ghost{background:transparent;color:var(--fg)}
 .btn--small{padding:.5rem .75rem;font-size:.9rem}
 
-.lang{border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer}
+.lang{border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
 .lang:hover{border-color:var(--mustard)}
 
 /* --- Hero --- */

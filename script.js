@@ -16,7 +16,7 @@ const strings = {
     "hero.cta2":"Ask a question",
 
     "about.title":"What is Bámbula Studio?",
-    "about.p1":"At Bámbula Studio, we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
+    "about.p1":"At Bámbula Studio LLC, we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
     "about.p2":"Teaching: Bomba classes and workshops for all ages and levels, where students learn traditional rhythms, songs, and dances.",
     "about.p3":"Preservation: Keeping Puerto Rican tradition alive in the diaspora—creating spaces where Bomba flourishes as ancestral heritage.",
     "about.p4":"Community: Cultivating cultural gatherings in the Dallas–Fort Worth area that strengthen identity and belonging.",
@@ -188,7 +188,7 @@ const strings = {
     "hero.cta2":"Hacer una pregunta",
 
     "about.title":"¿Qué es Bámbula Studio?",
-    "about.p1":"En Bámbula Studio entendemos la Bomba no solo como música y danza, sino como una expresión de memoria, identidad y resistencia. Nuestro trabajo cultural se centra en:",
+    "about.p1":"En Bámbula Studio LLC entendemos la Bomba no solo como música y danza, sino como una expresión de memoria, identidad y resistencia. Nuestro trabajo cultural se centra en:",
     "about.p2":"Enseñanza: Clases y talleres de Bomba diseñados para todas las edades y niveles, donde se aprenden los toques, cantos y bailes tradicionales.",
     "about.p3":"Preservación: Mantener viva la tradición puertorriqueña en la diáspora, creando espacios donde la Bomba florece como herencia ancestral.",
     "about.p4":"Comunidad: Fomentar encuentros culturales en el área de Dallas–Fort Worth que fortalezcan la identidad y el sentido de pertenencia.",
@@ -317,7 +317,7 @@ const strings = {
 
     // POLÍTICAS
     "policies.title":"Políticas",
-    "policies.transport":"Transporte: si la clase se realiza en un lugar distinto a mi residencia, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
+    "policies.transport":"Transporte: si la clase se realiza afuera de Bámbula Studio, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
     "policies.expire":"Vencimiento: todos los paquetes expiran; clases no usadas no son reembolsables ni transferibles.",
     "policies.record":"Grabaciones: no se permite grabar a la maestra durante la clase. Se pueden coordinar grabaciones educativas específicas al finalizar.",
     "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
@@ -342,7 +342,7 @@ const strings = {
     "faq.a3":"Presencial (área DFW) o coordinamos un espacio. No se ofrecen clases virtuales.",
 
     "contact.title":"Contacto",
-    "contact.p1":"Contactanos para empezar!",
+    "contact.p1":"¡Contáctanos para empezar!",
     "form.name":"Nombre",
     "form.email":"Correo",
     "form.msg":"Mensaje",
@@ -378,7 +378,12 @@ function setLang(lang){
   moveSavingsToNotes();
   // Normalize note heights so buttons align across cards
   syncNoteHeights();
-  document.getElementById('langToggle').textContent = (lang==='es')?'EN':'ES';
+  const langBtn = document.getElementById('langToggle');
+  if (langBtn){
+    // Show target language with its flag
+    langBtn.textContent = '';
+    langBtn.innerHTML = (lang==='es') ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
+  }
   localStorage.setItem('bambula_lang', lang);
 }
 
