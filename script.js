@@ -124,7 +124,7 @@ const strings = {
     "nav.faq":"Preguntas",
     "nav.contact":"Contacto",
 
-    "hero.title":"Ritmo ancestral. Cultura viva.",
+    "hero.title":"TESTRitmo ancestral. Cultura viva.",
     "hero.subtitle":"Clases privadas de percusión de Bomba, talleres comunitarios y educación cultural con compromiso y disciplina",
     "hero.cta1":"Ver clases",
     "hero.cta2":"Hacer una pregunta",
