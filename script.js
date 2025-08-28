@@ -264,7 +264,22 @@ function setLang(lang){
   document.documentElement.lang = (lang === 'es') ? 'es' : 'en';
   document.querySelectorAll('[data-i18n]').forEach(el=>{
     const key = el.getAttribute('data-i18n');
-    if (map && map[key]) el.textContent = map[key];
+    const val = map && map[key];
+    if (!val) return;
+
+    // Bold the leading label for specific About bullets (before the first colon)
+    if (['about.p2','about.p3','about.p4','about.p5'].includes(key)) {
+      const idx = val.indexOf(':');
+      if (idx > -1) {
+        const label = val.slice(0, idx).trim();
+        const rest = val.slice(idx + 1).trim();
+        el.innerHTML = `<strong>${label}:</strong> ${rest}`;
+        return;
+      }
+    }
+
+    // Default: plain text content
+    el.textContent = val;
   });
   document.getElementById('langToggle').textContent = (lang==='es')?'EN':'ES';
   localStorage.setItem('bambula_lang', lang);
