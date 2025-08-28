@@ -118,7 +118,7 @@ const strings = {
   },
 
   es: {
-    "nav.about":"Sobre",
+    "nav.about":"About",
     "nav.classes":"Clases",
     "nav.workshops":"Talleres",
     "nav.faq":"Preguntas",
