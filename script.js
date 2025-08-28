@@ -39,25 +39,29 @@ const strings = {
     "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
     "pricing.basic.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
 
-    "pricing.monthly.title":"Monthly Subscription",
-    "pricing.monthly.note":"($110 / hour)",
-    "pricing.monthly.l1":"4 private classes (1 hour each)",
-    "pricing.monthly.l2":"Expires 30 days from purchase.",
-    "pricing.monthly.l3":"Practice recordings",
-    "pricing.monthly.l4":"Save 8%",
+    // BASIC – Monthly card (title + note)
+    "pricing.basic.monthly.title":"Monthly Subscription",
+    "pricing.basic.monthly.note":"($110 / hour)",
 
-    "pricing.full.title":"Complete Course",
-    "pricing.full.note":"($100 / hour) - most popular",
-    "pricing.full.l1":"16 private classes (1 hour each)",
-    "pricing.full.l2":"Use within 365 days of purchase",
-    "pricing.full.l3":"Endurance & personal practice",
-    "pricing.full.l4":"Save 17%",
+    // BASIC tier specific copies (match new_index.html)
+    "pricing.basic.monthly.l1":"4 private classes (1 hour each)",
+    "pricing.basic.monthly.l2":"Use within 30 days of purchase",
+    "pricing.basic.monthly.l3":"Practice recordings",
+    "pricing.basic.monthly.l4":"Save 8%",
+
+    "pricing.basic.full.l1":"16 private classes (1 hour each)",
+    "pricing.basic.full.l2":"Use within 365 days of purchase",
+    "pricing.basic.full.l3":"Endurance & personal practice",
+    "pricing.basic.full.l4":"Save 17%",
+
+    // BASIC – Complete card (title + note)
+    "pricing.basic.full.title":"Complete Course",
+    "pricing.basic.full.note":"($100 / hour) - most popular",
     "pricing.cta":"Book",
 
     // CLASSES – new packages
     "pricing.intermediate.title":"Intermediate",
     "pricing.intermediate.price4":"$460 / 4 classes",
-    "pricing.intermediate.price16":"Complete (16): $1,680 → $105 / hour",
     "pricing.intermediate.l1":"Intermediate rudiments (control & variations)",
     "pricing.intermediate.l2":"Buleo interaction with primo",
     "pricing.intermediate.l3":"Coordination & endurance drills",
@@ -65,22 +69,45 @@ const strings = {
     "pricing.intermediate.l5":"Basic responses to llamados",
     "pricing.intermediate.l6":"Sing coros while buleando",
     "pricing.intermediate.l7":"Energy dynamics (up/down)",
+    // Intermediate single
     "pricing.intermediate.single.na":"—",
     "pricing.intermediate.single.note":"Single session not offered at this level.",
     "pricing.intermediate.price16_head":"$1,680 ($105/class)",
+
+    // INTERMEDIATE monthly/full lists
+    "pricing.intermediate.monthly.l1":"4 private classes (1 hour each)",
+    "pricing.intermediate.monthly.l2":"Use within 30 days",
+    "pricing.intermediate.monthly.l3":"Practice recordings",
+    "pricing.intermediate.monthly.l4":"Save 9%",
+
+    "pricing.intermediate.full.l1":"16 private classes (1 hour each)",
+    "pricing.intermediate.full.l2":"Use within 365 days",
+    "pricing.intermediate.full.l3":"Endurance & personal practice",
+    "pricing.intermediate.full.l4":"Save 19%",
 
     "pricing.advanced.single.na":"—",
     "pricing.advanced.single.note":"Single session not offered at this level.",
     "pricing.advanced.price16_head":"$1,760 ($110/class)",
     "pricing.advanced.title":"Advanced",
     "pricing.advanced.price4":"$480 / 4 classes",
-    "pricing.advanced.price16":"Complete (16): $1,760 → $110/class",
     "pricing.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "pricing.advanced.l2":"Rhythms: all above + seis corrido & corvé",
     "pricing.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
     "pricing.advanced.l4":"Maintain intensity & cadence for long stretches",
     "pricing.advanced.l5":"Sing coros while complex buleo variations",
     "pricing.advanced.l6":"Pro-level control & variation drills",
+
+    // ADVANCED monthly/full lists
+    "pricing.advanced.monthly.l1":"4 private classes (1 hour each)",
+    "pricing.advanced.monthly.l2":"Use within 30 days",
+    "pricing.advanced.monthly.l3":"Practice recordings",
+    "pricing.advanced.monthly.l4":"Save 8%",
+
+    "pricing.advanced.full.l1":"16 private classes (1 hour each)",
+    "pricing.advanced.full.l2":"Use within 365 days",
+    "pricing.advanced.full.l3":"Endurance & personal practice",
+    "pricing.advanced.full.l4":"Save 18%",
+    
 
     // POLICIES
     "policies.title":"Policies",
@@ -176,30 +203,37 @@ const strings = {
     "pricing.basic.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.basic.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
-    "pricing.monthly.title":"Subscripción Mensual",
-    "pricing.monthly.note":"($110 / hora)",
-    "pricing.monthly.l1":"4 sesiones privadas (1 hora c/u)",
-    "pricing.monthly.l2":"Expira en 30 días desde la compra.",
-    "pricing.monthly.l3":"Grabaciones de práctica",
-    "pricing.monthly.l4":"Ahorra 8%",
+    // BASIC (ES) – Mensual (título + nota)
+    "pricing.basic.monthly.title":"Subscripción Mensual",
+    "pricing.basic.monthly.note":"($110 / hora)",
 
-    "pricing.full.title":"Curso Completo",
-    "pricing.full.note":"($100 / hora) - más popular",
-    "pricing.full.l1":"16 sesiones privadas (1 hora c/u)",
-    "pricing.full.l2":"Expira en 365 días (desde la compra)",
-    "pricing.full.l3":"Resistencia y práctica personal",
-    "pricing.full.l4":"Ahorra 17%",
+    // BASIC (ES)
+    "pricing.basic.monthly.l1":"4 sesiones privadas (1 hora c/u)",
+    "pricing.basic.monthly.l2":"Expira en 30 días (desde la compra)",
+    "pricing.basic.monthly.l3":"Grabaciones de práctica",
+    "pricing.basic.monthly.l4":"Ahorra 8%",
+
+    "pricing.basic.full.l1":"16 sesiones privadas (1 hora c/u)",
+    "pricing.basic.full.l2":"Expira en 365 días (desde la compra)",
+    "pricing.basic.full.l3":"Resistencia y práctica personal",
+    "pricing.basic.full.l4":"Ahorra 17%",
+
+    // BASIC (ES) – Completo (título + nota)
+    "pricing.basic.full.title":"Curso Completo",
+    "pricing.basic.full.note":"($100 / hora) - más popular",
     "pricing.cta":"Reservar",
 
     // CLASES – nuevos paquetes
     "pricing.intermediate.title":"Clase Individual (1 Sesión)",
-    "pricing.intermediate.single.na":"$125 / hora",
-    "pricing.intermediate.single.note":"-",
+    // Intermedio: sesión individual 
+    "pricing.intermediate.single.na":"—",
+    "pricing.intermediate.single.note":"No se ofrece sesión individual en este nivel.",
+    "pricing.intermediate.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
+    "pricing.intermediate.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     "pricing.intermediate.monthly.title":"Subscripción Mensual",
     "pricing.intermediate.price4":"$460 ($115 / hora)",
     "pricing.intermediate.full.title":"Curso Completo",
-    // "pricing.intermediate.price16":"Completo (16): $1,680 → $105 / hora",
     "pricing.intermediate.price16_head":"$1,680 ($105 / hora)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
@@ -209,20 +243,43 @@ const strings = {
     "pricing.intermediate.l6":"Cantar coros sin dejar de bulear",
     "pricing.intermediate.l7":"Dinámica de energía (subir y bajar)",
 
+    // INTERMEDIATE (ES) monthly/full lists
+    "pricing.intermediate.monthly.l1":"4 sesiones privadas (1 hora c/u)",
+    "pricing.intermediate.monthly.l2":"Expira en 30 días (desde la compra)",
+    "pricing.intermediate.monthly.l3":"Grabaciones de práctica",
+    "pricing.intermediate.monthly.l4":"Ahorra 9%",
+
+    "pricing.intermediate.full.l1":"16 sesiones privadas (1 hora c/u)",
+    "pricing.intermediate.full.l2":"Expira en 365 días (desde la compra)",
+    "pricing.intermediate.full.l3":"Resistencia y práctica personal",
+    "pricing.intermediate.full.l4":"Ahorra 19%",
+
     "pricing.advanced.title":"Clase Individual (1 Sesión)",
-    "pricing.advanced.single.na":"$130 / hora",
-    "pricing.advanced.single.note":"-",
+    // Avanzado: sesión individual 
+    "pricing.advanced.single.na":"—",
+    "pricing.advanced.single.note":"No se ofrece sesión individual en este nivel.",
     "pricing.advanced.monthly.title":"Subcripción Mensual",
     "pricing.advanced.price4":"$480 ($120 / hora)",
     "pricing.advanced.full.title":"Curso Completo",
     "pricing.advanced.price16_head":"$1,760 ($110 / hora)",
-    // "pricing.advanced.price16":"Completo (16): $1,760 → $110 / hora",
     "pricing.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
     "pricing.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
     "pricing.advanced.l3":"Variaciones profundas de sicá, yubá, cuembé, holandé, calindá",
     "pricing.advanced.l4":"Mantener intensidad y cadencia por tiempos largos",
     "pricing.advanced.l5":"Cantar coros mientras se bulea en variaciones complejas",
     "pricing.advanced.l6":"Ejercicios de control y variación a nivel profesional",
+
+    // ADVANCED (ES) monthly/full lists
+    "pricing.advanced.monthly.l1":"4 sesiones privadas (1 hora c/u)",
+    "pricing.advanced.monthly.l2":"Expira en 30 días (desde la compra)",
+    "pricing.advanced.monthly.l3":"Grabaciones de práctica",
+    "pricing.advanced.monthly.l4":"Ahorra 8%",
+
+    "pricing.advanced.full.l1":"16 sesiones privadas (1 hora c/u)",
+    "pricing.advanced.full.l2":"Expira en 365 días (desde la compra)",
+    "pricing.advanced.full.l3":"Resistencia y práctica personal",
+    "pricing.advanced.full.l4":"Ahorra 18%",
+    
 
     // POLÍTICAS
     "policies.title":"Políticas",
@@ -281,8 +338,107 @@ function setLang(lang){
     // Default: plain text content
     el.textContent = val;
   });
+  // After content is set, move savings bullets into notes below buttons
+  moveSavingsToNotes();
+  // Normalize note heights so buttons align across cards
+  syncNoteHeights();
   document.getElementById('langToggle').textContent = (lang==='es')?'EN':'ES';
   localStorage.setItem('bambula_lang', lang);
+}
+
+function moveSavingsToNotes(){
+  const keys = [
+    // basic
+    'pricing.basic.monthly.l4','pricing.basic.full.l4',
+    // intermediate
+    'pricing.intermediate.monthly.l4','pricing.intermediate.full.l4',
+    // advanced
+    'pricing.advanced.monthly.l4','pricing.advanced.full.l4'
+  ];
+  const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+  const map = strings[lang] || {};
+  keys.forEach(k => {
+    document.querySelectorAll(`[data-i18n="${k}"]`).forEach(node => {
+      if (!node || node.tagName !== 'LI') return;
+      const card = node.closest('.price-card');
+      if (!card) return;
+      const text = node.textContent.trim();
+      // Remove the savings item from the features list
+      node.remove();
+      // Ensure there is a note element after the button
+      let note = card.querySelector(':scope > .note');
+      if (!note) {
+        note = document.createElement('div');
+        note.className = 'note';
+        const btn = card.querySelector(':scope > .btn');
+        if (btn) {
+          btn.insertAdjacentElement('afterend', note);
+        } else {
+          card.appendChild(note);
+        }
+      }
+      // Add a pill span inside the note with the same i18n key
+      let pill = note.querySelector(`.deal-pill[data-i18n="${k}"]`);
+      if (!pill) {
+        pill = document.createElement('span');
+        pill.className = 'deal-pill';
+        pill.setAttribute('data-i18n', k);
+        if (note.childNodes.length) note.append(' ');
+        note.appendChild(pill);
+      }
+      // Translate or fall back to captured text
+      pill.textContent = map[k] || text;
+    });
+  });
+  // Also translate any existing pills (if language toggled and no source li was present)
+  keys.forEach(k => {
+    document.querySelectorAll(`.deal-pill[data-i18n="${k}"]`).forEach(pill => {
+      if (map[k]) pill.textContent = map[k];
+    });
+  });
+}
+
+// Ensure all notes in a visual row share the same minimum height so buttons align
+function syncNoteHeights(){
+  document.querySelectorAll('.pricing').forEach(container => {
+    const cards = Array.from(container.querySelectorAll('.price-card'));
+    if (!cards.length) return;
+
+    // Ensure every card has a note element directly after the button and reset height
+    cards.forEach(card => {
+      let note = card.querySelector(':scope > .note');
+      if (!note) {
+        note = document.createElement('div');
+        note.className = 'note';
+        const btn = card.querySelector(':scope > .btn');
+        if (btn) btn.insertAdjacentElement('afterend', note);
+        else card.appendChild(note);
+      }
+      note.style.minHeight = '0px';
+    });
+
+    // Group by offsetTop to detect rows
+    const rows = new Map();
+    cards.forEach(card => {
+      const y = card.offsetTop;
+      if (!rows.has(y)) rows.set(y, []);
+      rows.get(y).push(card);
+    });
+
+    rows.forEach(group => {
+      let max = 0;
+      group.forEach(card => {
+        const note = card.querySelector(':scope > .note');
+        if (!note) return;
+        const h = note.offsetHeight; // includes padding + border
+        if (h > max) max = h;
+      });
+      group.forEach(card => {
+        const note = card.querySelector(':scope > .note');
+        if (note) note.style.minHeight = max + 'px';
+      });
+    });
+  });
 }
 
 const saved = localStorage.getItem('bambula_lang') || 'en';
@@ -291,4 +447,11 @@ setLang(saved);
 document.getElementById('langToggle').addEventListener('click', ()=>{
   const current = localStorage.getItem('bambula_lang') || 'en';
   setLang(current==='en'?'es':'en');
+});
+
+// Recalculate alignment on resize (debounced)
+let __noteResizeTO;
+window.addEventListener('resize', ()=>{
+  clearTimeout(__noteResizeTO);
+  __noteResizeTO = setTimeout(syncNoteHeights, 100);
 });

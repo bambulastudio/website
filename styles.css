@@ -8,6 +8,8 @@
   --accent:#000000;
   --card:#f7f7f7;
   --ring: rgba(217,163,36,0.45);
+  --success:#1a7f37;      /* green for savings */
+  --success-bg:#eaf6ec;   /* subtle green background */
 }
 
 *{box-sizing:border-box}
@@ -70,6 +72,16 @@ h3{margin:0 0 8px 0}
   margin-top: .5rem;
   padding-top: .5rem;
   border-top: 1px solid #eee;
+}
+
+/* Savings pill when moved into the note area */
+.price-card .note .deal-pill{
+  color: var(--success);
+  background: var(--success-bg);
+  font-weight: 700;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  display: inline-block;
 }
 
 /* Details/FAQ */
