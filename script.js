@@ -139,7 +139,7 @@ const strings = {
     "about.quick":"Datos rápidos",
     "about.f1":"Clases privadas: 1 hora",
     "about.f2":"Grabaciones para práctica en casa",
-    "about.f3":"Centrado en la tradición, con raíces comunitarias",
+    "about.f3":"Centrado en la tradición cangrejera, con raíces comunitarias",
 
     "classes.group.basic":"Buleo Básico",
     "classes.group.basic.l1":"Historia de la bomba como tradición puertorriqueña",
