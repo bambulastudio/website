@@ -37,12 +37,12 @@ const strings = {
     "pricing.single.credit":"If you enroll in the Complet Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
     "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
-    "pricing.basic.l2":"Use within 30 days of booking",
+    "pricing.basic.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
 
     "pricing.monthly.title":"Monthly Subscription",
     "pricing.monthly.note":"($110 / hour)",
     "pricing.monthly.l1":"4 private classes (1 hour each)",
-    "pricing.monthly.l2":"Use within 60 days of purchase",
+    "pricing.monthly.l2":"Expires 30 days from purchase.",
     "pricing.monthly.l3":"Practice recordings",
     "pricing.monthly.l4":"Save 8%",
 
@@ -171,15 +171,15 @@ const strings = {
     "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
     "classes.subtitle":"Opciones claras y flexibles. ",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
-    "pricing.single.credit":"Si te inscribes en el paquete de 16 clases dentro de 30 días, se acredita el costo de esta sesión.",
+    "pricing.single.credit":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
-    "pricing.basic.l2":"Expira en 30 días (desde fecha reservada)",
+    "pricing.basic.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     "pricing.monthly.title":"Subscripción Mensual",
     "pricing.monthly.note":"($110 / hora)",
     "pricing.monthly.l1":"4 sesiones privadas (1 hora c/u)",
-    "pricing.monthly.l2":"Expira en 60 días (desde la compra)",
+    "pricing.monthly.l2":"Expira en 30 días desde la compra.",
     "pricing.monthly.l3":"Grabaciones de práctica",
     "pricing.monthly.l4":"Ahorra 8%",
 
