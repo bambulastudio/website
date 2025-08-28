@@ -58,8 +58,12 @@ h3{margin:0 0 8px 0}
 /* Pricing */
 .pricing{display:grid;gap:1rem;margin-top:1rem}
 @media(min-width:900px){ .pricing{grid-template-columns:repeat(3, 1fr)}}
-.price-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.price-card{background:#fff;border:1px solid #eee;border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:10px;position:relative;padding-bottom:64px}
 .price{font-weight:800;font-size:1.6rem;margin:.25rem 0}
+/* Keep booking buttons aligned across cards */
+.price-card .btn{margin-top:auto}
+/* Anchor optional notes to the bottom, out of normal flow */
+.price-card .note{position:absolute;left:20px;right:20px;bottom:20px;margin-top:0}
 
 /* Details/FAQ */
 details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;margin:10px 0}
