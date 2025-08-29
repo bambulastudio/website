@@ -196,7 +196,17 @@ const strings = {
     "form.note":"This form uses Formspree’s free plan.",
     "footer.rights":"All rights reserved.",
     // Prefill message template for booking
-    "contact.prefill":"Hello! I'd like to book: {package}. Please share next steps."
+    "contact.prefill":"Hello! I'd like to book: {package}. Please share next steps.",
+    "billing.onetime":"One-time payment",
+    "billing.note.onetime":"No auto-renewals.",
+    "book.title":"Book Your Session",
+    "book.selected":"Selected",
+    "book.step1":"Step 1: Pay",
+    "book.step2":"Step 2: Schedule",
+    "book.pay":"Pay Now",
+    "book.back":"Back to Classes",
+    "book.noLink":"Payment link not configured yet.",
+    "book.noScheduler":"Scheduler not embedded yet."
   },
 
   es: {
@@ -390,7 +400,17 @@ const strings = {
     "form.note":"Este formulario usa el plan gratis de Formspree.",
     "footer.rights":"Todos los derechos reservados.",
     // Plantilla para autocompletar el mensaje al reservar
-    "contact.prefill":"¡Hola! Me interesa reservar: {package}. ¿Cuáles son los próximos pasos?"
+    "contact.prefill":"¡Hola! Me interesa reservar: {package}. ¿Cuáles son los próximos pasos?",
+    "billing.onetime":"Pago único",
+    "billing.note.onetime":"Sin renovación automática.",
+    "book.title":"Reserva tu sesión",
+    "book.selected":"Seleccionado",
+    "book.step1":"Paso 1: Pago",
+    "book.step2":"Paso 2: Agenda",
+    "book.pay":"Pagar ahora",
+    "book.back":"Volver a Clases",
+    "book.noLink":"Enlace de pago no configurado.",
+    "book.noScheduler":"Agenda no incrustada aún."
   }
 };
 
@@ -424,6 +444,8 @@ function setLang(lang){
   });
   // After content is set, move savings bullets into notes below buttons
   moveSavingsToNotes();
+  // Add one-time billing pills into shared pricing
+  try { ensureOneTimePills(); } catch(_){}
   // Normalize note heights so buttons align across cards
   syncNoteHeights();
   const langBtn = document.getElementById('langToggle');
@@ -543,10 +565,13 @@ function syncNoteHeights(){
 const saved = localStorage.getItem('bambula_lang') || 'en';
 setLang(saved);
 
-document.getElementById('langToggle').addEventListener('click', ()=>{
-  const current = localStorage.getItem('bambula_lang') || 'en';
-  setLang(current==='en'?'es':'en');
-});
+const __langBtn = document.getElementById('langToggle');
+if (__langBtn){
+  __langBtn.addEventListener('click', ()=>{
+    const current = localStorage.getItem('bambula_lang') || 'en';
+    setLang(current==='en'?'es':'en');
+  });
+}
 
 // Mobile nav toggle
 const siteHeader = document.querySelector('.site-header');
@@ -633,6 +658,43 @@ function updateSharedPricing(level){
 }
 
 /*
+Adds a one-time-payment pill and a short note to the shared pricing notes
+so users know everything is a one-off purchase (no subscription).
+*/
+function ensureOneTimePills(){
+  const root = document.getElementById('sharedPricing');
+  if (!root) return;
+  const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+  const map = strings[lang] || {};
+  root.querySelectorAll('.price-card').forEach(card => {
+    let note = card.querySelector(':scope > .note');
+    if (!note){
+      note = document.createElement('div');
+      note.className = 'note';
+      const btn = card.querySelector(':scope > .btn');
+      if (btn) btn.insertAdjacentElement('afterend', note);
+      else card.appendChild(note);
+    }
+    let pill = note.querySelector(':scope > .info-pill');
+    if (!pill){
+      pill = document.createElement('span');
+      pill.className = 'info-pill';
+      if (note.childNodes.length) note.append(' ');
+      note.appendChild(pill);
+    }
+    pill.textContent = map['billing.onetime'] || 'One-time payment';
+
+    let line = note.querySelector(':scope > .note-line');
+    if (!line){
+      line = document.createElement('div');
+      line.className = 'note-line';
+      note.appendChild(line);
+    }
+    line.textContent = map['billing.note.onetime'] || 'No auto-renewals.';
+  });
+}
+
+/*
 ES: Selector de nivel (pestañas) en la sección de Clases.
     Cambia el nivel visible y guarda la preferencia.
 EN: Level selector (tabs) in Classes section.
@@ -712,6 +774,18 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
     const map = strings[currentLang()] || {};
     return map[key] || '';
   }
+  function inferPlanFromCard(card){
+    if (!card) return 'single';
+    // Prefer explicit data-card from shared grid
+    const explicit = card.getAttribute('data-card');
+    if (explicit) return explicit;
+    // Fallback by inspecting i18n keys on the title within the card
+    const h3 = card.querySelector('h3');
+    const key = h3 && h3.getAttribute('data-i18n') || '';
+    if (key.includes('.monthly.')) return 'monthly';
+    if (key.includes('.full.')) return 'full';
+    return 'single';
+  }
   function buildPackageSummary(btn){
     const card = btn.closest('.price-card');
     const group = card && card.closest('.class-group');
@@ -739,8 +813,21 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
     if (!(target instanceof Element)) return;
     const btn = target.closest('.price-card .btn');
     if (!btn) return;
-    const summary = buildPackageSummary(btn);
-    prefillMessage(summary);
-    // allow normal anchor navigation to #contact
+    const flow = (document.body.getAttribute('data-booking') || 'contact').toLowerCase();
+    if (flow === 'book'){
+      // Build URL to book.html using current level + plan
+      const classesSection = document.getElementById('classes');
+      const level = classesSection ? (classesSection.getAttribute('data-level') || 'basic') : 'basic';
+      const plan = inferPlanFromCard(btn.closest('.price-card'));
+      const url = `book.html?level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;
+      e.preventDefault();
+      window.location.href = url;
+      return;
+    } else {
+      // Default: prefill contact message and follow #contact link
+      const summary = buildPackageSummary(btn);
+      prefillMessage(summary);
+      // allow normal anchor navigation to #contact
+    }
   }, true);
 })();

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bámbula Studio — Book</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container" style="padding:8px 20px">
+      <div class="brand">
+        <img src="assets/bambula_primarylogo.png" alt="Bámbula Studio logo" class="logo logo--blend">
+        <span class="wordmark">Bámbula Studio</span>
+      </div>
+      <nav class="nav">
+        <a href="new_index.html#classes" class="btn btn--small" data-i18n="book.back">Back to Classes</a>
+      </nav>
+      <button id="langToggle" class="lang" aria-label="Toggle language">ES</button>
+    </div>
+  </header>
+
+  <main class="section">
+    <div class="container">
+      <h1 data-i18n="book.title">Book Your Session</h1>
+      <p><strong data-i18n="book.selected">Selected</strong>: <span id="selLevel" data-i18n="classes.group.basic">Basic</span> — <span id="selPlan" data-i18n="pricing.basic.monthly.title">4-Class Pack</span></p>
+
+      <div class="grid" style="margin-top:1rem">
+        <div class="card">
+          <h2 data-i18n="book.step1">Step 1: Pay</h2>
+          <p class="note">
+            <span class="info-pill" data-i18n="billing.onetime">One-time payment</span>
+            <div class="note-line" data-i18n="billing.note.onetime">No auto-renewals.</div>
+          </p>
+          <a id="payLink" href="#" class="btn" target="_blank" rel="noopener" data-i18n="book.pay">Pay Now</a>
+          <p id="payNote" class="note" data-i18n="book.noLink" style="display:none">Payment link not configured yet.</p>
+        </div>
+
+        <div class="card">
+          <h2 data-i18n="book.step2">Step 2: Schedule</h2>
+          <!-- Replace the iframe src with your provider's embed or inject their script below -->
+          <div id="schedulerEmbed" style="min-height:420px">
+            <iframe id="schedulerFrame" src="about:blank" title="Scheduler" style="width:100%;height:420px;border:0;border-radius:8px;background:#fff"></iframe>
+          </div>
+          <p id="schedNote" class="note" data-i18n="book.noScheduler" style="display:none">Scheduler not embedded yet.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Configure your payment links (Stripe Payment Links or provider checkout)
+    // and scheduler links (Calendly/Cal.com event URLs) here.
+    // Example placeholders — replace '#' with real links.
+    window.bookingPaymentLinks = {
+      basic: { single: '#', monthly: '#', full: '#' },
+      intermediate: { single: '#', monthly: '#', full: '#' },
+      advanced: { single: '#', monthly: '#', full: '#' }
+    };
+    window.bookingSchedulerLinks = {
+      basic: { single: '#', monthly: '#', full: '#' },
+      intermediate: { single: '#', monthly: '#', full: '#' },
+      advanced: { single: '#', monthly: '#', full: '#' }
+    };
+
+    // Parse query params ?level=basic&plan=monthly
+    function qp(k){ return new URLSearchParams(location.search).get(k); }
+    const level = ['basic','intermediate','advanced'].includes(qp('level')) ? qp('level') : 'basic';
+    const plan = ['single','monthly','full'].includes(qp('plan')) ? qp('plan') : 'monthly';
+
+    // Defer i18n mapping of labels to script.js by changing data-i18n keys dynamically
+    function setI18nKey(el, key){ if (el) el.setAttribute('data-i18n', key); }
+    const levelKey = `classes.group.${level}`;
+    const planKeyMap = { single: 'pricing.basic.title', monthly: 'pricing.basic.monthly.title', full: 'pricing.basic.full.title' };
+    const planKey = planKeyMap[plan];
+    setI18nKey(document.getElementById('selLevel'), levelKey);
+    setI18nKey(document.getElementById('selPlan'), planKey);
+
+    // Wire payment link
+    (function(){
+      const pay = (window.bookingPaymentLinks[level]||{})[plan];
+      const a = document.getElementById('payLink');
+      const note = document.getElementById('payNote');
+      if (pay && pay !== '#'){ a.href = pay; note.style.display = 'none'; }
+      else { a.href = '#'; note.style.display = 'block'; }
+    })();
+
+    // Wire scheduler
+    (function(){
+      const url = (window.bookingSchedulerLinks[level]||{})[plan];
+      const f = document.getElementById('schedulerFrame');
+      const note = document.getElementById('schedNote');
+      if (url && url !== '#'){ f.src = url; note.style.display = 'none'; }
+      else { f.src = 'about:blank'; note.style.display = 'block'; }
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
+

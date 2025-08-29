@@ -129,6 +129,17 @@ h3{margin:0 0 8px 0}
   display: inline-block;
 }
 
+/* Neutral info pill for one-time payment */
+.price-card .note .info-pill{
+  color: #333;
+  background: #eee;
+  font-weight: 700;
+  padding: .15rem .6rem;
+  border-radius: 999px;
+  display: inline-block;
+}
+.price-card .note .note-line{ margin-top: .35rem; }
+
 /* Level switch (tabs) */
 .level-switch, .plan-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.25rem 0 .5rem; }
 .level-switch button, .plan-switch button{
