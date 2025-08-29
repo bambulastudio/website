@@ -122,6 +122,20 @@ h3{margin:0 0 8px 0}
   display: inline-block;
 }
 
+/* Level switch (tabs) */
+.level-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.5rem 0 1rem; }
+.level-switch button{
+  border:0; background:transparent; padding:.5rem .9rem; border-radius:999px; font-weight:700; cursor:pointer; color:var(--fg);
+}
+.level-switch button[aria-selected="true"]{ background:var(--mustard); color:#000; }
+.level-switch button:focus{ outline:2px solid var(--ring); }
+
+/* Show only the selected level's group */
+#classes .class-group{ display:none; }
+#classes[data-level="basic"] #group-basic{ display:block; }
+#classes[data-level="intermediate"] #group-intermediate{ display:block; }
+#classes[data-level="advanced"] #group-advanced{ display:block; }
+
 /* Details/FAQ */
 details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;margin:10px 0}
 
@@ -136,6 +150,10 @@ details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;ma
 .contact-list li{margin:.25rem 0}
 
 .note{margin-top:1rem;color:#333}
+
+/* Captions: respect literal newlines and keep links styled like surrounding text */
+figcaption, .caption { white-space: pre-line; }
+figcaption a, .caption a { color: inherit; text-decoration: underline; }
 
 /* Footer */
 .site-footer{padding:28px 0;border-top:1px solid #eee;background:#fafafa}

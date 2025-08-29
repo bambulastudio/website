@@ -32,7 +32,7 @@ const strings = {
     "about.owner.p1":"Bámbula Studio is led by a Puerto Rican cultural worker and Bomba practitioner dedicated to tradition, pedagogy, and community.",
     "about.owner.p2":"As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in memory and identity.",
     "about.owner.p3":"This section highlights the person behind the work—values, lineage, and vision that guide our practice.",
-    "about.owner.caption":"Replace with your portrait (recommended 1200×1200)",
+    "about.owner.caption":"10th Encuentro de Tambores<br>San Juan, Puerto Rico - March 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Portrait of the owner of Bámbula Studio",
 
     "classes.group.basic":"Basic Buleo",
@@ -45,7 +45,7 @@ const strings = {
     "classes.group.basic.l5":"Basic buleo rudiments",
     "classes.group.basic.l6":"Keep the buleo in time",
     "classes.group.basic.l7":"Rhythms: sicá, yubá, cuembé, holandé",
-    "classes.group.basic.l8":"Endurance exercises and personal practice",
+    "classes.group.basic.l8":"Endurance drills and personal practice",
 
     "classes.group.intermediate.l1":"Intermediate rudiments (control & variations)",
     "classes.group.intermediate.l2":"Buleo interaction with the primo",
@@ -53,17 +53,17 @@ const strings = {
     "classes.group.intermediate.l4":"Rhythms: sicá, yubá, cuembé, holandé + calindá",
     "classes.group.intermediate.l5":"Basic responses to llamados",
     "classes.group.intermediate.l6":"Sing coros while buleando",
-    "classes.group.intermediate.l7":"Energy dynamics (faster/slower)",
+    "classes.group.intermediate.l7":"Energy dynamics (intro to tempo variations)",
 
     "classes.group.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "classes.group.advanced.l2":"Rhythms: all above + seis corrido & corvé",
     "classes.group.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
     "classes.group.advanced.l4":"Maintain intensity & cadence for long stretches",
     "classes.group.advanced.l5":"Sing coros while complex buleo variations",
-    "classes.group.advanced.l6":"Pro-level control & variation drills",
+    "classes.group.advanced.l6":"Energy dynamics independent (execute tempo variations)",
     
-    "classes.title":"Private Classes (Buleo)",
-    "classes.subtitle":"Clear, flexible options.",
+    "classes.title":"Private Lessons (Buleo with Puerto Rican Bomba Drum)",
+    "classes.subtitle":"Rooted instruction, disciplined growth. Personalized lessons for every level.",
     "pricing.basic.title":"Single Class (1 Session)",
     "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
@@ -87,7 +87,7 @@ const strings = {
 
     // BASIC – Complete card (title + note)
     "pricing.basic.full.title":"Complete Course",
-    "pricing.basic.full.note":"($100 / hour) - most popular",
+    "pricing.basic.full.note":"($100 / hour)",
     
     // INTERMEDIATE – section titles for single/monthly/full cards
     "pricing.intermediate.single.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
@@ -186,7 +186,9 @@ const strings = {
     "form.msg":"Message",
     "form.send":"Send",
     "form.note":"This form uses Formspree’s free plan.",
-    "footer.rights":"All rights reserved."
+    "footer.rights":"All rights reserved.",
+    // Prefill message template for booking
+    "contact.prefill":"Hello! I'd like to book: {package}. Please share next steps."
   },
 
   es: {
@@ -218,7 +220,7 @@ const strings = {
     "about.owner.p1":"Bámbula Studio está dirigido por una trabajadora cultural puertorriqueña y practicante de Bomba, comprometida con la tradición, la pedagogía y la comunidad.",
     "about.owner.p2":"Como Directora Creativa, desarrolla currículo, lidera clases privadas y talleres, y cura programas comunitarios desde la memoria y la identidad.",
     "about.owner.p3":"Esta sección resalta a la persona detrás del trabajo: los valores, el linaje y la visión que guían nuestra práctica.",
-    "about.owner.caption":"Reemplaza con tu retrato (recomendado 1200×1200)",
+    "about.owner.caption":"10mo Encuentro de Tambores<br>San Juan, Puerto Rico - Marzo 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Retrato de la propietaria de Bámbula Studio",
 
     "classes.group.basic":"Buleo Básico",
@@ -249,7 +251,7 @@ const strings = {
     "classes.group.advanced.l6":"Dinámica de energía independiente (ejecución de variaciones en tempo)",
 
     "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
-    "classes.subtitle":"Opciones claras y flexibles. ",
+    "classes.subtitle":"Enseñanza con raíz, crecimiento disciplinado. Lecciones personalizadas para todos los niveles.",
     "pricing.basic.title":"Clase Individual (1 Sesión)",
     "pricing.single.credit":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.perhour":"/ hora",
@@ -257,7 +259,7 @@ const strings = {
     "pricing.basic.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     // BASIC (ES) – Mensual (título + nota)
-    "pricing.basic.monthly.title":"Subscripción Mensual",
+    "pricing.basic.monthly.title":"Suscripción Mensual",
     "pricing.basic.monthly.note":"($110 / hora)",
 
     // BASIC (ES)
@@ -273,18 +275,18 @@ const strings = {
 
     // BASIC (ES) – Completo (título + nota)
     "pricing.basic.full.title":"Curso Completo",
-    "pricing.basic.full.note":"($100 / hora) - más popular",
+    "pricing.basic.full.note":"($100 / hora)",
     "pricing.cta":"Reservar",
 
     // CLASES – nuevos paquetes
     "pricing.intermediate.title":"Clase Individual (1 Sesión)",
     // Intermedio: sesión individual 
-    "pricing.intermediate.single.na":"—",
+    "pricing.intermediate.single.title":"Clase Individual (1 Sesión)",
     "pricing.intermediate.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.intermediate.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
     "pricing.intermediate.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
 
-    "pricing.intermediate.monthly.title":"Subscripción Mensual",
+    "pricing.intermediate.monthly.title":"Suscripción Mensual",
     "pricing.intermediate.price4":"$460 ($115 / hora)",
     "pricing.intermediate.full.title":"Curso Completo",
     "pricing.intermediate.price16_head":"$1,680 ($105 / hora)",
@@ -309,12 +311,12 @@ const strings = {
 
     "pricing.advanced.title":"Clase Individual (1 Sesión)",
     // Avanzado: sesión individual 
-    "pricing.advanced.single.na":"—",
+    "pricing.advanced.single.title":"Clase Individual (1 Sesión)",
     "pricing.advanced.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.advanced.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.advanced.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
-    "pricing.advanced.monthly.title":"Subcripción Mensual",
+    "pricing.advanced.monthly.title":"Suscripción Mensual",
     "pricing.advanced.price4":"$480 ($120 / hora)",
     "pricing.advanced.full.title":"Curso Completo",
     "pricing.advanced.price16_head":"$1,760 ($110 / hora)",
@@ -370,7 +372,9 @@ const strings = {
     "form.msg":"Mensaje",
     "form.send":"Enviar",
     "form.note":"Este formulario usa el plan gratis de Formspree.",
-    "footer.rights":"Todos los derechos reservados."
+    "footer.rights":"Todos los derechos reservados.",
+    // Plantilla para autocompletar el mensaje al reservar
+    "contact.prefill":"¡Hola! Me interesa reservar: {package}. ¿Cuáles son los próximos pasos?"
   }
 };
 
@@ -381,6 +385,12 @@ function setLang(lang){
     const key = el.getAttribute('data-i18n');
     const val = map && map[key];
     if (!val) return;
+
+    // Allow trusted HTML on opted-in elements
+    if (el.hasAttribute('data-i18n-html')){
+      el.innerHTML = val;
+      return;
+    }
 
     // Bold the leading label for specific About bullets (before the first colon)
     if (['about.p2','about.p3','about.p4','about.p5'].includes(key)) {
@@ -545,3 +555,81 @@ window.addEventListener('resize', ()=>{
   clearTimeout(__noteResizeTO);
   __noteResizeTO = setTimeout(syncNoteHeights, 100);
 });
+
+/*
+ES: Selector de nivel (pestañas) en la sección de Clases.
+    Cambia el nivel visible y guarda la preferencia.
+EN: Level selector (tabs) in Classes section.
+    Switches visible level and stores the preference.
+*/
+(function initLevelSwitcher(){
+  const section = document.getElementById('classes');
+  if (!section) return;
+  const tabs = section.querySelectorAll('.level-switch [role="tab"]');
+  if (!tabs.length) return;
+
+  const savedLevel = localStorage.getItem('bambula_level');
+  const defaultLevel = ['basic','intermediate','advanced'].includes(savedLevel) ? savedLevel : 'basic';
+  setLevel(defaultLevel);
+
+  tabs.forEach(btn => {
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const lvl = btn.getAttribute('data-level');
+      setLevel(lvl);
+    });
+  });
+
+  function setLevel(level){
+    section.setAttribute('data-level', level);
+    tabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-level')===level ? 'true' : 'false'));
+    localStorage.setItem('bambula_level', level);
+    // Re-sync notes after layout change
+    setTimeout(syncNoteHeights, 0);
+  }
+})();
+
+/*
+ES: Al hacer clic en un botón de reserva, pre-llena el campo "Mensaje" en Contacto
+    con el paquete seleccionado (grupo + título + precio).
+EN: Clicking a booking button pre-fills the Contact message with the chosen package
+    (group + title + price).
+*/
+(function setupBookingPrefill(){
+  function currentLang(){ return (document.documentElement.lang === 'es') ? 'es' : 'en'; }
+  function t(key){
+    const map = strings[currentLang()] || {};
+    return map[key] || '';
+  }
+  function buildPackageSummary(btn){
+    const card = btn.closest('.price-card');
+    const group = card && card.closest('.class-group');
+    const groupTitle = group ? (group.querySelector('.group-head .subsection')?.textContent || '').trim() : '';
+    const title = card ? (card.querySelector('h3')?.textContent || '').trim() : '';
+    const price = card ? (card.querySelector('.price')?.textContent || '').trim() : '';
+    let summary = title;
+    if (groupTitle) summary = groupTitle + ' — ' + summary;
+    if (price) summary += ' (' + price + ')';
+    return summary;
+  }
+  function prefillMessage(summary){
+    const form = document.querySelector('#contact form');
+    if (!form) return;
+    const textarea = form.querySelector('textarea[name="message"]');
+    if (!textarea) return;
+    const template = t('contact.prefill') || 'Hello! I\'d like to book: {package}.';
+    const msg = template.replace('{package}', summary);
+    textarea.value = msg;
+    // Focus the textarea for convenience
+    textarea.focus();
+  }
+  document.addEventListener('click', function(e){
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    const btn = target.closest('.price-card .btn');
+    if (!btn) return;
+    const summary = buildPackageSummary(btn);
+    prefillMessage(summary);
+    // allow normal anchor navigation to #contact
+  }, true);
+})();

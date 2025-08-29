@@ -90,7 +90,7 @@
     <div class="container grid" style="margin-top: 1.5rem;">
       <figure class="card" style="align-self:start;">
         <img src="assets/founder_pic.jpg" alt="Bámbula Studio owner portrait" style="width:100%;height:auto;border-radius:10px;" />
-        <figcaption style="margin-top:.5rem;color:var(--muted);font-size:.9rem;" data-i18n="about.owner.caption">Encuentro de Tambores 2022 - San Juan, PR</figcaption>
+        <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener">@bambula_studio</a></figcaption>
       </figure>
       <div>
         <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
@@ -102,10 +102,17 @@
   </section>
 
   <!-- ===== Classes Section ===== -->
-  <section id="classes" class="section section--alt">
+  <section id="classes" class="section section--alt" data-level="basic">
     <div class="container">
       <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
       <p data-i18n="classes.subtitle">Clear, flexible options.</p>
+
+      <!-- Level selector (tabs) -->
+      <div class="level-switch" role="tablist" aria-label="Select level">
+        <button role="tab" aria-selected="true" aria-controls="group-basic" data-level="basic"><span data-i18n="classes.group.basic">Basic</span></button>
+        <button role="tab" aria-selected="false" aria-controls="group-intermediate" data-level="intermediate"><span data-i18n="classes.group.intermediate">Intermediate</span></button>
+        <button role="tab" aria-selected="false" aria-controls="group-advanced" data-level="advanced"><span data-i18n="classes.group.advanced">Advanced</span></button>
+      </div>
 
       <!-- ===== BASIC / BEGINNER ===== -->
       <section class="class-group" id="group-basic">
@@ -180,7 +187,7 @@
       <div class="pricing">
         <!-- INTERMEDIATE Single  -->
         <article class="price-card">
-          <h3 data-i18n="pricing.intermediate.basic.title"></h3>
+          <h3 data-i18n="pricing.intermediate.single.title"></h3>
           <p class="price">$125 <span data-i18n="pricing.perhour">/ hour</span></p>
           <ul>
             <li data-i18n="pricing.intermediate.single.l1"></li>
