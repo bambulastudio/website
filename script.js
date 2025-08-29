@@ -30,8 +30,8 @@ const strings = {
     // Owner/Founder subsection
     "about.owner.title":"Meet the Owner/Founder and Creative Director",
     "about.owner.p1":"Bámbula Studio is led by a Puerto Rican cultural worker and Bomba practitioner dedicated to tradition, pedagogy, and community.",
-    "about.owner.p2":"As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in memory and identity.",
-    "about.owner.p3":"This section highlights the person behind the work—values, lineage, and vision that guide our practice.",
+    "about.owner.p2":"Her work is grounded in values of resilience, cultural memory, and community healing. She carries forward a lineage of Puerto Rican tradition while reimagining new possibilities for belonging.",
+    "about.owner.p3":"As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in ancestry and identity. Her vision is to nurture spaces where tradition, creativity, and community flourish together. At the heart of Bámbula Studio is a commitment to heritage, identity, and collective joy.",
     "about.owner.caption":"10th Encuentro de Tambores<br>San Juan, Puerto Rico - March 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Portrait of the owner of Bámbula Studio",
 
