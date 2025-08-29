@@ -24,7 +24,7 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 @media(min-width:900px){ .grid{grid-template-columns:1.2fr 1fr} }
 
 /* --- Header --- */
-.site-header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #eee;z-index:10}
+.site-header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #eee;z-index:10;isolation:isolate}
 .site-header .container{display:flex;align-items:center;justify-content:space-between;padding:2px 20px}
 .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
 .logo{height:84px;width:auto}
@@ -45,6 +45,13 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 
 .lang{border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
 .lang:hover{border-color:var(--mustard)}
+
+/* Blend white-backed logos into the header background */
+.logo--blend{ mix-blend-mode: multiply; }
+@media (prefers-color-scheme: dark){
+  /* In dark mode, avoid over-darkening the logo */
+  .logo--blend{ mix-blend-mode: normal; }
+}
 
 /* --- Hero --- */
 .hero{padding:72px 0 40px;border-bottom:1px solid #eee}
@@ -123,18 +130,35 @@ h3{margin:0 0 8px 0}
 }
 
 /* Level switch (tabs) */
-.level-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.5rem 0 1rem; }
-.level-switch button{
+.level-switch, .plan-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.25rem 0 .5rem; }
+.level-switch button, .plan-switch button{
   border:0; background:transparent; padding:.5rem .9rem; border-radius:999px; font-weight:700; cursor:pointer; color:var(--fg);
 }
-.level-switch button[aria-selected="true"]{ background:var(--mustard); color:#000; }
-.level-switch button:focus{ outline:2px solid var(--ring); }
+.level-switch button[aria-selected="true"], .plan-switch button[aria-selected="true"]{ background:var(--mustard); color:#000; }
+.level-switch button:focus, .plan-switch button:focus{ outline:2px solid var(--ring); }
+
+/* Show plan switch only on mobile */
+.plan-switch--mobile{ display:none; }
+@media(max-width:900px){
+  .plan-switch--mobile{ display:inline-flex; }
+}
+
+/* On mobile, show only the selected plan card */
+@media(max-width:900px){
+  #sharedPricing [data-card]{ display:none; }
+  #sharedPricing[data-plan="single"] [data-card="single"]{ display:grid; }
+  #sharedPricing[data-plan="monthly"] [data-card="monthly"]{ display:grid; }
+  #sharedPricing[data-plan="full"] [data-card="full"]{ display:grid; }
+}
 
 /* Show only the selected level's group */
 #classes .class-group{ display:none; }
 #classes[data-level="basic"] #group-basic{ display:block; }
 #classes[data-level="intermediate"] #group-intermediate{ display:block; }
 #classes[data-level="advanced"] #group-advanced{ display:block; }
+
+/* Hide legacy per-level pricing grids; use shared grid */
+#classes .class-group > .pricing{ display:none !important; }
 
 /* Details/FAQ */
 details{background:#fff;border:1px solid #eee;border-radius:10px;padding:14px;margin:10px 0}
@@ -167,6 +191,17 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   align-items: start;       /* don't stretch the short column */
 }
 
+/* Owner row: place card (auto) first, text (1fr) second */
+#about .about-owner{
+  /* Fixed media column + flexible text column. Use minmax(0,1fr) to avoid Safari overflow. */
+  grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+#about .about-owner .about-owner__media{ justify-self: start; max-width: 320px; width: 100%; }
+#about .about-owner .about-owner__media img{ display:block; width:100%; height:auto; }
+#about .about-owner .about-owner__text{ align-self: start; min-width: 0; }
+
 #about .card{
   max-width: 320px;         /* keeps the box compact */
   width: 100%;
@@ -189,6 +224,9 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   font-weight: 700;
   color: var(--fg);
 }
+
+/* Classes: tighten space between level switches and group titles */
+#classes .group-head .subsection{ margin-top: .75rem; }
 
 /* Two-column variant for smaller groups */
 @media(min-width:900px){
@@ -219,6 +257,12 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
 @media(max-width:900px){
   #about .container.grid{ grid-template-columns: 1fr; }
   #about .card{ justify-self: center; }
+}
+
+/* About owner: on mobile, show text first, image second */
+@media(max-width:900px){
+  .about-owner__text{ order: 1; }
+  .about-owner__media{ order: 2; }
 }
 
 /* Sticky group headers on mobile: keep the description visible while pricing scrolls */

@@ -21,8 +21,13 @@
   <div class="container">
     <div class="brand">
       <!-- Logo and wordmark -->
+      <!-- Old logo + name kept for testing:
       <img src="assets/babytree_squarelogo.png" alt="Bámbula Studio logo" class="logo">
       <span class="wordmark">Bámbula Studio</span>
+      -->
+      <!-- <img src="assets/babytree_squarelogo.png" alt="Bámbula Studio logo" class="logo">
+      <span class="wordmark">Bámbula Studio</span> -->
+      <img src="assets/bambula_primarylogo.png" alt="Bámbula Studio logo" class="logo logo--blend">
     </div>
     <!-- Mobile menu toggle -->
     <button id="menuToggle" class="menu" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">Menu</button>
@@ -79,20 +84,20 @@
       <div class="card">
         <h3 data-i18n="about.quick">Quick facts</h3>
         <ul>
-          <li data-i18n="about.f1">Private lessons: 1 hr</li>
-          <li data-i18n="about.f2">Recordings for home practice</li>
-          <li data-i18n="about.f3">Tradition-centered, community-rooted</li>
+          <li data-i18n="about.f1"></li>
+          <li data-i18n="about.f2"></li>
+          <li data-i18n="about.f3"></li>
         </ul>
       </div>
     </div>
 
     <!-- Owner/Founder subsection -->
-    <div class="container grid" style="margin-top: 1.5rem;">
-      <figure class="card" style="align-self:start;">
+    <div class="container grid about-owner" style="margin-top: 1.5rem;">
+      <figure class="card about-owner__media" style="align-self:start;">
         <img src="assets/founder_pic.jpg" alt="Bámbula Studio owner portrait" style="width:100%;height:auto;border-radius:10px;" />
         <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener">@bambula_studio</a></figcaption>
       </figure>
-      <div>
+      <div class="about-owner__text">
         <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
         <p data-i18n="about.owner.p1">Bámbula Studio is led by a Puerto Rican cultural worker and Bomba practitioner dedicated to tradition, pedagogy, and community.</p>
         <p data-i18n="about.owner.p2">As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in memory and identity.</p>
@@ -147,7 +152,7 @@
           <h3 data-i18n="pricing.basic.monthly.title">Monthly Subscription</h3>
           <p class="price">$440 <span data-i18n="pricing.basic.monthly.note">($110/class)</span></p>
           <ul>
-            <li data-i18n="pricing.basic.monthly.l1">4 private classes (1 hr each)</li>
+            <li data-i18n="pricing.basic.monthly.l1">4 private classes (1 hour each)</li>
             <li data-i18n="pricing.basic.monthly.l2"></li>
             <li data-i18n="pricing.basic.monthly.l3">Practice recordings</li>
             <li data-i18n="pricing.basic.monthly.l4">Save 8%</li>
@@ -279,6 +284,54 @@
         </article>
       </div>
       </section>
+
+      <!-- Mobile plan switch (Single / Monthly / Complete) -->
+      <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan (mobile)">
+        <button role="tab" aria-selected="true" data-plan="single"><span data-i18n="pricing.basic.title">Single Class</span></button>
+        <button role="tab" aria-selected="false" data-plan="monthly"><span data-i18n="pricing.basic.monthly.title">Monthly Subscription</span></button>
+        <button role="tab" aria-selected="false" data-plan="full"><span data-i18n="pricing.basic.full.title">Complete Course</span></button>
+      </div>
+
+      <!-- Shared Pricing Grid (single component) -->
+      <div id="sharedPricing" class="pricing pricing--shared" data-plan="monthly">
+        <!-- Single -->
+        <article class="price-card" data-card="single">
+          <h3 data-i18n="pricing.basic.title">Single Class (1 Session)</h3>
+          <p class="price" data-price-key="single"></p>
+          <ul>
+            <li data-i18n="pricing.basic.l1"></li>
+            <li data-i18n="pricing.basic.l2"></li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+          <div class="note" data-i18n="pricing.single.credit"></div>
+        </article>
+
+        <!-- Monthly (4) -->
+        <article class="price-card" data-card="monthly">
+          <h3 data-i18n="pricing.basic.monthly.title">Monthly Subscription</h3>
+          <p class="price" data-price-key="monthly"></p>
+          <ul>
+            <li data-i18n="pricing.basic.monthly.l1"></li>
+            <li data-i18n="pricing.basic.monthly.l2"></li>
+            <li data-i18n="pricing.basic.monthly.l3"></li>
+            <li data-i18n="pricing.basic.monthly.l4"></li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+
+        <!-- Complete (16) -->
+        <article class="price-card" data-card="full">
+          <h3 data-i18n="pricing.basic.full.title">Complete Course</h3>
+          <p class="price" data-price-key="full"></p>
+          <ul>
+            <li data-i18n="pricing.basic.full.l1"></li>
+            <li data-i18n="pricing.basic.full.l2"></li>
+            <li data-i18n="pricing.basic.full.l3"></li>
+            <li data-i18n="pricing.basic.full.l4"></li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+      </div>
 
       <!-- Note for unsure students -->
       <div class="note" data-i18n="classes.note">If you’re unsure of your level, we can do a $15 initial evaluation to place you correctly.</div>

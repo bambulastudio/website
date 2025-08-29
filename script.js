@@ -23,9 +23,9 @@ const strings = {
     "about.p5":"Ancestral memory: Each class and every drumbeat becomes an act of remembering who we are as a people, honoring our Afro-Caribbean roots.",
     "about.p6":"Through every activity we seek to celebrate, share, and pass Puerto Rican culture to new generations.",
     "about.quick":"Quick facts",
-    "about.f1":"Private lessons: 1 hour",
-    "about.f2":"Recordings for home practice",
-    "about.f3":"Tradition-centered, community-rooted",
+    "about.f1":"Tradition-centered, community-rooted",
+    "about.f2":"Private lessons: 1 hour",
+    "about.f3":"Recordings for home practice",
     
     // Owner/Founder subsection
     "about.owner.title":"Meet the Owner/Founder and Creative Director",
@@ -64,7 +64,7 @@ const strings = {
     
     "classes.title":"Private Lessons (Buleo with Puerto Rican Bomba Drum)",
     "classes.subtitle":"Rooted instruction, disciplined growth. Personalized lessons for every level.",
-    "pricing.basic.title":"Single Class (1 Session)",
+    "pricing.basic.title":"Single Class",
     "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
     "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
@@ -72,7 +72,7 @@ const strings = {
 
     // BASIC – Monthly card (title + note)
     "pricing.basic.monthly.title":"Monthly Subscription",
-    "pricing.basic.monthly.note":"($110 / hour)",
+    "pricing.basic.monthly.note":"($110/class)",
 
     // BASIC tier specific copies (match new_index.html)
     "pricing.basic.monthly.l1":"4 private classes (1 hour each)",
@@ -87,13 +87,13 @@ const strings = {
 
     // BASIC – Complete card (title + note)
     "pricing.basic.full.title":"Complete Course",
-    "pricing.basic.full.note":"($100 / hour)",
+    "pricing.basic.full.note":"($100/class)",
     
     // INTERMEDIATE – section titles for single/monthly/full cards
     "pricing.intermediate.single.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
     "pricing.intermediate.single.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
 
-    "pricing.intermediate.basic.title":"Single Class (1 Session)",
+    "pricing.intermediate.basic.title":"Single Class",
     "pricing.intermediate.monthly.title":"Monthly Subscription",
     "pricing.intermediate.full.title":"Complete Course",
 
@@ -104,7 +104,8 @@ const strings = {
 
     // CLASSES – new packages
     "pricing.intermediate.title":"Intermediate",
-    "pricing.intermediate.price4":"$460 ($115 / class)",
+    "pricing.intermediate.price4":"$460 ($115/class)",
+    "pricing.intermediate.price1":"$125 / hour",
     "pricing.intermediate.l1":"Intermediate rudiments (control & variations)",
     "pricing.intermediate.l2":"Buleo interaction with primo",
     "pricing.intermediate.l3":"Coordination & endurance drills",
@@ -113,7 +114,7 @@ const strings = {
     "pricing.intermediate.l6":"Sing coros while buleando",
     "pricing.intermediate.l7":"Energy dynamics (up/down)",
     // Intermediate single
-    "pricing.intermediate.basic.title":"Single Class (1 Session)",
+    "pricing.intermediate.basic.title":"Single Class",
     "pricing.intermediate.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.intermediate.price16_head":"$1,680 ($105/class)",
 
@@ -128,11 +129,12 @@ const strings = {
     "pricing.intermediate.full.l3":"Practice recordings",
     "pricing.intermediate.full.l4":"Save 19%",
 
-    "pricing.advanced.single.title":"Single Class (1 Session)",
+    "pricing.advanced.single.title":"Single Class",
     "pricing.advanced.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.advanced.price16_head":"$1,760 ($110/class)",
     "pricing.advanced.title":"Advanced",
-    "pricing.advanced.price4":"$480 ($120 / hour)",
+    "pricing.advanced.price4":"$480 ($120/class)",
+    "pricing.advanced.price1":"$130 / hour",
     "pricing.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "pricing.advanced.l2":"Rhythms: all above + seis corrido & corvé",
     "pricing.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
@@ -153,6 +155,11 @@ const strings = {
     "pricing.advanced.full.l2":"Use within 365 days",
     "pricing.advanced.full.l3":"Practice recordings",
     "pricing.advanced.full.l4":"Save 18%",
+
+    // BASIC price heads for shared grid
+    "pricing.basic.price1":"$120 / hour",
+    "pricing.basic.price4":"$440 ($110/class)",
+    "pricing.basic.price16_head":"$1,600 ($100/class)",
 
     // POLICIES
     "policies.title":"Policies",
@@ -211,9 +218,9 @@ const strings = {
     "about.p5":"Memoria ancestral: Cada clase y cada toque de tambor se convierten en un acto de recordar quiénes somos como pueblo, y en una forma de honrar nuestras raíces afrocaribeñas.",
     "about.p6":"Con cada actividad buscamos que la cultura puertorriqueña sea celebrada, compartida y transmitida a nuevas generaciones.",
     "about.quick":"Datos rápidos",
-    "about.f1":"Clases privadas: 1 hora",
-    "about.f2":"Grabaciones para práctica en casa",
-    "about.f3":"Centrado en la tradición cangrejera, con raíces comunitarias",
+    "about.f1":"Centrado en la tradición cangrejera, con raíces comunitarias",
+    "about.f2":"Clases privadas: 1 hora",
+    "about.f3":"Grabaciones para práctica en casa",
     
     // Propietaria/Fundadora
     "about.owner.title":"Conoce a la Propietaria/Fundadora y Directora Creativa",
@@ -252,7 +259,7 @@ const strings = {
 
     "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
     "classes.subtitle":"Enseñanza con raíz, crecimiento disciplinado. Lecciones personalizadas para todos los niveles.",
-    "pricing.basic.title":"Clase Individual (1 Sesión)",
+    "pricing.basic.title":"Clase Individual",
     "pricing.single.credit":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.perhour":"/ hora",
     "pricing.basic.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
@@ -260,7 +267,7 @@ const strings = {
 
     // BASIC (ES) – Mensual (título + nota)
     "pricing.basic.monthly.title":"Suscripción Mensual",
-    "pricing.basic.monthly.note":"($110 / hora)",
+    "pricing.basic.monthly.note":"($110/clase)",
 
     // BASIC (ES)
     "pricing.basic.monthly.l1":"4 sesiones privadas (1 hora c/u)",
@@ -275,21 +282,22 @@ const strings = {
 
     // BASIC (ES) – Completo (título + nota)
     "pricing.basic.full.title":"Curso Completo",
-    "pricing.basic.full.note":"($100 / hora)",
+    "pricing.basic.full.note":"($100/clase)",
     "pricing.cta":"Reservar",
 
     // CLASES – nuevos paquetes
-    "pricing.intermediate.title":"Clase Individual (1 Sesión)",
+    "pricing.intermediate.title":"Clase Individual",
     // Intermedio: sesión individual 
-    "pricing.intermediate.single.title":"Clase Individual (1 Sesión)",
+    "pricing.intermediate.single.title":"Clase Individual",
     "pricing.intermediate.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.intermediate.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
     "pricing.intermediate.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
 
     "pricing.intermediate.monthly.title":"Suscripción Mensual",
-    "pricing.intermediate.price4":"$460 ($115 / hora)",
+    "pricing.intermediate.price4":"$460 ($115/clase)",
+    "pricing.intermediate.price1":"$125 / hora",
     "pricing.intermediate.full.title":"Curso Completo",
-    "pricing.intermediate.price16_head":"$1,680 ($105 / hora)",
+    "pricing.intermediate.price16_head":"$1,680 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
     "pricing.intermediate.l3":"Ejercicios de coordinación y resistencia",
@@ -309,17 +317,18 @@ const strings = {
     "pricing.intermediate.full.l3":"Grabaciones de práctica",
     "pricing.intermediate.full.l4":"Ahorra 19%",
 
-    "pricing.advanced.title":"Clase Individual (1 Sesión)",
+    "pricing.advanced.title":"Clase Individual",
     // Avanzado: sesión individual 
-    "pricing.advanced.single.title":"Clase Individual (1 Sesión)",
+    "pricing.advanced.single.title":"Clase Individual",
     "pricing.advanced.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.advanced.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.advanced.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     "pricing.advanced.monthly.title":"Suscripción Mensual",
-    "pricing.advanced.price4":"$480 ($120 / hora)",
+    "pricing.advanced.price4":"$480 ($120/clase)",
+    "pricing.advanced.price1":"$130 / hora",
     "pricing.advanced.full.title":"Curso Completo",
-    "pricing.advanced.price16_head":"$1,760 ($110 / hora)",
+    "pricing.advanced.price16_head":"$1,760 ($110/clase)",
     "pricing.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
     "pricing.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
     "pricing.advanced.l3":"Variaciones profundas de sicá, yubá, cuembé, holandé, calindá",
@@ -337,6 +346,11 @@ const strings = {
     "pricing.advanced.full.l2":"Expira en 365 días (desde la compra)",
     "pricing.advanced.full.l3":"Grabaciones de práctica",
     "pricing.advanced.full.l4":"Ahorra 18%",
+
+    // BASIC (ES) precios para grilla compartida
+    "pricing.basic.price1":"$120 / hora",
+    "pricing.basic.price4":"$440 ($110/clase)",
+    "pricing.basic.price16_head":"$1,600 ($100/clase)",
     
 
     // POLÍTICAS
@@ -417,6 +431,14 @@ function setLang(lang){
     langBtn.innerHTML = (lang==='es') ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
   }
   localStorage.setItem('bambula_lang', lang);
+  // Update shared pricing to match current language and selected level
+  try {
+    const classesSection = document.getElementById('classes');
+    if (classesSection && typeof updateSharedPricing === 'function'){
+      const lvl = classesSection.getAttribute('data-level') || 'basic';
+      updateSharedPricing(lvl);
+    }
+  } catch(_){}
 }
 
 function moveSavingsToNotes(){
@@ -474,6 +496,8 @@ function moveSavingsToNotes(){
 // Ensure all notes in a visual row share the same minimum height so buttons align
 function syncNoteHeights(){
   document.querySelectorAll('.pricing').forEach(container => {
+    const style = window.getComputedStyle(container);
+    if (style.display === 'none' || style.visibility === 'hidden') return;
     const cards = Array.from(container.querySelectorAll('.price-card'));
     if (!cards.length) return;
 
@@ -557,6 +581,56 @@ window.addEventListener('resize', ()=>{
 });
 
 /*
+ES: Actualiza la grilla de precios compartida según el nivel (básico/intermedio/avanzado)
+    y el idioma actual. También ajusta las "píldoras" de ahorro.
+EN: Updates the shared pricing grid for the selected level and current language,
+    and adjusts the savings pills.
+*/
+function updateSharedPricing(level){
+  const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+  const map = strings[lang] || {};
+  const root = document.getElementById('sharedPricing');
+  if (!root) return;
+
+  const k = (suffix)=> `pricing.${level}.${suffix}`;
+
+  const pSingle = root.querySelector('[data-price-key="single"]');
+  const pMonthly = root.querySelector('[data-price-key="monthly"]');
+  const pFull = root.querySelector('[data-price-key="full"]');
+  if (pSingle && map[k('price1')]) pSingle.textContent = map[k('price1')];
+  if (pMonthly && map[k('price4')]) pMonthly.textContent = map[k('price4')];
+  if (pFull && map[k('price16_head')]) pFull.textContent = map[k('price16_head')];
+
+  // Update savings pills (or source li if not yet moved)
+  const monthlyKeys = [
+    'pricing.basic.monthly.l4','pricing.intermediate.monthly.l4','pricing.advanced.monthly.l4'
+  ];
+  const fullKeys = [
+    'pricing.basic.full.l4','pricing.intermediate.full.l4','pricing.advanced.full.l4'
+  ];
+  const newMonthlyKey = `pricing.${level}.monthly.l4`;
+  const newFullKey = `pricing.${level}.full.l4`;
+
+  // Switch any existing monthly savings element to the new key
+  monthlyKeys.forEach(oldKey => {
+    root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
+      el.setAttribute('data-i18n', newMonthlyKey);
+      if (map[newMonthlyKey]) el.textContent = map[newMonthlyKey];
+    });
+  });
+  // Switch any existing full savings element to the new key
+  fullKeys.forEach(oldKey => {
+    root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
+      el.setAttribute('data-i18n', newFullKey);
+      if (map[newFullKey]) el.textContent = map[newFullKey];
+    });
+  });
+
+  // Re-sync note heights after content change
+  syncNoteHeights();
+}
+
+/*
 ES: Selector de nivel (pestañas) en la sección de Clases.
     Cambia el nivel visible y guarda la preferencia.
 EN: Level selector (tabs) in Classes section.
@@ -585,6 +659,41 @@ EN: Level selector (tabs) in Classes section.
     tabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-level')===level ? 'true' : 'false'));
     localStorage.setItem('bambula_level', level);
     // Re-sync notes after layout change
+    updateSharedPricing(level);
+    setTimeout(syncNoteHeights, 0);
+  }
+})();
+
+/*
+ES: Conmutador de plan (Sesión única / Mensual / Completo) para móvil.
+EN: Plan switch (Single / Monthly / Complete) for mobile.
+*/
+(function initPlanSwitcher(){
+  const section = document.getElementById('classes');
+  const shared = document.getElementById('sharedPricing');
+  if (!section || !shared) return;
+  const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
+  if (!planTabs.length) return;
+
+  const savedPlan = localStorage.getItem('bambula_plan');
+  const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'monthly';
+  setPlan(defaultPlan);
+
+  planTabs.forEach(btn => {
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const plan = btn.getAttribute('data-plan');
+      setPlan(plan);
+    });
+  });
+
+  function setPlan(plan){
+    shared.setAttribute('data-plan', plan);
+    planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')===plan ? 'true' : 'false'));
+    localStorage.setItem('bambula_plan', plan);
+    // Update prices to ensure plan labels and notes are correct after language/level changes
+    const lvl = section.getAttribute('data-level') || 'basic';
+    updateSharedPricing(lvl);
     setTimeout(syncNoteHeights, 0);
   }
 })();
