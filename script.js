@@ -16,7 +16,7 @@ const strings = {
     "hero.cta2":"Ask a question",
 
     "about.title":"What is Bámbula Studio?",
-    "about.p1":"At Bámbula Studio LLC, we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
+    "about.p1":"At Bámbula Studio LLC we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
     "about.p2":"Teaching: Bomba classes and workshops for all ages and levels, where students learn traditional rhythms, songs, and dances.",
     "about.p3":"Preservation: Keeping Puerto Rican tradition alive in the diaspora—creating spaces where Bomba flourishes as ancestral heritage.",
     "about.p4":"Community: Cultivating cultural gatherings in the Dallas–Fort Worth area that strengthen identity and belonging.",
@@ -26,6 +26,14 @@ const strings = {
     "about.f1":"Private lessons: 1 hour",
     "about.f2":"Recordings for home practice",
     "about.f3":"Tradition-centered, community-rooted",
+    
+    // Owner/Founder subsection
+    "about.owner.title":"Meet the Owner/Founder and Creative Director",
+    "about.owner.p1":"Bámbula Studio is led by a Puerto Rican cultural worker and Bomba practitioner dedicated to tradition, pedagogy, and community.",
+    "about.owner.p2":"As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in memory and identity.",
+    "about.owner.p3":"This section highlights the person behind the work—values, lineage, and vision that guide our practice.",
+    "about.owner.caption":"Replace with your portrait (recommended 1200×1200)",
+    "about.owner.photo_alt":"Portrait of the owner of Bámbula Studio",
 
     "classes.group.basic":"Basic Buleo",
     "classes.group.intermediate":"Intermediate Buleo",
@@ -204,6 +212,14 @@ const strings = {
     "about.f1":"Clases privadas: 1 hora",
     "about.f2":"Grabaciones para práctica en casa",
     "about.f3":"Centrado en la tradición cangrejera, con raíces comunitarias",
+    
+    // Propietaria/Fundadora
+    "about.owner.title":"Conoce a la Propietaria/Fundadora y Directora Creativa",
+    "about.owner.p1":"Bámbula Studio está dirigido por una trabajadora cultural puertorriqueña y practicante de Bomba, comprometida con la tradición, la pedagogía y la comunidad.",
+    "about.owner.p2":"Como Directora Creativa, desarrolla currículo, lidera clases privadas y talleres, y cura programas comunitarios desde la memoria y la identidad.",
+    "about.owner.p3":"Esta sección resalta a la persona detrás del trabajo: los valores, el linaje y la visión que guían nuestra práctica.",
+    "about.owner.caption":"Reemplaza con tu retrato (recomendado 1200×1200)",
+    "about.owner.photo_alt":"Retrato de la propietaria de Bámbula Studio",
 
     "classes.group.basic":"Buleo Básico",
     "classes.group.basic.l1":"Historia de la bomba como tradición puertorriqueña",
