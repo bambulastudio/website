@@ -29,10 +29,11 @@ const strings = {
     
     // Owner/Founder subsection
     "about.owner.title":"Meet the Owner/Founder and Creative Director",
-    "about.owner.p1":"Bámbula Studio is led by a Puerto Rican cultural worker and Bomba practitioner dedicated to tradition, pedagogy, and community.",
-    "about.owner.p2":"Her work is grounded in values of resilience, cultural memory, and community healing. She carries forward a lineage of Puerto Rican tradition while reimagining new possibilities for belonging.",
-    "about.owner.p3":"As Creative Director, she develops curricula, leads private lessons and workshops, and curates community programs rooted in ancestry and identity. Her vision is to nurture spaces where tradition, creativity, and community flourish together. At the heart of Bámbula Studio is a commitment to heritage, identity, and collective joy.",
-    "about.owner.caption":"10th Encuentro de Tambores<br>San Juan, Puerto Rico - March 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
+    "about.owner.p1":"Bámbula Studio was born out of my experience as a Puerto Rican woman in the diaspora, cultural worker, and Bomba practitioner, committed to tradition, teaching, and community.",
+    "about.owner.p2":"My work is grounded in values of resilience, cultural memory, and collective healing. From the experience of living away from the island, I embrace the legacy of Bomba while opening new pathways of belonging.",
+    "about.owner.p3":"As Creative Director, I design curricula, lead private lessons and workshops, and organize community programs rooted in memory and identity. My vision is to cultivate spaces where tradition, creativity, and community flourish together.",
+    "about.owner.p4":"At the heart of Bámbula Studio beats my commitment to the heritage, identity, and shared joy of our people, both within and beyond Puerto Rico.",
+    "about.owner.caption":"Dr. Alexandra Rosado Román<br>10th Encuentro de Tambores<br>San Juan, Puerto Rico - March 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Portrait of the owner of Bámbula Studio",
 
     "classes.group.basic":"Basic Buleo",
@@ -224,10 +225,11 @@ const strings = {
     
     // Propietaria/Fundadora
     "about.owner.title":"Conoce a la Propietaria/Fundadora y Directora Creativa",
-    "about.owner.p1":"Bámbula Studio está dirigido por una trabajadora cultural puertorriqueña y practicante de Bomba, comprometida con la tradición, la pedagogía y la comunidad.",
-    "about.owner.p2":"Como Directora Creativa, desarrolla currículo, lidera clases privadas y talleres, y cura programas comunitarios desde la memoria y la identidad.",
-    "about.owner.p3":"Esta sección resalta a la persona detrás del trabajo: los valores, el linaje y la visión que guían nuestra práctica.",
-    "about.owner.caption":"10mo Encuentro de Tambores<br>San Juan, Puerto Rico - Marzo 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
+    "about.owner.p1":"Bámbula Studio nace de mi experiencia como mujer puertorriqueña en la diáspora, trabajadora cultural y practicante de la Bomba, comprometida con la tradición, la enseñanza y la comunidad.",
+    "about.owner.p2":"Mi quehacer se sostiene en valores de resiliencia, memoria cultural y sanación colectiva. Desde la experiencia de vivir lejos de la isla, abrazo el legado de la Bomba mientras abro nuevas formas de pertenencia.",
+    "about.owner.p3":"Como Directora Creativa, diseño planes de estudio, facilito clases privadas y talleres, y organizo programas comunitarios que brotan de la memoria y la identidad. Mi visión es cultivar espacios donde la tradición, la creatividad y la comunidad florezcan juntas.",
+    "about.owner.p4":"En el corazón de Bámbula Studio late mi compromiso con la herencia, la identidad y la alegría compartida de nuestro pueblo dentro y fuera de Puerto Rico.",
+    "about.owner.caption":"Dr. Alexandra Rosado Román<br>10mo Encuentro de Tambores<br>San Juan, Puerto Rico - Marzo 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Retrato de la propietaria de Bámbula Studio",
 
     "classes.group.basic":"Buleo Básico",
