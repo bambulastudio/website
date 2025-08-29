@@ -33,7 +33,7 @@ const strings = {
     "classes.group.basic.l1":"History of bomba as Puerto Rican tradition",
     "classes.group.basic.l2":"Parts of the barrel: body, skin, and basic care",
     "classes.group.basic.l3":"Posture and hand placement",
-    "classes.group.basic.l4":"Sounds: open/closed, caja, campana",
+    "classes.group.basic.l4":"Sounds: abierto, caja, seco, and campana",
     "classes.group.basic.l5":"Basic buleo rudiments",
     "classes.group.basic.l6":"Keep the buleo in time",
     "classes.group.basic.l7":"Rhythms: sicá, yubá, cuembé, holandé",
@@ -56,7 +56,7 @@ const strings = {
     
     "classes.title":"Private Classes (Buleo)",
     "classes.subtitle":"Clear, flexible options.",
-    "pricing.basic.title":"Single Class",
+    "pricing.basic.title":"Single Class (1 Session)",
     "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
     "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
@@ -81,9 +81,13 @@ const strings = {
     "pricing.basic.full.title":"Complete Course",
     "pricing.basic.full.note":"($100 / hour) - most popular",
     
-    // INTERMEDIATE – section titles for monthly/full cards
-    "pricing.intermediate.monthly.title":"Intermediate",
-    "pricing.intermediate.full.title":"Intermediate",
+    // INTERMEDIATE – section titles for single/monthly/full cards
+    "pricing.intermediate.single.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
+    "pricing.intermediate.single.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
+
+    "pricing.intermediate.basic.title":"Single Class (1 Session)",
+    "pricing.intermediate.monthly.title":"Monthly Subscription",
+    "pricing.intermediate.full.title":"Complete Course",
 
     // ADVANCED – section titles for monthly/full cards
     "pricing.advanced.monthly.title":"Monthly Subscription",
@@ -102,7 +106,7 @@ const strings = {
     "pricing.intermediate.l7":"Energy dynamics (up/down)",
     // Intermediate single
     "pricing.intermediate.single.na":"—",
-    "pricing.intermediate.single.note":"Single session not offered at this level.",
+    "pricing.intermediate.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.intermediate.price16_head":"$1,680 ($105/class)",
 
     // INTERMEDIATE monthly/full lists
@@ -117,7 +121,7 @@ const strings = {
     "pricing.intermediate.full.l4":"Save 19%",
 
     "pricing.advanced.single.na":"—",
-    "pricing.advanced.single.note":"Single session not offered at this level.",
+    "pricing.advanced.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.advanced.price16_head":"$1,760 ($110/class)",
     "pricing.advanced.title":"Advanced",
     "pricing.advanced.price4":"$480 / 4 classes",
@@ -129,6 +133,9 @@ const strings = {
     "pricing.advanced.l6":"Pro-level control & variation drills",
 
     // ADVANCED monthly/full lists
+    "pricing.advanced.single.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
+    "pricing.advanced.single.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
+
     "pricing.advanced.monthly.l1":"4 private classes (1 hour each)",
     "pricing.advanced.monthly.l2":"Use within 30 days",
     "pricing.advanced.monthly.l3":"Practice recordings",
@@ -138,7 +145,6 @@ const strings = {
     "pricing.advanced.full.l2":"Use within 365 days",
     "pricing.advanced.full.l3":"Endurance & personal practice",
     "pricing.advanced.full.l4":"Save 18%",
-    
 
     // POLICIES
     "policies.title":"Policies",
