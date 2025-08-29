@@ -72,7 +72,7 @@ const strings = {
     "pricing.basic.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
 
     // BASIC – Monthly card (title + note)
-    "pricing.basic.monthly.title":"Monthly Subscription",
+    "pricing.basic.monthly.title":"4-Class Pack (30 days)",
     "pricing.basic.monthly.note":"($110/class)",
 
     // BASIC tier specific copies (match new_index.html)
@@ -87,25 +87,25 @@ const strings = {
     "pricing.basic.full.l4":"Save 17%",
 
     // BASIC – Complete card (title + note)
-    "pricing.basic.full.title":"Complete Course",
+    "pricing.basic.full.title":"Complete Course (16-Class Pack)",
     "pricing.basic.full.note":"($100/class)",
     
     // INTERMEDIATE – section titles for single/monthly/full cards
     "pricing.intermediate.single.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
     "pricing.intermediate.single.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
 
-    "pricing.intermediate.basic.title":"Single Class",
-    "pricing.intermediate.monthly.title":"Monthly Subscription",
-    "pricing.intermediate.full.title":"Complete Course",
+    "pricing.intermediate.single.title":"Single Class",
+    "pricing.intermediate.monthly.title":"4-Class Pack (30 days)",
+    "pricing.intermediate.full.title":"Complete Course (16-Class Pack)",
 
     // ADVANCED – section titles for monthly/full cards
-    "pricing.advanced.monthly.title":"Monthly Subscription",
-    "pricing.advanced.full.title":"Complete Course",
+    "pricing.advanced.monthly.title":"4-Class Pack (30 days)",
+    "pricing.advanced.full.title":"Complete Course (16-Class Pack)",
     "pricing.cta":"Book",
 
     // CLASSES – new packages
     "pricing.intermediate.title":"Intermediate",
-    "pricing.intermediate.price4":"$460 ($115/class)",
+    "pricing.intermediate.price4":"$459 ($115/class)",
     "pricing.intermediate.price1":"$125 / hour",
     "pricing.intermediate.l1":"Intermediate rudiments (control & variations)",
     "pricing.intermediate.l2":"Buleo interaction with primo",
@@ -115,9 +115,9 @@ const strings = {
     "pricing.intermediate.l6":"Sing coros while buleando",
     "pricing.intermediate.l7":"Energy dynamics (up/down)",
     // Intermediate single
-    "pricing.intermediate.basic.title":"Single Class",
+    "pricing.intermediate.single.title":"Single Class",
     "pricing.intermediate.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
-    "pricing.intermediate.price16_head":"$1,680 ($105/class)",
+    "pricing.intermediate.price16_head":"$1,679 ($105/class)",
 
     // INTERMEDIATE monthly/full lists
     "pricing.intermediate.monthly.l1":"4 private classes (1 hour each)",
@@ -132,9 +132,9 @@ const strings = {
 
     "pricing.advanced.single.title":"Single Class",
     "pricing.advanced.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
-    "pricing.advanced.price16_head":"$1,760 ($110/class)",
+    "pricing.advanced.price16_head":"$1,759 ($110/class)",
     "pricing.advanced.title":"Advanced",
-    "pricing.advanced.price4":"$480 ($120/class)",
+    "pricing.advanced.price4":"$479 ($120/class)",
     "pricing.advanced.price1":"$130 / hour",
     "pricing.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "pricing.advanced.l2":"Rhythms: all above + seis corrido & corvé",
@@ -159,8 +159,8 @@ const strings = {
 
     // BASIC price heads for shared grid
     "pricing.basic.price1":"$120 / hour",
-    "pricing.basic.price4":"$440 ($110/class)",
-    "pricing.basic.price16_head":"$1,600 ($100/class)",
+    "pricing.basic.price4":"$439 ($110/class)",
+    "pricing.basic.price16_head":"$1,599 ($100/class)",
 
     // POLICIES
     "policies.title":"Policies",
@@ -268,7 +268,7 @@ const strings = {
     "pricing.basic.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     // BASIC (ES) – Mensual (título + nota)
-    "pricing.basic.monthly.title":"Suscripción Mensual",
+    "pricing.basic.monthly.title":"Paquete de 4 Clases (30 días)",
     "pricing.basic.monthly.note":"($110/clase)",
 
     // BASIC (ES)
@@ -283,7 +283,7 @@ const strings = {
     "pricing.basic.full.l4":"Ahorra 17%",
 
     // BASIC (ES) – Completo (título + nota)
-    "pricing.basic.full.title":"Curso Completo",
+    "pricing.basic.full.title":"Curso Completo (Paquete de 16 Clases)",
     "pricing.basic.full.note":"($100/clase)",
     "pricing.cta":"Reservar",
 
@@ -295,11 +295,11 @@ const strings = {
     "pricing.intermediate.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
     "pricing.intermediate.single.note":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
 
-    "pricing.intermediate.monthly.title":"Suscripción Mensual",
-    "pricing.intermediate.price4":"$460 ($115/clase)",
+    "pricing.intermediate.monthly.title":"Paquete de 4 Clases (30 días)",
+    "pricing.intermediate.price4":"$459 ($115/clase)",
     "pricing.intermediate.price1":"$125 / hora",
-    "pricing.intermediate.full.title":"Curso Completo",
-    "pricing.intermediate.price16_head":"$1,680 ($105/clase)",
+    "pricing.intermediate.full.title":"Curso Completo (Paquete de 16 Clases)",
+    "pricing.intermediate.price16_head":"$1,679 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
     "pricing.intermediate.l3":"Ejercicios de coordinación y resistencia",
@@ -326,11 +326,11 @@ const strings = {
     "pricing.advanced.single.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
     "pricing.advanced.single.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
-    "pricing.advanced.monthly.title":"Suscripción Mensual",
-    "pricing.advanced.price4":"$480 ($120/clase)",
+    "pricing.advanced.monthly.title":"Paquete de 4 Clases (30 días)",
+    "pricing.advanced.price4":"$479 ($120/clase)",
     "pricing.advanced.price1":"$130 / hora",
-    "pricing.advanced.full.title":"Curso Completo",
-    "pricing.advanced.price16_head":"$1,760 ($110/clase)",
+    "pricing.advanced.full.title":"Curso Completo (Paquete de 16 Clases)",
+    "pricing.advanced.price16_head":"$1,759 ($110/clase)",
     "pricing.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
     "pricing.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
     "pricing.advanced.l3":"Variaciones profundas de sicá, yubá, cuembé, holandé, calindá",
@@ -351,8 +351,8 @@ const strings = {
 
     // BASIC (ES) precios para grilla compartida
     "pricing.basic.price1":"$120 / hora",
-    "pricing.basic.price4":"$440 ($110/clase)",
-    "pricing.basic.price16_head":"$1,600 ($100/clase)",
+    "pricing.basic.price4":"$439 ($110/clase)",
+    "pricing.basic.price16_head":"$1,599 ($100/clase)",
     
 
     // POLÍTICAS
