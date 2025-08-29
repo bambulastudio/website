@@ -788,8 +788,27 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
   }
   function buildPackageSummary(btn){
     const card = btn.closest('.price-card');
+    // Try to find the level title from the nearest class-group
+    let groupTitle = '';
     const group = card && card.closest('.class-group');
-    const groupTitle = group ? (group.querySelector('.group-head .subsection')?.textContent || '').trim() : '';
+    if (group) {
+      groupTitle = (group.querySelector('.group-head .subsection')?.textContent || '').trim();
+    }
+    // Fallback for shared pricing grid (not inside a .class-group): use current selected level
+    if (!groupTitle) {
+      const classesSection = document.getElementById('classes');
+      const level = classesSection ? (classesSection.getAttribute('data-level') || '').trim() : '';
+      if (level) {
+        // Prefer actual DOM header text for the selected level
+        const header = document.querySelector(`#group-${level} .group-head .subsection`);
+        groupTitle = (header?.textContent || '').trim();
+        // If not found, fall back to i18n string for the level key
+        if (!groupTitle) {
+          const key = `classes.group.${level}`;
+          groupTitle = t(key) || level;
+        }
+      }
+    }
     const title = card ? (card.querySelector('h3')?.textContent || '').trim() : '';
     const price = card ? (card.querySelector('.price')?.textContent || '').trim() : '';
     let summary = title;
