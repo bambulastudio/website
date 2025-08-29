@@ -23,7 +23,7 @@ const strings = {
     "about.p5":"Ancestral memory: Each class and every drumbeat becomes an act of remembering who we are as a people, honoring our Afro-Caribbean roots.",
     "about.p6":"Through every activity we seek to celebrate, share, and pass Puerto Rican culture to new generations.",
     "about.quick":"Quick facts",
-    "about.f1":"Private lessons: 1 hr",
+    "about.f1":"Private lessons: 1 hour",
     "about.f2":"Recordings for home practice",
     "about.f3":"Tradition-centered, community-rooted",
 
@@ -45,7 +45,7 @@ const strings = {
     "classes.group.intermediate.l4":"Rhythms: sicá, yubá, cuembé, holandé + calindá",
     "classes.group.intermediate.l5":"Basic responses to llamados",
     "classes.group.intermediate.l6":"Sing coros while buleando",
-    "classes.group.intermediate.l7":"Energy dynamics (up/down)",
+    "classes.group.intermediate.l7":"Energy dynamics (faster/slower)",
 
     "classes.group.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "classes.group.advanced.l2":"Rhythms: all above + seis corrido & corvé",
@@ -74,7 +74,7 @@ const strings = {
 
     "pricing.basic.full.l1":"16 private classes (1 hour each)",
     "pricing.basic.full.l2":"Use within 365 days of purchase",
-    "pricing.basic.full.l3":"Endurance & personal practice",
+    "pricing.basic.full.l3":"Practice recordings",
     "pricing.basic.full.l4":"Save 17%",
 
     // BASIC – Complete card (title + note)
@@ -96,7 +96,7 @@ const strings = {
 
     // CLASSES – new packages
     "pricing.intermediate.title":"Intermediate",
-    "pricing.intermediate.price4":"$460 / 4 classes",
+    "pricing.intermediate.price4":"$460 ($115 / class)",
     "pricing.intermediate.l1":"Intermediate rudiments (control & variations)",
     "pricing.intermediate.l2":"Buleo interaction with primo",
     "pricing.intermediate.l3":"Coordination & endurance drills",
@@ -105,7 +105,7 @@ const strings = {
     "pricing.intermediate.l6":"Sing coros while buleando",
     "pricing.intermediate.l7":"Energy dynamics (up/down)",
     // Intermediate single
-    "pricing.intermediate.single.na":"—",
+    "pricing.intermediate.basic.title":"Single Class (1 Session)",
     "pricing.intermediate.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.intermediate.price16_head":"$1,680 ($105/class)",
 
@@ -117,14 +117,14 @@ const strings = {
 
     "pricing.intermediate.full.l1":"16 private classes (1 hour each)",
     "pricing.intermediate.full.l2":"Use within 365 days",
-    "pricing.intermediate.full.l3":"Endurance & personal practice",
+    "pricing.intermediate.full.l3":"Practice recordings",
     "pricing.intermediate.full.l4":"Save 19%",
 
-    "pricing.advanced.single.na":"—",
+    "pricing.advanced.single.title":"Single Class (1 Session)",
     "pricing.advanced.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.advanced.price16_head":"$1,760 ($110/class)",
     "pricing.advanced.title":"Advanced",
-    "pricing.advanced.price4":"$480 / 4 classes",
+    "pricing.advanced.price4":"$480 ($120 / hour)",
     "pricing.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "pricing.advanced.l2":"Rhythms: all above + seis corrido & corvé",
     "pricing.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
@@ -143,7 +143,7 @@ const strings = {
 
     "pricing.advanced.full.l1":"16 private classes (1 hour each)",
     "pricing.advanced.full.l2":"Use within 365 days",
-    "pricing.advanced.full.l3":"Endurance & personal practice",
+    "pricing.advanced.full.l3":"Practice recordings",
     "pricing.advanced.full.l4":"Save 18%",
 
     // POLICIES
@@ -152,7 +152,7 @@ const strings = {
     "policies.expire":"Package expiration: all packages expire 365 days after purchase; unused classes are non-refundable and non-transferable.",
     "policies.record":"Recordings: recording the teacher during class isn’t allowed. Specific educational recordings can be coordinated at the end of class.",
 
-    "classes.note":"Not sure of your level? We can do a $15 initial evaluation to place you correctly.",
+    "classes.note":"We do an initial assessment to confirm appropriate level.",
 
     "workshops.title":"Group Packages",
     "workshops.p1":"Group Workshops - Coming Soon",
@@ -165,11 +165,11 @@ const strings = {
 
     "faq.title":"FAQ",
     "faq.q1":"Do I need my own drum?",
-    "faq.a1":"No. If you have one, bring it. If not, we’ll adapt with practice surfaces and technique.",
+    "faq.a1":"Not required. If you have one, bring it.",
     "faq.q2":"Are lessons in Spanish or English?",
     "faq.a2":"Either—your choice. The tradition is Puerto Rican; we honor both languages.",
     "faq.q3":"Where are lessons held?",
-    "faq.a3":"In-person (DFW area) or we can arrange a suitable space. No virtual lessons listed by default.",
+    "faq.a3":"In-person (DFW area). No virtual lessons offered.",
 
     "contact.title":"Contact",
     "contact.p1":"Reach out to get started!",
@@ -222,15 +222,15 @@ const strings = {
     "classes.group.intermediate.l4":"Ritmos: sicá, yubá, cuembé, holandé + calindá",
     "classes.group.intermediate.l5":"Respuestas básicas a los llamados",
     "classes.group.intermediate.l6":"Cantar coros sin dejar de bulear",
-    "classes.group.intermediate.l7":"Dinámica de energía (subir y bajar)",
+    "classes.group.intermediate.l7":"Dinámica de energía asistida (introducción a variaciones en tempo)",
 
     "classes.group.advanced":"Buleo Avanzado",
     "classes.group.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
     "classes.group.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
-    "classes.group.advanced.l3":"Variaciones profundas de sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l3":"Variaciones de sicá, yubá, cuembé, holandé, calindá",
     "classes.group.advanced.l4":"Mantener intensidad y cadencia por tiempos largos",
     "classes.group.advanced.l5":"Cantar coros mientras se bulea en variaciones complejas",
-    "classes.group.advanced.l6":"Ejercicios de control y variación a nivel profesional",
+    "classes.group.advanced.l6":"Dinámica de energía independiente (ejecución de variaciones en tempo)",
 
     "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
     "classes.subtitle":"Opciones claras y flexibles. ",
@@ -288,7 +288,7 @@ const strings = {
 
     "pricing.intermediate.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.intermediate.full.l2":"Expira en 365 días (desde la compra)",
-    "pricing.intermediate.full.l3":"Resistencia y práctica personal",
+    "pricing.intermediate.full.l3":"Grabaciones de práctica",
     "pricing.intermediate.full.l4":"Ahorra 19%",
 
     "pricing.advanced.title":"Clase Individual (1 Sesión)",
@@ -317,7 +317,7 @@ const strings = {
 
     "pricing.advanced.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.advanced.full.l2":"Expira en 365 días (desde la compra)",
-    "pricing.advanced.full.l3":"Resistencia y práctica personal",
+    "pricing.advanced.full.l3":"Grabaciones de práctica",
     "pricing.advanced.full.l4":"Ahorra 18%",
     
 
@@ -345,7 +345,7 @@ const strings = {
     "faq.q2":"¿Las clases son en español o inglés?",
     "faq.a2":"Como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
     "faq.q3":"¿Dónde se ofrecen las clases?",
-    "faq.a3":"Presencial (área DFW) o coordinamos un espacio. No se ofrecen clases virtuales.",
+    "faq.a3":"Presencial (área DFW). No se ofrecen clases virtuales.",
 
     "contact.title":"Contacto",
     "contact.p1":"¡Contáctanos para empezar!",
