@@ -1,18 +1,7 @@
-/*
-ES: Conmutador de idioma (EN/ES), sello de año y pequeños detalles de UX.
-EN: Language toggle (EN/ES), year stamp, and small UX niceties.
-*/
+// Language toggle (EN/ES), year stamp, small UX niceties
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
-/*
-ES: Mapa de contenido traducible.
-   - Las claves (p.ej., "nav.about", "hero.title") son compartidas por ambos idiomas.
-   - Agrega nuevas claves en ambos objetos para mantener la paridad.
-EN: Translatable content map.
-   - Keys (e.g., "nav.about", "hero.title") are shared by both languages.
-   - Add new keys to both objects to keep parity.
-*/
 const strings = {
   en: {
     "nav.about":"About",
@@ -21,8 +10,8 @@ const strings = {
     "nav.faq":"FAQ",
     "nav.contact":"Contact",
 
-    "hero.title":"Rooted rhythm. Living culture.",
-    "hero.subtitle":"Private Bomba drum lessons (buleo), community workshops, and cultural education—with care and discipline.",
+    "hero.title":"Ancestral rhythm. Living tradition.",
+    "hero.subtitle":"Private Bomba drumming lessons, community workshops, and culturally grounded education with commitment and discipline",
     "hero.cta1":"See classes",
     "hero.cta2":"Ask a question",
 
@@ -41,7 +30,7 @@ const strings = {
     "classes.group.basic":"Basic Buleo",
     "classes.group.intermediate":"Intermediate Buleo",
     "classes.group.advanced":"Advanced Buleo",
-    "classes.group.basic.l1":"History of Bomba as Puerto Rican tradition",
+    "classes.group.basic.l1":"History of bomba as Puerto Rican tradition",
     "classes.group.basic.l2":"Parts of the barrel: body, skin, and basic care",
     "classes.group.basic.l3":"Posture and hand placement",
     "classes.group.basic.l4":"Sounds: open/closed, caja, campana",
@@ -363,20 +352,6 @@ const strings = {
   }
 };
 
-/*
-ES: setLang(lang)
-   - Actualiza el atributo lang del <html>.
-   - Recorre todos los elementos con data-i18n para aplicar el texto traducido.
-   - Para ciertas viñetas en "about", pone en negritas la etiqueta previa a los dos puntos.
-   - Reubica los ítems de ahorro a la sección de notas y sincroniza alturas.
-   - Actualiza el botón de idioma y persiste la preferencia en localStorage.
-EN: setLang(lang)
-   - Updates the <html> lang attribute.
-   - Iterates elements with data-i18n to apply translated text.
-   - For select "about" bullets, bolds the label before the colon.
-   - Moves savings items into the notes area and syncs heights.
-   - Updates the language button and persists preference in localStorage.
-*/
 function setLang(lang){
   const map = strings[lang];
   document.documentElement.lang = (lang === 'es') ? 'es' : 'en';
@@ -412,16 +387,6 @@ function setLang(lang){
   localStorage.setItem('bambula_lang', lang);
 }
 
-/*
-ES: moveSavingsToNotes()
-   - Busca las viñetas de "ahorro" en las listas y las mueve como pastillas (pills)
-     a la sección de notas debajo del botón de cada tarjeta de precio.
-   - Mantiene la traducción usando la misma clave data-i18n.
-EN: moveSavingsToNotes()
-   - Finds "savings" bullets in lists and moves them as pills into
-     the note area below each pricing card's button.
-   - Keeps translation via the same data-i18n key.
-*/
 function moveSavingsToNotes(){
   const keys = [
     // basic
@@ -474,12 +439,7 @@ function moveSavingsToNotes(){
   });
 }
 
-/*
-ES: Asegura que todas las notas de una misma fila tengan la misma altura mínima
-    para alinear los botones entre tarjetas.
-EN: Ensures all notes in the same visual row share the same min height
-    so buttons align across cards.
-*/
+// Ensure all notes in a visual row share the same minimum height so buttons align
 function syncNoteHeights(){
   document.querySelectorAll('.pricing').forEach(container => {
     const cards = Array.from(container.querySelectorAll('.price-card'));
@@ -522,28 +482,15 @@ function syncNoteHeights(){
   });
 }
 
-/*
-ES: Inicializa el idioma con la preferencia guardada o inglés por defecto.
-EN: Initialize language with saved preference or default to English.
-*/
 const saved = localStorage.getItem('bambula_lang') || 'en';
 setLang(saved);
 
-/*
-ES: Alterna el idioma al hacer clic en el botón.
-EN: Toggle language on button click.
-*/
 document.getElementById('langToggle').addEventListener('click', ()=>{
   const current = localStorage.getItem('bambula_lang') || 'en';
   setLang(current==='en'?'es':'en');
 });
 
-/*
-ES: Conmutador de navegación móvil: abre/cierra el menú, cierra al seleccionar
-    un enlace o al redimensionar a escritorio.
-EN: Mobile nav toggle: opens/closes menu, closes on link click
-    or when resizing up to desktop.
-*/
+// Mobile nav toggle
 const siteHeader = document.querySelector('.site-header');
 const menuToggle = document.getElementById('menuToggle');
 const siteNav = document.getElementById('siteNav');
@@ -570,10 +517,7 @@ if (menuToggle && siteHeader) {
   });
 }
 
-/*
-ES: Recalcula la alineación de notas al redimensionar (con debounce).
-EN: Recalculates note alignment on resize (debounced).
-*/
+// Recalculate alignment on resize (debounced)
 let __noteResizeTO;
 window.addEventListener('resize', ()=>{
   clearTimeout(__noteResizeTO);
