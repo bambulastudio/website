@@ -7,6 +7,10 @@
   <title>Bámbula Studio LLC — Bomba Puertorriqueña</title>
   <meta name="description" content="Clases privadas y talleres de barril de bomba con Bámbula Studio. Puerto Rican Bomba drum lessons (buleo), community workshops, and culture."/>
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/assets/apple-touch-icon-167.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> <!-- fallback -->
   <!-- Hero image: fetch early -->
   <link rel="preload" as="image" href="assets/bambula_patterns.png" imagesrcset="assets/bambula_patterns.png 1x" />
   
@@ -153,8 +157,14 @@
   <!-- ===== Classes Section ===== -->
   <section id="classes" class="section section--alt" data-level="basic">
     <div class="container">
-      <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
-      <p data-i18n="classes.subtitle">Clear, flexible options.</p>
+      <div class="classes-head">
+        <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
+        <div class="category-switch" role="tablist" aria-label="Select category">
+        <button role="tab" aria-selected="true" data-category="percussion"><span data-i18n="category.percussion">Percussion</span></button>
+        <button role="tab" aria-selected="false" data-category="dance"><span data-i18n="category.dance">Dance</span></button>
+        </div>
+      </div>
+      <p id="classesSubtitle" class="lead" style="margin:.25rem 0 0.5rem 0" data-i18n="classes.subtitle.percussion">Buleo with Puerto Rican Bomba Drum</p>
 
       <!-- Level selector (tabs) -->
       <div class="level-switch" role="tablist" aria-label="Select level">
@@ -163,6 +173,8 @@
         <button role="tab" aria-selected="false" aria-controls="group-advanced" data-level="advanced"><span data-i18n="classes.group.advanced">Advanced</span></button>
       </div>
 
+      <!-- Percussion category -->
+      <div class="category" data-cat="percussion">
       <!-- ===== BASIC / BEGINNER ===== -->
       <section class="class-group" id="group-basic">
         <div class="group-head">
@@ -328,6 +340,52 @@
         </article>
       </div>
       </section>
+      </div>
+
+      <!-- Dance category -->
+      <div class="category" data-cat="dance" style="display:none">
+        <!-- BASIC DANCE -->
+        <section class="class-group" id="dance-basic">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.basic">Basic Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.basic.l1"></li>
+              <li data-i18n="dance.group.basic.l2"></li>
+              <li data-i18n="dance.group.basic.l3"></li>
+              <li data-i18n="dance.group.basic.l4"></li>
+              <li data-i18n="dance.group.basic.l5"></li>
+              <li data-i18n="dance.group.basic.l6"></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- INTERMEDIATE DANCE -->
+        <section class="class-group" id="dance-intermediate">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.intermediate">Intermediate Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.intermediate.l1"></li>
+              <li data-i18n="dance.group.intermediate.l2"></li>
+              <li data-i18n="dance.group.intermediate.l3"></li>
+              <li data-i18n="dance.group.intermediate.l4"></li>
+              <li data-i18n="dance.group.intermediate.l5"></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ADVANCED DANCE -->
+        <section class="class-group" id="dance-advanced">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.advanced">Advanced Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.advanced.l1"></li>
+              <li data-i18n="dance.group.advanced.l2"></li>
+              <li data-i18n="dance.group.advanced.l3"></li>
+              <li data-i18n="dance.group.advanced.l4"></li>
+            </ul>
+          </div>
+        </section>
+      </div>
 
       <!-- Mobile plan switch (Single / Monthly / Complete) -->
       <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan (mobile)">

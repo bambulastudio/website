@@ -179,11 +179,12 @@ body[data-flow="inquiry"] #payCard{ display:none; }
 
 /* Level switch (tabs) */
 .level-switch, .plan-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.25rem 0 .5rem; }
-.level-switch button, .plan-switch button{
+.category-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.25rem 0 .75rem; }
+.level-switch button, .plan-switch button, .category-switch button{
   border:0; background:transparent; padding:.5rem .9rem; border-radius:999px; font-weight:700; cursor:pointer; color:var(--fg);
 }
-.level-switch button[aria-selected="true"], .plan-switch button[aria-selected="true"]{ background:var(--mustard); color:#000; }
-.level-switch button:focus, .plan-switch button:focus{ outline:2px solid var(--ring); }
+.level-switch button[aria-selected="true"], .plan-switch button[aria-selected="true"], .category-switch button[aria-selected="true"]{ background:var(--mustard); color:#000; }
+.level-switch button:focus, .plan-switch button:focus, .category-switch button:focus{ outline:2px solid var(--ring); }
 
 /* Show plan switch only on mobile */
 .plan-switch--mobile{ display:none; }
@@ -204,6 +205,12 @@ body[data-flow="inquiry"] #payCard{ display:none; }
 #classes[data-level="basic"] #group-basic{ display:block; }
 #classes[data-level="intermediate"] #group-intermediate{ display:block; }
 #classes[data-level="advanced"] #group-advanced{ display:block; }
+
+/* Category visibility */
+#classes[data-category="percussion"] .category[data-cat="percussion"]{ display:block; }
+#classes[data-category="percussion"] .category[data-cat="dance"]{ display:none; }
+#classes[data-category="dance"] .category[data-cat="dance"]{ display:block; }
+#classes[data-category="dance"] .category[data-cat="percussion"]{ display:none; }
 
 /* Hide legacy per-level pricing grids; use shared grid */
 #classes .class-group > .pricing{ display:none !important; }
@@ -336,3 +343,6 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   .lead{font-size:1rem; line-height:1.6}
   #classes ul li{line-height:1.6}
 }
+
+.classes-head{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.classes-head h2{ margin:0; }

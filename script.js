@@ -65,6 +65,8 @@ const strings = {
     
     "classes.title":"Private Lessons (Buleo with Puerto Rican Bomba Drum)",
     "classes.subtitle":"Rooted instruction, disciplined growth. Personalized lessons for every level.",
+    "classes.subtitle.percussion":"Buleo with Puerto Rican Bomba Drum",
+    "classes.subtitle.dance":"Bomba Dance — From Foundations to Piquetes",
     "pricing.basic.title":"Single Class",
     "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
@@ -196,6 +198,41 @@ const strings = {
     "form.note":"This form uses Formspree’s free plan.",
     "footer.rights":"All rights reserved.",
     // Prefill message template for booking
+    "category.percussion":"Percussion",
+    "category.dance":"Dance",
+    "dance.group.basic":"Basic Dance",
+    "dance.group.basic.l1":"History and cultural context of Puerto Rican Bomba",
+    "dance.group.basic.l2":"Basic step and paseo as foundations",
+    "dance.group.basic.l3":"Posture, movement, and body awareness",
+    "dance.group.basic.l4":"Skirt technique; basic steps and rhythm variations",
+    "dance.group.basic.l5":"Develop proper language for each rhythm",
+    "dance.group.basic.l6":"Integrated review of covered rhythms",
+    "dance.group.intermediate":"Intermediate Dance",
+    "dance.group.intermediate.l1":"Expanded skirt technique and turns",
+    "dance.group.intermediate.l2":"Intermediate rhythmic variations by rhythm",
+    "dance.group.intermediate.l3":"Musicality and response to the primo",
+    "dance.group.intermediate.l4":"Building piquete and transitions",
+    "dance.group.intermediate.l5":"Stamina, phrasing, and style",
+    "dance.group.advanced":"Advanced Dance",
+    "dance.group.advanced.l1":"Advanced piquete construction and improvisation",
+    "dance.group.advanced.l2":"Complex variations across rhythms",
+    "dance.group.advanced.l3":"Performance preparation and stage presence",
+    "dance.group.advanced.l4":"Personal vocabulary and expression",
+    "pricing.dance.basic.price1":"$120 / hour",
+    "pricing.dance.basic.price4":"",
+    "pricing.dance.basic.price16_head":"$1,920 ($120/class)",
+    "pricing.dance.intermediate.price1":"$120 / hour",
+    "pricing.dance.intermediate.price4":"",
+    "pricing.dance.intermediate.price16_head":"$1,920 ($120/class)",
+    "pricing.dance.advanced.price1":"$120 / hour",
+    "pricing.dance.advanced.price4":"",
+    "pricing.dance.advanced.price16_head":"$1,920 ($120/class)",
+    "pricing.dance.basic.monthly.l4":"",
+    "pricing.dance.basic.full.l4":"",
+    "pricing.dance.intermediate.monthly.l4":"",
+    "pricing.dance.intermediate.full.l4":"",
+    "pricing.dance.advanced.monthly.l4":"",
+    "pricing.dance.advanced.full.l4":"",
     "contact.prefill":"Hello! I'd like to book: {package}. Please share next steps.",
     "billing.onetime":"One-time payment",
     "billing.note.onetime":"No auto-renewals.",
@@ -269,8 +306,10 @@ const strings = {
     "classes.group.advanced.l5":"Cantar coros mientras se bulea en variaciones complejas",
     "classes.group.advanced.l6":"Dinámica de energía independiente (ejecución de variaciones en tempo)",
 
-    "classes.title":"Clases Privadas (Buleo con Barril de Bomba Puertorriqueña)",
+    "classes.title":"Clases Privadas (Bomba Puertorriqueña)",
     "classes.subtitle":"Enseñanza con raíz, crecimiento disciplinado. Lecciones personalizadas para todos los niveles.",
+    "classes.subtitle.percussion":"Buleo con Barril de Bomba Puertorriqueña",
+    "classes.subtitle.dance":"Baile de Bomba — De fundamentos a piquetes",
     "pricing.basic.title":"Clase Individual",
     "pricing.single.credit":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.perhour":"/ hora",
@@ -400,6 +439,41 @@ const strings = {
     "form.note":"Este formulario usa el plan gratis de Formspree.",
     "footer.rights":"Todos los derechos reservados.",
     // Plantilla para autocompletar el mensaje al reservar
+    "category.percussion":"Percusión",
+    "category.dance":"Baile",
+    "dance.group.basic":"Baile — Nivel Básico",
+    "dance.group.basic.l1":"Historia y contexto cultural de la bomba como tradición puertorriqueña",
+    "dance.group.basic.l2":"Paso básico y paseo como fundamentos del baile",
+    "dance.group.basic.l3":"Postura, desplazamiento y conciencia corporal",
+    "dance.group.basic.l4":"Técnica de falda; pasos básicos y variaciones por ritmo",
+    "dance.group.basic.l5":"Desarrollar el lenguaje correcto para cada ritmo",
+    "dance.group.basic.l6":"Repaso integrado de los ritmos trabajados",
+    "dance.group.intermediate":"Baile — Nivel Intermedio",
+    "dance.group.intermediate.l1":"Técnica de falda y giros (nivel intermedio)",
+    "dance.group.intermediate.l2":"Variaciones intermedias por ritmo (sicá, yubá, cuembé, holandé)",
+    "dance.group.intermediate.l3":"Musicalidad y respuesta al primo",
+    "dance.group.intermediate.l4":"Construcción de piquete y transiciones",
+    "dance.group.intermediate.l5":"Resistencia, fraseo y estilo personal",
+    "dance.group.advanced":"Baile — Nivel Avanzado",
+    "dance.group.advanced.l1":"Construcción avanzada de piquete e improvisación",
+    "dance.group.advanced.l2":"Variaciones complejas a través de los ritmos",
+    "dance.group.advanced.l3":"Preparación escénica y presencia artística",
+    "dance.group.advanced.l4":"Vocabulario personal y expresión",
+    "pricing.dance.basic.price1":"$120 / hora",
+    "pricing.dance.basic.price4":"",
+    "pricing.dance.basic.price16_head":"$1,920 ($120/clase)",
+    "pricing.dance.intermediate.price1":"$120 / hora",
+    "pricing.dance.intermediate.price4":"",
+    "pricing.dance.intermediate.price16_head":"$1,920 ($120/clase)",
+    "pricing.dance.advanced.price1":"$120 / hora",
+    "pricing.dance.advanced.price4":"",
+    "pricing.dance.advanced.price16_head":"$1,920 ($120/clase)",
+    "pricing.dance.basic.monthly.l4":"",
+    "pricing.dance.basic.full.l4":"",
+    "pricing.dance.intermediate.monthly.l4":"",
+    "pricing.dance.intermediate.full.l4":"",
+    "pricing.dance.advanced.monthly.l4":"",
+    "pricing.dance.advanced.full.l4":"",
     "contact.prefill":"¡Hola! Me interesa reservar: {package}. ¿Cuáles son los próximos pasos?",
     "billing.onetime":"Pago único",
     "billing.note.onetime":"Sin renovación automática.",
@@ -619,14 +693,23 @@ function updateSharedPricing(level){
   const root = document.getElementById('sharedPricing');
   if (!root) return;
 
-  const k = (suffix)=> `pricing.${level}.${suffix}`;
+  const category = (document.getElementById('classes')?.getAttribute('data-category')) || 'percussion';
+  const ns = (category === 'dance') ? `pricing.dance.${level}` : `pricing.${level}`;
+  const k = (suffix)=> `${ns}.${suffix}`;
 
   const pSingle = root.querySelector('[data-price-key="single"]');
   const pMonthly = root.querySelector('[data-price-key="monthly"]');
   const pFull = root.querySelector('[data-price-key="full"]');
-  if (pSingle && map[k('price1')]) pSingle.textContent = map[k('price1')];
-  if (pMonthly && map[k('price4')]) pMonthly.textContent = map[k('price4')];
-  if (pFull && map[k('price16_head')]) pFull.textContent = map[k('price16_head')];
+  const vSingle = map[k('price1')];
+  const vMonthly = map[k('price4')];
+  const vFull = map[k('price16_head')];
+  if (pSingle && vSingle!=null) pSingle.textContent = vSingle;
+  if (pMonthly && vMonthly!=null) pMonthly.textContent = vMonthly;
+  if (pFull && vFull!=null) pFull.textContent = vFull;
+
+  // Hide monthly card if not offered in this category
+  const monthlyCard = root.querySelector('[data-card="monthly"]');
+  if (monthlyCard) monthlyCard.style.display = (vMonthly && String(vMonthly).trim()) ? '' : 'none';
 
   // Update savings pills (or source li if not yet moved)
   const monthlyKeys = [
@@ -637,19 +720,23 @@ function updateSharedPricing(level){
   ];
   const newMonthlyKey = `pricing.${level}.monthly.l4`;
   const newFullKey = `pricing.${level}.full.l4`;
+  const newMonthlyKeyDance = `pricing.dance.${level}.monthly.l4`;
+  const newFullKeyDance = `pricing.dance.${level}.full.l4`;
 
   // Switch any existing monthly savings element to the new key
   monthlyKeys.forEach(oldKey => {
     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-      el.setAttribute('data-i18n', newMonthlyKey);
-      if (map[newMonthlyKey]) el.textContent = map[newMonthlyKey];
+      const targetKey = (category==='dance') ? newMonthlyKeyDance : newMonthlyKey;
+      el.setAttribute('data-i18n', targetKey);
+      if (map[targetKey]) el.textContent = map[targetKey];
     });
   });
   // Switch any existing full savings element to the new key
   fullKeys.forEach(oldKey => {
     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-      el.setAttribute('data-i18n', newFullKey);
-      if (map[newFullKey]) el.textContent = map[newFullKey];
+      const targetKey = (category==='dance') ? newFullKeyDance : newFullKey;
+      el.setAttribute('data-i18n', targetKey);
+      if (map[targetKey]) el.textContent = map[targetKey];
     });
   });
 
@@ -849,4 +936,79 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
       // allow normal anchor navigation to #contact
     }
   }, true);
+})();
+
+
+/*
+ES: Conmutador de categoría (Percusión/Danza)
+EN: Category switcher (Percussion/Dance)
+*/
+(function initCategorySwitcher(){
+  const section = document.getElementById('classes');
+  if (!section) return;
+  const catTabs = section.querySelectorAll('.category-switch [role="tab"]');
+  if (!catTabs.length) return;
+  const saved = localStorage.getItem('bambula_category') || 'percussion';
+  section.setAttribute('data-category', saved);
+  catTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-category')===saved ? 'true' : 'false'));
+  // Set subtitle based on category
+  (function setSubtitle(cat){
+    const el = document.getElementById('classesSubtitle');
+    if (!el) return;
+    const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+    const key = (cat==='dance') ? 'classes.subtitle.dance' : 'classes.subtitle.percussion';
+    el.setAttribute('data-i18n', key);
+    const val = (strings[lang]||{})[key];
+    if (val!=null) el.textContent = val;
+  })(saved);
+  // Set level tab labels based on category
+  (function setLevelLabels(cat){
+    const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+    const map = strings[lang] || {};
+    const prefix = (cat==='dance') ? 'dance.group' : 'classes.group';
+    const tabsWrap = section.querySelector('.level-switch');
+    if (!tabsWrap) return;
+    const keys = ['basic','intermediate','advanced'];
+    tabsWrap.querySelectorAll('button span').forEach((span, idx)=>{
+      const levelKey = `${prefix}.${keys[idx]}`;
+      span.setAttribute('data-i18n', levelKey);
+      if (map[levelKey]!=null) span.textContent = map[levelKey];
+    });
+  })(saved);
+  catTabs.forEach(btn => {
+    btn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      const cat = btn.getAttribute('data-category');
+      section.setAttribute('data-category', cat);
+      catTabs.forEach(b => b.setAttribute('aria-selected', b.getAttribute('data-category')===cat ? 'true' : 'false'));
+      localStorage.setItem('bambula_category', cat);
+      // Update subtitle to reflect current category
+      (function setSubtitle(cat){
+        const el = document.getElementById('classesSubtitle');
+        if (!el) return;
+        const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+        const key = (cat==='dance') ? 'classes.subtitle.dance' : 'classes.subtitle.percussion';
+        el.setAttribute('data-i18n', key);
+        const val = (strings[lang]||{})[key];
+        if (val!=null) el.textContent = val;
+      })(cat);
+      // Update level tab labels to reflect current category
+      (function setLevelLabels(cat){
+        const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+        const map = strings[lang] || {};
+        const prefix = (cat==='dance') ? 'dance.group' : 'classes.group';
+        const tabsWrap = section.querySelector('.level-switch');
+        if (!tabsWrap) return;
+        const keys = ['basic','intermediate','advanced'];
+        tabsWrap.querySelectorAll('button span').forEach((span, idx)=>{
+          const levelKey = `${prefix}.${keys[idx]}`;
+          span.setAttribute('data-i18n', levelKey);
+          if (map[levelKey]!=null) span.textContent = map[levelKey];
+        });
+      })(cat);
+      const lvl = section.getAttribute('data-level') || 'basic';
+      updateSharedPricing(lvl);
+      setTimeout(syncNoteHeights, 0);
+    });
+  });
 })();
