@@ -164,8 +164,8 @@ const strings = {
 
     // POLICIES
     "policies.title":"Policies",
-    "policies.transport":"Transportation: if a lesson is held away from my home, an additional $0.65 per mile (round-trip) applies.",
-    "policies.expire":"Package expiration: all packages expire 365 days after purchase; unused classes are non-refundable and non-transferable.",
+    "policies.transport":"Transportation: if class is offsite, a $0.65/mile round-trip fee applies.",
+    "policies.expire":"Expiration: all packages expire; unused classes are non-refundable and non-transferable.",
     "policies.record":"Recordings: recording the teacher during class isn’t allowed. Specific educational recordings can be coordinated at the end of class.",
 
     "classes.note":"We do an initial assessment to confirm appropriate level.",
@@ -385,7 +385,7 @@ const strings = {
 
     "faq.title":"Preguntas frecuentes",
     "faq.q1":"¿Necesito mi propio barril?",
-    "faq.a1":"No. Si tienes, tráelo. Si no, adaptamos con superficies de práctica y técnica.",
+    "faq.a1":"No es requerido; pero si tienes, tráelo.",
     "faq.q2":"¿Las clases son en español o inglés?",
     "faq.a2":"Como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
     "faq.q3":"¿Dónde se ofrecen las clases?",
