@@ -562,7 +562,7 @@ function syncNoteHeights(){
   });
 }
 
-const saved = localStorage.getItem('bambula_lang') || 'en';
+const saved = localStorage.getItem('bambula_lang') || 'es';
 setLang(saved);
 
 const __langBtn = document.getElementById('langToggle');
