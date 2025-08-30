@@ -206,7 +206,7 @@ const strings = {
     "book.pay":"Pay Now",
     "book.back":"Back to Classes",
     "book.noLink":"Payment link not configured yet.",
-    "book.noScheduler":"Scheduler not embedded yet."
+    "book.noScheduler":"Submit name/email above to show scheduler."
   },
 
   es: {
