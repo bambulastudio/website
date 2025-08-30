@@ -205,6 +205,10 @@ body[data-flow="inquiry"] #payCard{ display:none; }
 #classes[data-level="basic"] #group-basic{ display:block; }
 #classes[data-level="intermediate"] #group-intermediate{ display:block; }
 #classes[data-level="advanced"] #group-advanced{ display:block; }
+/* Show Dance groups for matching level */
+#classes[data-level="basic"] #dance-basic{ display:block; }
+#classes[data-level="intermediate"] #dance-intermediate{ display:block; }
+#classes[data-level="advanced"] #dance-advanced{ display:block; }
 
 /* Category visibility */
 #classes[data-category="percussion"] .category[data-cat="percussion"]{ display:block; }
@@ -344,5 +348,6 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   #classes ul li{line-height:1.6}
 }
 
-.classes-head{ display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+.classes-head{ display:flex; align-items:center; justify-content:flex-start; gap:.5rem; flex-wrap:wrap; }
 .classes-head h2{ margin:0; }
+.classes-head .category-switch{ margin:0 0 0 .5rem; }

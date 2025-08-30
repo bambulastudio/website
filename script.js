@@ -36,7 +36,7 @@ const strings = {
     "about.owner.caption":"Dr. Alexandra Rosado Román<br>10th Encuentro de Tambores<br>San Juan, Puerto Rico - March 27, 2022<br><a href='https://instagram.com/bambula_studio' target='_blank' rel='noopener'>@bambula_studio</a>",
     "about.owner.photo_alt":"Portrait of the owner of Bámbula Studio",
 
-    "classes.group.basic":"Basic Buleo",
+    "classes.group.basic":"Beginner Buleo",
     "classes.group.intermediate":"Intermediate Buleo",
     "classes.group.advanced":"Advanced Buleo",
     "classes.group.basic.l1":"History of bomba as Puerto Rican tradition",
@@ -63,7 +63,7 @@ const strings = {
     "classes.group.advanced.l5":"Sing coros while complex buleo variations",
     "classes.group.advanced.l6":"Energy dynamics independent (execute tempo variations)",
     
-    "classes.title":"Private Lessons (Buleo with Puerto Rican Bomba Drum)",
+    "classes.title":"Private Lessons (Bomba)",
     "classes.subtitle":"Rooted instruction, disciplined growth. Personalized lessons for every level.",
     "classes.subtitle.percussion":"Buleo with Puerto Rican Bomba Drum",
     "classes.subtitle.dance":"Bomba Dance — From Foundations to Piquetes",
@@ -200,13 +200,14 @@ const strings = {
     // Prefill message template for booking
     "category.percussion":"Percussion",
     "category.dance":"Dance",
-    "dance.group.basic":"Basic Dance",
+    "dance.group.basic":"Beginner Dance",
     "dance.group.basic.l1":"History and cultural context of Puerto Rican Bomba",
     "dance.group.basic.l2":"Basic step and paseo as foundations",
     "dance.group.basic.l3":"Posture, movement, and body awareness",
     "dance.group.basic.l4":"Skirt technique; basic steps and rhythm variations",
     "dance.group.basic.l5":"Develop proper language for each rhythm",
     "dance.group.basic.l6":"Integrated review of covered rhythms",
+    "dance.group.basic.l7":"Introduction to piquetes and variations as transition to intermediate level",
     "dance.group.intermediate":"Intermediate Dance",
     "dance.group.intermediate.l1":"Expanded skirt technique and turns",
     "dance.group.intermediate.l2":"Intermediate rhythmic variations by rhythm",
@@ -218,15 +219,15 @@ const strings = {
     "dance.group.advanced.l2":"Complex variations across rhythms",
     "dance.group.advanced.l3":"Performance preparation and stage presence",
     "dance.group.advanced.l4":"Personal vocabulary and expression",
-    "pricing.dance.basic.price1":"$120 / hour",
-    "pricing.dance.basic.price4":"",
+    "pricing.dance.basic.price1":"$140 / hour",
+    "pricing.dance.basic.price4":"$439 ($130/class)",
     "pricing.dance.basic.price16_head":"$1,920 ($120/class)",
-    "pricing.dance.intermediate.price1":"$120 / hour",
-    "pricing.dance.intermediate.price4":"",
-    "pricing.dance.intermediate.price16_head":"$1,920 ($120/class)",
-    "pricing.dance.advanced.price1":"$120 / hour",
-    "pricing.dance.advanced.price4":"",
-    "pricing.dance.advanced.price16_head":"$1,920 ($120/class)",
+    "pricing.dance.intermediate.price1":"$145 / hour",
+    "pricing.dance.intermediate.price4":"$459 ($135/class)",
+    "pricing.dance.intermediate.price16_head":"$2,000 ($125/class)",
+    "pricing.dance.advanced.price1":"$150 / hour",
+    "pricing.dance.advanced.price4":"$479 ($140/class)",
+    "pricing.dance.advanced.price16_head":"$2,240 ($130/class)",
     "pricing.dance.basic.monthly.l4":"",
     "pricing.dance.basic.full.l4":"",
     "pricing.dance.intermediate.monthly.l4":"",
@@ -441,33 +442,34 @@ const strings = {
     // Plantilla para autocompletar el mensaje al reservar
     "category.percussion":"Percusión",
     "category.dance":"Baile",
-    "dance.group.basic":"Baile — Nivel Básico",
+    "dance.group.basic":"Baile Básico",
     "dance.group.basic.l1":"Historia y contexto cultural de la bomba como tradición puertorriqueña",
     "dance.group.basic.l2":"Paso básico y paseo como fundamentos del baile",
     "dance.group.basic.l3":"Postura, desplazamiento y conciencia corporal",
-    "dance.group.basic.l4":"Técnica de falda; pasos básicos y variaciones por ritmo",
+    "dance.group.basic.l4":"Técnica de falda, pasos básicos y variaciones por ritmo",
     "dance.group.basic.l5":"Desarrollar el lenguaje correcto para cada ritmo",
     "dance.group.basic.l6":"Repaso integrado de los ritmos trabajados",
-    "dance.group.intermediate":"Baile — Nivel Intermedio",
+    "dance.group.basic.l7":"Introducción a piquete y variaciones como transición al nivel intermedio",
+    "dance.group.intermediate":"Baile Intermedio",
     "dance.group.intermediate.l1":"Técnica de falda y giros (nivel intermedio)",
     "dance.group.intermediate.l2":"Variaciones intermedias por ritmo (sicá, yubá, cuembé, holandé)",
     "dance.group.intermediate.l3":"Musicalidad y respuesta al primo",
     "dance.group.intermediate.l4":"Construcción de piquete y transiciones",
     "dance.group.intermediate.l5":"Resistencia, fraseo y estilo personal",
-    "dance.group.advanced":"Baile — Nivel Avanzado",
+    "dance.group.advanced":"Baile Avanzado",
     "dance.group.advanced.l1":"Construcción avanzada de piquete e improvisación",
     "dance.group.advanced.l2":"Variaciones complejas a través de los ritmos",
     "dance.group.advanced.l3":"Preparación escénica y presencia artística",
     "dance.group.advanced.l4":"Vocabulario personal y expresión",
-    "pricing.dance.basic.price1":"$120 / hora",
-    "pricing.dance.basic.price4":"",
+    "pricing.dance.basic.price1":"$140 / hora",
+    "pricing.dance.basic.price4":"$439 ($130/clase)",
     "pricing.dance.basic.price16_head":"$1,920 ($120/clase)",
-    "pricing.dance.intermediate.price1":"$120 / hora",
-    "pricing.dance.intermediate.price4":"",
-    "pricing.dance.intermediate.price16_head":"$1,920 ($120/clase)",
-    "pricing.dance.advanced.price1":"$120 / hora",
-    "pricing.dance.advanced.price4":"",
-    "pricing.dance.advanced.price16_head":"$1,920 ($120/clase)",
+    "pricing.dance.intermediate.price1":"$145 / hora",
+    "pricing.dance.intermediate.price4":"$459 ($135/clase)",
+    "pricing.dance.intermediate.price16_head":"$2,000 ($125/clase)",
+    "pricing.dance.advanced.price1":"$150 / hora",
+    "pricing.dance.advanced.price4":"$479 ($140/clase)",
+    "pricing.dance.advanced.price16_head":"$2,240 ($130/clase)",
     "pricing.dance.basic.monthly.l4":"",
     "pricing.dance.basic.full.l4":"",
     "pricing.dance.intermediate.monthly.l4":"",
@@ -728,7 +730,8 @@ function updateSharedPricing(level){
     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
       const targetKey = (category==='dance') ? newMonthlyKeyDance : newMonthlyKey;
       el.setAttribute('data-i18n', targetKey);
-      if (map[targetKey]) el.textContent = map[targetKey];
+      if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
+      else el.textContent = '';
     });
   });
   // Switch any existing full savings element to the new key
@@ -736,8 +739,15 @@ function updateSharedPricing(level){
     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
       const targetKey = (category==='dance') ? newFullKeyDance : newFullKey;
       el.setAttribute('data-i18n', targetKey);
-      if (map[targetKey]) el.textContent = map[targetKey];
+      if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
+      else el.textContent = '';
     });
+  });
+
+  // Hide empty savings pills (no label configured for this category/level)
+  root.querySelectorAll('.deal-pill').forEach(pill => {
+    const txt = (pill.textContent || '').trim();
+    if (!txt || txt === '—') pill.style.display = 'none'; else pill.style.display = '';
   });
 
   // Re-sync note heights after content change
@@ -961,6 +971,12 @@ EN: Category switcher (Percussion/Dance)
     const val = (strings[lang]||{})[key];
     if (val!=null) el.textContent = val;
   })(saved);
+  // Ensure shared pricing reflects saved category on initial load
+  (function refreshPricing(){
+    const lvl = localStorage.getItem('bambula_level') || section.getAttribute('data-level') || 'basic';
+    updateSharedPricing(lvl);
+    setTimeout(syncNoteHeights, 0);
+  })();
   // Set level tab labels based on category
   (function setLevelLabels(cat){
     const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';

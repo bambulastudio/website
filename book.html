@@ -79,13 +79,18 @@
     // Optional: PayPal Smart Buttons (client-side) — quick starter
     // Set your PayPal REST client-id to enable buttons; leave empty to use links above
     // Sandbox test client-id (replace with your Live client-id when going live):
-    window.paypalClientId = 'AZxl5FLsrIryvjAMaShccHNz59v6r4DBJ92aSkN_I-qLGbxh8zCKnphcJCSUom2ZWVk9NS2hDTWNkGrx';
+    // window.paypalClientId = 'AZxl5FLsrIryvjAMaShccHNz59v6r4DBJ92aSkN_I-qLGbxh8zCKnphcJCSUom2ZWVk9NS2hDTWNkGrx';
+    // Live client-id:
+    window.paypalClientId = 'Aa4zMg60V-3S2yNxhMWqWhkx1fXhSt8oVPgNHxixM6WM22ONoA76vCNJA2ctMmU3rWq5vdIsJ8snUEYr'; // LIVE
     // Amounts used when PayPal buttons are enabled (USD)
     window.bookingPrices = {
       currency: 'USD',
-      basic: { single: 120, monthly: 439, full: 1599 },
-      intermediate: { single: 125, monthly: 459, full: 1679 },
-      advanced: { single: 130, monthly: 479, full: 1759 }
+      basic: { single: 1, monthly: 1, full: 1 },
+      intermediate: { single: 1, monthly: 1, full: 1 },
+      advanced: { single: 1, monthly: 1, full: 1 }
+      // basic: { single: 120, monthly: 439, full: 1599 },
+      // intermediate: { single: 125, monthly: 459, full: 1679 },
+      // advanced: { single: 130, monthly: 479, full: 1759 }
     };
 
     // Parse query params ?level=basic&plan=monthly
