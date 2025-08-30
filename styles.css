@@ -140,6 +140,30 @@ h3{margin:0 0 8px 0}
 }
 .price-card .note .note-line{ margin-top: .35rem; }
 
+/* Payment options layout on book.html */
+.pay-grid{ display: grid; gap: 12px; }
+@media(min-width:700px){ .pay-grid{ grid-template-columns: 1fr 1fr; } }
+
+/* Hide initial Pay card immediately in inquiry mode to avoid flicker */
+body[data-flow="inquiry"] #payCard{ display:none; }
+
+/* --- Book page compaction --- */
+.book-page .section{ padding: 40px 0; }
+.book-page .grid{ gap: 1rem; }
+.book-page .card{ padding: 16px; }
+.book-page h1{ margin: 0 0 8px 0; }
+.book-page h2{ margin: 0 0 8px 0; font-size: 1.2rem; }
+.book-page h3{ margin: 0 0 6px 0; font-size: 1rem; }
+.book-page .note{ margin-top: .35rem; }
+.book-page .form{ gap: 10px; padding: 12px; }
+.book-page .form input, .book-page .form textarea{ padding: .6rem; }
+.book-page .btn.btn--small{ padding: .45rem .75rem; }
+.book-page .pay-grid{ gap: 10px; }
+.book-page #schedulerEmbed iframe{ height: 560px !important; }
+@media(max-width:700px){
+  .book-page #schedulerEmbed iframe{ height: 500px !important; }
+}
+
 /* Level switch (tabs) */
 .level-switch, .plan-switch{ display:inline-flex; gap:0; border:1px solid #ddd; background:#fff; border-radius:999px; padding:4px; margin:.25rem 0 .5rem; }
 .level-switch button, .plan-switch button{
@@ -299,4 +323,3 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   .lead{font-size:1rem; line-height:1.6}
   #classes ul li{line-height:1.6}
 }
-

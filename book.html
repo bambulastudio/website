@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
-<body>
+<body class="book-page" data-flow="inquiry">
   <header class="site-header">
     <div class="container" style="padding:8px 20px">
       <div class="brand">
@@ -27,7 +27,7 @@
       <p><strong data-i18n="book.selected">Selected</strong>: <span id="selLevel" data-i18n="classes.group.basic">Basic</span> — <span id="selPlan" data-i18n="pricing.basic.monthly.title">4-Class Pack</span></p>
 
       <div class="grid" style="margin-top:1rem">
-        <div class="card">
+        <div class="card" id="payCard">
           <h2 data-i18n="book.step1">Step 1: Pay</h2>
           <p class="note">
             <span class="info-pill" data-i18n="billing.onetime">One-time payment</span>
@@ -39,9 +39,21 @@
           <div id="payResult" class="note" style="display:none"></div>
         </div>
 
-        <div class="card">
-          <h2 data-i18n="book.step2">Step 2: Schedule</h2>
-          <!-- Replace the iframe src with your provider's embed or inject their script below -->
+        <div class="card" id="scheduleCard">
+          <h2 id="scheduleHeading" data-i18n="book.step2">Step 2: Schedule</h2>
+          <div class="form" style="margin:0 0 12px 0">
+            <label>
+              <span>Name</span>
+              <input id="prefillName" type="text" placeholder="Your name" autocomplete="name" />
+            </label>
+            <label>
+              <span>Email</span>
+              <input id="prefillEmail" type="email" placeholder="you@example.com" autocomplete="email" />
+            </label>
+            <button id="applyPrefill" class="btn btn--small" type="button">Apply to calendar</button>
+          </div>
+          <p class="note" id="pendingNote1">Note: Your time selection is a request and is pending approval. After payment, we will confirm or offer alternatives if needed.</p>
+          <!-- Provider embed goes here -->
           <div id="schedulerEmbed" style="min-height:420px"></div>
           <p id="schedNote" class="note" data-i18n="book.noScheduler" style="display:none">Scheduler not embedded yet.</p>
         </div>
@@ -80,6 +92,7 @@
     function qp(k){ return new URLSearchParams(location.search).get(k); }
     const level = ['basic','intermediate','advanced'].includes(qp('level')) ? qp('level') : 'basic';
     const plan = ['single','monthly','full'].includes(qp('plan')) ? qp('plan') : 'monthly';
+    const flow = (document.body.getAttribute('data-flow')||'inquiry').toLowerCase(); // 'pay' or 'inquiry'
 
     // Defer i18n mapping of labels to script.js by changing data-i18n keys dynamically
     function setI18nKey(el, key){ if (el) el.setAttribute('data-i18n', key); }
@@ -88,6 +101,50 @@
     const planKey = planKeyMap[plan];
     setI18nKey(document.getElementById('selLevel'), levelKey);
     setI18nKey(document.getElementById('selPlan'), planKey);
+
+    // If inquiry flow, adjust steps: 1) Schedule/Request with gate, 2) Payment with both options (Pay Now + Payment Link)
+    (function(){
+      if (flow === 'inquiry'){
+        // Update schedule heading to Step 1 and prevent i18n overwrite
+        const schedH = document.getElementById('scheduleHeading');
+        if (schedH){ schedH.removeAttribute('data-i18n'); schedH.textContent = 'Step 1: Choose a preferred time or request'; }
+
+        // Build a unified Step 2 Payment card with two options side-by-side
+        const grid = document.querySelector('.grid');
+        const scheduleCard = document.getElementById('scheduleCard');
+        if (grid && scheduleCard){
+          const paymentCard = document.createElement('div');
+          paymentCard.className = 'card';
+          paymentCard.innerHTML = [
+            '<h2>Step 2: Payment</h2>',
+            '<div class="pay-grid">',
+            '  <div class="pay-option-now">',
+            '    <h3 style="margin-top:0">Pay Now</h3>',
+            '    <div id="payNowMount"></div>',
+            '  </div>',
+            '  <div class="pay-option-link">',
+            '    <h3 style="margin-top:0">Get Payment Link by Email</h3>',
+            '    <p class="note">After you request a time, we\'ll email you a secure payment link (PayPal). Paying via the link also requests your booking.</p>',
+            '  </div>',
+            '</div>',
+            '<p class="note" id="pendingNote2">After payment, we\'ll approve your requested time and send a confirmation email. If the slot isn\'t available, we\'ll coordinate alternatives.</p>'
+          ].join('');
+          grid.insertBefore(paymentCard, scheduleCard.nextSibling);
+
+          // Move existing pay controls into the Pay Now slot
+          const mount = paymentCard.querySelector('#payNowMount');
+          const btns = document.getElementById('paypalButtons');
+          const link = document.getElementById('payLink');
+          const note = document.getElementById('payNote');
+          const result = document.getElementById('payResult');
+          [btns, link, note, result].forEach(el => { if (el && mount) mount.appendChild(el); });
+
+          // Remove the original pay card (if present) to avoid duplicate headings/grid
+          const oldPayCard = document.getElementById('payCard');
+          if (oldPayCard && oldPayCard !== paymentCard){ oldPayCard.remove(); }
+        }
+      }
+    })();
 
     // Wire Pay (PayPal buttons if clientId present; otherwise fallback to link)
     (function(){
@@ -128,7 +185,7 @@
                   const payer = details.payer && (details.payer.name?.given_name || details.payer.name?.surname) ?
                     (details.payer.name.given_name + ' ' + (details.payer.name.surname||'')).trim() : '';
                   const orderId = details.id || data.orderID || '';
-                  const msg = `Payment confirmed${payer? ' — ' + payer : ''}. Order ID: ${orderId}.`;
+                  const msg = `Payment received${payer? ' — ' + payer : ''}. Order ID: ${orderId}. We will review your requested time and send a confirmation email shortly.`;
                   if (resultEl){ resultEl.textContent = msg; resultEl.style.display = 'block'; }
                 } catch(_){}
                 // After capture, scroll to Step 2
@@ -165,9 +222,12 @@
     (function(){
       const qs = new URLSearchParams(location.search);
       const override = qs.get('sched');
-      let url = override || ((window.bookingSchedulerLinks[level]||{})[plan]);
+      let baseUrl = override || ((window.bookingSchedulerLinks[level]||{})[plan]);
       const wrap = document.getElementById('schedulerEmbed');
       const note = document.getElementById('schedNote');
+      const nameInput = document.getElementById('prefillName');
+      const emailInput = document.getElementById('prefillEmail');
+      const applyBtn = document.getElementById('applyPrefill');
 
       function ensureCalendlyScript(){
         if (document.getElementById('calendly-widget-js')) return;
@@ -178,29 +238,73 @@
         document.head.appendChild(s);
       }
 
+      function buildUrl(u){
+        if (!u) return u;
+        try{
+          const url = new URL(u, location.origin);
+          const name = (nameInput && nameInput.value || '').trim();
+          const email = (emailInput && emailInput.value || '').trim();
+          if (/cal\.com/i.test(url.hostname)){
+            // Cal.com supports embed=true and basic prefill for name/email
+            url.searchParams.set('embed', 'true');
+            if (name) url.searchParams.set('name', name);
+            if (email) url.searchParams.set('email', email);
+          } else if (/calendly\.com/i.test(url.hostname)){
+            if (name) url.searchParams.set('name', name);
+            if (email) url.searchParams.set('email', email);
+          }
+          return url.toString();
+        } catch { return u; }
+      }
+
       function setCalendly(u){
-        wrap.innerHTML = '<div class="calendly-inline-widget" data-url="'+u.replace(/&/g,'&amp;')+'" style="min-width:320px;height:700px;"></div>';
+        const finalUrl = buildUrl(u);
+        wrap.innerHTML = '<div class="calendly-inline-widget" data-url="'+finalUrl.replace(/&/g,'&amp;')+'" style="min-width:320px;height:700px;"></div>';
         ensureCalendlyScript();
       }
 
       function setIframe(u){
+        const finalUrl = buildUrl(u);
         const i = document.createElement('iframe');
         i.title = 'Scheduler';
         i.style.cssText = 'width:100%;height:700px;border:0;border-radius:8px;background:#fff';
-        i.src = u;
+        i.src = finalUrl;
         wrap.innerHTML = '';
         wrap.appendChild(i);
       }
 
-      if (url && url !== '#'){
-        note.style.display = 'none';
-        // Provider heuristics
-        if (/calendly\.com/i.test(url)) setCalendly(url);
-        else if (/cal\.com/i.test(url)) setIframe(url + (url.includes('?') ? '&' : '?') + 'embed=true');
-        else setIframe(url);
-      } else {
-        note.style.display = 'block';
+      function readyForCalendar(){
+        const name = (nameInput && nameInput.value || '').trim();
+        const email = (emailInput && emailInput.value || '').trim();
+        const okEmail = /.+@.+\..+/.test(email);
+        return name.length > 1 && okEmail;
       }
+
+      function render(force){
+        // Gate calendar until name/email are provided (both flows)
+        if (!force && !readyForCalendar()){
+          wrap.innerHTML = '';
+          note.textContent = 'Enter your name and email, then click "Apply to calendar".';
+          note.style.display = 'block';
+          return;
+        }
+        const url = baseUrl;
+        if (url && url !== '#'){
+          note.style.display = 'none';
+          if (/calendly\.com/i.test(url)) setCalendly(url);
+          else if (/cal\.com/i.test(url)) setIframe(url);
+          else setIframe(url);
+        } else {
+          wrap.innerHTML = '';
+          note.style.display = 'block';
+        }
+      }
+
+      // Initial: don’t render until user applies (gated)
+      render(false);
+
+      // Apply prefill to show calendar
+      if (applyBtn) applyBtn.addEventListener('click', ()=>render(true));
     })();
   </script>
   <script src="script.js"></script>
