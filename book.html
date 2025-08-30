@@ -115,6 +115,8 @@
         if (grid && scheduleCard){
           const paymentCard = document.createElement('div');
           paymentCard.className = 'card';
+          paymentCard.id = 'paymentCard';
+          paymentCard.style.display = 'none';
           paymentCard.innerHTML = [
             '<h2>Step 2: Payment</h2>',
             '<div class="pay-grid">',
@@ -187,6 +189,10 @@
                   const orderId = details.id || data.orderID || '';
                   const msg = `Payment received${payer? ' — ' + payer : ''}. Order ID: ${orderId}. We will review your requested time and send a confirmation email shortly.`;
                   if (resultEl){ resultEl.textContent = msg; resultEl.style.display = 'block'; }
+                  // Broadcast payer info so the scheduler can prefill fields
+                  const email = details.payer && details.payer.email_address ? details.payer.email_address : '';
+                  const evt = new CustomEvent('payment:approved', { detail: { name: payer, email } });
+                  window.dispatchEvent(evt);
                 } catch(_){}
                 // After capture, scroll to Step 2
                 document.getElementById('schedulerEmbed')?.scrollIntoView({behavior:'smooth', block:'start'});
@@ -280,14 +286,29 @@
         return name.length > 1 && okEmail;
       }
 
-      function render(force){
+      function render(){
         // Gate calendar until name/email are provided (both flows)
-        if (!force && !readyForCalendar()){
+        if (!readyForCalendar()){
           wrap.innerHTML = '';
           note.textContent = 'Enter your name and email, then click "Apply to calendar".';
           note.style.display = 'block';
+          // simple inline validation styles
+          const nameVal = (nameInput && nameInput.value || '').trim();
+          const emailVal = (emailInput && emailInput.value || '').trim();
+          const okEmail = /.+@.+\..+/.test(emailVal);
+          if (nameInput){ nameInput.classList.toggle('invalid', nameVal.length <= 1); }
+          if (emailInput){ emailInput.classList.toggle('invalid', !okEmail); }
+          // Hide payment card until valid contact info is provided
+          const payCard = document.getElementById('paymentCard');
+          if (payCard) payCard.style.display = 'none';
           return;
         }
+        // clear validation
+        if (nameInput) nameInput.classList.remove('invalid');
+        if (emailInput) emailInput.classList.remove('invalid');
+        // Reveal payment card once we have valid contact info
+        const payCard = document.getElementById('paymentCard');
+        if (payCard) payCard.style.display = '';
         const url = baseUrl;
         if (url && url !== '#'){
           note.style.display = 'none';
@@ -301,10 +322,21 @@
       }
 
       // Initial: don’t render until user applies (gated)
-      render(false);
+      render();
 
       // Apply prefill to show calendar
-      if (applyBtn) applyBtn.addEventListener('click', ()=>render(true));
+      if (applyBtn) applyBtn.addEventListener('click', ()=>render());
+
+      // When payment is approved, prefill fields (if empty) and render calendar
+      window.addEventListener('payment:approved', (e)=>{
+        try{
+          const d = e.detail || {};
+          if (nameInput && !nameInput.value && d.name) nameInput.value = d.name;
+          if (emailInput && !emailInput.value && d.email) emailInput.value = d.email;
+          render();
+          document.getElementById('scheduleCard')?.scrollIntoView({behavior:'smooth', block:'start'});
+        } catch(_){}
+      });
     })();
   </script>
   <script src="script.js"></script>
