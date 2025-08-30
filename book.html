@@ -161,6 +161,9 @@
       const prices = window.bookingPrices || {};
       const currency = prices.currency || 'USD';
       let amount = prices[level] && prices[level][plan];
+      // Optional: URL override for quick live tests (?amt=1)
+      const amtOverride = Number(qs.get('amt'));
+      if (!Number.isNaN(amtOverride) && amtOverride > 0) amount = amtOverride;
       // Quick test override: ?pp_test=1 forces sandbox demo client and $1.00 charge
       if (qs.get('pp_test') === '1'){ cid = 'sb'; amount = 1; }
 

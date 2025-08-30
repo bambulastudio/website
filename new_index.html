@@ -159,18 +159,20 @@
     <div class="container">
       <div class="classes-head">
         <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
-        <div class="category-switch" role="tablist" aria-label="Select category">
-        <button role="tab" aria-selected="true" data-category="percussion"><span data-i18n="category.percussion">Percussion</span></button>
-        <button role="tab" aria-selected="false" data-category="dance"><span data-i18n="category.dance">Dance</span></button>
-        </div>
       </div>
       <p id="classesSubtitle" class="lead" style="margin:.25rem 0 0.5rem 0" data-i18n="classes.subtitle.percussion">Buleo with Puerto Rican Bomba Drum</p>
 
-      <!-- Level selector (tabs) -->
-      <div class="level-switch" role="tablist" aria-label="Select level">
-        <button role="tab" aria-selected="true" aria-controls="group-basic" data-level="basic"><span data-i18n="classes.group.basic">Beginner</span></button>
-        <button role="tab" aria-selected="false" aria-controls="group-intermediate" data-level="intermediate"><span data-i18n="classes.group.intermediate">Intermediate</span></button>
-        <button role="tab" aria-selected="false" aria-controls="group-advanced" data-level="advanced"><span data-i18n="classes.group.advanced">Advanced</span></button>
+      <!-- Sticky selectors: category + level -->
+      <div class="selectors-bar">
+        <div class="category-switch" role="tablist" aria-label="Select category">
+          <button role="tab" aria-selected="true" data-category="percussion"><span data-i18n="category.percussion">Percussion</span></button>
+          <button role="tab" aria-selected="false" data-category="dance"><span data-i18n="category.dance">Dance</span></button>
+        </div>
+        <div class="level-switch" role="tablist" aria-label="Select level">
+          <button role="tab" aria-selected="true" aria-controls="group-basic" data-level="basic"><span data-i18n="classes.group.basic">Beginner</span></button>
+          <button role="tab" aria-selected="false" aria-controls="group-intermediate" data-level="intermediate"><span data-i18n="classes.group.intermediate">Intermediate</span></button>
+          <button role="tab" aria-selected="false" aria-controls="group-advanced" data-level="advanced"><span data-i18n="classes.group.advanced">Advanced</span></button>
+        </div>
       </div>
 
       <!-- Percussion category -->
@@ -396,7 +398,7 @@
       </div>
 
       <!-- Shared Pricing Grid (single component) -->
-      <div id="sharedPricing" class="pricing pricing--shared" data-plan="monthly">
+      <div id="sharedPricing" class="pricing pricing--shared" data-plan="single">
         <!-- Single -->
         <article class="price-card" data-card="single">
           <h3 data-i18n="pricing.basic.title">Single Class (1 Session)</h3>

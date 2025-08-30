@@ -712,6 +712,17 @@ function updateSharedPricing(level){
   // Hide monthly card if not offered in this category
   const monthlyCard = root.querySelector('[data-card="monthly"]');
   if (monthlyCard) monthlyCard.style.display = (vMonthly && String(vMonthly).trim()) ? '' : 'none';
+  // If monthly is hidden but currently selected, force plan to 'single'
+  const section = document.getElementById('classes');
+  if (section && monthlyCard && monthlyCard.style.display === 'none'){
+    const currentPlan = root.getAttribute('data-plan') || 'single';
+    if (currentPlan === 'monthly'){
+      root.setAttribute('data-plan','single');
+      const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
+      planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')==='single' ? 'true' : 'false'));
+      localStorage.setItem('bambula_plan','single');
+    }
+  }
 
   // Update savings pills (or source li if not yet moved)
   const monthlyKeys = [
@@ -837,7 +848,7 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
   if (!planTabs.length) return;
 
   const savedPlan = localStorage.getItem('bambula_plan');
-  const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'monthly';
+  const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'single';
   setPlan(defaultPlan);
 
   planTabs.forEach(btn => {

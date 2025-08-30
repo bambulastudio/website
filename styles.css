@@ -351,3 +351,24 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
 .classes-head{ display:flex; align-items:center; justify-content:flex-start; gap:.5rem; flex-wrap:wrap; }
 .classes-head h2{ margin:0; }
 .classes-head .category-switch{ margin:0 0 0 .5rem; }
+
+
+/* Sticky selectors bar: stays under header while browsing classes */
+.selectors-bar{
+  position: sticky;
+  top: calc(var(--header-offset) + 6px);
+  z-index: 6;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem .75rem;
+  padding: 6px 0;
+  border-bottom: 1px solid #eee;
+  background: var(--bg);
+}
+.section--alt .selectors-bar{ background: var(--card); }
+.selectors-bar .category-switch, .selectors-bar .level-switch{ margin:0; }
+
+/* Adjust sticky group heads to sit below selectors bar on mobile */
+@media(max-width:900px){
+  #classes .class-group .group-head{ top: calc(var(--header-offset) + 56px); }
+}
