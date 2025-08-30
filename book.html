@@ -118,18 +118,14 @@
           paymentCard.id = 'paymentCard';
           paymentCard.style.display = 'none';
           paymentCard.innerHTML = [
-            '<h2>Step 2: Payment</h2>',
-            '<div class="pay-grid">',
+            '<h2 id="paymentHeading">Step 2: Payment</h2>',
+            '<div class="pay-grid pay-grid--single">',
             '  <div class="pay-option-now">',
             '    <h3 style="margin-top:0">Pay Now</h3>',
             '    <div id="payNowMount"></div>',
             '  </div>',
-            '  <div class="pay-option-link">',
-            '    <h3 style="margin-top:0">Get Payment Link by Email</h3>',
-            '    <p class="note">After you request a time, we\'ll email you a secure payment link.</p>',
-            '  </div>',
             '</div>',
-            '<p class="note" id="pendingNote2">After payment, we\'ll approve your requested time and send a confirmation email. If the slot isn\'t available, we\'ll coordinate alternatives.</p>'
+            // '<p class="note" id="pendingNote2">After payment, we\'ll approve your requested time and send a confirmation email. If the slot isn\'t available, we\'ll coordinate alternatives.</p>'
           ].join('');
           grid.insertBefore(paymentCard, scheduleCard.nextSibling);
 
@@ -174,7 +170,7 @@
           btnsWrap.innerHTML = '';
           const resultEl = document.getElementById('payResult');
           window.paypal.Buttons({
-            style: { layout: 'horizontal', color: 'gold', shape: 'pill', label: 'pay' },
+            style: { layout: 'horizontal', color: 'black', shape: 'rect', label: 'pay', height: 45 },
             createOrder: function(data, actions){
               return actions.order.create({
                 purchase_units: [{ amount: { currency_code: currency, value: amount.toFixed(2) }, description: level + ' / ' + plan }]
@@ -187,8 +183,27 @@
                   const payer = details.payer && (details.payer.name?.given_name || details.payer.name?.surname) ?
                     (details.payer.name.given_name + ' ' + (details.payer.name.surname||'')).trim() : '';
                   const orderId = details.id || data.orderID || '';
-                  const msg = `Payment received${payer? ' — ' + payer : ''}. Order ID: ${orderId}. We will review your requested time and send a confirmation email shortly.`;
-                  if (resultEl){ resultEl.textContent = msg; resultEl.style.display = 'block'; }
+                  // Build a cleaner receipt with exact selection labels
+                  const selLevelEl = document.getElementById('selLevel');
+                  const selPlanEl = document.getElementById('selPlan');
+                  const selText = `${(selLevelEl?.textContent||level)} — ${(selPlanEl?.textContent||plan)}`;
+                  const html = [
+                    '<div class="receipt">',
+                    '  <div class="receipt-title">Thank you for your purchase!'+(payer? ' — '+payer : '')+'</div>',
+                    '  <div><strong>Selected:</strong> '+ selText +'</div>',
+                    '  <div><strong>Order ID:</strong> '+ orderId +'</div>',
+                    '  <div><strong>Amount Paid:</strong> '+ (currency || '') + ' ' + Number(amount).toFixed(2) +'</div>',
+                    '  <div class="receipt-meta">We will review your requested time and email confirmation shortly.</div>',
+                    '</div>'
+                  ].join('');
+                  if (resultEl){ resultEl.innerHTML = html; resultEl.style.display = 'block'; }
+                  // Clean the Pay area for a modern receipt view
+                  try{
+                    var pb = document.getElementById('paypalButtons'); if (pb) pb.style.display = 'none';
+                    var linkEl = document.getElementById('payLink'); if (linkEl) linkEl.style.display = 'none';
+                    var heading = document.getElementById('paymentHeading'); if (heading) heading.textContent = 'Payment Received';
+                    var payNowTitle = document.querySelector('.pay-option-now h3'); if (payNowTitle) payNowTitle.style.display = 'none';
+                  } catch(_){}
                   // Broadcast payer info so the scheduler can prefill fields
                   const email = details.payer && details.payer.email_address ? details.payer.email_address : '';
                   const evt = new CustomEvent('payment:approved', { detail: { name: payer, email } });
@@ -324,8 +339,14 @@
       // Initial: don’t render until user applies (gated)
       render();
 
-      // Apply prefill to show calendar
-      if (applyBtn) applyBtn.addEventListener('click', ()=>render());
+      // Apply prefill to show calendar and hide form once valid
+      if (applyBtn) applyBtn.addEventListener('click', ()=>{
+        render();
+        if (readyForCalendar()){
+          const formWrap = document.querySelector('#scheduleCard .form');
+          if (formWrap) formWrap.style.display = 'none';
+        }
+      });
 
       // When payment is approved, prefill fields (if empty) and render calendar
       window.addEventListener('payment:approved', (e)=>{
@@ -334,6 +355,8 @@
           if (nameInput && !nameInput.value && d.name) nameInput.value = d.name;
           if (emailInput && !emailInput.value && d.email) emailInput.value = d.email;
           render();
+          const formWrap = document.querySelector('#scheduleCard .form');
+          if (readyForCalendar() && formWrap) formWrap.style.display = 'none';
           document.getElementById('scheduleCard')?.scrollIntoView({behavior:'smooth', block:'start'});
         } catch(_){}
       });
