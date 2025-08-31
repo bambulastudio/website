@@ -2,6 +2,23 @@
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
 
+// --- Start at top on first load (fix iOS/Android jump to #about) ---
+try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch(_){}
+function startAtTopIfNoHash(){
+  if (!location.hash) {
+    // Run twice to beat image/layout shifts on mobile
+    window.scrollTo(0, 0);
+    setTimeout(()=> window.scrollTo(0, 0), 0);
+  }
+}
+if (document.readyState === 'loading'){
+  window.addEventListener('DOMContentLoaded', startAtTopIfNoHash, { once:true });
+  window.addEventListener('load', startAtTopIfNoHash, { once:true });
+} else {
+  startAtTopIfNoHash();
+}
+// ------------------------------------------------------------------
+
 const strings = {
   en: {
     "nav.about":"About",
@@ -1021,6 +1038,9 @@ function applyMobilePricingUX(){
       .pricing::-webkit-scrollbar{ display: none; }
       .price-card{ scroll-snap-align: start; }
       .price-card > .note{ min-height: auto !important; }
+      /* Show ALL pricing cards on mobile so horizontal swipe works.
+         This overrides styles.css where non-selected cards were hidden. */
+      #sharedPricing [data-card]{ display:grid !important; }
     }
   `;
   document.head.appendChild(style);
@@ -1155,17 +1175,21 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
   const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
   if (!planTabs.length) return;
 
-  const savedPlan = localStorage.getItem('bambula_plan');
-  const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'single';
-  setPlan(defaultPlan);
+  // const savedPlan = localStorage.getItem('bambula_plan');
+  // const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'single';
+  // setPlan(defaultPlan);
 
   planTabs.forEach(btn => {
     btn.addEventListener('click', (e)=>{
       e.preventDefault();
       const plan = btn.getAttribute('data-plan');
-      setPlan(plan);
+      // in the planTabs click handler, replace setPlan(plan); with:
+      setPlan(plan, { nudge: true });
     });
   });
+
+  // ADD this line after you get planTabs:
+  planTabs.forEach(btn => btn.setAttribute('aria-selected','false'));
 
   // helper: only scroll if the selectors bar isn't mostly visible
   function isMostlyInView(el, threshold = 0.6){
@@ -1218,29 +1242,24 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
     }, { passive:true });
   }
 
-  function setPlan(plan){
-    shared.setAttribute('data-plan', plan);
-    planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')===plan ? 'true' : 'false'));
-    localStorage.setItem('bambula_plan', plan);
 
-    // Move the horizontal scroller to the selected plan (mobile)
-    scrollToPlanCard(plan);
+// replace the whole setPlan function in initPlanSwitcher with this:
+function setPlan(plan, opts = {}){
+  shared.setAttribute('data-plan', plan);
+  planTabs.forEach(btn =>
+    btn.setAttribute('aria-selected', btn.getAttribute('data-plan') === plan ? 'true' : 'false')
+  );
+  localStorage.setItem('bambula_plan', plan);
 
-    // Refresh pricing labels/notes for current level/category
-    const lvl = section.getAttribute('data-level') || 'basic';
-    updateSharedPricing(lvl);
-    try { decorateBookButtons(); } catch(_){}
-    setTimeout(syncNoteHeights, 0);
+  // Move the horizontal scroller to the selected plan (mobile)
+  scrollToPlanCard(plan);
 
-    // Gentle nudge to keep selectors visible (if not already)
-    if (window.innerWidth <= 900){
-      const bar = document.querySelector('.selectors-bar');
-      if (bar && typeof bar.scrollIntoView === 'function' && !isMostlyInView(bar)){
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        bar.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
-      }
-    }
-  }
+  // Refresh pricing labels/notes for current level/category
+  const lvl = section.getAttribute('data-level') || 'basic';
+  updateSharedPricing(lvl);
+  try { decorateBookButtons(); } catch(_){}
+  setTimeout(syncNoteHeights, 0);
+}
 
   bindPlanScrollSync();
 })();

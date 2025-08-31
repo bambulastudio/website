@@ -193,12 +193,12 @@ body[data-flow="inquiry"] #payCard{ display:none; }
 }
 
 /* On mobile, show only the selected plan card */
-@media(max-width:900px){
+/* @media(max-width:900px){
   #sharedPricing [data-card]{ display:none; }
   #sharedPricing[data-plan="single"] [data-card="single"]{ display:grid; }
   #sharedPricing[data-plan="monthly"] [data-card="monthly"]{ display:grid; }
   #sharedPricing[data-plan="full"] [data-card="full"]{ display:grid; }
-}
+} */
 
 /* Show only the selected level's group */
 #classes .class-group{ display:none; }
