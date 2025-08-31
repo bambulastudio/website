@@ -490,98 +490,6 @@ const strings = {
   }
 };
 
-// ---- Booking kill‑switch: disable specific options sitewide -----------------
-// Format: "category:level:plan" e.g., "percussion:basic:single" or "dance:basic:full"
-// Add/remove keys here to turn buttons off without touching HTML.
-window.bookingDisabled = new Set([
-  'percussion:basic:single',
-  'percussion:intermediate:single',
-  'percussion:intermediate:monthly',
-  'percussion:intermediate:full',
-  'dance:basic:single',
-  'dance:basic:monthly',
-  'dance:intermediate:single',
-  'dance:intermediate:monthly',
-  'dance:intermediate:full',
-  'dance:advanced:single',
-  'dance:advanced:monthly',
-  'dance:advanced:full',
-]);
-
-function isOptionDisabled(category, level, plan){
-  const key = `${category}:${level}:${plan}`;
-  return !!(window.bookingDisabled && window.bookingDisabled.has(key));
-}
-
-// Visually disable any matching "Book" buttons currently on screen
-function decorateBookButtons(){
-  const section = document.getElementById('classes');
-  if (!section) return;
-  const category = section.getAttribute('data-category') || 'percussion';
-  const currentLevel = section.getAttribute('data-level') || 'basic';
-
-  // helper to infer plan from an individual price card
-  function inferPlanFromCard(card){
-    if (!card) return 'single';
-    const explicit = card.getAttribute('data-card');
-    if (explicit) return explicit;
-    const h3 = card.querySelector('h3');
-    const key = (h3 && h3.getAttribute('data-i18n')) || '';
-    if (key.includes('.monthly.')) return 'monthly';
-    if (key.includes('.full.')) return 'full';
-    return 'single';
-  }
-
-  document.querySelectorAll('.price-card .btn').forEach(btn=>{
-    const card = btn.closest('.price-card');
-    const group = btn.closest('.class-group');
-    // Level comes from group when present; otherwise shared grid uses currentLevel
-    let level = currentLevel;
-    if (group && group.id && group.id.indexOf('group-') === 0){
-      level = group.id.replace('group-','');
-    }
-    const plan = inferPlanFromCard(card);
-    const disabled = isOptionDisabled(category, level, plan);
-    if (disabled){
-      // Accessibility + visuals
-      btn.setAttribute('aria-disabled','true');
-      btn.classList.add('is-disabled');
-      btn.style.pointerEvents = 'none';
-
-      // Tooltip + visible label (bilingual)
-      const unavailable = (document.documentElement.lang === 'es')
-        ? 'No disponible temporalmente'
-        : 'Temporarily unavailable';
-
-      // Preserve original visible text once
-      if (!btn.dataset.originalText){
-        btn.dataset.originalText = (btn.textContent || '').trim();
-      }
-
-      // Update both hover title and visible text
-      btn.title = unavailable;
-      btn.setAttribute('aria-label', unavailable);
-      btn.textContent = unavailable;
-    } else {
-      // Restore interactive state
-      btn.removeAttribute('aria-disabled');
-      btn.classList.remove('is-disabled');
-      btn.style.pointerEvents = '';
-
-      // Restore original label if we changed it before
-      if (btn.dataset.originalText){
-        btn.textContent = btn.dataset.originalText;
-        delete btn.dataset.originalText;
-      }
-
-      // Clean up tooltip/aria label
-      btn.removeAttribute('title');
-      btn.removeAttribute('aria-label');
-    }
-  });
-}
-// ---------------------------------------------------------------------------
-
 function setLang(lang){
   const map = strings[lang];
   document.documentElement.lang = (lang === 'es') ? 'es' : 'en';
@@ -616,8 +524,6 @@ function setLang(lang){
   try { ensureOneTimePills(); } catch(_){}
   // Normalize note heights so buttons align across cards
   syncNoteHeights();
-  // Refresh disabled styling after translations
-  try { decorateBookButtons(); } catch(_){}
   const langBtn = document.getElementById('langToggle');
   if (langBtn){
     // Show target language with its flag
@@ -855,7 +761,6 @@ function updateSharedPricing(level){
     if (!txt || txt === '—') pill.style.display = 'none'; else pill.style.display = '';
   });
 
-  try { decorateBookButtons(); } catch(_){}
   // Re-sync note heights after content change
   syncNoteHeights();
 }
@@ -903,7 +808,7 @@ ES: Selector de nivel (pestañas) en la sección de Clases.
 EN: Level selector (tabs) in Classes section.
     Switches visible level and stores the preference.
 */
- (function initLevelSwitcher(){
+(function initLevelSwitcher(){
   const section = document.getElementById('classes');
   if (!section) return;
   const tabs = section.querySelectorAll('.level-switch [role="tab"]');
@@ -927,7 +832,6 @@ EN: Level selector (tabs) in Classes section.
     localStorage.setItem('bambula_level', level);
     // Re-sync notes after layout change
     updateSharedPricing(level);
-    try { decorateBookButtons(); } catch(_){}
     setTimeout(syncNoteHeights, 0);
   }
 })();
@@ -936,7 +840,7 @@ EN: Level selector (tabs) in Classes section.
 ES: Conmutador de plan (Sesión única / Mensual / Completo) para móvil.
 EN: Plan switch (Single / Monthly / Complete) for mobile.
 */
- (function initPlanSwitcher(){
+(function initPlanSwitcher(){
   const section = document.getElementById('classes');
   const shared = document.getElementById('sharedPricing');
   if (!section || !shared) return;
@@ -962,7 +866,6 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
     // Update prices to ensure plan labels and notes are correct after language/level changes
     const lvl = section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
-    try { decorateBookButtons(); } catch(_){}
     setTimeout(syncNoteHeights, 0);
     // On mobile, align selectors to the top and keep pricing in view
     if (window.innerWidth <= 900){
@@ -984,7 +887,7 @@ ES: Al hacer clic en un botón de reserva, pre-llena el campo "Mensaje" en Conta
 EN: Clicking a booking button pre-fills the Contact message with the chosen package
     (group + title + price).
 */
- (function setupBookingPrefill(){
+(function setupBookingPrefill(){
   function currentLang(){ return (document.documentElement.lang === 'es') ? 'es' : 'en'; }
   function t(key){
     const map = strings[currentLang()] || {};
@@ -1048,48 +951,13 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
     if (!(target instanceof Element)) return;
     const btn = target.closest('.price-card .btn');
     if (!btn) return;
-    // Kill-switch guard: block disabled options before any navigation/prefill
-    (function(){
-      try{
-        const classesSection = document.getElementById('classes');
-        const category = classesSection ? (classesSection.getAttribute('data-category') || 'percussion') : 'percussion';
-        // Determine level: from surrounding group when available, else from section
-        let level = 'basic';
-        const group = btn.closest('.class-group');
-        if (group && group.id && group.id.indexOf('group-') === 0){
-          level = group.id.replace('group-','');
-        } else if (classesSection){
-          level = classesSection.getAttribute('data-level') || 'basic';
-        }
-        const plan = (function(card){
-          if (!card) return 'single';
-          const explicit = card.getAttribute('data-card');
-          if (explicit) return explicit;
-          const h3 = card.querySelector('h3');
-          const key = (h3 && h3.getAttribute('data-i18n')) || '';
-          if (key.includes('.monthly.')) return 'monthly';
-          if (key.includes('.full.')) return 'full';
-          return 'single';
-        })(btn.closest('.price-card'));
-
-        if (isOptionDisabled(category, level, plan)){
-          e.preventDefault();
-          // Tiny toast
-          const note = document.createElement('div');
-          note.textContent = 'This option is temporarily unavailable. Please pick a different plan.';
-          note.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);padding:10px 14px;background:#222;color:#fff;border-radius:8px;box-shadow:0 6px 20px rgba(0,0,0,.25);z-index:9999;font-size:14px;';
-          document.body.appendChild(note);
-          setTimeout(()=>{ note.remove(); }, 2400);
-          return;
-        }
-      } catch(_){}
-    })();
     const flow = (document.body.getAttribute('data-booking') || 'contact').toLowerCase();
     if (flow === 'book'){
       // Build URL to book.html using current level + plan
       const classesSection = document.getElementById('classes');
       const level = classesSection ? (classesSection.getAttribute('data-level') || 'basic') : 'basic';
       const plan = inferPlanFromCard(btn.closest('.price-card'));
+    // - const url = `book.html?level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;
       const category = classesSection ? (classesSection.getAttribute('data-category') || 'percussion') : 'percussion';
       const url = `book.html?category=${encodeURIComponent(category)}&level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;      e.preventDefault();
       window.location.href = url;
@@ -1108,7 +976,7 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
 ES: Conmutador de categoría (Percusión/Danza)
 EN: Category switcher (Percussion/Dance)
 */
- (function initCategorySwitcher(){
+(function initCategorySwitcher(){
   const section = document.getElementById('classes');
   if (!section) return;
   const catTabs = section.querySelectorAll('.category-switch [role="tab"]');
@@ -1130,7 +998,6 @@ EN: Category switcher (Percussion/Dance)
   (function refreshPricing(){
     const lvl = localStorage.getItem('bambula_level') || section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
-    try { decorateBookButtons(); } catch(_){}
     setTimeout(syncNoteHeights, 0);
   })();
   // Set level tab labels based on category
@@ -1180,11 +1047,7 @@ EN: Category switcher (Percussion/Dance)
       })(cat);
       const lvl = section.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
-      try { decorateBookButtons(); } catch(_){}
       setTimeout(syncNoteHeights, 0);
     });
   });
 })();
-
-// Initial pass: visually disable any booking options as needed on load
-try { decorateBookButtons(); } catch(_){}
