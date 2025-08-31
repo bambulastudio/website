@@ -665,6 +665,7 @@ function setLang(lang){
       const lvl = classesSection.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
       try { hideLevelBulletLists(); } catch(_){}
+      try { applyMobilePricingUX(); } catch(_){}
     }
   } catch(_){}
 }
@@ -1055,7 +1056,14 @@ function applyMobilePricingUX(){
     );
   }
 
+  // const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  // Ensure all plan cards are visible on mobile so swipe always has content
   const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  if (isMobile) {
+    document.querySelectorAll('#sharedPricing [data-card]').forEach(card => {
+      card.style.setProperty('display', 'grid', 'important');
+    });
+  }
   document.querySelectorAll('.pricing').forEach(pr => {
     pr.setAttribute('role', 'region');
     pr.setAttribute('aria-roledescription', 'carousel');
