@@ -66,10 +66,25 @@
     // and scheduler links (Calendly/Cal.com event URLs) here.
     // Example placeholders — replace '#' with real links.
     window.bookingPaymentLinks = {
-      basic: { single: '#', monthly: '#', full: '#' },
-      intermediate: { single: '#', monthly: '#', full: '#' },
-      advanced: { single: '#', monthly: '#', full: '#' }
+      basic: { 
+        single: '#',
+        monthly: 'https://square.link/u/FXzWjQRB',  // ← your Square link
+        full: '#'
+      },
+      intermediate: { 
+        single: '#',
+        monthly: '#',  
+        full: '#'
+      },
+      advanced: { 
+        single: '#',
+        monthly: '#',  
+        full: '#'
+      },
     };
+
+    document.getElementById('payLink').textContent = 'Pay with Square';
+
     window.bookingSchedulerLinks = {
       basic: { single: 'https://cal.com/bambulastudio/basic-single', monthly: 'https://cal.com/bambulastudio/basic-4pack', full: 'https://cal.com/bambulastudio/basic-complete' },
       intermediate: { single: 'https://cal.com/bambulastudio/intermediate-single', monthly: 'https://cal.com/bambulastudio/intermediate-4pack', full: 'https://cal.com/bambulastudio/intermediate-complete' },
