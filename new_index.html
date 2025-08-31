@@ -4,6 +4,9 @@
   <!-- Meta tags and page setup -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action https://formspree.io; upgrade-insecure-requests;">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), accelerometer=(), gyroscope=(), usb=()">
   <title>Bámbula Studio LLC — Bomba Puertorriqueña</title>
   <meta name="description" content="Clases privadas y talleres de barril de bomba con Bámbula Studio. Puerto Rican Bomba drum lessons (buleo), community workshops, and culture."/>
 
@@ -142,7 +145,7 @@
     <div class="container grid about-owner" style="margin-top: 1.5rem;">
       <figure class="card about-owner__media" style="align-self:start;">
         <img src="assets/founder_pic.jpg" alt="Bámbula Studio owner portrait" style="width:100%;height:auto;border-radius:10px;" />
-        <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener">@bambula_studio</a></figcaption>
+        <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener noreferrer">@bambula_studio</a></figcaption>
       </figure>
       <div class="about-owner__text">
         <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
@@ -498,11 +501,11 @@
         <p data-i18n="contact.p1">...</p>
         <ul class="contact-list">
           <li><strong>Email:</strong> <a href="mailto:contact@bambulastudio.com">contact@bambulastudio.com</a></li>
-          <li><strong>Instagram:</strong> <a href="https://instagram.com/bambula_studio" target="_blank" rel="noopener">@bambula_studio</a></li>
+          <li><strong>Instagram:</strong> <a href="https://instagram.com/bambula_studio" target="_blank" rel="noopener noreferrer">@bambula_studio</a></li>
         </ul>
       </div>
       <!-- Contact form (Formspree) -->
-      <form class="form" action="https://formspree.io/f/mdkloyyj" method="POST" referrerpolicy="no-referrer">
+      <form class="form" action="https://formspree.io/f/mdkloyyj" method="POST">
         <!-- Subject line for your email -->
         <input type="hidden" name="_subject" value="New message from Bámbula Studio site">
         <!-- Redirect after submit -->
@@ -559,6 +562,5 @@
   </div>
 </footer>
 
-<!-- Main JavaScript file -->
 </body>
 </html>

@@ -18,7 +18,7 @@ const strings = {
     "about.title":"What is Bámbula Studio?",
     "about.p1":"At Bámbula Studio LLC we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
     "about.p2":"Teaching: Bomba classes and workshops for all ages and levels, where students learn traditional rhythms, songs, and dances.",
-    "about.p3":"Preservation: Keeping Puerto Rican tradition alive in the diaspora—creating spaces where Bomba flourishes as ancestral heritage.",
+    "about.p3":"Preservation: Keeping Afro-Puerto Rican tradition alive in the diaspora—creating spaces where Bomba flourishes as ancestral heritage.",
     "about.p4":"Community: Cultivating cultural gatherings in the Dallas–Fort Worth area that strengthen identity and belonging.",
     "about.p5":"Ancestral memory: Each class and every drumbeat becomes an act of remembering who we are as a people, honoring our Afro-Caribbean roots.",
     "about.p6":"Through every activity we seek to celebrate, share, and pass Puerto Rican culture to new generations.",
