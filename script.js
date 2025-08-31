@@ -867,6 +867,17 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
     const lvl = section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
     setTimeout(syncNoteHeights, 0);
+    // On mobile, align selectors to the top and keep pricing in view
+    if (window.innerWidth <= 900){
+      const bar = document.querySelector('.selectors-bar');
+      if (bar && typeof bar.scrollIntoView === 'function'){
+        bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        // fallback: scroll to pricing container
+        const grid = document.getElementById('sharedPricing');
+        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
 })();
 

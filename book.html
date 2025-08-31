@@ -55,7 +55,7 @@
           <p class="note" id="pendingNote1">Note: Your time selection is a request and is pending approval. After payment, we will confirm or offer alternatives if needed.</p>
           <!-- Provider embed goes here -->
           <div id="schedulerEmbed" style="min-height:420px"></div>
-          <p id="schedNote" class="note" data-i18n="book.noScheduler" style="display:none">Scheduler not TTTembedded yet.</p>
+          <p id="schedNote" class="note" data-i18n="book.noScheduler" style="display:none">Scheduler not embedded yet.</p>
         </div>
       </div>
     </div>
@@ -79,9 +79,9 @@
     // Optional: PayPal Smart Buttons (client-side) — quick starter
     // Set your PayPal REST client-id to enable buttons; leave empty to use links above
     // Sandbox test client-id (replace with your Live client-id when going live):
-    // window.paypalClientId = 'AZxl5FLsrIryvjAMaShccHNz59v6r4DBJ92aSkN_I-qLGbxh8zCKnphcJCSUom2ZWVk9NS2hDTWNkGrx';
+    // window.paypalClientId = 'AZxl5FLsrIryvjAMaShccHNz59v6r4DBJ92aSkN_I-qLGbxh8zCKnphcJCSUom2ZWVk9NS2hDTWNkGrx'; // SANDBOX
     // Live client-id:
-    window.paypalClientId = 'Aa4zMg60V-3S2yNxhMWqWhkx1fXhSt8oVPgNHxixM6WM22ONoA76vCNJA2ctMmU3rWq5vdIsJ8snUEYr'; // LIVE
+    // window.paypalClientId = 'Aa4zMg60V-3S2yNxhMWqWhkx1fXhSt8oVPgNHxixM6WM22ONoA76vCNJA2ctMmU3rWq5vdIsJ8snUEYr'; // LIVE
     // Amounts used when PayPal buttons are enabled (USD)
     window.bookingPrices = {
       currency: 'USD',
@@ -92,6 +92,10 @@
       // intermediate: { single: 125, monthly: 459, full: 1679 },
       // advanced: { single: 130, monthly: 479, full: 1759 }
     };
+    // Payments pause switch: set to true to temporarily disable live PayPal buttons
+    // (e.g., while PayPal removes an account restriction). When true, users will
+    // see the fallback note/link instead of the button. Set to false to re-enable.
+    window.paymentsPaused = true;
 
     // Parse query params ?level=basic&plan=monthly
     function qp(k){ return new URLSearchParams(location.search).get(k); }
@@ -161,23 +165,45 @@
       const prices = window.bookingPrices || {};
       const currency = prices.currency || 'USD';
       let amount = prices[level] && prices[level][plan];
-      // Optional: URL override for quick live tests (?amt=1)
+      // Optional: URL override for quick live tests (?amt=10). For live,
+      // avoid micro-charges that can trigger account review; enforce a minimum.
       const amtOverride = Number(qs.get('amt'));
-      if (!Number.isNaN(amtOverride) && amtOverride > 0) amount = amtOverride;
-      // Quick test override: ?pp_test=1 forces sandbox demo client and $1.00 charge
-      if (qs.get('pp_test') === '1'){ cid = 'sb'; amount = 1; }
+      if (!Number.isNaN(amtOverride) && amtOverride >= 5) amount = amtOverride;
+      // Note: for Sandbox tests, swap to your Sandbox Client ID. Do not use legacy pp_test flags.
 
       function renderButtons(){
-        if (!cid || !amount) return false;
+        // If payments are paused, show fallback and do not load SDK
+        if (window.paymentsPaused){
+          btnsWrap.style.display = 'none';
+          a.style.display = 'inline-block';
+          note.textContent = 'Payments are temporarily offline. We will email you a secure payment link to complete your booking.';
+          note.style.display = '';
+          return false;
+        }
+        // Validate inputs before loading SDK
+        if (!cid) return false;
+        if (typeof amount !== 'number' || isNaN(amount) || amount <= 0){
+          // Fallback to link if amount invalid
+          btnsWrap.style.display = 'none';
+          a.style.display = 'inline-block';
+          note.style.display = '';
+          return false;
+        }
         const id = 'paypal-sdk';
         function setupButtons(){
-          if (!window.paypal || !window.paypal.Buttons) return;
+          if (!window.paypal || !window.paypal.Buttons){
+            // If SDK failed to load, show link fallback
+            btnsWrap.style.display = 'none';
+            a.style.display = 'inline-block';
+            note.style.display = '';
+            return;
+          }
           btnsWrap.style.display = 'block';
           a.style.display = 'none';
           note.style.display = 'none';
           btnsWrap.innerHTML = '';
           const resultEl = document.getElementById('payResult');
-          window.paypal.Buttons({
+          const buttons = window.paypal.Buttons({
             style: { layout: 'horizontal', color: 'black', shape: 'rect', label: 'pay', height: 45 },
             createOrder: function(data, actions){
               return actions.order.create({
@@ -195,6 +221,17 @@
                   const selLevelEl = document.getElementById('selLevel');
                   const selPlanEl = document.getElementById('selPlan');
                   const selText = `${(selLevelEl?.textContent||level)} — ${(selPlanEl?.textContent||plan)}`;
+                  const payerEmail = (details.payer && details.payer.email_address) ? details.payer.email_address : '';
+                  const subject = `Receipt - Order ${orderId}`;
+                  const body = [
+                    'Thank you for your purchase.',
+                    `Selected: ${selText}`,
+                    `Order ID: ${orderId}`,
+                    `Amount Paid: ${currency} ${Number(amount).toFixed(2)}`,
+                    '',
+                    'If you need any updates, just reply to this email.'
+                  ].join('\n');
+                  const mailto = `mailto:${payerEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                   const html = [
                     '<div class="receipt">',
                     '  <div class="receipt-title">Thank you for your purchase!'+(payer? ' — '+payer : '')+'</div>',
@@ -202,6 +239,10 @@
                     '  <div><strong>Order ID:</strong> '+ orderId +'</div>',
                     '  <div><strong>Amount Paid:</strong> '+ (currency || '') + ' ' + Number(amount).toFixed(2) +'</div>',
                     '  <div class="receipt-meta">We will review your requested time and email confirmation shortly.</div>',
+                    '  <div class="receipt-actions" style="margin-top:8px; display:flex; gap:.5rem;">',
+                    '    <a class="btn btn--small" href="'+mailto+'">Email Receipt</a>',
+                    '    <button class="btn btn--small" type="button" onclick="window.print()">Print</button>',
+                    '  </div>',
                     '</div>'
                   ].join('');
                   if (resultEl){ resultEl.innerHTML = html; resultEl.style.display = 'block'; }
@@ -222,12 +263,34 @@
               });
             },
             onError: function(err){
-              if (resultEl){ resultEl.textContent = 'There was an error with PayPal. Please try again.'; resultEl.style.display = 'block'; }
+              if (resultEl){
+                const msg = (err && err.message) ? String(err.message) : 'There was an error with PayPal. Please try again.';
+                resultEl.textContent = msg;
+                resultEl.style.display = 'block';
+              }
+              // Fall back to link if buttons error out
+              btnsWrap.style.display = 'none';
+              a.style.display = 'inline-block';
+              note.style.display = '';
             },
             onCancel: function(){
               if (resultEl){ resultEl.textContent = 'Payment cancelled before completion.'; resultEl.style.display = 'block'; }
             }
-          }).render('#paypalButtons');
+          });
+          try {
+            const r = buttons.render('#paypalButtons');
+            if (r && typeof r.catch === 'function'){
+              r.catch(()=>{
+                btnsWrap.style.display = 'none';
+                a.style.display = 'inline-block';
+                note.style.display = '';
+              });
+            }
+          } catch (e){
+            btnsWrap.style.display = 'none';
+            a.style.display = 'inline-block';
+            note.style.display = '';
+          }
         }
         if (!document.getElementById(id)){
           const s = document.createElement('script');
