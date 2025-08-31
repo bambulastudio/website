@@ -391,52 +391,60 @@
       </div>
 
       <!-- Mobile plan switch (Single / Monthly / Complete) -->
-      <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan (mobile)">
+      <!-- <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan (mobile)">
         <button role="tab" aria-selected="true" data-plan="single"><span data-i18n="pricing.basic.title">Single Class</span></button>
         <button role="tab" aria-selected="false" data-plan="monthly"><span data-i18n="pricing.basic.monthly.title">Monthly Subscription</span></button>
         <button role="tab" aria-selected="false" data-plan="full"><span data-i18n="pricing.basic.full.title">Complete Course</span></button>
-      </div>
+      </div> -->
 
+            <!-- Plan switch: visible on mobile -->
+      <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan">
+        <button role="tab" aria-selected="true"  data-plan="single"><span data-i18n="pricing.basic.title">Single Class</span></button>
+        <button role="tab" aria-selected="false" data-plan="monthly"><span data-i18n="pricing.basic.monthly.title">4-Class Pack (30 days)</span></button>
+        <button role="tab" aria-selected="false" data-plan="full"><span data-i18n="pricing.basic.full.title">Complete Course (16)</span></button>
+      </div>
+      
       <!-- Shared Pricing Grid (single component) -->
-      <div id="sharedPricing" class="pricing pricing--shared" data-plan="single">
-        <!-- Single -->
-        <article class="price-card" data-card="single">
-          <h3 data-i18n="pricing.basic.title">Single Class (1 Session)</h3>
-          <p class="price" data-price-key="single"></p>
-          <ul>
-            <li data-i18n="pricing.basic.l1"></li>
-            <li data-i18n="pricing.basic.l2"></li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-          <div class="note" data-i18n="pricing.single.credit"></div>
-        </article>
+      <section id="sharedPricing" data-plan="single">
+        <div class="pricing" aria-label="Plans">
+          <article class="price-card" data-card="single">
+            <h3 data-i18n="pricing.basic.title">Single Class</h3>
+            <p class="price" data-price-key="single">$120 <span data-i18n="pricing.perhour">/ hour</span></p>
+            <ul>
+              <li data-i18n="pricing.basic.l1"></li>
+              <li data-i18n="pricing.basic.l2"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"><!-- One-time pill + note get injected by JS --></div>
+          </article>
 
-        <!-- Monthly (4) -->
-        <article class="price-card" data-card="monthly">
-          <h3 data-i18n="pricing.basic.monthly.title">Monthly Subscription</h3>
-          <p class="price" data-price-key="monthly"></p>
-          <ul>
-            <li data-i18n="pricing.basic.monthly.l1"></li>
-            <li data-i18n="pricing.basic.monthly.l2"></li>
-            <li data-i18n="pricing.basic.monthly.l3"></li>
-            <li data-i18n="pricing.basic.monthly.l4"></li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
+          <article class="price-card" data-card="monthly">
+            <h3 data-i18n="pricing.basic.monthly.title">4-Class Pack (30 days)</h3>
+            <p class="price" data-price-key="monthly" data-i18n="pricing.basic.price4">$439 ($110/class)</p>
+            <ul>
+              <li data-i18n="pricing.basic.monthly.l1"></li>
+              <li data-i18n="pricing.basic.monthly.l2"></li>
+              <li data-i18n="pricing.basic.monthly.l3"></li>
+              <li data-i18n="pricing.basic.monthly.l4"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"></div>
+          </article>
 
-        <!-- Complete (16) -->
-        <article class="price-card" data-card="full">
-          <h3 data-i18n="pricing.basic.full.title">Complete Course</h3>
-          <p class="price" data-price-key="full"></p>
-          <ul>
-            <li data-i18n="pricing.basic.full.l1"></li>
-            <li data-i18n="pricing.basic.full.l2"></li>
-            <li data-i18n="pricing.basic.full.l3"></li>
-            <li data-i18n="pricing.basic.full.l4"></li>
-          </ul>
-          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
-        </article>
-      </div>
+          <article class="price-card" data-card="full">
+            <h3 data-i18n="pricing.basic.full.title">Complete Course (16-Class Pack)</h3>
+            <p class="price" data-price-key="full" data-i18n="pricing.basic.price16_head">$1,599 ($100/class)</p>
+            <ul>
+              <li data-i18n="pricing.basic.full.l1"></li>
+              <li data-i18n="pricing.basic.full.l2"></li>
+              <li data-i18n="pricing.basic.full.l3"></li>
+              <li data-i18n="pricing.basic.full.l4"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"></div>
+          </article>
+        </div>
+      </section>
 
       <!-- Note for unsure students -->
       <div class="note" data-i18n="classes.note">If you’re unsure of your level, we can do a $15 initial evaluation to place you correctly.</div>

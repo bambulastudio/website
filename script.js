@@ -44,7 +44,7 @@ const strings = {
     "classes.group.basic.l3":"Posture and hand placement",
     "classes.group.basic.l4":"Sounds: abierto, caja, seco, and campana",
     "classes.group.basic.l5":"Basic buleo rudiments",
-    "classes.group.basic.l6":"Keep the buleo in time",
+    "classes.group.basic.l6":"Keep the buleo on time",
     "classes.group.basic.l7":"Rhythms: sicá, yubá, cuembé, holandé",
     "classes.group.basic.l8":"Endurance drills and personal practice",
 
@@ -757,6 +757,8 @@ function moveSavingsToNotes(){
 
 // Ensure all notes in a visual row share the same minimum height so buttons align
 function syncNoteHeights(){
+  // Skip JS height equalization on small screens; let cards auto-size
+  if (window.innerWidth <= 900) return;
   document.querySelectorAll('.pricing').forEach(container => {
     const style = window.getComputedStyle(container);
     if (style.display === 'none' || style.visibility === 'hidden') return;
@@ -802,6 +804,7 @@ function syncNoteHeights(){
 
 const saved = localStorage.getItem('bambula_lang') || 'es';
 setLang(saved);
+try { applyMobilePricingUX(); } catch(_){}
 
 const __langBtn = document.getElementById('langToggle');
 if (__langBtn){
@@ -842,7 +845,7 @@ if (menuToggle && siteHeader) {
 let __noteResizeTO;
 window.addEventListener('resize', ()=>{
   clearTimeout(__noteResizeTO);
-  __noteResizeTO = setTimeout(syncNoteHeights, 100);
+  __noteResizeTO = setTimeout(()=>{ try { applyMobilePricingUX(); } catch(_){}; syncNoteHeights(); }, 120);
 });
 
 /*
@@ -929,82 +932,6 @@ function updateSharedPricing(level){
   try { decorateBookButtons(); } catch(_){}
   syncNoteHeights();
 }
-// function updateSharedPricing(level){
-//   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
-//   const map = strings[lang] || {};
-//   const root = document.getElementById('sharedPricing');
-//   if (!root) return;
-
-//   const category = (document.getElementById('classes')?.getAttribute('data-category')) || 'percussion';
-//   const ns = (category === 'dance') ? `pricing.dance.${level}` : `pricing.${level}`;
-//   const k = (suffix)=> `${ns}.${suffix}`;
-
-//   const pSingle = root.querySelector('[data-price-key="single"]');
-//   const pMonthly = root.querySelector('[data-price-key="monthly"]');
-//   const pFull = root.querySelector('[data-price-key="full"]');
-//   const vSingle = map[k('price1')];
-//   const vMonthly = map[k('price4')];
-//   const vFull = map[k('price16_head')];
-//   if (pSingle && vSingle!=null) pSingle.textContent = vSingle;
-//   if (pMonthly && vMonthly!=null) pMonthly.textContent = vMonthly;
-//   if (pFull && vFull!=null) pFull.textContent = vFull;
-
-//   // Hide monthly card if not offered in this category
-//   const monthlyCard = root.querySelector('[data-card="monthly"]');
-//   if (monthlyCard) monthlyCard.style.display = (vMonthly && String(vMonthly).trim()) ? '' : 'none';
-//   // If monthly is hidden but currently selected, force plan to 'single'
-//   const section = document.getElementById('classes');
-//   if (section && monthlyCard && monthlyCard.style.display === 'none'){
-//     const currentPlan = root.getAttribute('data-plan') || 'single';
-//     if (currentPlan === 'monthly'){
-//       root.setAttribute('data-plan','single');
-//       const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
-//       planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')==='single' ? 'true' : 'false'));
-//       localStorage.setItem('bambula_plan','single');
-//     }
-//   }
-
-//   // Update savings pills (or source li if not yet moved)
-//   const monthlyKeys = [
-//     'pricing.basic.monthly.l4','pricing.intermediate.monthly.l4','pricing.advanced.monthly.l4'
-//   ];
-//   const fullKeys = [
-//     'pricing.basic.full.l4','pricing.intermediate.full.l4','pricing.advanced.full.l4'
-//   ];
-//   const newMonthlyKey = `pricing.${level}.monthly.l4`;
-//   const newFullKey = `pricing.${level}.full.l4`;
-//   const newMonthlyKeyDance = `pricing.dance.${level}.monthly.l4`;
-//   const newFullKeyDance = `pricing.dance.${level}.full.l4`;
-
-//   // Switch any existing monthly savings element to the new key
-//   monthlyKeys.forEach(oldKey => {
-//     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-//       const targetKey = (category==='dance') ? newMonthlyKeyDance : newMonthlyKey;
-//       el.setAttribute('data-i18n', targetKey);
-//       if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
-//       else el.textContent = '';
-//     });
-//   });
-//   // Switch any existing full savings element to the new key
-//   fullKeys.forEach(oldKey => {
-//     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-//       const targetKey = (category==='dance') ? newFullKeyDance : newFullKey;
-//       el.setAttribute('data-i18n', targetKey);
-//       if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
-//       else el.textContent = '';
-//     });
-//   });
-
-//   // Hide empty savings pills (no label configured for this category/level)
-//   root.querySelectorAll('.deal-pill').forEach(pill => {
-//     const txt = (pill.textContent || '').trim();
-//     if (!txt || txt === '—') pill.style.display = 'none'; else pill.style.display = '';
-//   });
-
-//   try { decorateBookButtons(); } catch(_){}
-//   // Re-sync note heights after content change
-//   syncNoteHeights();
-// }
 
 /*
 Adds a one-time-payment pill and a short note to the shared pricing notes
@@ -1043,13 +970,116 @@ function ensureOneTimePills(){
   });
 }
 
+// --- Mobile pricing UX: sticky selectors + horizontal scroll-snap for cards ---
+function applyMobilePricingUX(){
+  // Inject once
+  const STYLE_ID = 'mobilePricingUX';
+  let style = document.getElementById(STYLE_ID);
+  if (!style){
+    style = document.createElement('style');
+    style.id = STYLE_ID;
+    style.textContent = `
+      @media (max-width: 900px){
+        /* Keep the plan/level/category selectors visible while scrolling */
+        .selectors-bar{ position: sticky; top: 0; z-index: 20; background: var(--site-bg, #fff); border-bottom: 1px solid rgba(0,0,0,.06); }
+        /* Make pricing cards swipeable; one (almost) per view */
+        .pricing{ display: grid; grid-auto-flow: column; grid-auto-columns: 88%; overflow-x: auto; gap: 16px; padding: 4px 8px 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+        .pricing::-webkit-scrollbar{ display: none; }
+        .price-card{ scroll-snap-align: start; }
+        /* Avoid forced equal heights on mobile */
+        .price-card > .note{ min-height: auto !important; }
+      }
+    `;
+    document.head.appendChild(style);
+  }
+
+  // If the selectors bar exists, ensure it has an accessible name on mobile
+  const bar = document.querySelector('.selectors-bar');
+  if (bar && !bar.getAttribute('aria-label')){
+    bar.setAttribute('aria-label', (document.documentElement.lang === 'es') ? 'Opciones de planes y niveles' : 'Plan and level options');
+  }
+
+  // Turn each pricing row into a scroll-snapping carousel on mobile only
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  document.querySelectorAll('.pricing').forEach(pr => {
+    pr.setAttribute('role', 'region');
+    pr.setAttribute('aria-roledescription', 'carousel');
+    if (isMobile){
+      pr.setAttribute('tabindex', '0');
+    } else {
+      pr.removeAttribute('tabindex');
+    }
+  });
+}
+
+// // --- Mobile: level syllabus popover (uses <dialog>) --------------------------
+// function installLevelInfoPopovers(){
+//   // Inject dialog once
+//   let dlg = document.querySelector('dialog.level-info');
+//   if (!dlg){
+//     dlg = document.createElement('dialog');
+//     dlg.className = 'level-info';
+//     dlg.innerHTML = `<header><h3></h3><button class="close" type="button">✕</button></header><div class="sheet"><ul></ul></div>`;
+//     document.body.appendChild(dlg);
+//     dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
+//     dlg.addEventListener('click', (e)=>{ if (e.target === dlg) dlg.close(); });
+//   }
+//   // t() helper
+//   function currentLang(){ return (document.documentElement.lang === 'es') ? 'es' : 'en'; }
+//   function t(key){ const map = strings[currentLang()] || {}; return map[key] || ''; }
+
+//   // Build syllabus list by category + level
+//   function buildList(category, level){
+//     const ul = document.createElement('ul');
+//     const prefix = (category === 'dance') ? `dance.group.${level}` : `classes.group.${level}`;
+//     for (let i=1; i<=8; i++){
+//       const key = `${prefix}.l${i}`;
+//       const txt = t(key);
+//       if (!txt) continue;
+//       const li = document.createElement('li');
+//       li.textContent = txt;
+//       ul.appendChild(li);
+//     }
+//     return ul;
+//   }
+
+//   // Add ℹ️ to each level header and wire dialog
+//   document.querySelectorAll('.class-group').forEach(group => {
+//     const head = group.querySelector('.group-head');
+//     if (!head) return;
+//     let btn = head.querySelector('.level-info-btn');
+//     if (!btn){
+//       btn = document.createElement('button');
+//       btn.className = 'level-info-btn';
+//       btn.type = 'button';
+//       btn.setAttribute('aria-haspopup','dialog');
+//       btn.setAttribute('title', currentLang()==='es' ? 'Ver contenido' : 'View contents');
+//       btn.innerText = 'ℹ️';
+//       head.appendChild(btn);
+//     }
+//     btn.onclick = ()=>{
+//       const section = document.getElementById('classes');
+//       const category = section ? (section.getAttribute('data-category') || 'percussion') : 'percussion';
+//       const level = group.id?.replace('group-','') || 'basic';
+//       // Title
+//       const h = dlg.querySelector('h3');
+//       h.textContent = head.querySelector('.subsection')?.textContent || '';
+//       // Contents
+//       const sheet = dlg.querySelector('.sheet');
+//       const old = sheet.querySelector('ul'); if (old) old.remove();
+//       sheet.appendChild(buildList(category, level));
+//       try { dlg.showModal(); } catch { dlg.show(); }
+//     };
+//   });
+// }
+
 /*
 ES: Selector de nivel (pestañas) en la sección de Clases.
     Cambia el nivel visible y guarda la preferencia.
 EN: Level selector (tabs) in Classes section.
     Switches visible level and stores the preference.
 */
- (function initLevelSwitcher(){
+(function initLevelSwitcher(){
   const section = document.getElementById('classes');
   if (!section) return;
   const tabs = section.querySelectorAll('.level-switch [role="tab"]');
@@ -1074,6 +1104,8 @@ EN: Level selector (tabs) in Classes section.
     // Re-sync notes after layout change
     updateSharedPricing(level);
     try { decorateBookButtons(); } catch(_){}
+    // Keep info popovers up-to-date with current level/category/lang
+    try { installLevelInfoPopovers(); } catch(_){}
     setTimeout(syncNoteHeights, 0);
   }
 })();
@@ -1082,10 +1114,11 @@ EN: Level selector (tabs) in Classes section.
 ES: Conmutador de plan (Sesión única / Mensual / Completo) para móvil.
 EN: Plan switch (Single / Monthly / Complete) for mobile.
 */
- (function initPlanSwitcher(){
+(function initPlanSwitcher(){
   const section = document.getElementById('classes');
   const shared = document.getElementById('sharedPricing');
   if (!section || !shared) return;
+
   const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
   if (!planTabs.length) return;
 
@@ -1101,29 +1134,83 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
     });
   });
 
+  // helper: only scroll if the selectors bar isn't mostly visible
+  function isMostlyInView(el, threshold = 0.6){
+    if (!el) return false;
+    const r = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const visible = Math.max(0, Math.min(r.bottom, vh) - Math.max(r.top, 0));
+    return r.height > 0 && (visible / r.height) >= threshold;
+  }
+
+  // --- Plan card scroll/sync helpers ---
+  function scrollToPlanCard(plan){
+    const wrap = document.querySelector('#sharedPricing .pricing');
+    if (!wrap) return;
+    const card = wrap.querySelector(`.price-card[data-card="${plan}"]`);
+    if (!card) return;
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const left = card.offsetLeft - wrap.offsetLeft;
+    wrap.scrollTo({ left, behavior: prefersReduced ? 'auto' : 'smooth' });
+  }
+
+  let __syncingFromScroll = false;
+  function bindPlanScrollSync(){
+    const wrap = document.querySelector('#sharedPricing .pricing');
+    if (!wrap) return;
+    let to;
+    wrap.addEventListener('scroll', ()=>{
+      if (window.innerWidth > 900) return; // mobile only
+      if (__syncingFromScroll) return;
+      clearTimeout(to);
+      to = setTimeout(()=>{
+        // Determine which card is most in view
+        const cards = Array.from(wrap.querySelectorAll('.price-card'));
+        if (!cards.length) return;
+        const scrollLeft = wrap.scrollLeft;
+        let best = cards[0];
+        let bestDelta = Infinity;
+        cards.forEach(c => {
+          const delta = Math.abs(c.offsetLeft - scrollLeft);
+          if (delta < bestDelta){ bestDelta = delta; best = c; }
+        });
+        const plan = best.getAttribute('data-card') || 'single';
+        // Update selected tab and dataset
+        const planTabs = document.querySelectorAll('#classes .plan-switch [role="tab"]');
+        document.getElementById('sharedPricing')?.setAttribute('data-plan', plan);
+        planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')===plan ? 'true' : 'false'));
+        localStorage.setItem('bambula_plan', plan);
+        // NOTE: Do NOT call scrollToPlanCard() here — avoids feedback loop.
+      }, 80);
+    }, { passive:true });
+  }
+
   function setPlan(plan){
     shared.setAttribute('data-plan', plan);
     planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')===plan ? 'true' : 'false'));
     localStorage.setItem('bambula_plan', plan);
-    // Update prices to ensure plan labels and notes are correct after language/level changes
+
+    // Move the horizontal scroller to the selected plan (mobile)
+    scrollToPlanCard(plan);
+
+    // Refresh pricing labels/notes for current level/category
     const lvl = section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
     try { decorateBookButtons(); } catch(_){}
     setTimeout(syncNoteHeights, 0);
-    // On mobile, align selectors to the top and keep pricing in view
+
+    // Gentle nudge to keep selectors visible (if not already)
     if (window.innerWidth <= 900){
       const bar = document.querySelector('.selectors-bar');
-      if (bar && typeof bar.scrollIntoView === 'function'){
-        bar.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } else {
-        // fallback: scroll to pricing container
-        const grid = document.getElementById('sharedPricing');
-        if (grid) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (bar && typeof bar.scrollIntoView === 'function' && !isMostlyInView(bar)){
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        bar.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'nearest' });
       }
     }
   }
-})();
 
+  bindPlanScrollSync();
+})();
 /*
 ES: Al hacer clic en un botón de reserva, pre-llena el campo "Mensaje" en Contacto
     con el paquete seleccionado (grupo + título + precio).
@@ -1276,7 +1363,10 @@ EN: Category switcher (Percussion/Dance)
   (function refreshPricing(){
     const lvl = localStorage.getItem('bambula_level') || section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
-    try { decorateBookButtons(); } catch(_){}
+    try { installLevelInfoPopovers(); } catch(_){}
+    try { applyMobilePricingUX(); } catch(_){}
+    try { decorateBookButtons(); } catch(_){ }
+    try { installLevelInfoPopovers(); } catch(_){ }
     setTimeout(syncNoteHeights, 0);
   })();
   // Set level tab labels based on category
@@ -1327,10 +1417,98 @@ EN: Category switcher (Percussion/Dance)
       const lvl = section.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
       try { decorateBookButtons(); } catch(_){}
+      try { installLevelInfoPopovers(); } catch(_){}
       setTimeout(syncNoteHeights, 0);
     });
   });
 })();
 
 // Initial pass: visually disable any booking options as needed on load
+try { applyMobilePricingUX(); } catch(_){}
 try { decorateBookButtons(); } catch(_){}
+try { installLevelInfoPopovers(); } catch(_){}
+setTimeout(syncNoteHeights, 0);
+
+// --- Mobile: level syllabus popover (uses <dialog>) --------------------------------
+function installLevelInfoPopovers(){
+  // Inject base styles once
+  const ID = 'levelInfoStyles';
+  if (!document.getElementById(ID)){
+    const s = document.createElement('style');
+    s.id = ID;
+    s.textContent = `
+      @media (max-width: 900px){
+        .level-info-btn{ appearance:none; border:0; background:transparent; font:inherit; line-height:1; padding:6px; border-radius:999px; }
+        .level-info-btn:focus-visible{ outline:2px solid rgba(0,0,0,.35); }
+        dialog.level-info{ border:0; border-radius:16px; padding:0; width:min(92vw, 560px); max-height:80vh; box-shadow:0 24px 60px rgba(0,0,0,.35); }
+        dialog.level-info::backdrop{ background:rgba(0,0,0,.45); }
+        .level-info .sheet{ padding:16px 16px 12px; }
+        .level-info header{ display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid rgba(0,0,0,.08); position:sticky; top:0; background:#fff; z-index:1; }
+        .level-info h3{ margin:0; font-size:16px; }
+        .level-info .close{ margin-left:auto; appearance:none; border:0; background:#000; color:#fff; padding:8px 10px; border-radius:10px; }
+        .level-info ul{ margin:12px 16px 16px; padding-left:20px; }
+      }
+    `;
+    document.head.appendChild(s);
+  }
+
+  // Ensure one shared dialog exists
+  let dlg = document.querySelector('dialog.level-info');
+  if (!dlg){
+    dlg = document.createElement('dialog');
+    dlg.className = 'level-info';
+    dlg.innerHTML = `<header><h3></h3><button class="close" type="button">✕</button></header><div class="sheet"><ul></ul></div>`;
+    document.body.appendChild(dlg);
+    dlg.querySelector('.close').addEventListener('click', ()=> dlg.close());
+    dlg.addEventListener('click', (e)=>{ if (e.target === dlg) dlg.close(); });
+  }
+
+  function currentLang(){ return (document.documentElement.lang === 'es') ? 'es' : 'en'; }
+  function t(key){ const map = strings[currentLang()] || {}; return map[key] || ''; }
+
+  // Helper: build the UL based on category+level
+  function buildList(category, level){
+    const ul = document.createElement('ul');
+    const prefix = (category === 'dance') ? `dance.group.${level}` : `classes.group.${level}`;
+    // collect up to l1..l8 (some levels may have fewer)
+    for (let i=1; i<=8; i++){
+      const key = `${prefix}.l${i}`;
+      const txt = t(key);
+      if (txt){
+        const li = document.createElement('li');
+        li.textContent = txt;
+        ul.appendChild(li);
+      }
+    }
+    return ul;
+  }
+
+  // Add/refresh info buttons in each .group-head
+  document.querySelectorAll('.class-group').forEach(group => {
+    const head = group.querySelector('.group-head');
+    if (!head) return;
+    let btn = head.querySelector('.level-info-btn');
+    if (!btn){
+      btn = document.createElement('button');
+      btn.className = 'level-info-btn';
+      btn.type = 'button';
+      btn.setAttribute('aria-haspopup','dialog');
+      btn.setAttribute('title', currentLang()==='es' ? 'Ver contenido' : 'View contents');
+      btn.innerText = 'ℹ️';
+      head.appendChild(btn);
+    }
+    // Click opens dialog with current category + this level syllabus
+    btn.onclick = ()=>{
+      const section = document.getElementById('classes');
+      const category = section ? (section.getAttribute('data-category') || 'percussion') : 'percussion';
+      const level = group.id?.replace('group-','') || 'basic';
+      const h = dlg.querySelector('h3');
+      h.textContent = head.querySelector('.subsection')?.textContent || '';
+      const body = dlg.querySelector('ul');
+      body.innerHTML = '';
+      body.replaceWith(buildList(category, level));
+      dlg.querySelector('.sheet').appendChild(dlg.querySelector('ul'));
+      try{ dlg.showModal(); }catch{ dlg.show(); }
+    };
+  });
+}
