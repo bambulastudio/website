@@ -517,12 +517,25 @@ function isOptionDisabled(category, level, plan){
 }
 
 // Visually disable any matching "Book" buttons currently on screen
+// script.js — replace the whole function with this
+function hideLevelBulletLists(){
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+  document.querySelectorAll('.class-group').forEach(group=>{
+    group.querySelectorAll(':scope > ul, :scope .syllabus').forEach(ul=>{
+      if (isMobile){
+        ul.setAttribute('hidden','');
+      } else {
+        ul.removeAttribute('hidden');
+      }
+    });
+  });
+}
+
 function decorateBookButtons(){
   const section = document.getElementById('classes');
   if (!section) return;
   const category = section.getAttribute('data-category') || 'percussion';
   const currentLevel = section.getAttribute('data-level') || 'basic';
-
   // helper to infer plan from an individual price card
   function inferPlanFromCard(card){
     if (!card) return 'single';
@@ -634,6 +647,7 @@ function setLang(lang){
     if (classesSection && typeof updateSharedPricing === 'function'){
       const lvl = classesSection.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
+      try { hideLevelBulletLists(); } catch(_){}
     }
   } catch(_){}
 }
@@ -845,7 +859,12 @@ if (menuToggle && siteHeader) {
 let __noteResizeTO;
 window.addEventListener('resize', ()=>{
   clearTimeout(__noteResizeTO);
-  __noteResizeTO = setTimeout(()=>{ try { applyMobilePricingUX(); } catch(_){}; syncNoteHeights(); }, 120);
+// script.js — update the debounced resize handler body
+__noteResizeTO = setTimeout(()=>{
+  try { applyMobilePricingUX(); } catch(_){}
+  try { hideLevelBulletLists(); } catch(_){}
+  syncNoteHeights();
+}, 120);
 });
 
 /*
@@ -1103,6 +1122,7 @@ EN: Level selector (tabs) in Classes section.
     localStorage.setItem('bambula_level', level);
     // Re-sync notes after layout change
     updateSharedPricing(level);
+    try { hideLevelBulletLists(); } catch(_){}
     try { decorateBookButtons(); } catch(_){}
     // Keep info popovers up-to-date with current level/category/lang
     try { installLevelInfoPopovers(); } catch(_){}
@@ -1336,7 +1356,6 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
   }, true);
 })();
 
-
 /*
 ES: Conmutador de categoría (Percusión/Danza)
 EN: Category switcher (Percussion/Dance)
@@ -1363,6 +1382,7 @@ EN: Category switcher (Percussion/Dance)
   (function refreshPricing(){
     const lvl = localStorage.getItem('bambula_level') || section.getAttribute('data-level') || 'basic';
     updateSharedPricing(lvl);
+    try { hideLevelBulletLists(); } catch(_){}
     try { installLevelInfoPopovers(); } catch(_){}
     try { applyMobilePricingUX(); } catch(_){}
     try { decorateBookButtons(); } catch(_){ }
@@ -1416,6 +1436,7 @@ EN: Category switcher (Percussion/Dance)
       })(cat);
       const lvl = section.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
+      try { hideLevelBulletLists(); } catch(_){}
       try { decorateBookButtons(); } catch(_){}
       try { installLevelInfoPopovers(); } catch(_){}
       setTimeout(syncNoteHeights, 0);
@@ -1424,6 +1445,7 @@ EN: Category switcher (Percussion/Dance)
 })();
 
 // Initial pass: visually disable any booking options as needed on load
+try { hideLevelBulletLists(); } catch(_){}
 try { applyMobilePricingUX(); } catch(_){}
 try { decorateBookButtons(); } catch(_){}
 try { installLevelInfoPopovers(); } catch(_){}
@@ -1504,10 +1526,14 @@ function installLevelInfoPopovers(){
       const level = group.id?.replace('group-','') || 'basic';
       const h = dlg.querySelector('h3');
       h.textContent = head.querySelector('.subsection')?.textContent || '';
-      const body = dlg.querySelector('ul');
-      body.innerHTML = '';
-      body.replaceWith(buildList(category, level));
-      dlg.querySelector('.sheet').appendChild(dlg.querySelector('ul'));
+      const sheet = dlg.querySelector('.sheet');
+      const newUl = buildList(category, level);
+      const oldUl = sheet.querySelector('ul');
+      if (oldUl) {
+        oldUl.replaceWith(newUl);
+      } else {
+        sheet.appendChild(newUl);
+      }
       try{ dlg.showModal(); }catch{ dlg.show(); }
     };
   });

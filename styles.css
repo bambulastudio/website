@@ -340,6 +340,25 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   .section:not(.section--alt) .class-group .group-head{ background: var(--bg); }
   .class-group .pricing{ margin-top: .5rem; }
 }
+
+/* Title + info icon inline; syllabus sits below */
+.class-group .group-head{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap; /* allows the UL to move to the next line */
+}
+.class-group .group-head .subsection{
+  margin: .75rem 0 .5rem; /* tighten spacing so the icon doesn't fall */
+}
+/* Ensure the level bullet list (when visible on desktop) flows onto the next line */
+.class-group .group-head > ul{
+  flex-basis: 100%;
+  margin-top: .25rem;
+}
+/* Keep the icon compact so it doesn't push to a new line */
+.level-info-btn{ line-height: 1; }
+
 /* Mobile type & header tweaks */
 @media(max-width:600px){
   .logo{height:48px}
@@ -473,4 +492,18 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   }
   .level-info .sheet{ padding:16px 16px 12px; }
   .level-info ul{ margin:12px 16px 16px; padding-left:20px; }
+}
+
+/* Ensure hidden elements don't occupy layout */
+[hidden]{ display: none !important; }
+[hidden]{ display: none !important; }
+
+/* Hide in-page level syllabi on mobile; popover shows the content */
+@media (max-width: 900px){
+  /* Only hide the level description lists living inside class groups.
+     We do NOT touch feature lists inside pricing cards. */
+  .class-group .group-head > ul,
+  .class-group .syllabus{
+    display: none !important;
+  }
 }
