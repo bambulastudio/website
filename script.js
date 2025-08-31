@@ -81,12 +81,12 @@ const strings = {
     "pricing.basic.monthly.l1":"4 private classes (1 hour each)",
     "pricing.basic.monthly.l2":"Use within 30 days of purchase",
     "pricing.basic.monthly.l3":"Practice recordings",
-    "pricing.basic.monthly.l4":"Save 8%",
+    "pricing.basic.monthly.l4":"Save 9%",
 
     "pricing.basic.full.l1":"16 private classes (1 hour each)",
     "pricing.basic.full.l2":"Use within 365 days of purchase",
     "pricing.basic.full.l3":"Practice recordings",
-    "pricing.basic.full.l4":"Save 17%",
+    "pricing.basic.full.l4":"Save 16%",
 
     // BASIC – Complete card (title + note)
     "pricing.basic.full.title":"Complete Course (16-Class Pack)",
@@ -125,12 +125,12 @@ const strings = {
     "pricing.intermediate.monthly.l1":"4 private classes (1 hour each)",
     "pricing.intermediate.monthly.l2":"Use within 30 days",
     "pricing.intermediate.monthly.l3":"Practice recordings",
-    "pricing.intermediate.monthly.l4":"Save 9%",
+    "pricing.intermediate.monthly.l4":"Save 7%",
 
     "pricing.intermediate.full.l1":"16 private classes (1 hour each)",
     "pricing.intermediate.full.l2":"Use within 365 days",
     "pricing.intermediate.full.l3":"Practice recordings",
-    "pricing.intermediate.full.l4":"Save 19%",
+    "pricing.intermediate.full.l4":"Save 16%",
 
     "pricing.advanced.single.title":"Single Class",
     "pricing.advanced.single.note":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
@@ -157,7 +157,7 @@ const strings = {
     "pricing.advanced.full.l1":"16 private classes (1 hour each)",
     "pricing.advanced.full.l2":"Use within 365 days",
     "pricing.advanced.full.l3":"Practice recordings",
-    "pricing.advanced.full.l4":"Save 18%",
+    "pricing.advanced.full.l4":"Save 15%",
 
     // BASIC price heads for shared grid
     "pricing.basic.price1":"$120 / hour",
@@ -220,20 +220,20 @@ const strings = {
     "dance.group.advanced.l3":"Performance preparation and stage presence",
     "dance.group.advanced.l4":"Personal vocabulary and expression",
     "pricing.dance.basic.price1":"$140 / hour",
-    "pricing.dance.basic.price4":"$439 ($130/class)",
-    "pricing.dance.basic.price16_head":"$1,920 ($120/class)",
+    "pricing.dance.basic.price4":"$519 ($130/class)",
+    "pricing.dance.basic.price16_head":"$1,919 ($120/class)",
     "pricing.dance.intermediate.price1":"$145 / hour",
-    "pricing.dance.intermediate.price4":"$459 ($135/class)",
-    "pricing.dance.intermediate.price16_head":"$2,000 ($125/class)",
+    "pricing.dance.intermediate.price4":"$539 ($135/class)",
+    "pricing.dance.intermediate.price16_head":"$1,999 ($125/class)",
     "pricing.dance.advanced.price1":"$150 / hour",
-    "pricing.dance.advanced.price4":"$479 ($140/class)",
-    "pricing.dance.advanced.price16_head":"$2,240 ($130/class)",
-    "pricing.dance.basic.monthly.l4":"",
-    "pricing.dance.basic.full.l4":"",
-    "pricing.dance.intermediate.monthly.l4":"",
-    "pricing.dance.intermediate.full.l4":"",
-    "pricing.dance.advanced.monthly.l4":"",
-    "pricing.dance.advanced.full.l4":"",
+    "pricing.dance.advanced.price4":"$559 ($140/class)",
+    "pricing.dance.advanced.price16_head":"$2,079 ($130/class)",
+    "pricing.dance.basic.monthly.l4":"Save 7%",
+    "pricing.dance.basic.full.l4":"Save 14%",
+    "pricing.dance.intermediate.monthly.l4":"Save 7%",
+    "pricing.dance.intermediate.full.l4":"Save 14%",
+    "pricing.dance.advanced.monthly.l4":"Save 7%",
+    "pricing.dance.advanced.full.l4":"Save 13%",
     "contact.prefill":"Hello! I'd like to book: {package}. Please share next steps.",
     "billing.onetime":"One-time payment",
     "billing.note.onetime":"No auto-renewals.",
@@ -325,12 +325,12 @@ const strings = {
     "pricing.basic.monthly.l1":"4 sesiones privadas (1 hora c/u)",
     "pricing.basic.monthly.l2":"Expira en 30 días (desde la compra)",
     "pricing.basic.monthly.l3":"Grabaciones de práctica",
-    "pricing.basic.monthly.l4":"Ahorra 8%",
+    "pricing.basic.monthly.l4":"Ahorra 9%",
 
     "pricing.basic.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.basic.full.l2":"Expira en 365 días (desde la compra)",
     "pricing.basic.full.l3":"Resistencia y práctica personal",
-    "pricing.basic.full.l4":"Ahorra 17%",
+    "pricing.basic.full.l4":"Ahorra 16%",
 
     // BASIC (ES) – Completo (título + nota)
     "pricing.basic.full.title":"Curso Completo (Paquete de 16 Clases)",
@@ -362,12 +362,12 @@ const strings = {
     "pricing.intermediate.monthly.l1":"4 sesiones privadas (1 hora c/u)",
     "pricing.intermediate.monthly.l2":"Expira en 30 días (desde la compra)",
     "pricing.intermediate.monthly.l3":"Grabaciones de práctica",
-    "pricing.intermediate.monthly.l4":"Ahorra 9%",
+    "pricing.intermediate.monthly.l4":"Ahorra 7%",
 
     "pricing.intermediate.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.intermediate.full.l2":"Expira en 365 días (desde la compra)",
     "pricing.intermediate.full.l3":"Grabaciones de práctica",
-    "pricing.intermediate.full.l4":"Ahorra 19%",
+    "pricing.intermediate.full.l4":"Ahorra 16%",
 
     "pricing.advanced.title":"Clase Individual",
     // Avanzado: sesión individual 
@@ -397,7 +397,7 @@ const strings = {
     "pricing.advanced.full.l1":"16 sesiones privadas (1 hora c/u)",
     "pricing.advanced.full.l2":"Expira en 365 días (desde la compra)",
     "pricing.advanced.full.l3":"Grabaciones de práctica",
-    "pricing.advanced.full.l4":"Ahorra 18%",
+    "pricing.advanced.full.l4":"Ahorra 15%",
 
     // BASIC (ES) precios para grilla compartida
     "pricing.basic.price1":"$120 / hora",
@@ -462,20 +462,20 @@ const strings = {
     "dance.group.advanced.l3":"Preparación escénica y presencia artística",
     "dance.group.advanced.l4":"Vocabulario personal y expresión",
     "pricing.dance.basic.price1":"$140 / hora",
-    "pricing.dance.basic.price4":"$439 ($130/clase)",
-    "pricing.dance.basic.price16_head":"$1,920 ($120/clase)",
+    "pricing.dance.basic.price4":"$519 ($130/clase)",
+    "pricing.dance.basic.price16_head":"$1,919 ($120/clase)",
     "pricing.dance.intermediate.price1":"$145 / hora",
-    "pricing.dance.intermediate.price4":"$459 ($135/clase)",
-    "pricing.dance.intermediate.price16_head":"$2,000 ($125/clase)",
+    "pricing.dance.intermediate.price4":"$539 ($135/clase)",
+    "pricing.dance.intermediate.price16_head":"$1,999 ($125/clase)",
     "pricing.dance.advanced.price1":"$150 / hora",
-    "pricing.dance.advanced.price4":"$479 ($140/clase)",
-    "pricing.dance.advanced.price16_head":"$2,240 ($130/clase)",
-    "pricing.dance.basic.monthly.l4":"",
-    "pricing.dance.basic.full.l4":"",
-    "pricing.dance.intermediate.monthly.l4":"",
-    "pricing.dance.intermediate.full.l4":"",
-    "pricing.dance.advanced.monthly.l4":"",
-    "pricing.dance.advanced.full.l4":"",
+    "pricing.dance.advanced.price4":"$559 ($140/clase)",
+    "pricing.dance.advanced.price16_head":"$2,079 ($130/clase)",
+    "pricing.dance.basic.monthly.l4":"Ahorra 7%",
+    "pricing.dance.basic.full.l4":"Ahorra 14%",
+    "pricing.dance.intermediate.monthly.l4":"Ahorra 7%",
+    "pricing.dance.intermediate.full.l4":"Ahorra 14%",
+    "pricing.dance.advanced.monthly.l4":"Ahorra 7%",
+    "pricing.dance.advanced.full.l4":"Ahorra 13%",
     "contact.prefill":"¡Hola! Me interesa reservar: {package}. ¿Cuáles son los próximos pasos?",
     "billing.onetime":"Pago único",
     "billing.note.onetime":"Sin renovación automática.",
@@ -498,6 +498,9 @@ window.bookingDisabled = new Set([
   'percussion:intermediate:single',
   'percussion:intermediate:monthly',
   'percussion:intermediate:full',
+  'percussion:advanced:single',
+  'percussion:advanced:monthly',
+  'percussion:advanced:full',
   'dance:basic:single',
   'dance:basic:monthly',
   'dance:intermediate:single',
@@ -646,28 +649,33 @@ function moveSavingsToNotes(){
   ];
   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
   const map = strings[lang] || {};
+
   keys.forEach(k => {
     document.querySelectorAll(`[data-i18n="${k}"]`).forEach(node => {
       if (!node || node.tagName !== 'LI') return;
       const card = node.closest('.price-card');
       if (!card) return;
+
+      // ❗ Guard: only move once per card
+      if (card.dataset.savingsMoved === '1') {
+        node.remove(); // cleanup duplicate li if it somehow reappeared
+        return;
+      }
+
       const text = node.textContent.trim();
-      // Remove the savings item from the features list
-      node.remove();
-      // Ensure there is a note element after the button
+      node.remove(); // remove the bullet from the list
+
+      // Ensure a note block right after the button
       let note = card.querySelector(':scope > .note');
       if (!note) {
         note = document.createElement('div');
         note.className = 'note';
         const btn = card.querySelector(':scope > .btn');
-        if (btn) {
-          btn.insertAdjacentElement('afterend', note);
-        } else {
-          card.appendChild(note);
-        }
+        (btn ? btn.insertAdjacentElement('afterend', note) : card.appendChild(note));
       }
-      // Add a pill span inside the note with the same i18n key
-      let pill = note.querySelector(`.deal-pill[data-i18n="${k}"]`);
+
+      // Add/create the pill with the same i18n key (initially)
+      let pill = note.querySelector(`:scope > .deal-pill[data-i18n="${k}"]`);
       if (!pill) {
         pill = document.createElement('span');
         pill.className = 'deal-pill';
@@ -675,17 +683,77 @@ function moveSavingsToNotes(){
         if (note.childNodes.length) note.append(' ');
         note.appendChild(pill);
       }
-      // Translate or fall back to captured text
       pill.textContent = map[k] || text;
+
+      // Mark as moved and tag card kind if missing
+      card.dataset.savingsMoved = '1';
+      if (!card.dataset.card) {
+        const h3key = card.querySelector('h3')?.getAttribute('data-i18n') || '';
+        card.dataset.card = h3key.includes('.monthly.') ? 'monthly'
+                        : h3key.includes('.full.')    ? 'full'
+                        : 'single';
+      }
     });
   });
-  // Also translate any existing pills (if language toggled and no source li was present)
+
+  // If language toggled before any move happened, keep pills (if any) in sync
   keys.forEach(k => {
     document.querySelectorAll(`.deal-pill[data-i18n="${k}"]`).forEach(pill => {
       if (map[k]) pill.textContent = map[k];
     });
   });
 }
+// function moveSavingsToNotes(){
+//   const keys = [
+//     // basic
+//     'pricing.basic.monthly.l4','pricing.basic.full.l4',
+//     // intermediate
+//     'pricing.intermediate.monthly.l4','pricing.intermediate.full.l4',
+//     // advanced
+//     'pricing.advanced.monthly.l4','pricing.advanced.full.l4'
+//   ];
+//   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+//   const map = strings[lang] || {};
+//   keys.forEach(k => {
+//     document.querySelectorAll(`[data-i18n="${k}"]`).forEach(node => {
+//       if (!node || node.tagName !== 'LI') return;
+//       const card = node.closest('.price-card');
+//       if (!card) return;
+//       const text = node.textContent.trim();
+//       // Remove the savings item from the features list
+//       node.remove();
+//       // Ensure there is a note element after the button
+//       let note = card.querySelector(':scope > .note');
+//       if (!note) {
+//         note = document.createElement('div');
+//         note.className = 'note';
+//         const btn = card.querySelector(':scope > .btn');
+//         if (btn) {
+//           btn.insertAdjacentElement('afterend', note);
+//         } else {
+//           card.appendChild(note);
+//         }
+//       }
+//       // Add a pill span inside the note with the same i18n key
+//       let pill = note.querySelector(`.deal-pill[data-i18n="${k}"]`);
+//       if (!pill) {
+//         pill = document.createElement('span');
+//         pill.className = 'deal-pill';
+//         pill.setAttribute('data-i18n', k);
+//         if (note.childNodes.length) note.append(' ');
+//         note.appendChild(pill);
+//       }
+//       // Translate or fall back to captured text
+//       pill.textContent = map[k] || text;
+//     });
+//   });
+//   // Also translate any existing pills (if language toggled and no source li was present)
+//   keys.forEach(k => {
+//     document.querySelectorAll(`.deal-pill[data-i18n="${k}"]`).forEach(pill => {
+//       if (map[k]) pill.textContent = map[k];
+//     });
+//   });
+// }
 
 // Ensure all notes in a visual row share the same minimum height so buttons align
 function syncNoteHeights(){
@@ -783,6 +851,7 @@ ES: Actualiza la grilla de precios compartida según el nivel (básico/intermedi
 EN: Updates the shared pricing grid for the selected level and current language,
     and adjusts the savings pills.
 */
+
 function updateSharedPricing(level){
   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
   const map = strings[lang] || {};
@@ -793,20 +862,22 @@ function updateSharedPricing(level){
   const ns = (category === 'dance') ? `pricing.dance.${level}` : `pricing.${level}`;
   const k = (suffix)=> `${ns}.${suffix}`;
 
-  const pSingle = root.querySelector('[data-price-key="single"]');
+  // Prices
+  const pSingle  = root.querySelector('[data-price-key="single"]');
   const pMonthly = root.querySelector('[data-price-key="monthly"]');
-  const pFull = root.querySelector('[data-price-key="full"]');
-  const vSingle = map[k('price1')];
+  const pFull    = root.querySelector('[data-price-key="full"]');
+  const vSingle  = map[k('price1')];
   const vMonthly = map[k('price4')];
-  const vFull = map[k('price16_head')];
-  if (pSingle && vSingle!=null) pSingle.textContent = vSingle;
-  if (pMonthly && vMonthly!=null) pMonthly.textContent = vMonthly;
-  if (pFull && vFull!=null) pFull.textContent = vFull;
+  const vFull    = map[k('price16_head')];
+  if (pSingle  && vSingle  != null) pSingle.textContent  = vSingle;
+  if (pMonthly && vMonthly != null) pMonthly.textContent = vMonthly;
+  if (pFull    && vFull    != null) pFull.textContent    = vFull;
 
-  // Hide monthly card if not offered in this category
+  // Hide monthly card if no price for this category/level
   const monthlyCard = root.querySelector('[data-card="monthly"]');
   if (monthlyCard) monthlyCard.style.display = (vMonthly && String(vMonthly).trim()) ? '' : 'none';
-  // If monthly is hidden but currently selected, force plan to 'single'
+
+  // If monthly hidden but selected, force plan back to single
   const section = document.getElementById('classes');
   if (section && monthlyCard && monthlyCard.style.display === 'none'){
     const currentPlan = root.getAttribute('data-plan') || 'single';
@@ -818,47 +889,122 @@ function updateSharedPricing(level){
     }
   }
 
-  // Update savings pills (or source li if not yet moved)
-  const monthlyKeys = [
-    'pricing.basic.monthly.l4','pricing.intermediate.monthly.l4','pricing.advanced.monthly.l4'
-  ];
-  const fullKeys = [
-    'pricing.basic.full.l4','pricing.intermediate.full.l4','pricing.advanced.full.l4'
-  ];
-  const newMonthlyKey = `pricing.${level}.monthly.l4`;
-  const newFullKey = `pricing.${level}.full.l4`;
-  const newMonthlyKeyDance = `pricing.dance.${level}.monthly.l4`;
-  const newFullKeyDance = `pricing.dance.${level}.full.l4`;
+  // --- Deterministic savings pill update (no key swapping/race conditions) ---
+  root.querySelectorAll('.price-card').forEach(card => {
+    const kind = card.getAttribute('data-card') || 'single'; // 'single' | 'monthly' | 'full'
+    if (kind === 'single') return;
 
-  // Switch any existing monthly savings element to the new key
-  monthlyKeys.forEach(oldKey => {
-    root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-      const targetKey = (category==='dance') ? newMonthlyKeyDance : newMonthlyKey;
-      el.setAttribute('data-i18n', targetKey);
-      if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
-      else el.textContent = '';
-    });
-  });
-  // Switch any existing full savings element to the new key
-  fullKeys.forEach(oldKey => {
-    root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
-      const targetKey = (category==='dance') ? newFullKeyDance : newFullKey;
-      el.setAttribute('data-i18n', targetKey);
-      if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
-      else el.textContent = '';
-    });
-  });
+    // Ensure a note + pill exist
+    let note = card.querySelector(':scope > .note');
+    if (!note) {
+      note = document.createElement('div');
+      note.className = 'note';
+      const btn = card.querySelector(':scope > .btn');
+      (btn ? btn.insertAdjacentElement('afterend', note) : card.appendChild(note));
+    }
+    let pill = note.querySelector(':scope > .deal-pill');
+    if (!pill) {
+      pill = document.createElement('span');
+      pill.className = 'deal-pill';
+      if (note.childNodes.length) note.append(' ');
+      note.appendChild(pill);
+    }
 
-  // Hide empty savings pills (no label configured for this category/level)
-  root.querySelectorAll('.deal-pill').forEach(pill => {
-    const txt = (pill.textContent || '').trim();
-    if (!txt || txt === '—') pill.style.display = 'none'; else pill.style.display = '';
+    // Compute the correct i18n key for THIS card, NOW
+    const key = `${ns}.${kind}.l4`; // e.g., pricing.basic.monthly.l4 or pricing.dance.basic.full.l4
+    pill.setAttribute('data-i18n', key);
+
+    const txt = map[key];
+    if (txt && String(txt).trim()) {
+      pill.textContent = txt;
+      pill.style.display = '';
+    } else {
+      // For Dance you left these blank on purpose → hide consistently
+      pill.textContent = '';
+      pill.style.display = 'none';
+    }
   });
+  // --------------------------------------------------------------------------
 
   try { decorateBookButtons(); } catch(_){}
-  // Re-sync note heights after content change
   syncNoteHeights();
 }
+// function updateSharedPricing(level){
+//   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+//   const map = strings[lang] || {};
+//   const root = document.getElementById('sharedPricing');
+//   if (!root) return;
+
+//   const category = (document.getElementById('classes')?.getAttribute('data-category')) || 'percussion';
+//   const ns = (category === 'dance') ? `pricing.dance.${level}` : `pricing.${level}`;
+//   const k = (suffix)=> `${ns}.${suffix}`;
+
+//   const pSingle = root.querySelector('[data-price-key="single"]');
+//   const pMonthly = root.querySelector('[data-price-key="monthly"]');
+//   const pFull = root.querySelector('[data-price-key="full"]');
+//   const vSingle = map[k('price1')];
+//   const vMonthly = map[k('price4')];
+//   const vFull = map[k('price16_head')];
+//   if (pSingle && vSingle!=null) pSingle.textContent = vSingle;
+//   if (pMonthly && vMonthly!=null) pMonthly.textContent = vMonthly;
+//   if (pFull && vFull!=null) pFull.textContent = vFull;
+
+//   // Hide monthly card if not offered in this category
+//   const monthlyCard = root.querySelector('[data-card="monthly"]');
+//   if (monthlyCard) monthlyCard.style.display = (vMonthly && String(vMonthly).trim()) ? '' : 'none';
+//   // If monthly is hidden but currently selected, force plan to 'single'
+//   const section = document.getElementById('classes');
+//   if (section && monthlyCard && monthlyCard.style.display === 'none'){
+//     const currentPlan = root.getAttribute('data-plan') || 'single';
+//     if (currentPlan === 'monthly'){
+//       root.setAttribute('data-plan','single');
+//       const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
+//       planTabs.forEach(btn => btn.setAttribute('aria-selected', btn.getAttribute('data-plan')==='single' ? 'true' : 'false'));
+//       localStorage.setItem('bambula_plan','single');
+//     }
+//   }
+
+//   // Update savings pills (or source li if not yet moved)
+//   const monthlyKeys = [
+//     'pricing.basic.monthly.l4','pricing.intermediate.monthly.l4','pricing.advanced.monthly.l4'
+//   ];
+//   const fullKeys = [
+//     'pricing.basic.full.l4','pricing.intermediate.full.l4','pricing.advanced.full.l4'
+//   ];
+//   const newMonthlyKey = `pricing.${level}.monthly.l4`;
+//   const newFullKey = `pricing.${level}.full.l4`;
+//   const newMonthlyKeyDance = `pricing.dance.${level}.monthly.l4`;
+//   const newFullKeyDance = `pricing.dance.${level}.full.l4`;
+
+//   // Switch any existing monthly savings element to the new key
+//   monthlyKeys.forEach(oldKey => {
+//     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
+//       const targetKey = (category==='dance') ? newMonthlyKeyDance : newMonthlyKey;
+//       el.setAttribute('data-i18n', targetKey);
+//       if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
+//       else el.textContent = '';
+//     });
+//   });
+//   // Switch any existing full savings element to the new key
+//   fullKeys.forEach(oldKey => {
+//     root.querySelectorAll(`[data-i18n="${oldKey}"]`).forEach(el => {
+//       const targetKey = (category==='dance') ? newFullKeyDance : newFullKey;
+//       el.setAttribute('data-i18n', targetKey);
+//       if (Object.prototype.hasOwnProperty.call(map, targetKey)) el.textContent = map[targetKey];
+//       else el.textContent = '';
+//     });
+//   });
+
+//   // Hide empty savings pills (no label configured for this category/level)
+//   root.querySelectorAll('.deal-pill').forEach(pill => {
+//     const txt = (pill.textContent || '').trim();
+//     if (!txt || txt === '—') pill.style.display = 'none'; else pill.style.display = '';
+//   });
+
+//   try { decorateBookButtons(); } catch(_){}
+//   // Re-sync note heights after content change
+//   syncNoteHeights();
+// }
 
 /*
 Adds a one-time-payment pill and a short note to the shared pricing notes
