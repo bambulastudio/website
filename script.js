@@ -1459,16 +1459,24 @@ function installLevelInfoPopovers(){
     const s = document.createElement('style');
     s.id = ID;
     s.textContent = `
+      /* Global (all widths) — ensure header is mustard even on desktop */
+      .level-info header{
+        display:flex; align-items:center; gap:8px; padding:12px 16px;
+        position:sticky; top:0; z-index:1;
+        background: var(--mustard); color:#000;
+        border:0;
+        box-shadow: 0 1px 0 rgba(0,0,0,.06);
+      }
+      .level-info h3{ margin:0; font-size:16px; color:#000; }
+
       @media (max-width: 900px){
-        .level-info-btn{ appearance:none; border:0; background:transparent; font:inherit; line-height:1; padding:6px; border-radius:999px; }
-        .level-info-btn:focus-visible{ outline:2px solid rgba(0,0,0,.35); }
-        dialog.level-info{ border:0; border-radius:16px; padding:0; width:min(92vw, 560px); max-height:80vh; box-shadow:0 24px 60px rgba(0,0,0,.35); }
+        dialog.level-info{
+          border:0; border-radius:16px; padding:0;
+          width:min(92vw, 560px); max-height:80vh;
+          box-shadow:0 24px 60px rgba(0,0,0,.35);
+        }
         dialog.level-info::backdrop{ background:rgba(0,0,0,.45); }
-        .level-info .sheet{ padding:16px 16px 12px; }
-        .level-info header{ display:flex; align-items:center; gap:8px; padding:12px 16px; border-bottom:1px solid rgba(0,0,0,.08); position:sticky; top:0; background:#fff; z-index:1; }
-        .level-info h3{ margin:0; font-size:16px; }
-        .level-info .close{ margin-left:auto; appearance:none; border:0; background:#000; color:#fff; padding:8px 10px; border-radius:10px; }
-        .level-info ul{ margin:12px 16px 16px; padding-left:20px; }
+        /* You may keep a duplicate header block here, but it’s no longer required */
       }
     `;
     document.head.appendChild(s);
