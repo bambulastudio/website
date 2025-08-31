@@ -1523,7 +1523,11 @@ function installLevelInfoPopovers(){
     btn.onclick = ()=>{
       const section = document.getElementById('classes');
       const category = section ? (section.getAttribute('data-category') || 'percussion') : 'percussion';
-      const level = group.id?.replace('group-','') || 'basic';
+      // Accept both percussion ids like "group-basic" and dance ids like "dance-basic"
+      let level = 'basic';
+      if (group.id){
+        level = group.id.replace(/^group-/, '').replace(/^dance-/, '');
+      }
       const h = dlg.querySelector('h3');
       h.textContent = head.querySelector('.subsection')?.textContent || '';
       const sheet = dlg.querySelector('.sheet');
