@@ -957,8 +957,9 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
       const classesSection = document.getElementById('classes');
       const level = classesSection ? (classesSection.getAttribute('data-level') || 'basic') : 'basic';
       const plan = inferPlanFromCard(btn.closest('.price-card'));
-      const url = `book.html?level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;
-      e.preventDefault();
+    // - const url = `book.html?level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;
+      const category = classesSection ? (classesSection.getAttribute('data-category') || 'percussion') : 'percussion';
+      const url = `book.html?category=${encodeURIComponent(category)}&level=${encodeURIComponent(level)}&plan=${encodeURIComponent(plan)}`;      e.preventDefault();
       window.location.href = url;
       return;
     } else {

@@ -62,34 +62,81 @@
   </main>
 
   <script>
-    // Configure your payment links (Stripe Payment Links or provider checkout)
-    // and scheduler links (Calendly/Cal.com event URLs) here.
-    // Example placeholders — replace '#' with real links.
-    window.bookingPaymentLinks = {
-      basic: { 
-        single: '#',
-        monthly: 'https://square.link/u/FXzWjQRB',  // ← your Square link
-        full: '#'
-      },
-      intermediate: { 
-        single: '#',
-        monthly: '#',  
-        full: '#'
-      },
-      advanced: { 
-        single: '#',
-        monthly: '#',  
-        full: '#'
-      },
-    };
+  // <script>
+  // Parse query params
+  function qp(k){ return new URLSearchParams(location.search).get(k); }
+  const category = ['dance','percussion'].includes(qp('category')) ? qp('category') : 'percussion';
+  const level    = ['basic','intermediate','advanced'].includes(qp('level')) ? qp('level') : 'basic';
+  const plan     = ['single','monthly','full'].includes(qp('plan')) ? qp('plan') : 'monthly';
+  const flow     = (document.body.getAttribute('data-flow')||'inquiry').toLowerCase();
 
-    document.getElementById('payLink').textContent = 'Pay with Square';
+  // Category-aware payment links
+  window.bookingPaymentLinks = {
+    percussion: {
+      basic:        { single:'#', monthly:'https://square.link/u/FXzWjQRB', full:'https://square.link/u/Ph7UoF4E' },
+      intermediate: { single:'#', monthly:'#',                                 full:'#' },
+      advanced:     { single:'#', monthly:'#',                                 full:'#' },
+    },
+    dance: {
+      basic:        { single:'#', monthly:'#',                                  full:'https://square.link/u/PmRFDljM' },
+      intermediate: { single:'#', monthly:'#',                                  full:'#' },
+      advanced:     { single:'#', monthly:'#',                                  full:'#' },
+    }
+  };
 
-    window.bookingSchedulerLinks = {
-      basic: { single: 'https://cal.com/bambulastudio/basic-single', monthly: 'https://cal.com/bambulastudio/basic-4pack', full: 'https://cal.com/bambulastudio/basic-complete' },
-      intermediate: { single: 'https://cal.com/bambulastudio/intermediate-single', monthly: 'https://cal.com/bambulastudio/intermediate-4pack', full: 'https://cal.com/bambulastudio/intermediate-complete' },
-      advanced: { single: 'https://cal.com/bambulastudio/advanced-single', monthly: 'https://cal.com/bambulastudio/advanced-4pack', full: 'https://cal.com/bambulastudio/advanced-complete' }
-    };
+  // (Optional) label
+  document.getElementById('payLink').textContent = 'Pay with Square';
+
+  // Category-aware scheduler links (you can duplicate percussion for now)
+  window.bookingSchedulerLinks = {
+    percussion: {
+      basic:        { single:'https://cal.com/bambulastudio/basic-single',        monthly:'https://cal.com/bambulastudio/basic-4pack',        full:'https://cal.com/bambulastudio/basic-complete' },
+      intermediate: { single:'https://cal.com/bambulastudio/intermediate-single', monthly:'https://cal.com/bambulastudio/intermediate-4pack', full:'https://cal.com/bambulastudio/intermediate-complete' },
+      advanced:     { single:'https://cal.com/bambulastudio/advanced-single',     monthly:'https://cal.com/bambulastudio/advanced-4pack',     full:'https://cal.com/bambulastudio/advanced-complete' }
+    },
+    dance: {
+      basic:        { single:'https://cal.com/bambulastudio/dance-basic-single',  monthly:'https://cal.com/bambulastudio/dance-basic-4pack',  full:'https://cal.com/bambulastudio/dance-basic-complete' },
+      intermediate: { single:'#', monthly:'#', full:'#' },
+      advanced:     { single:'#', monthly:'#', full:'#' }
+    }
+  };
+    // Payments pause switch: set to true to temporarily disable live PayPal buttons
+    // (e.g., while PayPal removes an account restriction). When true, users will
+    // see the fallback note/link instead of the button. Set to false to re-enable.
+    window.paymentsPaused = true;
+
+    // // Parse query params ?level=basic&plan=monthly
+    // function qp(k){ return new URLSearchParams(location.search).get(k); }
+    // const level = ['basic','intermediate','advanced'].includes(qp('level')) ? qp('level') : 'basic';
+    // const plan = ['single','monthly','full'].includes(qp('plan')) ? qp('plan') : 'monthly';
+    // const flow = (document.body.getAttribute('data-flow')||'inquiry').toLowerCase(); // 'pay' or 'inquiry'
+
+
+    // // Configure your payment links (Stripe Payment Links or provider checkout)
+    // // and scheduler links (Calendly/Cal.com event URLs) here.
+    // window.bookingPaymentLinks = {
+    //   basic: { 
+    //     single: '#',
+    //     monthly: 'https://square.link/u/FXzWjQRB',  // ← your Square link
+    //     full: 'https://square.link/u/Ph7UoF4E'      // ← your Square link
+    //   },
+    //   intermediate: { 
+    //     single: '#',
+    //     monthly: '#',  
+    //     full: '#'
+    //   },
+    //   advanced: { 
+    //     single: '#',
+    //     monthly: '#',  
+    //     full: '#'
+    //   },
+    // };
+
+    // window.bookingSchedulerLinks = {
+    //   basic: { single: 'https://cal.com/bambulastudio/basic-single', monthly: 'https://cal.com/bambulastudio/basic-4pack', full: 'https://cal.com/bambulastudio/basic-complete' },
+    //   intermediate: { single: 'https://cal.com/bambulastudio/intermediate-single', monthly: 'https://cal.com/bambulastudio/intermediate-4pack', full: 'https://cal.com/bambulastudio/intermediate-complete' },
+    //   advanced: { single: 'https://cal.com/bambulastudio/advanced-single', monthly: 'https://cal.com/bambulastudio/advanced-4pack', full: 'https://cal.com/bambulastudio/advanced-complete' }
+    // };
 
     // Optional: PayPal Smart Buttons (client-side) — quick starter
     // Set your PayPal REST client-id to enable buttons; leave empty to use links above
@@ -107,20 +154,15 @@
       // intermediate: { single: 125, monthly: 459, full: 1679 },
       // advanced: { single: 130, monthly: 479, full: 1759 }
     };
-    // Payments pause switch: set to true to temporarily disable live PayPal buttons
-    // (e.g., while PayPal removes an account restriction). When true, users will
-    // see the fallback note/link instead of the button. Set to false to re-enable.
-    window.paymentsPaused = true;
-
-    // Parse query params ?level=basic&plan=monthly
-    function qp(k){ return new URLSearchParams(location.search).get(k); }
-    const level = ['basic','intermediate','advanced'].includes(qp('level')) ? qp('level') : 'basic';
-    const plan = ['single','monthly','full'].includes(qp('plan')) ? qp('plan') : 'monthly';
-    const flow = (document.body.getAttribute('data-flow')||'inquiry').toLowerCase(); // 'pay' or 'inquiry'
+    // End configuration
 
     // Defer i18n mapping of labels to script.js by changing data-i18n keys dynamically
     function setI18nKey(el, key){ if (el) el.setAttribute('data-i18n', key); }
-    const levelKey = `classes.group.${level}`;
+  // - const levelKey = `classes.group.${level}`;
+    const levelKey = (category==='dance')
+    ? `dance.group.${level}`
+    : `classes.group.${level}`;
+    setI18nKey(document.getElementById('selLevel'), levelKey);
     const planKeyMap = { single: 'pricing.basic.title', monthly: 'pricing.basic.monthly.title', full: 'pricing.basic.full.title' };
     const planKey = planKeyMap[plan];
     setI18nKey(document.getElementById('selLevel'), levelKey);
@@ -170,7 +212,8 @@
 
     // Wire Pay (PayPal buttons if clientId present; otherwise fallback to link)
     (function(){
-      const payLink = (window.bookingPaymentLinks[level]||{})[plan];
+      // - const payLink = (window.bookingPaymentLinks[level]||{})[plan];
+      const payLink = (window.bookingPaymentLinks[category]?.[level] || {})[plan];      
       const a = document.getElementById('payLink');
       const note = document.getElementById('payNote');
       const btnsWrap = document.getElementById('paypalButtons');
@@ -329,7 +372,8 @@
     (function(){
       const qs = new URLSearchParams(location.search);
       const override = qs.get('sched');
-      let baseUrl = override || ((window.bookingSchedulerLinks[level]||{})[plan]);
+    // - let baseUrl = override || ((window.bookingSchedulerLinks[level]||{})[plan]);
+      let baseUrl = override || ((window.bookingSchedulerLinks[category]?.[level] || {})[plan]);
       const wrap = document.getElementById('schedulerEmbed');
       const note = document.getElementById('schedNote');
       const nameInput = document.getElementById('prefillName');
