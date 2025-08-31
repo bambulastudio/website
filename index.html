@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <head>
   <!-- Meta tags and page setup -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta charset="utf-8" />
   <title>Bámbula Studio LLC — Bomba Puertorriqueña</title>
   <meta name="description" content="Clases privadas y talleres de barril de bomba con Bámbula Studio. Puerto Rican Bomba drum lessons (buleo), community workshops, and culture."/>
 
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180.png">
+  <link rel="apple-touch-icon" sizes="167x167" href="/assets/apple-touch-icon-167.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-152.png">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> <!-- fallback -->
   <!-- Hero image: fetch early -->
   <link rel="preload" as="image" href="assets/bambula_patterns.png" imagesrcset="assets/bambula_patterns.png 1x" />
   
@@ -60,14 +62,503 @@
   <!-- JS (non-blocking) -->
   <script src="script.js" defer></script>
 </head>
-<body>
-  <h1>Site under construction</h1>
-  <p>
-    Follow us on Instagram:
-    <a href="https://instagram.com/bambula_studio" target="_blank" rel="noopener noreferrer">
-      @bambula_studio
-    </a>
-  </p>
-  <p>Please check back soon.</p>
+<body data-hide-workshops="true" data-booking="book">
+<!-- ===== Site Header ===== -->
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <!-- Logo and wordmark -->
+      <!-- Old logo + name kept for testing:
+      <img src="assets/babytree_squarelogo.png" alt="Bámbula Studio logo" class="logo">
+      <span class="wordmark">Bámbula Studio</span>
+      -->
+      <!-- <img src="assets/babytree_squarelogo.png" alt="Bámbula Studio logo" class="logo">
+      <span class="wordmark">Bámbula Studio</span> -->
+      <img src="assets/bambula_primarylogo.png" alt="Bámbula Studio logo" class="logo logo--blend">
+    </div>
+    <!-- Mobile menu toggle -->
+    <button id="menuToggle" class="menu" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle menu">Menu</button>
+    <!-- Navigation links -->
+    <nav id="siteNav" class="nav">
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#classes" data-i18n="nav.classes">Classes</a>
+      <a href="#workshops" data-i18n="nav.workshops">Workshops</a>
+      <a href="#faq" data-i18n="nav.faq">FAQ</a>
+      <a href="#contact" class="btn btn--small" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <!-- Language toggle button -->
+    <button id="langToggle" class="lang" aria-label="Toggle language">ES</button>
+  </div>
+</header>
+
+<main>
+  <!-- ===== Hero Section ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero__text">
+        <h1 data-i18n="hero.title">Rooted rhythm. Living culture.</h1>
+        <p class="lead" data-i18n="hero.subtitle">Private Bomba drum lessons (buleo), community workshops, and cultural education—con cariño y disciplina.</p>
+        <div class="actions">
+          <a href="#classes" class="btn" data-i18n="hero.cta1">See classes</a>
+          <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Ask a question</a>
+        </div>
+      </div>
+      <!-- Decorative hero art -->
+      <div class="hero__art hero__art--image" aria-hidden="true">
+        <!-- Toggle: remove hero__art--image class above to return to shapes -->
+        <img class="art" style="--art-size: 100%;" src="assets/bambula_patterns.png" alt="" />
+        <!-- <div class="circle"></div>
+        <div class="drum"></div> -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About Section ===== -->
+  <section id="about" class="section">
+    <div class="container grid">
+      <div>
+        <h2 data-i18n="about.title">What is Bámbula Studio?</h2>
+        <p data-i18n="about.p1"></p>
+        <ul>
+          <li data-i18n="about.p2"></li>
+          <li data-i18n="about.p3"></li>
+          <li data-i18n="about.p4"></li>
+          <li data-i18n="about.p5"></li>
+        </ul>
+        <p data-i18n="about.p6"></p>
+      </div>
+      <!-- Quick facts card -->
+      <div class="card">
+        <h3 data-i18n="about.quick">Quick facts</h3>
+        <ul>
+          <li data-i18n="about.f1"></li>
+          <li data-i18n="about.f2"></li>
+          <li data-i18n="about.f3"></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Owner/Founder subsection -->
+    <div class="container grid about-owner" style="margin-top: 1.5rem;">
+      <figure class="card about-owner__media" style="align-self:start;">
+        <img src="assets/founder_pic.jpg" alt="Bámbula Studio owner portrait" style="width:100%;height:auto;border-radius:10px;" />
+        <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener">@bambula_studio</a></figcaption>
+      </figure>
+      <div class="about-owner__text">
+        <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
+        <p data-i18n="about.owner.p1"></p>
+        <p data-i18n="about.owner.p2"></p>
+        <p data-i18n="about.owner.p3"></p>
+        <p data-i18n="about.owner.p4"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Classes Section ===== -->
+  <section id="classes" class="section section--alt" data-level="basic">
+    <div class="container">
+      <div class="classes-head">
+        <h2 data-i18n="classes.title">Private Classes (Buleo)</h2>
+      </div>
+      <p id="classesSubtitle" class="lead" style="margin:.25rem 0 0.5rem 0" data-i18n="classes.subtitle.percussion">Buleo with Puerto Rican Bomba Drum</p>
+
+      <!-- Sticky selectors: category + level -->
+      <div class="selectors-bar">
+        <div class="category-switch" role="tablist" aria-label="Select category">
+          <button role="tab" aria-selected="true" data-category="percussion"><span data-i18n="category.percussion">Percussion</span></button>
+          <button role="tab" aria-selected="false" data-category="dance"><span data-i18n="category.dance">Dance</span></button>
+        </div>
+        <div class="level-switch" role="tablist" aria-label="Select level">
+          <button role="tab" aria-selected="true" aria-controls="group-basic" data-level="basic"><span data-i18n="classes.group.basic">Beginner</span></button>
+          <button role="tab" aria-selected="false" aria-controls="group-intermediate" data-level="intermediate"><span data-i18n="classes.group.intermediate">Intermediate</span></button>
+          <button role="tab" aria-selected="false" aria-controls="group-advanced" data-level="advanced"><span data-i18n="classes.group.advanced">Advanced</span></button>
+        </div>
+      </div>
+
+      <!-- Percussion category -->
+      <div class="category" data-cat="percussion">
+      <!-- ===== BASIC / BEGINNER ===== -->
+      <section class="class-group" id="group-basic">
+        <div class="group-head">
+          <h3 class="subsection" data-i18n="classes.group.basic">Buleo Básico</h3>
+          <ul>
+            <li data-i18n="classes.group.basic.l1"></li>
+            <li data-i18n="classes.group.basic.l2"></li>
+            <li data-i18n="classes.group.basic.l3"></li>
+            <li data-i18n="classes.group.basic.l4"></li>
+            <li data-i18n="classes.group.basic.l5"></li>
+            <li data-i18n="classes.group.basic.l6"></li>
+            <li data-i18n="classes.group.basic.l7"></li>
+            <li data-i18n="classes.group.basic.l8"></li>
+          </ul>
+        </div>
+      <div class="pricing">
+        <!-- Basic 1 Session -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.basic.title">Single Class</h3>
+          <p class="price">$120 <span data-i18n="pricing.perhour">/ hour</span></p>
+          <ul>
+            <li data-i18n="pricing.basic.l1">Posture &amp; hand placement</li>
+            <li data-i18n="pricing.basic.l2">Sounds: abierto/seco, caja, campana</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+          <div class="note" data-i18n="pricing.single.credit">If you enroll in the 16-class package within 30 days, this session is credited.</div>
+        </article>
+
+        <!-- Monthly (4) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.basic.monthly.title">Monthly Subscription</h3>
+          <p class="price">$440 <span data-i18n="pricing.basic.monthly.note">($110/class)</span></p>
+          <ul>
+            <li data-i18n="pricing.basic.monthly.l1">4 private classes (1 hour each)</li>
+            <li data-i18n="pricing.basic.monthly.l2"></li>
+            <li data-i18n="pricing.basic.monthly.l3">Practice recordings</li>
+            <li data-i18n="pricing.basic.monthly.l4">Save 9%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+
+        <!-- Complete (16) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.basic.full.title">Complete Course</h3>
+          <p class="price">$1,600 <span data-i18n="pricing.basic.full.note">($100/class)</span></p>
+          <ul>
+            <li data-i18n="pricing.basic.full.l1">16 private classes (1 hr)</li>
+            <li data-i18n="pricing.basic.full.l2">Use within 365 days</li>
+            <li data-i18n="pricing.basic.full.l3">Endurance &amp; personal practice</li>
+            <li data-i18n="pricing.basic.full.l4">Save 17%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+      </div>
+      </section>
+      <!-- ===== INTERMEDIATE ===== -->
+      <section class="class-group" id="group-intermediate">
+        <div class="group-head">
+          <h3 class="subsection" data-i18n="classes.group.intermediate">Intermedio</h3>
+          <ul>
+            <li data-i18n="classes.group.intermediate.l1"></li>
+            <li data-i18n="classes.group.intermediate.l2"></li>
+            <li data-i18n="classes.group.intermediate.l3"></li>
+            <li data-i18n="classes.group.intermediate.l4"></li>
+            <li data-i18n="classes.group.intermediate.l5"></li>
+            <li data-i18n="classes.group.intermediate.l6"></li>
+            <li data-i18n="classes.group.intermediate.l7"></li>
+          </ul>
+        </div>
+
+      <div class="pricing">
+        <!-- INTERMEDIATE Single  -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.intermediate.single.title"></h3>
+          <p class="price">$125 <span data-i18n="pricing.perhour">/ hour</span></p>
+          <ul>
+            <li data-i18n="pricing.intermediate.single.l1"></li>
+            <li data-i18n="pricing.intermediate.single.l2"></li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Contact</a>
+          <div class="note" data-i18n="pricing.intermediate.single.note"></div>
+        </article>
+
+        <!-- INTERMEDIATE Monthly (4) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.intermediate.monthly.title">Intermediate</h3>
+          <p class="price" data-i18n="pricing.intermediate.price4">$460 / 4 classes</p>
+          <ul>
+            <li data-i18n="pricing.intermediate.monthly.l1">4 private classes (1 hour each)</li>
+            <li data-i18n="pricing.intermediate.monthly.l2">Use within 30 days</li>
+            <li data-i18n="pricing.intermediate.monthly.l3">Practice recordings</li>
+            <li data-i18n="pricing.intermediate.monthly.l4">Save 8%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+
+        <!-- INTERMEDIATE Complete (16) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.intermediate.full.title">Intermediate</h3>
+          <p class="price" data-i18n="pricing.intermediate.price16_head">$1,680 <span>($105/class)</span></p>
+          <ul>
+            <li data-i18n="pricing.intermediate.full.l1">16 private classes (1 hr)</li>
+            <li data-i18n="pricing.intermediate.full.l2">Use within 365 days</li>
+            <li data-i18n="pricing.intermediate.full.l3">Endurance &amp; personal practice</li>
+            <li data-i18n="pricing.intermediate.full.l4">Save 19%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+      </div>
+      </section>
+
+      <!-- ===== ADVANCED ===== -->
+      <section class="class-group" id="group-advanced">
+        <div class="group-head">
+          <h3 class="subsection" data-i18n="classes.group.advanced">Avanzado</h3>
+          <ul>
+            <li data-i18n="classes.group.advanced.l1"></li>
+            <li data-i18n="classes.group.advanced.l2"></li>
+            <li data-i18n="classes.group.advanced.l3"></li>
+            <li data-i18n="classes.group.advanced.l4"></li>
+            <li data-i18n="classes.group.advanced.l5"></li>
+            <li data-i18n="classes.group.advanced.l6"></li>
+          </ul>
+        </div>
+
+      <div class="pricing">
+        <!-- ADVANCED Single-->
+        <article class="price-card">
+          <h3 data-i18n="pricing.advanced.single.title"></h3>
+          <p class="price">$130 <span data-i18n="pricing.perhour">/ hour</span></p>
+          <ul>
+            <li data-i18n="pricing.advanced.single.l1"></li>
+            <li data-i18n="pricing.advanced.single.l2"></li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Contact</a>
+          <div class="note" data-i18n="pricing.advanced.single.note"></div>
+        </article>
+
+        <!-- ADVANCED Monthly (4) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.advanced.monthly.title">Monthly Subscription </h3>
+          <p class="price" data-i18n="pricing.advanced.price4">$479</p>
+          <ul>
+            <li data-i18n="pricing.advanced.monthly.l1">4 private classes (1 hour each)</li>
+            <li data-i18n="pricing.advanced.monthly.l2">Use within 30 days</li>
+            <li data-i18n="pricing.advanced.monthly.l3">Practice recordings</li>
+            <li data-i18n="pricing.advanced.monthly.l4">Save 8%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+
+        <!-- ADVANCED Complete (16) -->
+        <article class="price-card">
+          <h3 data-i18n="pricing.advanced.full.title">Complete Course</h3>
+          <p class="price" data-i18n="pricing.advanced.price16_head">$1,759 <span>($110/class)</span></p>
+          <ul>
+            <li data-i18n="pricing.advanced.full.l1">16 private classes (1 hr)</li>
+            <li data-i18n="pricing.advanced.full.l2">Use within 365 days</li>
+            <li data-i18n="pricing.advanced.full.l3">Endurance &amp; personal practice</li>
+            <li data-i18n="pricing.advanced.full.l4">Save 19%</li>
+          </ul>
+          <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+        </article>
+      </div>
+      </section>
+      </div>
+
+      <!-- Dance category -->
+      <div class="category" data-cat="dance">
+        <!-- BASIC DANCE -->
+        <section class="class-group" id="dance-basic">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.basic">Beginner Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.basic.l1"></li>
+              <li data-i18n="dance.group.basic.l2"></li>
+              <li data-i18n="dance.group.basic.l3"></li>
+              <li data-i18n="dance.group.basic.l4"></li>
+              <li data-i18n="dance.group.basic.l5"></li>
+              <li data-i18n="dance.group.basic.l6"></li>
+              <li data-i18n="dance.group.basic.l7"></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- INTERMEDIATE DANCE -->
+        <section class="class-group" id="dance-intermediate">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.intermediate">Intermediate Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.intermediate.l1"></li>
+              <li data-i18n="dance.group.intermediate.l2"></li>
+              <li data-i18n="dance.group.intermediate.l3"></li>
+              <li data-i18n="dance.group.intermediate.l4"></li>
+              <li data-i18n="dance.group.intermediate.l5"></li>
+            </ul>
+          </div>
+        </section>
+
+        <!-- ADVANCED DANCE -->
+        <section class="class-group" id="dance-advanced">
+          <div class="group-head">
+            <h3 class="subsection" data-i18n="dance.group.advanced">Advanced Dance</h3>
+            <ul>
+              <li data-i18n="dance.group.advanced.l1"></li>
+              <li data-i18n="dance.group.advanced.l2"></li>
+              <li data-i18n="dance.group.advanced.l3"></li>
+              <li data-i18n="dance.group.advanced.l4"></li>
+            </ul>
+          </div>
+        </section>
+      </div>
+
+      <!-- Mobile plan switch (Single / Monthly / Complete) -->
+      <!-- <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan (mobile)">
+        <button role="tab" aria-selected="true" data-plan="single"><span data-i18n="pricing.basic.title">Single Class</span></button>
+        <button role="tab" aria-selected="false" data-plan="monthly"><span data-i18n="pricing.basic.monthly.title">Monthly Subscription</span></button>
+        <button role="tab" aria-selected="false" data-plan="full"><span data-i18n="pricing.basic.full.title">Complete Course</span></button>
+      </div> -->
+
+            <!-- Plan switch: visible on mobile -->
+      <div class="plan-switch plan-switch--mobile" role="tablist" aria-label="Select plan">
+        <button role="tab" aria-selected="true"  data-plan="single"><span data-i18n="pricing.basic.title">Single Class</span></button>
+        <button role="tab" aria-selected="false" data-plan="monthly"><span data-i18n="pricing.basic.monthly.title">4-Class Pack (30 days)</span></button>
+        <button role="tab" aria-selected="false" data-plan="full"><span data-i18n="pricing.basic.full.title">Complete Course (16)</span></button>
+      </div>
+      
+      <!-- Shared Pricing Grid (single component) -->
+      <section id="sharedPricing" data-plan="single">
+        <div class="pricing" aria-label="Plans">
+          <article class="price-card" data-card="single">
+            <h3 data-i18n="pricing.basic.title">Single Class</h3>
+            <p class="price" data-price-key="single">$120 <span data-i18n="pricing.perhour">/ hour</span></p>
+            <ul>
+              <li data-i18n="pricing.basic.l1"></li>
+              <li data-i18n="pricing.basic.l2"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"><!-- One-time pill + note get injected by JS --></div>
+          </article>
+
+          <article class="price-card" data-card="monthly">
+            <h3 data-i18n="pricing.basic.monthly.title">4-Class Pack (30 days)</h3>
+            <p class="price" data-price-key="monthly" data-i18n="pricing.basic.price4">$439 ($110/class)</p>
+            <ul>
+              <li data-i18n="pricing.basic.monthly.l1"></li>
+              <li data-i18n="pricing.basic.monthly.l2"></li>
+              <li data-i18n="pricing.basic.monthly.l3"></li>
+              <li data-i18n="pricing.basic.monthly.l4"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"></div>
+          </article>
+
+          <article class="price-card" data-card="full">
+            <h3 data-i18n="pricing.basic.full.title">Complete Course (16-Class Pack)</h3>
+            <p class="price" data-price-key="full" data-i18n="pricing.basic.price16_head">$1,599 ($100/class)</p>
+            <ul>
+              <li data-i18n="pricing.basic.full.l1"></li>
+              <li data-i18n="pricing.basic.full.l2"></li>
+              <li data-i18n="pricing.basic.full.l3"></li>
+              <li data-i18n="pricing.basic.full.l4"></li>
+            </ul>
+            <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
+            <div class="note"></div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Note for unsure students -->
+      <div class="note" data-i18n="classes.note">If you’re unsure of your level, we can do a $15 initial evaluation to place you correctly.</div>
+    </div>
+  </section>
+  <!-- ===== Workshops Section ===== -->
+  <section id="workshops" class="section">
+    <div class="container grid">
+      <div>
+        <h2 data-i18n="workshops.title">Group Workshops</h2>
+        <p data-i18n="workshops.p1">For 3+ people: intro to Bomba (buleo basics), rhythm family (sicá, yubá, cuembé, holandé), and cultural context. Priced at $60 per person per hour.</p>
+        <p data-i18n="workshops.p2">We also offer campus talks and chapel services. Typical budget: travel & lodging up to $2,500 + $2,000 honorarium.</p>
+      </div>
+      <!-- Workshops includes card -->
+      <div class="card">
+        <h3 data-i18n="workshops.includes">Includes</h3>
+        <ul>
+          <li data-i18n="workshops.i1">All-level friendly</li>
+          <li data-i18n="workshops.i2">Call-and-response practice</li>
+          <li data-i18n="workshops.i3">Culture & history</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ Section ===== -->
+  <section id="faq" class="section section--alt">
+    <div class="container">
+      <h2 data-i18n="faq.title">FAQ</h2>
+      <!-- FAQ items -->
+      <details>
+        <summary data-i18n="faq.q1">Do I need my own drum?</summary>
+        <p data-i18n="faq.a1">No. If you have one, bring it. If not, we’ll adapt with practice surfaces and technique.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q2">Are lessons in Spanish or English?</summary>
+        <p data-i18n="faq.a2">Either—your choice. The tradition is Puerto Rican; we honor both languages.</p>
+      </details>
+      <details>
+        <summary data-i18n="faq.q3">Where are lessons held?</summary>
+        <p data-i18n="faq.a3">In-person (DFW area) or we can arrange a suitable space. No virtual lessons listed by default.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== Contact Section ===== -->
+  <section id="contact" class="section">
+    <div class="container grid">
+      <div>
+        <h2 data-i18n="contact.title">Contact</h2>
+        <p data-i18n="contact.p1">...</p>
+        <ul class="contact-list">
+          <li><strong>Email:</strong> <a href="mailto:contact@bambulastudio.com">contact@bambulastudio.com</a></li>
+          <li><strong>Instagram:</strong> <a href="https://instagram.com/bambula_studio" target="_blank" rel="noopener">@bambula_studio</a></li>
+        </ul>
+      </div>
+      <!-- Contact form (Formspree) -->
+      <form class="form" action="https://formspree.io/f/mdkloyyj" method="POST" referrerpolicy="no-referrer">
+        <!-- Subject line for your email -->
+        <input type="hidden" name="_subject" value="New message from Bámbula Studio site">
+        <!-- Redirect after submit -->
+        <input type="hidden" name="_next" value="https://www.bambulastudio.com/#contact">
+        <!-- Spam honeypot (invisible to users) -->
+        <div style="position:absolute;left:-5000px" aria-hidden="true">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+        </div>
+        <!-- Name field -->
+        <label>
+          <span>Name</span>
+          <input type="text" name="name" required>
+        </label>
+        <!-- Email field -->
+        <label>
+          <span>Email</span>
+          <input type="email" name="email" required>
+        </label>
+        <!-- Message field -->
+        <label>
+          <span>Message</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <!-- Submit button -->
+        <button type="submit" class="btn">Send</button>
+        <p class="form-note">We’ll get back to you soon. Powered by Formspree.</p>
+      </form>
+    </div>
+  </section>
+  <section id="policies" class="section">
+  <div class="container">
+    <h2 data-i18n="policies.title">Policies</h2>
+    <div class="card">
+      <ul>
+        <li data-i18n="policies.transport">
+          Transportation: if a lesson is held away from my home, an additional $0.65 per mile (round-trip) applies.
+        </li>
+        <li data-i18n="policies.expire">
+          Package expiration: all packages expire 365 days after purchase; unused classes are non-refundable and non-transferable.
+        </li>
+        <li data-i18n="policies.record">
+          Recordings: recording the teacher during class isn’t allowed. Specific educational recordings can be coordinated at the end of class.
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ===== Site Footer ===== -->
+<footer class="site-footer">
+  <div class="container">
+    <small>&copy; <span id="year"></span> Bámbula Studio LLC. <span data-i18n="footer.rights">All rights reserved.</span></small>
+  </div>
+</footer>
+
+<!-- Main JavaScript file -->
 </body>
 </html>

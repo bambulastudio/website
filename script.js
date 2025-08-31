@@ -990,44 +990,57 @@ function ensureOneTimePills(){
 }
 
 // --- Mobile pricing UX: sticky selectors + horizontal scroll-snap for cards ---
+// --- Mobile pricing UX: sticky selectors + horizontal scroll-snap for cards ---
 function applyMobilePricingUX(){
-  // Inject once
   const STYLE_ID = 'mobilePricingUX';
-  let style = document.getElementById(STYLE_ID);
-  if (!style){
-    style = document.createElement('style');
-    style.id = STYLE_ID;
-    style.textContent = `
-      @media (max-width: 900px){
-        /* Keep the plan/level/category selectors visible while scrolling */
-        .selectors-bar{ position: sticky; top: 0; z-index: 20; background: var(--site-bg, #fff); border-bottom: 1px solid rgba(0,0,0,.06); }
-        /* Make pricing cards swipeable; one (almost) per view */
-        .pricing{ display: grid; grid-auto-flow: column; grid-auto-columns: 88%; overflow-x: auto; gap: 16px; padding: 4px 8px 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
-        .pricing::-webkit-scrollbar{ display: none; }
-        .price-card{ scroll-snap-align: start; }
-        /* Avoid forced equal heights on mobile */
-        .price-card > .note{ min-height: auto !important; }
-      }
-    `;
-    document.head.appendChild(style);
-  }
 
-  // If the selectors bar exists, ensure it has an accessible name on mobile
+  // Remove any previously injected mobile rules (that used 88% + padding)
+  const old = document.getElementById(STYLE_ID);
+  if (old) old.remove();
+
+  // Inject rules that match our CSS (full width, no extra padding)
+  const style = document.createElement('style');
+  style.id = STYLE_ID;
+  style.textContent = `
+    @media (max-width: 900px){
+      .selectors-bar{
+        position: sticky; top: 0; z-index: 20;
+        background: var(--bg); border-bottom: 1px solid rgba(0,0,0,.06);
+      }
+      .pricing{
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 100%;
+        overflow-x: auto;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      .pricing::-webkit-scrollbar{ display: none; }
+      .price-card{ scroll-snap-align: start; }
+      .price-card > .note{ min-height: auto !important; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Accessibility niceties
   const bar = document.querySelector('.selectors-bar');
   if (bar && !bar.getAttribute('aria-label')){
-    bar.setAttribute('aria-label', (document.documentElement.lang === 'es') ? 'Opciones de planes y niveles' : 'Plan and level options');
+    bar.setAttribute('aria-label',
+      (document.documentElement.lang === 'es')
+        ? 'Opciones de planes y niveles'
+        : 'Plan and level options'
+    );
   }
 
-  // Turn each pricing row into a scroll-snapping carousel on mobile only
   const isMobile = window.matchMedia('(max-width: 900px)').matches;
   document.querySelectorAll('.pricing').forEach(pr => {
     pr.setAttribute('role', 'region');
     pr.setAttribute('aria-roledescription', 'carousel');
-    if (isMobile){
-      pr.setAttribute('tabindex', '0');
-    } else {
-      pr.removeAttribute('tabindex');
-    }
+    if (isMobile){ pr.setAttribute('tabindex', '0'); }
+    else { pr.removeAttribute('tabindex'); }
   });
 }
 
@@ -1550,3 +1563,4 @@ function installLevelInfoPopovers(){
     };
   });
 }
+

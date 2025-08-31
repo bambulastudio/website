@@ -456,9 +456,17 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
 
   /* Swipeable pricing rows; one (almost) per view */
   .pricing{
-    display: grid; grid-auto-flow: column; grid-auto-columns: 88%;
-    overflow-x: auto; gap: 16px; padding: 4px 8px 12px;
-    scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    display: grid;
+    grid-auto-flow: column;
+    /* Each card fills the container’s content box (same visual width as FAQ banners) */
+    grid-auto-columns: 100%;
+    overflow-x: auto;
+    gap: 12px;
+    /* Align to container edges: no extra negative margins or custom padding */
+    margin: 0;
+    padding: 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
   }
   .pricing::-webkit-scrollbar{ display: none; }
   .price-card{ scroll-snap-align: start; }
@@ -513,4 +521,95 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   .class-group .syllabus{
     display: none !important;
   }
+}
+
+/* === Mobile pricing cards: match FAQ banner width & gutters === */
+@media (max-width: 900px){
+  /* Turn the row into a full-bleed horizontal scroller,
+     but keep 20px gutters so cards align with the FAQ banners. */
+  .pricing{
+    display: grid;
+    grid-auto-flow: column;
+
+    /* Each card = viewport (container) width minus 20px left + 20px right gutters */
+    grid-auto-columns: calc(100% - 40px);
+
+    /* Full-bleed scroller so gutters visually match the rest of the page */
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
+
+    overflow-x: auto;
+    column-gap: 12px; /* horizontal spacing between cards */
+
+    /* Smooth swipe with proper snapping */
+    scroll-snap-type: x mandatory;
+    scroll-padding-left: 20px;   /* first card aligns to left gutter */
+    scroll-padding-right: 20px;  /* last card aligns to right gutter */
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .pricing::-webkit-scrollbar{ display: none; }
+
+  /* Snap each card to the left gutter cleanly */
+  .price-card{ scroll-snap-align: start; }
+
+  /* Avoid forced equal-height notes on mobile */
+  .price-card > .note{ min-height: auto !important; }
+}
+
+/* === Mobile pricing: match FAQ banner width exactly === */
+@media (max-width: 900px){
+  /* Use flex instead of grid to avoid track/gap math and trailing whitespace */
+  .pricing{
+    display: flex;                 /* replaces grid on mobile */
+    flex-flow: row nowrap;
+    gap: 12px;                     /* same visual spacing between cards */
+    overflow-x: auto;
+    margin: 0;                     /* align with FAQ details */
+    padding: 0;                    /* container already has 20px side padding */
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+  }
+  .pricing::-webkit-scrollbar{ display: none; }
+
+  /* Each card is exactly the container content width (like FAQ banners) */
+  .pricing > .price-card{
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+  }
+
+  /* Prevent any forced equal-heights from desktop from affecting mobile */
+  .price-card > .note{ min-height: auto !important; }
+}
+
+/* --- Mobile pricing: single, conflict-proof carousel fix --- */
+@media (max-width: 900px){
+  /* Make the row a horizontal flex scroller and neutralize earlier grid rules */
+  .pricing{
+    display: flex !important;
+    flex-flow: row nowrap !important;
+    gap: 12px !important;
+    overflow-x: auto !important;
+    margin: 0 !important;          /* line up with FAQ banners */
+    padding: 0 !important;
+    scroll-snap-type: x mandatory !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Each card exactly fills the container content box */
+  .pricing > .price-card{
+    flex: 0 0 100% !important;
+    scroll-snap-align: start !important;
+  }
+
+  /* Optional: perfect “kiss” on the right edge */
+  .pricing::after{
+    content: "";
+    flex: 0 0 0;
+  }
+
+  /* Ensure notes aren’t equalized on mobile */
+  .price-card > .note{ min-height: auto !important; }
 }
