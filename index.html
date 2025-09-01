@@ -4,7 +4,18 @@
   <!-- Meta tags and page setup -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'; connect-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'self'; form-action https://formspree.io; upgrade-insecure-requests;">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self';
+                img-src 'self' data:;
+                style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+                font-src 'self' https://fonts.gstatic.com;
+                script-src 'self' 'unsafe-inline';
+                connect-src 'self';
+                upgrade-insecure-requests;
+                object-src 'none';
+                base-uri 'self';
+                frame-ancestors 'self';
+                form-action https://formspree.io;">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta http-equiv="Permissions-Policy" content="geolocation=(), camera=(), microphone=(), payment=(), accelerometer=(), gyroscope=(), usb=()">
   <title>Bámbula Studio LLC — Bomba Puertorriqueña</title>
@@ -13,7 +24,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon-180.png">
   <link rel="apple-touch-icon" sizes="167x167" href="/assets/apple-touch-icon-167.png">
   <link rel="apple-touch-icon" sizes="152x152" href="/assets/apple-touch-icon-152.png">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png"> <!-- fallback -->
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png"> <!-- fallback -->
   <!-- Hero image: fetch early -->
   <link rel="preload" as="image" href="assets/bambula_patterns.png" imagesrcset="assets/bambula_patterns.png 1x" />
   
@@ -416,6 +427,7 @@
             <ul>
               <li data-i18n="pricing.basic.l1"></li>
               <li data-i18n="pricing.basic.l2"></li>
+              <li data-i18n="pricing.basic.l3"></li>
             </ul>
             <a href="#contact" class="btn" data-i18n="pricing.cta">Book</a>
             <div class="note"><!-- One-time pill + note get injected by JS --></div>

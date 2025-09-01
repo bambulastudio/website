@@ -29,18 +29,33 @@ function installPriceCardPopovers(){
       btn.className = 'card-info-btn';
       btn.type = 'button';
       btn.setAttribute('aria-haspopup','dialog');
-      btn.setAttribute('title', currentLang()==='es' ? '¿Qué incluye?' : 'What\'s included?');
-      btn.textContent = 'ℹ️';
-      // Place the button at the end of the title
       h3.appendChild(btn);
+      setCardInfoTriggerLabel(btn); // ← this sets Includes (desktop) or ℹ️ (mobile)
     }
+    
     // (Re)bind click handler – safe to reassign on re-renders
     btn.onclick = ()=>{
       const sheet = dlg.querySelector('.sheet');
       // Prefer rich HTML via i18n: popover.{category}.{level}.{plan}
+      const group = card.closest('.class-group');
       const section = document.getElementById('classes');
-      const category = section ? (section.getAttribute('data-category') || 'percussion') : 'percussion';
-      const level = section ? (section.getAttribute('data-level') || 'basic') : 'basic';
+
+      // Category: prefer signals around the card/group, fallback to #classes
+      let category = (section && section.getAttribute('data-category')) || (function(){
+        const any = card.querySelector('[data-i18n]');
+        const k = (any && any.getAttribute('data-i18n')) || '';
+        return (k.startsWith('pricing.dance.') || k.startsWith('dance.')) ? 'dance' : 'percussion';
+      })();
+
+      // Level: prefer surrounding group id (group-basic / dance-basic), fallback to #classes
+      let level = 'basic';
+      if (group && group.id){
+        level = group.id.replace(/^group-/, '').replace(/^dance-/, '');
+      } else if (section) {
+        level = section.getAttribute('data-level') || 'basic';
+      }
+
+      // Plan: from data-card or infer from title's i18n key
       const plan = (card.getAttribute('data-card') || (function(){
         const h3 = card.querySelector('h3');
         const key = (h3 && h3.getAttribute('data-i18n')) || '';
@@ -48,6 +63,7 @@ function installPriceCardPopovers(){
         if (key.includes('.full.')) return 'full';
         return 'single';
       })());
+
       const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
       const map = (strings[lang] || {});
       const popKey = `popover.${category}.${level}.${plan}`;
@@ -76,14 +92,45 @@ function installPriceCardPopovers(){
         if (newUl.childElementCount) sheet.appendChild(newUl);
       }
 
-      // Title = card title text
+      // Title = card title text (without the ℹ️ button)
       const titleEl = dlg.querySelector('h3');
-      titleEl.textContent = (h3.textContent || '').trim();
+      const titleClone = h3.cloneNode(true);
+      titleClone.querySelector('.card-info-btn')?.remove();
+      titleEl.textContent = (titleClone.textContent || '').trim();
 
       try{ dlg.showModal(); }catch{ dlg.show(); }
     };
   });
 }
+
+// --- Desktop vs Mobile label for price-card info buttons ---
+function setCardInfoTriggerLabel(btn){
+  const isDesktop = window.matchMedia('(min-width: 901px)').matches;
+  if (isDesktop){
+    btn.classList.add('card-info--text');
+    // btn.innerHTML = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>Details</span>';
+    const label = document.documentElement.lang === 'es' ? 'Incluye' : 'Includes';
+    btn.innerHTML = `<span class="deal-pill">${label}</span>`;
+    btn.setAttribute('title','View details');
+    btn.setAttribute('aria-label','View details');
+  } else {
+    btn.classList.remove('card-info--text');
+    btn.textContent = 'ℹ️';
+    btn.setAttribute('title', document.documentElement.lang==='es' ? '¿Qué incluye?' : "What's included?");
+    btn.setAttribute('aria-label', btn.title);
+  }
+}
+
+// Keep labels in sync when resizing
+(function(){
+  let to; 
+  window.addEventListener('resize', ()=>{
+    clearTimeout(to);
+    to = setTimeout(()=>{
+      document.querySelectorAll('.price-card .card-info-btn').forEach(setCardInfoTriggerLabel);
+    }, 120);
+  });
+})();
 // Language toggle (EN/ES), year stamp, small UX niceties
 const year = document.getElementById('year');
 if (year) year.textContent = new Date().getFullYear();
@@ -107,18 +154,44 @@ if (document.readyState === 'loading'){
 
 const strings = {
   en: {
-    "popover.dance.basic.full": "<ul>\n      <li>16 private classes, 1 hour each</li>\n      <li>By-rhythm distribution:</li>\n      <li>2 classes of sicá</li>\n      <li>4 classes of yubá</li>\n      <li>4 classes of cuembé</li>\n      <li>4 classes of holandé</li>\n      <li>Final class: review of all rhythms + introduction to a <em>piquete</em> and its variations as a bridge to the intermediate course</li>\n    </ul>",
+    // Popover content for percussion classes
+    "popover.percussion.basic.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All beginner rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.percussion.basic.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, or holandé)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.percussion.basic.full": "Includes:<ul>\n      <li>2 sicá classes</li>\n      <li>2 yubá classes</li>\n      <li>4 cuembé classes</li>\n      <li>6 holandé classes</li>\n      <li>1 class: review of all learned rhythms</li>\n      <li>1 class: focus on endurance and sound quality</li>\n    </ul>",
+
+    "popover.percussion.intermediate.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All intermediate rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.percussion.intermediate.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, holandé, or calindá)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.percussion.intermediate.full": "Includes:<ul>\n      <li>2 sicá classes</li>\n      <li>3 yubá classes</li>\n      <li>2 cuembé classes</li>\n      <li>2 holandé classes</li>\n      <li>5 calindá classes</li>\n      <li>1 class: review of all learned rhythms</li>\n      <li>1 class: focus on endurance and sound quality</li>\n    </ul>",
+
+    "popover.percussion.advanced.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All advanced rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.percussion.advanced.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, holandé, calindá, corvé, or seis corrido)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.percussion.advanced.full": "Includes:<ul>\n<li>6 corvé classes</li>\n      <li>6 seis corrido classes</li>\n      <li>2 classes: review of all learned rhythms</li>\n      <li>2 classes: focus on endurance and sound quality</li>\n    </ul>",
+
+    // Popover content for dance classes
+    "popover.dance.basic.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All beginner rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.dance.basic.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, or holandé)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.dance.basic.full": "Includes:<ul>\n      <li>2 sicá classes</li>\n      <li>4 yubá classes</li>\n      <li>4 cuembé classes</li>\n      <li>4 holandé classes</li>\n      <li>1 class: review of all learned rhythms</li>\n      <li>1 class: Introduction to a <em>piquete</em> and its variations as a transition to the intermediate course</li>\n    </ul>",
+
+    "popover.dance.intermediate.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All intermediate rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.dance.intermediate.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, holandé, or calindá)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.dance.intermediate.full": "<ul>Coming Soon</ul>",
+
+    "popover.dance.advanced.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All advanced rhythms available; contingent on proficiency evaluation</li></ul>",
+    "popover.dance.advanced.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, holandé, or calindá)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.dance.advanced.full": "<ul>Coming Soon</ul>",
+    // Navigation
     "nav.about":"About",
     "nav.classes":"Classes",
     "nav.workshops":"Workshops",
     "nav.faq":"FAQ",
     "nav.contact":"Contact",
-
+    // Hero section
     "hero.title":"Ancestral rhythm. Living tradition.",
     "hero.subtitle":"Private Bomba drumming lessons, community workshops, and culturally grounded education with commitment and discipline",
     "hero.cta1":"See classes",
     "hero.cta2":"Ask a question",
 
+    // About section
     "about.title":"What is Bámbula Studio?",
     "about.p1":"At Bámbula Studio LLC we understand Bomba not only as music and dance, but as an expression of memory, identity, and resistance. Our cultural work centers on:",
     "about.p2":"Teaching: Bomba classes and workshops for all ages and levels, where students learn traditional rhythms, songs, and dances.",
@@ -161,39 +234,40 @@ const strings = {
     "classes.group.intermediate.l7":"Energy dynamics (intro to tempo variations)",
 
     "classes.group.advanced.l1":"Advanced rudiments (combinations & long endurance)",
-    "classes.group.advanced.l2":"Rhythms: all above + seis corrido & corvé",
-    "classes.group.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l2":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l3":"Rhythms: all above + seis corrido & corvé",
     "classes.group.advanced.l4":"Maintain intensity & cadence for long stretches",
     "classes.group.advanced.l5":"Sing coros while complex buleo variations",
     "classes.group.advanced.l6":"Energy dynamics independent (execute tempo variations)",
     
-    "classes.title":"Private Lessons (Bomba)",
+    "classes.title":"Private One-on-One Lessons (Bomba)",
     "classes.subtitle":"Rooted instruction, disciplined growth. Personalized lessons for every level.",
     "classes.subtitle.percussion":"Buleo with Puerto Rican Bomba Drum",
     "classes.subtitle.dance":"Bomba Dance — From Foundations to Piquetes",
     "pricing.basic.title":"Single Class",
     "pricing.single.credit":"If you enroll in the Complete Course package within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
-    "pricing.basic.l1":"Topic of choice: fundamentals, rhythm review, or technique reinforcement",
-    "pricing.basic.l2":"No refunds. Absences without 48-hour notice cannot be rescheduled.",
+    "pricing.basic.l1":"Ideal for those who want to try or practice occasionally.",
+    "pricing.basic.l2":"1 hour private class",
+    "pricing.basic.l3":"Absences without 48-hour notice cannot be rescheduled.",
 
     // BASIC – Monthly card (title + note)
-    "pricing.basic.monthly.title":"4-Class Pack (30 days)",
+    "pricing.basic.monthly.title":"Basic Course",
     "pricing.basic.monthly.note":"($110/class)",
 
     // BASIC tier specific copies (match new_index.html)
-    "pricing.basic.monthly.l1":"4 private classes (1 hour each)",
-    "pricing.basic.monthly.l2":"Use within 30 days of purchase",
-    "pricing.basic.monthly.l3":"Practice recordings",
+    "pricing.basic.monthly.l1":"Perfect for building fundamentals and maintaining continuity.",
+    "pricing.basic.monthly.l2":"4 private sessions (1 hour each)",
+    "pricing.basic.monthly.l3":"Use within 30 days of purchase",
     "pricing.basic.monthly.l4":"Save 9%",
 
-    "pricing.basic.full.l1":"16 private classes (1 hour each)",
-    "pricing.basic.full.l2":"Use within 365 days of purchase",
-    "pricing.basic.full.l3":"Practice recordings",
+    "pricing.basic.full.l1":"Comprehensive program with progressive practice and personalized guidance",
+    "pricing.basic.full.l2":"16 private sessions (1 hour each)",
+    "pricing.basic.full.l3":"Use within 365 days of purchase",
     "pricing.basic.full.l4":"Save 16%",
 
     // BASIC – Complete card (title + note)
-    "pricing.basic.full.title":"Complete Course (16-Class Pack)",
+    "pricing.basic.full.title":"Complete Course",
     "pricing.basic.full.note":"($100/class)",
     
     // INTERMEDIATE – section titles for single/monthly/full cards
@@ -212,7 +286,7 @@ const strings = {
     // CLASSES – new packages
     "pricing.intermediate.title":"Intermediate",
     "pricing.intermediate.price4":"$459 ($115/class)",
-    "pricing.intermediate.price1":"$125 / hour",
+    "pricing.intermediate.price1":"$125",
     "pricing.intermediate.l1":"Intermediate rudiments (control & variations)",
     "pricing.intermediate.l2":"Buleo interaction with primo",
     "pricing.intermediate.l3":"Coordination & endurance drills",
@@ -241,7 +315,7 @@ const strings = {
     "pricing.advanced.price16_head":"$1,759 ($110/class)",
     "pricing.advanced.title":"Advanced",
     "pricing.advanced.price4":"$479 ($120/class)",
-    "pricing.advanced.price1":"$130 / hour",
+    "pricing.advanced.price1":"$130",
     "pricing.advanced.l1":"Advanced rudiments (combinations & long endurance)",
     "pricing.advanced.l2":"Rhythms: all above + seis corrido & corvé",
     "pricing.advanced.l3":"Deep variations of sicá, yubá, cuembé, holandé, calindá",
@@ -264,14 +338,14 @@ const strings = {
     "pricing.advanced.full.l4":"Save 15%",
 
     // BASIC price heads for shared grid
-    "pricing.basic.price1":"$120 / hour",
+    "pricing.basic.price1":"$120",
     "pricing.basic.price4":"$439 ($110/class)",
     "pricing.basic.price16_head":"$1,599 ($100/class)",
 
     // POLICIES
     "policies.title":"Policies",
     "policies.transport":"Transportation: if class is offsite, a $0.65/mile round-trip fee applies.",
-    "policies.expire":"Expiration: all packages expire; unused classes are non-refundable and non-transferable.",
+    "policies.expire":"Expiration: all packages expire; classes are non-refundable and non-transferable.",
     "policies.record":"Recordings: recording the teacher during class isn’t allowed. Specific educational recordings can be coordinated at the end of class.",
 
     "classes.note":"We do an initial assessment to confirm appropriate level.",
@@ -323,13 +397,13 @@ const strings = {
     "dance.group.advanced.l2":"Complex variations across rhythms",
     "dance.group.advanced.l3":"Performance preparation and stage presence",
     "dance.group.advanced.l4":"Personal vocabulary and expression",
-    "pricing.dance.basic.price1":"$140 / hour",
+    "pricing.dance.basic.price1":"$140",
     "pricing.dance.basic.price4":"$519 ($130/class)",
     "pricing.dance.basic.price16_head":"$1,919 ($120/class)",
-    "pricing.dance.intermediate.price1":"$145 / hour",
+    "pricing.dance.intermediate.price1":"$145",
     "pricing.dance.intermediate.price4":"$539 ($135/class)",
     "pricing.dance.intermediate.price16_head":"$1,999 ($125/class)",
-    "pricing.dance.advanced.price1":"$150 / hour",
+    "pricing.dance.advanced.price1":"$150",
     "pricing.dance.advanced.price4":"$559 ($140/class)",
     "pricing.dance.advanced.price16_head":"$2,079 ($130/class)",
     "pricing.dance.basic.monthly.l4":"Save 7%",
@@ -352,7 +426,30 @@ const strings = {
   },
 
   es: {
-    "popover.dance.basic.full": "<ul>\n      <li>16 clases privadas de 1 hora cada una</li>\n      <li>Distribución por ritmo:</li>\n      <li>2 clases de sicá</li>\n      <li>4 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>4 clases de holandé</li>\n      <li>1 clase final: repaso de todos los ritmos aprendidos + introducción a un piquete y sus variaciones como antesala al curso intermedio</li>\n    </ul>",
+    "popover.percussion.basic.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
+    "popover.percussion.basic.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé u holandé)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.basic.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>2 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>6 clases de holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
+
+    "popover.percussion.intermediate.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
+    "popover.percussion.intermediate.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé, holandé o calindá)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.intermediate.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>3 clases de yubá</li>\n      <li>2 clases de cuembé</li>\n      <li>2 clases de holandé</li>\n      <li>5 clases de calindá</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
+
+    "popover.percussion.advanced.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos avanzados disponibles; sujeto a evaluación</li></ul>",
+    "popover.percussion.advanced.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé, holandé, calindá, corvé o seis corrido)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.advanced.full": "Incluye:<ul>\n<li>6 clases de corvé</li>\n      <li>6 clases de seis corrido</li>\n      <li>2 clases: revisión de todos los ritmos aprendidos</li>\n      <li>2 clases: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
+
+    "popover.dance.basic.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
+    "popover.dance.basic.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé u holandé)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.basic.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>4 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>4 clases de holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: Introducción a un <em>piquete</em> y sus variaciones como transición al curso intermedio</li>\n    </ul>",
+
+    "popover.dance.intermediate.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos intermedios disponibles; sujeto a evaluación</li></ul>",
+    "popover.dance.intermediate.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé, holandé o calindá)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.intermediate.full": "<ul>Próximamente</ul>",
+
+    "popover.dance.advanced.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos avanzados disponibles; sujeto a evaluación</li></ul>",
+    "popover.dance.advanced.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé, holandé o calindá)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.advanced.full": "<ul>Próximamente</ul>",
+
     "nav.about":"Acerca",
     "nav.classes":"Clases",
     "nav.workshops":"Talleres",
@@ -406,8 +503,8 @@ const strings = {
 
     "classes.group.advanced":"Buleo Avanzado",
     "classes.group.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
-    "classes.group.advanced.l2":"Ritmos: todos los anteriores + seis corrido y corvé",
-    "classes.group.advanced.l3":"Variaciones de sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l2":"Variaciones de sicá, yubá, cuembé, holandé, calindá",
+    "classes.group.advanced.l3":"Ritmos: todos los anteriores + seis corrido y corvé",
     "classes.group.advanced.l4":"Mantener intensidad y cadencia por tiempos largos",
     "classes.group.advanced.l5":"Cantar coros mientras se bulea en variaciones complejas",
     "classes.group.advanced.l6":"Dinámica de energía independiente (ejecución de variaciones en tempo)",
@@ -416,29 +513,30 @@ const strings = {
     "classes.subtitle":"Enseñanza con raíz, crecimiento disciplinado. Lecciones personalizadas para todos los niveles.",
     "classes.subtitle.percussion":"Buleo con Barril de Bomba Puertorriqueña",
     "classes.subtitle.dance":"Baile de Bomba — De fundamentos a piquetes",
-    "pricing.basic.title":"Clase Individual",
+    "pricing.basic.title":"Clase Suelta",
     "pricing.single.credit":"Si te inscribes en el paquete Curso Completo dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
-    "pricing.perhour":"/ hora",
-    "pricing.basic.l1":"Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico",
-    "pricing.basic.l2":"No reembolsable. Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
+    "pricing.perhour":"/clase",
+    "pricing.basic.l1":"Ideal para quienes quieren probar o practicar de forma puntual.",
+    "pricing.basic.l2":"1 sesion privada (1 hora)",
+    "pricing.basic.l3":"Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     // BASIC (ES) – Mensual (título + nota)
-    "pricing.basic.monthly.title":"Paquete de 4 Clases (30 días)",
+    "pricing.basic.monthly.title":"Curso Basico",
     "pricing.basic.monthly.note":"($110/clase)",
 
     // BASIC (ES)
-    "pricing.basic.monthly.l1":"4 sesiones privadas (1 hora c/u)",
-    "pricing.basic.monthly.l2":"Expira en 30 días (desde la compra)",
-    "pricing.basic.monthly.l3":"Grabaciones de práctica",
+    "pricing.basic.monthly.l1":"Perfecto para afianzar fundamentos y tener continuidad",
+    "pricing.basic.monthly.l2":"4 sesiones privadas (1 hora c/u)",
+    "pricing.basic.monthly.l3":"Expira en 30 días (desde la compra)",
     "pricing.basic.monthly.l4":"Ahorra 9%",
 
-    "pricing.basic.full.l1":"16 sesiones privadas (1 hora c/u)",
-    "pricing.basic.full.l2":"Expira en 365 días (desde la compra)",
-    "pricing.basic.full.l3":"Resistencia y práctica personal",
+    "pricing.basic.full.l1":"Programa integral con práctica progresiva y acompañamiento personalizado",
+    "pricing.basic.full.l2":"16 sesiones privadas (1 hora c/u)",
+    "pricing.basic.full.l3":"Expira en 365 días (desde la compra)",
     "pricing.basic.full.l4":"Ahorra 16%",
 
     // BASIC (ES) – Completo (título + nota)
-    "pricing.basic.full.title":"Curso Completo (Paquete de 16 Clases)",
+    "pricing.basic.full.title":"Curso Completo",
     "pricing.basic.full.note":"($100/clase)",
     "pricing.cta":"Reservar",
 
@@ -452,7 +550,7 @@ const strings = {
 
     "pricing.intermediate.monthly.title":"Paquete de 4 Clases (30 días)",
     "pricing.intermediate.price4":"$459 ($115/clase)",
-    "pricing.intermediate.price1":"$125 / hora",
+    "pricing.intermediate.price1":"$125",
     "pricing.intermediate.full.title":"Curso Completo (Paquete de 16 Clases)",
     "pricing.intermediate.price16_head":"$1,679 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
@@ -466,7 +564,7 @@ const strings = {
     // INTERMEDIATE (ES) monthly/full lists
     "pricing.intermediate.monthly.l1":"4 sesiones privadas (1 hora c/u)",
     "pricing.intermediate.monthly.l2":"Expira en 30 días (desde la compra)",
-    "pricing.intermediate.monthly.l3":"Grabaciones de práctica",
+    "pricing.intermediate.monthly.l3":"Perfecto para afianzar el paso básico y tener continuidad",
     "pricing.intermediate.monthly.l4":"Ahorra 7%",
 
     "pricing.intermediate.full.l1":"16 sesiones privadas (1 hora c/u)",
@@ -483,7 +581,7 @@ const strings = {
 
     "pricing.advanced.monthly.title":"Paquete de 4 Clases (30 días)",
     "pricing.advanced.price4":"$479 ($120/clase)",
-    "pricing.advanced.price1":"$130 / hora",
+    "pricing.advanced.price1":"$130",
     "pricing.advanced.full.title":"Curso Completo (Paquete de 16 Clases)",
     "pricing.advanced.price16_head":"$1,759 ($110/clase)",
     "pricing.advanced.l1":"Rudimentos avanzados (combinaciones y resistencia prolongada)",
@@ -505,7 +603,7 @@ const strings = {
     "pricing.advanced.full.l4":"Ahorra 15%",
 
     // BASIC (ES) precios para grilla compartida
-    "pricing.basic.price1":"$120 / hora",
+    "pricing.basic.price1":"$120",
     "pricing.basic.price4":"$439 ($110/clase)",
     "pricing.basic.price16_head":"$1,599 ($100/clase)",
     
@@ -513,7 +611,7 @@ const strings = {
     // POLÍTICAS
     "policies.title":"Políticas",
     "policies.transport":"Transporte: si la clase se realiza afuera de Bámbula Studio, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
-    "policies.expire":"Vencimiento: todos los paquetes expiran; clases no usadas no son reembolsables ni transferibles.",
+    "policies.expire":"Vencimiento: todos los paquetes expiran; clases no son reembolsables ni transferibles.",
     "policies.record":"Grabaciones: no se permite grabar a la maestra durante la clase. Se pueden coordinar grabaciones educativas específicas al finalizar.",
     "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
 
@@ -566,13 +664,13 @@ const strings = {
     "dance.group.advanced.l2":"Variaciones complejas a través de los ritmos",
     "dance.group.advanced.l3":"Preparación escénica y presencia artística",
     "dance.group.advanced.l4":"Vocabulario personal y expresión",
-    "pricing.dance.basic.price1":"$140 / hora",
+    "pricing.dance.basic.price1":"$140",
     "pricing.dance.basic.price4":"$519 ($130/clase)",
     "pricing.dance.basic.price16_head":"$1,919 ($120/clase)",
-    "pricing.dance.intermediate.price1":"$145 / hora",
+    "pricing.dance.intermediate.price1":"$145",
     "pricing.dance.intermediate.price4":"$539 ($135/clase)",
     "pricing.dance.intermediate.price16_head":"$1,999 ($125/clase)",
-    "pricing.dance.advanced.price1":"$150 / hora",
+    "pricing.dance.advanced.price1":"$150",
     "pricing.dance.advanced.price4":"$559 ($140/clase)",
     "pricing.dance.advanced.price16_head":"$2,079 ($130/clase)",
     "pricing.dance.basic.monthly.l4":"Ahorra 7%",
@@ -599,7 +697,9 @@ const strings = {
 // Format: "category:level:plan" e.g., "percussion:basic:single" or "dance:basic:full"
 // Add/remove keys here to turn buttons off without touching HTML.
 window.bookingDisabled = new Set([
-  'percussion:basic:single',
+  // 'percussion:basic:single',
+  // 'percussion:basic:monthly',
+  // 'percussion:basic:full',
   'percussion:intermediate:single',
   'percussion:intermediate:monthly',
   'percussion:intermediate:full',
@@ -608,6 +708,7 @@ window.bookingDisabled = new Set([
   'percussion:advanced:full',
   'dance:basic:single',
   'dance:basic:monthly',
+  // 'dance:basic:full',
   'dance:intermediate:single',
   'dance:intermediate:monthly',
   'dance:intermediate:full',
@@ -625,14 +726,25 @@ function isOptionDisabled(category, level, plan){
 // script.js — replace the whole function with this
 function hideLevelBulletLists(){
   const isMobile = window.matchMedia('(max-width: 900px)').matches;
-  document.querySelectorAll('.class-group').forEach(group=>{
-    group.querySelectorAll(':scope > ul, :scope .syllabus').forEach(ul=>{
-      if (isMobile){
-        ul.setAttribute('hidden','');
-      } else {
-        ul.removeAttribute('hidden');
-      }
+
+  // 1) Only toggle lists INSIDE the Classes section
+  const classesRoot = document.getElementById('classes');
+  if (classesRoot){
+    classesRoot.querySelectorAll('.class-group').forEach(group=>{
+      group.querySelectorAll(':scope > ul, :scope .syllabus').forEach(ul=>{
+        if (isMobile){
+          ul.setAttribute('hidden','');
+        } else {
+          ul.removeAttribute('hidden');
+        }
+      });
     });
+  }
+
+  // 2) DEFENSIVE CLEANUP: ensure bullets OUTSIDE #classes are always visible.
+  //    This recovers from any previous code that may have hidden them.
+  document.querySelectorAll('section:not(#classes) ul[hidden], section:not(#classes) .syllabus[hidden]').forEach(el=>{
+    el.removeAttribute('hidden');
   });
 }
 
