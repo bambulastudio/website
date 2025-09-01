@@ -11,7 +11,6 @@
                 font-src 'self' https://fonts.gstatic.com;
                 script-src 'self' 'unsafe-inline';
                 connect-src 'self';
-                upgrade-insecure-requests;
                 object-src 'none';
                 base-uri 'self';
                 frame-ancestors 'self';
@@ -117,13 +116,13 @@
           <a href="#contact" class="btn btn--ghost" data-i18n="hero.cta2">Ask a question</a>
         </div>
       </div>
-      <!-- Decorative hero art -->
-      <div class="hero__art hero__art--image" aria-hidden="true">
-        <!-- Toggle: remove hero__art--image class above to return to shapes -->
-        <img class="art" style="--art-size: 100%;" src="assets/bambula_patterns.png" alt="" />
-        <!-- <div class="circle"></div>
-        <div class="drum"></div> -->
-      </div>
+      <div class="legibility-scrim"
+        style="--scrim-bg: rgba(255,255,255,.65); --scrim-radius:16px; margin-top:20px;">
+        <!-- Decorative hero art -->
+        <div class="hero__art hero__art--image" aria-hidden="true">
+          <img class="art" style="--art-size: 100%;" src="assets/bambula_patterns.png" alt="" />
+        </div>
+      </div>      
     </div>
   </section>
 
@@ -141,6 +140,7 @@
         </ul>
         <p data-i18n="about.p6"></p>
       </div>
+      
       <!-- Quick facts card -->
       <div class="card">
         <h3 data-i18n="about.quick">Quick facts</h3>
@@ -158,12 +158,16 @@
         <img src="assets/founder_pic.jpg" alt="Bámbula Studio owner portrait" style="width:100%;height:auto;border-radius:10px;" />
         <figcaption class="caption" data-i18n="about.owner.caption" data-i18n-html="true" style="margin-top:.5rem;color:var(--muted);font-size:.9rem;">Encuentro de Tambores 2022<br>San Juan, PR<br><a href='https://instagram.com/bambula_studio' target="_blank" rel="noopener noreferrer">@bambula_studio</a></figcaption>
       </figure>
-      <div class="about-owner__text">
-        <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
-        <p data-i18n="about.owner.p1"></p>
-        <p data-i18n="about.owner.p2"></p>
-        <p data-i18n="about.owner.p3"></p>
-        <p data-i18n="about.owner.p4"></p>
+
+      <div class="legibility-scrim"
+        style="--scrim-bg: rgba(255,255,255,.65); --scrim-radius:16px; margin-top:20px;">
+        <div class="about-owner__text">
+          <h3 class="subsection" data-i18n="about.owner.title">Meet the Owner/Founder and Creative Director</h3>
+          <p data-i18n="about.owner.p1"></p>
+          <p data-i18n="about.owner.p2"></p>
+          <p data-i18n="about.owner.p3"></p>
+          <p data-i18n="about.owner.p4"></p>
+        </div>
       </div>
     </div>
   </section>

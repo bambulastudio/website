@@ -24,7 +24,7 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 @media(min-width:900px){ .grid{grid-template-columns:1.2fr 1fr} }
 
 /* --- Header --- */
-.site-header{position:sticky;top:0;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #eee;z-index:10000;isolation:isolate}
+.site-header{position:sticky;top:0;z-index: 10;background:rgba(255,255,255,0.92);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid #eee;z-index:10000;isolation:isolate}
 .site-header .container{display:flex;align-items:center;justify-content:space-between;padding:2px 20px}
 .brand{display:flex;align-items:center;gap:.75rem;font-weight:800}
 .logo{height:84px;width:auto}
@@ -735,3 +735,177 @@ dialog.level-info .sheet li{
 .price-card:has(.btn.is-disabled) .card-info-btn{
   display: none;
 }
+
+/* textures design space */
+/*
+  How to use:
+  1) For a repeating pattern (SVG/PNG), add to <body>:
+       class="texture-host texture--pattern"
+     and put your asset at assets/texture.svg (or change --texture-url).
+
+  2) For a single full-bleed photo background, add to <body>:
+       class="texture-host texture--photo"
+     and put your image at assets/texture-photo.jpg (or change --photo-url).
+
+  You can also apply these classes to a specific section instead of <body>.
+*/
+
+:root{
+  /* Tweak globally if you like */
+  --texture-opacity: .5;
+  --texture-size: 200px 200px;           /* tile size for patterns */
+  --texture-url: url("assets/bambula_patterns.png");
+  --photo-url:   url("assets/barril_pretty.jpeg");
+}
+
+/* Base hook: any element that can host a texture layer */
+.texture-host{ position: relative; }
+.texture-host::before{
+  content: "";
+  position: fixed;          /* stays put while you scroll */
+  inset: 0;
+  pointer-events: none;     /* never blocks clicks */
+  z-index: 0;               /* sits behind your content */
+  opacity: var(--texture-opacity);
+}
+
+/* Mode: repeating pattern */
+.texture--pattern::before{
+  background:
+    /* ultra‑subtle readability tint, adjust or remove */
+    linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+    var(--texture-url);
+  background-repeat: repeat;
+  background-size: var(--texture-size);
+}
+
+/* Mode: single photo */
+.texture--photo::before{
+  background:
+    /* ultra‑subtle readability tint, adjust or remove */
+    linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+    var(--photo-url);
+  background-repeat: no-repeat;
+  background-size: cover;         /* fill the viewport */
+  background-position: center;    /* keep subject centered */
+  background-attachment: scroll;   /* tasteful parallax on desktop */
+}
+
+/* Mobile: avoid jank from fixed backgrounds */
+@media (max-width: 900px){
+  .texture--photo::before{ background-attachment: scroll; }
+}
+
+/* Legacy alias: keep existing class working (pattern mode) */
+body.with-texture{ position: relative; }
+body.with-texture::before{
+  content: "";
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  opacity: var(--texture-opacity);
+  background:
+    linear-gradient(rgba(255,255,255,0.02), rgba(255,255,255,0.02)),
+    var(--texture-url);
+  background-repeat: repeat;
+  background-size: var(--texture-size);
+}
+
+.card-info-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-top: 0.5rem; /* space under the title */
+}
+
+.card-info-btn .deal-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--mustard); /* your Bámbula mustard variable */
+  color: #000;
+}
+
+
+/* contrast for text from image */
+/* ABOUT: legibility scrim behind the left column text (no HTML changes) */
+#about .container{ position: relative; }
+#about .container > :first-child{
+  position: relative; 
+  z-index: 1;                  /* text above the scrim */
+}
+
+/* Soft white panel behind the text column */
+#about .container > :first-child::before{
+  content: "";
+  position: absolute;
+  inset: -10px -14px;          /* extends a bit around the text block */
+  background: rgba(255,255,255,0.65); /* adjust 0.65–0.9 to taste */
+  border-radius: 14px;
+  box-shadow: 0 10px 26px -18px rgba(0,0,0,.35);
+  z-index: -1;                 /* sits behind the text */
+}
+
+/* Mobile: tighten the margin so it fits nicely */
+@media (max-width: 900px){
+  #about .container > :first-child::before{
+    inset: -8px -10px;
+  }
+}
+
+/* Tiny heading shadow = extra clarity on busy spots (optional) */
+#about h2{ text-shadow: 0 1px 0 rgba(255,255,255,.45); }
+
+/* contrast for text from image */
+
+/* === Reusable legibility scrim utility =================================== */
+/* Add class="legibility-scrim" to any text block that sits on photos.       */
+.legibility-scrim{ position: relative; z-index: 1; }
+.legibility-scrim::before{
+  content: "";
+  position: absolute;
+  inset: var(--scrim-inset, -10px -14px);
+  background: var(--scrim-bg, rgba(255,255,255,0.65));
+  border-radius: var(--scrim-radius, 16px);
+  box-shadow: 0 10px 26px -18px rgba(0,0,0,.35);
+  z-index: -1; /* sits behind the text */
+}
+@media (max-width: 900px){
+  .legibility-scrim::before{ inset: var(--scrim-inset-mobile, -8px -10px); }
+}
+/* Optional darker variant for light-on-dark text blocks */
+.legibility-scrim--dark{ --scrim-bg: rgba(0,0,0,.45); color: #fff; }
+
+
+/* === Reusable legibility scrim utility =================================== */
+
+
+
+/* Align the scrim’s visual top with the image */
+#about .about-owner{
+  align-items: start;           /* grid items start-aligned */
+}
+#about .about-owner .about-owner__media{ align-self: start; }
+#about .about-owner .legibility-scrim{ align-self: start; }
+
+/* Kill the heading’s top margin inside the scrim so the box sits flush */
+#about .about-owner .legibility-scrim > *:first-child{
+  margin-top: 0 !important;
+}
+
+/* Optional: tighten the subsection heading specifically in this block */
+#about .about-owner .about-owner__text .subsection{
+  margin-top: .25rem;           /* was larger globally */
+}
+
+/* (Nice-to-have) remove trailing gap at the bottom of the scrim */
+#about .about-owner .legibility-scrim > *:last-child{
+  margin-bottom: 0;
+}
+/* ======================================================================== */
+
+
+/* // Ensure main content paints above the overlay */
+.site-header{ position: sticky; top: 0; z-index: 10; }
+main, .section, footer{ position: relative; z-index: 1; } /* ok */
+

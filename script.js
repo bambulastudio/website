@@ -1,3 +1,25 @@
+// --- Persistent texture toggle ---------------------------------------------
+(function textureBoot(){
+  const KEY = 'bambula_texture_mode'; // 'off' | 'pattern' | 'photo'
+  const mode = localStorage.getItem(KEY) || 'pattern'; // default ON with pattern
+  apply(mode);
+
+  function apply(mode){
+    document.body.classList.remove('texture-host', 'texture--pattern', 'texture--photo');
+    if (mode === 'pattern' || mode === 'photo') {
+      document.body.classList.add('texture-host', mode === 'photo' ? 'texture--photo' : 'texture--pattern');
+    }
+  }
+
+  // Expose a tiny API for quick toggling
+  window.texture = {
+    set(next){ localStorage.setItem(KEY, next); apply(next); },
+    get(){ return localStorage.getItem(KEY) || 'off'; }
+  };
+})();
+
+texture.set('photo'); // or 'photo' or 'off'
+
 // --- Pricing card popover: show each card's bullet list in a dialog (mobile/desktop) ---
 function installPriceCardPopovers(){
   // Ensure the shared dialog from installLevelInfoPopovers() exists and is styled
@@ -23,16 +45,25 @@ function installPriceCardPopovers(){
   document.querySelectorAll('.price-card').forEach(card => {
     const h3 = card.querySelector(':scope > h3');
     if (!h3) return;
-    let btn = h3.querySelector('.card-info-btn');
+    // let btn = h3.querySelector('.card-info-btn');
+    // if (!btn){
+    //   btn = document.createElement('button');
+    //   btn.className = 'card-info-btn';
+    //   btn.type = 'button';
+    //   btn.setAttribute('aria-haspopup','dialog');
+    //   h3.appendChild(btn);
+    //   setCardInfoTriggerLabel(btn); // ← this sets Includes (desktop) or ℹ️ (mobile)
+    // }
+    let btn = card.querySelector('.card-info-btn');
     if (!btn){
       btn = document.createElement('button');
       btn.className = 'card-info-btn';
       btn.type = 'button';
       btn.setAttribute('aria-haspopup','dialog');
-      h3.appendChild(btn);
-      setCardInfoTriggerLabel(btn); // ← this sets Includes (desktop) or ℹ️ (mobile)
+      // append right after the <h3>, not inside
+      h3.insertAdjacentElement('afterend', btn);
+      setCardInfoTriggerLabel(btn);
     }
-    
     // (Re)bind click handler – safe to reassign on re-renders
     btn.onclick = ()=>{
       const sheet = dlg.querySelector('.sheet');
@@ -115,11 +146,29 @@ function setCardInfoTriggerLabel(btn){
     btn.setAttribute('aria-label','View details');
   } else {
     btn.classList.remove('card-info--text');
-    btn.textContent = 'ℹ️';
+    btn.textContent = '✍🏾';
     btn.setAttribute('title', document.documentElement.lang==='es' ? '¿Qué incluye?' : "What's included?");
     btn.setAttribute('aria-label', btn.title);
   }
 }
+// // --- Desktop vs Mobile label for price-card info buttons ---
+// function setCardInfoTriggerLabel(btn){
+//   const isDesktop = window.matchMedia('(min-width: 901px)').matches;
+
+//   // Always render the pill style, not the emoji
+//   const label = document.documentElement.lang === 'es' ? 'Incluye' : 'Includes';
+//   btn.innerHTML = `<span class="deal-pill">${label}</span>`;
+
+//   if (isDesktop){
+//     btn.classList.add('card-info--pill');
+//     btn.setAttribute('title', document.documentElement.lang==='es' ? 'Ver detalles' : 'View details');
+//     btn.setAttribute('aria-label', btn.title);
+//   } else {
+//     btn.classList.remove('card-info--pill');
+//     btn.setAttribute('title', document.documentElement.lang==='es' ? '¿Qué incluye?' : "What's included?");
+//     btn.setAttribute('aria-label', btn.title);
+//   }
+// }
 
 // Keep labels in sync when resizing
 (function(){
@@ -1759,7 +1808,7 @@ function installLevelInfoPopovers(){
       btn.type = 'button';
       btn.setAttribute('aria-haspopup','dialog');
       btn.setAttribute('title', currentLang()==='es' ? 'Ver contenido' : 'View contents');
-      btn.innerText = 'ℹ️';
+      btn.innerText = '✍🏾';
       head.appendChild(btn);
     }
     // Click opens dialog with current category + this level syllabus
