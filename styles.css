@@ -141,7 +141,28 @@ h3{margin:0 0 8px 0}
   border-radius: 999px;
   display: inline-block;
 }
+
 .price-card .note .note-line{ margin-top: .35rem; }
+
+/* Paused state microcopy under disabled buttons */
+.price-card .note .disabled-msg{
+  display: block;
+  margin-top: .35rem;   /* match other note spacing */
+  font-size: .9rem;     /* keep it compact */
+  color: var(--muted);  /* subtle tone */
+  line-height: 1.4;
+}
+.price-card .note .disabled-msg a{
+  color: inherit;                 /* blend with text */
+  text-decoration: underline;     /* clear affordance */
+  text-underline-offset: 2px;
+}
+.price-card .note .disabled-msg a:hover{
+  color: var(--mustard);          /* brand hover */
+}
+
+/* Ensure a tiny gap between button and note when disabled */
+.price-card:has(.btn.is-disabled) .note{ margin-top: .5rem; }
 
 /* Payment options layout on book.html */
 .pay-grid{ display: grid; gap: 12px; grid-template-columns: 1fr; }

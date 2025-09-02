@@ -10,7 +10,6 @@
                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                 font-src 'self' https://fonts.gstatic.com;
                 script-src 'self' 'unsafe-inline';
-                upgrade-insecure-requests;
                 connect-src 'self';
                 object-src 'none';
                 base-uri 'self';
@@ -584,5 +583,128 @@
   </div>
 </footer>
 
+</script>
+<script>
+(function(){
+  // --- Helpers ---
+  function getParamsFromHash(){
+    var hash = window.location.hash || "";
+    var qIndex = hash.indexOf("?");
+    if (qIndex === -1) return new URLSearchParams();
+    return new URLSearchParams(hash.slice(qIndex + 1));
+  }
+  function encode(s){ return encodeURIComponent(s || ""); }
+  function txt(el){ return (el && (el.textContent || el.innerText || "").trim()) || ""; }
+
+  // --- 1) Prefill Contact Form from #contact?reason=..&class=..&lang=.. ---
+  function prefillContactForm(){
+    var params = getParamsFromHash();
+    if (!params || params.size === 0) return;
+
+    var contactSection = document.querySelector('#contact');
+    if (!contactSection) return;
+
+    var form = contactSection.querySelector('form');
+    if (!form) return;
+
+    var lang  = params.get('lang') || document.documentElement.lang || 'en';
+    var klass = params.get('class') || '';
+
+    // Formspree uses _subject (hidden). We'll set it dynamically.
+    var subjectField = form.querySelector("[name='_subject']");
+    var msgField     = form.querySelector("textarea[name='message']");
+
+    var subjEN = 'Waitlist request — ' + (klass || 'Bámbula Studio');
+    var subjES = 'Solicitud de lista de espera — ' + (klass || 'Bámbula Studio');
+    var bodyEN = "Hello Bámbula Studio,\n\nI'd like to join the waitlist for: " + (klass || '—') + ".\nMy name is ______ and I'm available ______.\n\nThank you!";
+    var bodyES = "Hola Bámbula Studio,\n\nQuisiera unirme a la lista de espera para: " + (klass || '—') + ".\nMi nombre es ______ y estoy disponible ______.\n\n¡Gracias!";
+
+    if (subjectField) subjectField.value = (lang.startsWith('es') ? subjES : subjEN);
+    if (msgField)     msgField.value     = (lang.startsWith('es') ? bodyES : bodyEN);
+
+    // Smooth scroll if the hash targets #contact
+    if ((window.location.hash || '').startsWith('#contact')) {
+      contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // --- 2) Inject/refresh microcopy under disabled buttons (idempotent) ---
+  function injectPausedMicrocopy(){
+    // Remove previously injected lines to avoid duplicates or wrong language
+    document.querySelectorAll('.price-card .note .disabled-msg').forEach(function(n){ n.remove(); });
+
+    var lang = (document.documentElement.getAttribute('lang') || 'en').toLowerCase();
+    var isES = lang.startsWith('es');
+    var cards = document.querySelectorAll('.price-card');
+    if (!cards.length) return;
+
+    cards.forEach(function(card){
+      var btn = card.querySelector('.btn.is-disabled');
+      if (!btn) return; // only when paused
+
+      var note = card.querySelector('.note');
+      if (!note) return;
+
+      var titleEl = card.querySelector('h3');
+      var title = (titleEl && (titleEl.textContent || titleEl.innerText || '').trim()) || 'Class';
+
+      var paused   = isES ? 'Actualmente en pausa' : 'Currently paused';
+      var joinText = isES ? 'únete a la lista de espera' : 'join the waitlist';
+      var href = '#contact?reason=' + (isES ? 'lista_espera' : 'waitlist') + '&class=' + encodeURIComponent(title) + '&lang=' + (isES ? 'es' : 'en');
+
+      var line = document.createElement('span');
+      line.className = 'disabled-msg';
+      line.innerHTML = paused + '—<a href="' + href + '">' + joinText + '</a>.';
+      note.appendChild(line);
+    });
+  }
+
+  // Fire on load
+  document.addEventListener('DOMContentLoaded', function(){
+    prefillContactForm();
+    injectPausedMicrocopy();
+  });
+
+  // Re-render microcopy whenever the page language changes
+  var htmlEl = document.documentElement;
+  try {
+    var langObserver = new MutationObserver(function(muts){
+      muts.forEach(function(m){
+        if (m.type === 'attributes' && m.attributeName === 'lang') {
+          // Allow any i18n text swaps to finish first
+          setTimeout(injectPausedMicrocopy, 0);
+        }
+      });
+    });
+    langObserver.observe(htmlEl, { attributes: true, attributeFilter: ['lang'] });
+  } catch (e) { /* silently ignore if not supported */ }
+
+  // If there is a language toggle button, refresh after clicks as well
+  var langToggle = document.getElementById('langToggle');
+  if (langToggle) {
+    langToggle.addEventListener('click', function(){
+      // Your i18n code likely flips <html lang> asynchronously; refresh shortly after
+      setTimeout(injectPausedMicrocopy, 50);
+    });
+  }
+
+  // If your pricing UI swaps tabs or plans, reapply microcopy after those interactions
+  document.addEventListener('click', function(ev){
+    var t = ev.target;
+    if (!t) return;
+    // Refresh when user changes category/level/plan tabs
+    if (t.closest && (t.closest('.plan-switch') || t.closest('.level-switch') || t.closest('.category-switch'))) {
+      setTimeout(injectPausedMicrocopy, 0);
+    }
+  }, true);
+
+  // Also handle when hash changes (user navigates back to #contact link)
+  window.addEventListener('hashchange', function(){
+    if ((window.location.hash || '').startsWith('#contact')) {
+      prefillContactForm();
+    }
+  });
+})();
+</script>
 </body>
 </html>
