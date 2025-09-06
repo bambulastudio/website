@@ -205,7 +205,7 @@ const strings = {
   en: {
     // Popover content for percussion classes
     "popover.percussion.basic.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All beginner rhythms available; contingent on proficiency evaluation</li></ul>",
-    "popover.percussion.basic.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, or holandé)</li>\n      <li>1 class: review of all learned rhythms</li>\n    </ul>",
+    "popover.percussion.basic.monthly": "Includes:<ul>\n      <li>3 classes of a beginner rhythm (to choose from sicá, yubá, cuembé, or holandé)</li>\n      <li>1 class: review</li>\n    </ul>",
     "popover.percussion.basic.full": "Includes:<ul>\n      <li>2 sicá classes</li>\n      <li>2 yubá classes</li>\n      <li>4 cuembé classes</li>\n      <li>6 holandé classes</li>\n      <li>1 class: review of all learned rhythms</li>\n      <li>1 class: focus on endurance and sound quality</li>\n    </ul>",
 
     "popover.percussion.intermediate.single": "Includes:<ul><li>Topic of choice: fundamentals, rhythm review, or technique reinforcement</li>\n      <li>All intermediate rhythms available; contingent on proficiency evaluation</li></ul>",
@@ -476,7 +476,7 @@ const strings = {
 
   es: {
     "popover.percussion.basic.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
-    "popover.percussion.basic.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé u holandé)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.basic.monthly": "Incluye:<ul>\n      <li>3 clases de un ritmo básico (a elegir entre sicá, yubá, cuembé u holandé)</li>\n      <li>1 clase: repaso</li>\n    </ul>",
     "popover.percussion.basic.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>2 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>6 clases de holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
 
     "popover.percussion.intermediate.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
