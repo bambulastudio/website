@@ -476,27 +476,27 @@ const strings = {
 
   es: {
     "popover.percussion.basic.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
-    "popover.percussion.basic.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé u holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.basic.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé u holandé (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.percussion.basic.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>2 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>6 clases de holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
 
     "popover.percussion.intermediate.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
-    "popover.percussion.intermediate.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.intermediate.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.percussion.intermediate.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>3 clases de yubá</li>\n      <li>2 clases de cuembé</li>\n      <li>2 clases de holandé</li>\n      <li>5 clases de calindá</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
 
     "popover.percussion.advanced.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos avanzados disponibles; sujeto a evaluación</li></ul>",
-    "popover.percussion.advanced.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé, calindá, corvé o seis corrido</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.percussion.advanced.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé, calindá, corvé o seis corrido (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.percussion.advanced.full": "Incluye:<ul>\n<li>6 clases de corvé</li>\n      <li>6 clases de seis corrido</li>\n      <li>2 clases: revisión de todos los ritmos aprendidos</li>\n      <li>2 clases: enfoque en la resistencia y la calidad del sonido</li>\n    </ul>",
 
     "popover.dance.basic.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos básicos disponibles; sujeto a evaluación</li></ul>",
-    "popover.dance.basic.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé u holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.basic.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé u holandé (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.dance.basic.full": "Incluye:<ul>\n      <li>2 clases de sicá</li>\n      <li>4 clases de yubá</li>\n      <li>4 clases de cuembé</li>\n      <li>4 clases de holandé</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n      <li>1 clase: Introducción a un <em>piquete</em> y sus variaciones como transición al curso intermedio</li>\n    </ul>",
 
     "popover.dance.intermediate.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos intermedios disponibles; sujeto a evaluación</li></ul>",
-    "popover.dance.intermediate.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.intermediate.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.dance.intermediate.full": "<ul>Próximamente</ul>",
 
     "popover.dance.advanced.single": "Incluye:<ul>\n      <li>Tema a elección: fundamentos, repaso de ritmos o refuerzo técnico</li>\n        <li>Todos los ritmos avanzados disponibles; sujeto a evaluación</li></ul>",
-    "popover.dance.advanced.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
+    "popover.dance.advanced.monthly": "Incluye:<ul>\n      <li>3 horas contacto de sicá, yubá, cuembé, holandé o calindá (escoge uno)</li>\n      <li>1 clase: revisión de todos los ritmos aprendidos</li>\n    </ul>",
     "popover.dance.advanced.full": "<ul>Próximamente</ul>",
 
     "nav.about":"Acerca",
