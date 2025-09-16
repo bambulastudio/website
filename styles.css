@@ -161,8 +161,8 @@ h3{margin:0 0 8px 0}
   color: var(--mustard);          /* brand hover */
 }
 
-/* Ensure a tiny gap between button and note when disabled */
-.price-card:has(.btn.is-disabled) .note{ margin-top: .5rem; }
+/* Ensure a tiny gap between button and note when waitlist CTA is shown */
+.price-card:has(.btn.is-waitlist) .note{ margin-top: .5rem; }
 
 /* Payment options layout on book.html */
 .pay-grid{ display: grid; gap: 12px; grid-template-columns: 1fr; }
@@ -418,23 +418,21 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   #classes .class-group .group-head{ top: calc(var(--header-offset) + 56px); }
 }
 
-/* --- Disabled booking buttons (kill-switch) ------------------------------ */
-.price-card .btn.is-disabled{
-  opacity: .5;
-  cursor: not-allowed;
-  pointer-events: none; /* double safety */
-  filter: grayscale(.15);
-  box-shadow: none !important;
-  transform: none !important; /* cancel any hover bump */
+/* --- Waitlist state for booking buttons --------------------------------- */
+.price-card .btn.is-waitlist{
+  background: transparent;
+  color: var(--fg);
+  border-style: dashed;
+  box-shadow: none;
 }
-/* prevent hover/active recolor */
-.price-card .btn.is-disabled:hover,
-.price-card .btn.is-disabled:active,
-.price-card .btn.is-disabled:focus{
-  background: inherit;
+.price-card .btn.is-waitlist:hover,
+.price-card .btn.is-waitlist:active,
+.price-card .btn.is-waitlist:focus{
+  background: var(--mustard);
+  color: #000;
 }
 
-/* small pill under disabled buttons */
+/* small pill under waitlisted buttons */
 .price-card .note .disabled-pill{
   display:inline-block;
   font-size:12px;
@@ -456,9 +454,9 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   }
 }
 
-/* Optional: subtle corner ribbon on cards with a disabled button */
-.price-card:has(.btn.is-disabled)::after{
-  content:"Paused";
+/* Optional: subtle corner ribbon on cards with a waitlist button */
+.price-card:has(.btn.is-waitlist)::after{
+  content:"Waitlist";
   position:absolute;
   top:10px;
   right:-28px;
@@ -748,12 +746,12 @@ dialog.level-info .sheet li{
 }
 
 /* raise ribbon above corner UI */
-.price-card:has(.btn.is-disabled)::after{
+.price-card:has(.btn.is-waitlist)::after{
   z-index: 5;
 }
 
-/* Hide the top-right info trigger on paused cards */
-.price-card:has(.btn.is-disabled) .card-info-btn{
+/* Hide the top-right info trigger on waitlisted cards */
+.price-card:has(.btn.is-waitlist) .card-info-btn{
   display: none;
 }
 
@@ -929,4 +927,3 @@ body.with-texture::before{
 /* // Ensure main content paints above the overlay */
 .site-header{ position: sticky; top: 0; z-index: 10; }
 main, .section, footer{ position: relative; z-index: 1; } /* ok */
-

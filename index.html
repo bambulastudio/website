@@ -692,7 +692,7 @@
     if (!cards.length) return;
 
     cards.forEach(function(card){
-      var btn = card.querySelector('.btn.is-disabled');
+      var btn = card.querySelector('.btn.is-waitlist');
       if (!btn) return; // only when paused
 
       var note = card.querySelector('.note');
@@ -701,9 +701,9 @@
       var titleEl = card.querySelector('h3');
       var title = (titleEl && (titleEl.textContent || titleEl.innerText || '').trim()) || 'Class';
 
-      var paused   = isES ? 'Actualmente en pausa' : 'Currently paused';
-      var joinText = isES ? 'únete a la lista de espera' : 'join the waitlist';
-      var href = '#contact?reason=' + (isES ? 'lista_espera' : 'waitlist') + '&class=' + encodeURIComponent(title) + '&lang=' + (isES ? 'es' : 'en');
+      var paused   = isES ? 'Actualmente en lista de espera' : 'Currently waitlisting';
+      var joinText = isES ? 'ir a la lista de espera' : 'go to the waitlist';
+      var href = '#waitlist';
 
       var line = document.createElement('span');
       line.className = 'disabled-msg';

@@ -825,40 +825,53 @@ function decorateBookButtons(){
     const plan = inferPlanFromCard(card);
     const disabled = isOptionDisabled(category, level, plan);
     if (disabled){
-      // Accessibility + visuals
-      btn.setAttribute('aria-disabled','true');
-      btn.classList.add('is-disabled');
-      btn.style.pointerEvents = 'none';
-
-      // Tooltip + visible label (bilingual)
-      const unavailable = (document.documentElement.lang === 'es')
-        ? 'No disponible temporalmente'
-        : 'Temporarily unavailable';
-
-      // Preserve original visible text once
+      // Preserve original visible text/href so we can restore later
       if (!btn.dataset.originalText){
         btn.dataset.originalText = (btn.textContent || '').trim();
       }
+      if (!btn.dataset.originalHref){
+        btn.dataset.originalHref = btn.getAttribute('href') || '';
+      }
 
-      // Update both hover title and visible text
-      btn.title = unavailable;
-      btn.setAttribute('aria-label', unavailable);
-      btn.textContent = unavailable;
-    } else {
-      // Restore interactive state
+      const waitlistLabel = (document.documentElement.lang === 'es')
+        ? 'Únete a la lista de espera'
+        : 'Join Waitlist';
+      const waitlistTitle = (document.documentElement.lang === 'es')
+        ? 'Únete a la lista de espera'
+        : 'Join the waitlist';
+
+      btn.textContent = waitlistLabel;
+      btn.setAttribute('href', '#waitlist');
+      btn.title = waitlistTitle;
+      btn.setAttribute('aria-label', waitlistTitle);
+
+      // Ensure the button behaves like a normal link
       btn.removeAttribute('aria-disabled');
-      btn.classList.remove('is-disabled');
       btn.style.pointerEvents = '';
-
+      btn.classList.remove('is-disabled');
+      btn.classList.add('is-waitlist');
+    } else {
       // Restore original label if we changed it before
       if (btn.dataset.originalText){
         btn.textContent = btn.dataset.originalText;
         delete btn.dataset.originalText;
       }
+      if (btn.dataset.originalHref){
+        const originalHref = btn.dataset.originalHref;
+        if (originalHref){
+          btn.setAttribute('href', originalHref);
+        } else {
+          btn.removeAttribute('href');
+        }
+        delete btn.dataset.originalHref;
+      }
 
-      // Clean up tooltip/aria label
       btn.removeAttribute('title');
       btn.removeAttribute('aria-label');
+      btn.removeAttribute('aria-disabled');
+      btn.style.pointerEvents = '';
+      btn.classList.remove('is-disabled');
+      btn.classList.remove('is-waitlist');
     }
   });
 }
@@ -1584,6 +1597,11 @@ EN: Clicking a booking button pre-fills the Contact message with the chosen pack
     if (!(target instanceof Element)) return;
     const btn = target.closest('.price-card .btn');
     if (!btn) return;
+
+    // Waitlist buttons should bypass booking prefills and guard logic
+    if (btn.classList.contains('is-waitlist')){
+      return;
+    }
     // Kill-switch guard: block disabled options before any navigation/prefill
     (function(){
       try{
@@ -1834,4 +1852,3 @@ function installLevelInfoPopovers(){
     };
   });
 }
-
