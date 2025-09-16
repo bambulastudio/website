@@ -76,7 +76,7 @@
   <!-- JS (non-blocking) -->
   <script src="script.js" defer></script>
 </head>
-<body data-hide-workshops="true" data-booking="book">
+<body data-booking="book">
 <!-- ===== Site Header ===== -->
 <header class="site-header">
   <div class="container">
@@ -477,18 +477,26 @@
   <!-- ===== Workshops Section ===== -->
   <section id="workshops" class="section">
     <div class="container grid">
+      <div class="legibility-scrim"
+        style="--scrim-bg: rgba(255,255,255,.45); --scrim-radius:16px; margin-top:0px;">
       <div>
-        <h2 data-i18n="workshops.title">Group Workshops</h2>
-        <p data-i18n="workshops.p1">For 3+ people: intro to Bomba (buleo basics), rhythm family (sicá, yubá, cuembé, holandé), and cultural context. Priced at $60 per person per hour.</p>
-        <p data-i18n="workshops.p2">We also offer campus talks and chapel services. Typical budget: travel & lodging up to $2,500 + $2,000 honorarium.</p>
+        <h2 data-i18n="workshops.title">Institutional Workshops</h2>
+        <p class="lead" data-i18n="workshops.p1">Programs for universities, colleges, and institutions: lecture-demonstrations, hands-on residencies, and culturally grounded talks in Puerto Rican Bomba.</p>
+        <p data-i18n="workshops.p2">Ideal for music, dance, Latinx/Caribbean studies, cultural competency trainings, chapels, and cultural initiatives. Content adapts to course outcomes and audience level.</p>
+        <p>
+          <a href="#contact?reason=workshop&class=Institutional%20Workshop" class="btn" data-i18n="workshops.cta">Inquire for dates</a>
+        </p>
+      </div>
       </div>
       <!-- Workshops includes card -->
       <div class="card">
-        <h3 data-i18n="workshops.includes">Includes</h3>
+        <h3 data-i18n="workshops.includes">Sample Outcomes</h3>
         <ul>
-          <li data-i18n="workshops.i1">All-level friendly</li>
-          <li data-i18n="workshops.i2">Call-and-response practice</li>
-          <li data-i18n="workshops.i3">Culture & history</li>
+          <li data-i18n="workshops.i1">Lecture-demo: history, rhythm family (sicá, yubá, cuembé, holandé), call-and-response</li>
+          <li data-i18n="workshops.i2">Hands-on: basic step/paseo, ensemble coordination, cultural context</li>
+          <li data-i18n="workshops.i3">Residency options: multi-day modules, culminating share or performance</li>
+          <li data-i18n="workshops.i4">Audience: students, faculty, and community partners</li>
+          <li data-i18n="workshops.i5">Logistics: on-site space, sound, and travel coordination</li>
         </ul>
       </div>
     </div>
@@ -548,7 +556,7 @@
       <div class="legibility-scrim" style="--scrim-bg: rgba(255,255,255,.65); --scrim-radius:16px; margin-top:20px;">
       <h2 style="margin:0 0 .5rem">Waitlist (DFW, Central Time)</h2>
       <p style="margin:0 0 1rem">
-        Share your availability and interests. When a time slot reaches quorum, I’ll email you with dates and next steps. No payment now—just interest.
+        Share your availability and interests. When a time slot reaches quorum, We’ll email you with dates and next steps. No payment now—just interest.
       </p>
 
       <!-- Waitlist (Airtable) -->
