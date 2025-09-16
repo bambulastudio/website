@@ -6,11 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta http-equiv="Content-Security-Policy"
         content="default-src 'self';
-                img-src 'self' data:;
+                img-src 'self' data: https://i.ytimg.com https://*.cdninstagram.com https://*.fbcdn.net;
                 style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
                 font-src 'self' https://fonts.gstatic.com;
                 script-src 'self' 'unsafe-inline' https://static.airtable.com;
-                frame-src 'self' https://airtable.com https://*.airtable.com;
+                frame-src 'self' https://airtable.com https://*.airtable.com https://www.youtube-nocookie.com https://www.youtube.com https://www.instagram.com;
                 connect-src 'self';
                 object-src 'none';
                 base-uri 'self';
@@ -98,7 +98,7 @@
       <a href="#classes" data-i18n="nav.classes">Classes</a>
       <a href="#workshops" data-i18n="nav.workshops">Workshops</a>
       <a href="#waitlist">Waitlist</a>
-      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
       <a href="#faq" data-i18n="nav.faq">FAQ</a>
       <a href="#contact" class="btn btn--small" data-i18n="nav.contact">Contact</a>
     </nav>
@@ -542,6 +542,34 @@
     </div>
   </section>
 
+  <!-- ===== Gallery Section ===== -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <details class="gallery-panel" id="galleryPanel">
+        <summary class="gallery-summary">
+          <span class="gallery-summary-title" data-i18n="gallery.summaryTitle">Gallery</span>
+          <span class="gallery-summary-note" data-i18n="gallery.summaryNoteClosed">Tap to expand</span>
+        </summary>
+        <div class="gallery-body">
+          <div class="gallery-hero">
+            <h2 data-i18n="gallery.title">Gallery</h2>
+            <p class="lead" data-i18n="gallery.lead">Photos and videos from classes, workshops, and community. Tap any item to enlarge.</p>
+          </div>
+          <div class="gallery-grid">
+            <a class="tile" href="9ic0NJBn-MQ" data-lightbox data-type="youtube" aria-label="Play YouTube video">
+              <img src="https://i.ytimg.com/vi/9ic0NJBn-MQ/hqdefault.jpg" alt="YouTube thumbnail" loading="lazy">
+              <span class="badge">YouTube</span>
+            </a>
+            <a class="tile" href="BZ2WlQRrDQk" data-lightbox data-type="youtube" aria-label="Play YouTube video">
+              <img src="https://i.ytimg.com/vi/BZ2WlQRrDQk/hqdefault.jpg" alt="YouTube thumbnail" loading="lazy">
+              <span class="badge">YouTube</span>
+            </a>
+          </div>
+        </div>
+      </details>
+    </div>
+  </section>
+
   <!-- ===== FAQ Section ===== -->
   <section id="faq" class="section section--alt">
     <div class="container">
@@ -635,6 +663,10 @@
     <small>&copy; <span id="year"></span> Bámbula Studio LLC. <span data-i18n="footer.rights">All rights reserved.</span></small>
   </div>
 </footer>
+
+<dialog id="lightbox">
+  <div class="box"></div>
+</dialog>
 
 </script>
 <script>

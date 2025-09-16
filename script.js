@@ -232,6 +232,7 @@ const strings = {
     "nav.about":"About",
     "nav.classes":"Classes",
     "nav.workshops":"Workshops",
+    "nav.gallery":"Gallery",
     "nav.faq":"FAQ",
     "nav.contact":"Contact",
     // Hero section
@@ -408,6 +409,12 @@ const strings = {
     "workshops.i2":"Call-and-response practice",
     "workshops.i3":"Culture & history",
 
+    "gallery.summaryTitle":"Gallery",
+    "gallery.summaryNoteClosed":"Tap to expand",
+    "gallery.summaryNoteOpen":"Tap to collapse",
+    "gallery.title":"Gallery",
+    "gallery.lead":"Photos and videos from classes, workshops, and community. Tap any item to enlarge.",
+
     "faq.title":"FAQ",
     "faq.q1":"Do I need my own drum?",
     "faq.a1":"Not required. If you have one, bring it.",
@@ -502,6 +509,7 @@ const strings = {
     "nav.about":"Acerca",
     "nav.classes":"Clases",
     "nav.workshops":"Talleres",
+    "nav.gallery":"Galería",
     "nav.faq":"Preguntas",
     "nav.contact":"Contacto",
 
@@ -674,6 +682,12 @@ const strings = {
     "workshops.i1":"Apto para todos los niveles",
     "workshops.i2":"Práctica de llamada y respuesta",
     "workshops.i3":"Cultura e historia",
+
+    "gallery.summaryTitle":"Galería",
+    "gallery.summaryNoteClosed":"Toca para abrir",
+    "gallery.summaryNoteOpen":"Toca para cerrar",
+    "gallery.title":"Galería",
+    "gallery.lead":"Fotos y videos de clases, talleres y comunidad. Toca cualquier elemento para ampliarlo.",
 
     "faq.title":"Preguntas frecuentes",
     "faq.q1":"¿Necesito mi propio barril?",
@@ -920,6 +934,7 @@ function setLang(lang){
     langBtn.textContent = '';
     langBtn.innerHTML = (lang==='es') ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
   }
+  refreshGallerySummaryLabel(true);
   localStorage.setItem('bambula_lang', lang);
   // Update shared pricing to match current language and selected level
   try {
@@ -1851,4 +1866,135 @@ function installLevelInfoPopovers(){
       try{ dlg.showModal(); }catch{ dlg.show(); }
     };
   });
+}
+
+function refreshGallerySummaryLabel(force){
+  const panel = document.getElementById('galleryPanel');
+  if (!panel) return;
+  const note = panel.querySelector('.gallery-summary-note');
+  if (!note) return;
+  const isOpen = !!panel.open;
+  const key = isOpen ? 'gallery.summaryNoteOpen' : 'gallery.summaryNoteClosed';
+  if (force || note.getAttribute('data-i18n') !== key){
+    note.setAttribute('data-i18n', key);
+  }
+  const lang = (document.documentElement.lang || 'en').toLowerCase().startsWith('es') ? 'es' : 'en';
+  const map = strings[lang] || {};
+  note.textContent = map[key] || (isOpen ? 'Tap to collapse' : 'Tap to expand');
+}
+
+function setupGalleryPanel(){
+  const panel = document.getElementById('galleryPanel');
+  if (!panel) return;
+
+  function openPanel(){
+    if (!panel.open){
+      panel.open = true;
+    }
+    refreshGallerySummaryLabel();
+  }
+
+  document.querySelectorAll('a[href="#gallery"]').forEach(link => {
+    link.addEventListener('click', () => { openPanel(); });
+  });
+
+  panel.addEventListener('toggle', () => refreshGallerySummaryLabel());
+
+  function checkHash(){
+    const hash = (window.location.hash || '').split('?')[0];
+    if (hash === '#gallery'){
+      openPanel();
+    }
+  }
+
+  checkHash();
+  window.addEventListener('hashchange', checkHash);
+
+  refreshGallerySummaryLabel(true);
+}
+
+function installGalleryLightbox(){
+  const dlg = document.getElementById('lightbox');
+  if (!dlg) return;
+  const box = dlg.querySelector('.box');
+  if (!box) return;
+
+  if (!dlg.dataset.bound){
+    dlg.addEventListener('click', (e) => {
+      if (!box.contains(e.target)) dlg.close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dlg.open) dlg.close();
+    });
+    dlg.dataset.bound = 'true';
+  }
+
+  function openLightbox(el){
+    const type = el.dataset.type || 'image';
+    const src = el.getAttribute('href');
+    box.innerHTML = '';
+
+    if (type === 'youtube'){
+      const iframe = document.createElement('iframe');
+      iframe.src = `https://www.youtube-nocookie.com/embed/${src}?rel=0&modestbranding=1&playsinline=1`;
+      iframe.setAttribute('title', 'YouTube video player');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.width = 'min(100vw, 1200px)';
+      iframe.style.height = 'min(80vh, 67.5vw)';
+      box.appendChild(iframe);
+    } else if (type === 'video'){
+      const v = document.createElement('video');
+      v.setAttribute('controls', '');
+      v.setAttribute('playsinline', '');
+      v.setAttribute('preload', 'metadata');
+      const thumb = el.querySelector('img')?.getAttribute('src');
+      if (thumb) v.setAttribute('poster', thumb);
+      if (src){
+        const mp4 = document.createElement('source');
+        mp4.src = src;
+        mp4.type = 'video/mp4';
+        v.appendChild(mp4);
+      }
+      const mov = el.dataset.mov;
+      if (mov){
+        const fallback = document.createElement('source');
+        fallback.src = mov;
+        fallback.type = 'video/quicktime';
+        v.appendChild(fallback);
+      }
+      v.style.maxWidth = 'min(100vw, 1200px)';
+      v.style.maxHeight = '80vh';
+      box.appendChild(v);
+    } else {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = el.querySelector('img')?.alt || '';
+      img.style.maxWidth = 'min(100vw, 1200px)';
+      img.style.maxHeight = '80vh';
+      box.appendChild(img);
+    }
+
+    try { dlg.showModal(); } catch(_) { dlg.show(); }
+  }
+
+  document.querySelectorAll('[data-lightbox]').forEach(el => {
+    if (el.dataset.lightboxBound) return;
+    el.dataset.lightboxBound = 'true';
+    el.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      openLightbox(el);
+    });
+  });
+}
+
+function initGalleryFeatures(){
+  setupGalleryPanel();
+  installGalleryLightbox();
+}
+
+if (document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initGalleryFeatures);
+} else {
+  initGalleryFeatures();
 }
