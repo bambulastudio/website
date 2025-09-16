@@ -483,8 +483,9 @@
         <h2 data-i18n="workshops.title">Institutional Workshops</h2>
         <p class="lead" data-i18n="workshops.p1">Programs for universities, colleges, and institutions: lecture-demonstrations, hands-on residencies, and culturally grounded talks in Puerto Rican Bomba.</p>
         <p data-i18n="workshops.p2">Ideal for music, dance, Latinx/Caribbean studies, cultural competency trainings, chapels, and cultural initiatives. Content adapts to course outcomes and audience level.</p>
+        <p class="note" data-i18n="workshops.pricingNote">Custom pricing based on scope, duration, and travel. Inquire for a tailored proposal.</p>
         <p>
-          <a href="#contact?reason=workshop&class=Institutional%20Workshop" class="btn" data-i18n="workshops.cta">Inquire for dates</a>
+          <a href="#contact?reason=workshop&class=Institutional%20Workshop&program=&org=&location=&dates=&audience=&funding=" class="btn" data-i18n="workshops.cta">Inquire for dates</a>
         </p>
       </div>
       </div>
@@ -497,6 +498,14 @@
           <li data-i18n="workshops.i3">Residency options: multi-day modules, culminating share or performance</li>
           <li data-i18n="workshops.i4">Audience: students, faculty, and community partners</li>
           <li data-i18n="workshops.i5">Logistics: on-site space, sound, and travel coordination</li>
+        </ul>
+        <h3 data-i18n="workshops.factorsTitle">What affects pricing</h3>
+        <ul>
+          <li data-i18n="workshops.f1">Duration: 1-hour lecture demo to multi-day residency</li>
+          <li data-i18n="workshops.f2">Format: hands-on vs lecture-only</li>
+          <li data-i18n="workshops.f3">On-site needs: space, sound, equipment</li>
+          <li data-i18n="workshops.f4">Travel and lodging</li>
+          <li data-i18n="workshops.f5">Audience size and goals</li>
         </ul>
       </div>
     </div>
@@ -535,6 +544,17 @@
     <div class="container">
       <h2 data-i18n="faq.title">FAQ</h2>
       <!-- FAQ items -->
+      <details>
+        <summary>How is workshop pricing determined?</summary>
+        <p data-i18n="workshops.pricingNote">Custom pricing based on scope, duration, and travel. Inquire for a tailored proposal.</p>
+        <ul>
+          <li data-i18n="workshops.f1">Duration: 1-hour lecture demo to multi-day residency</li>
+          <li data-i18n="workshops.f2">Format: hands-on vs lecture-only</li>
+          <li data-i18n="workshops.f3">On-site needs: space, sound, equipment</li>
+          <li data-i18n="workshops.f4">Travel and lodging</li>
+          <li data-i18n="workshops.f5">Audience size and goals</li>
+        </ul>
+      </details>
       <details>
         <summary data-i18n="faq.q1">Do I need my own drum?</summary>
         <p data-i18n="faq.a1">No. If you have one, bring it. If not, we’ll adapt with practice surfaces and technique.</p>
@@ -691,7 +711,7 @@
   function encode(s){ return encodeURIComponent(s || ""); }
   function txt(el){ return (el && (el.textContent || el.innerText || "").trim()) || ""; }
 
-  // --- 1) Prefill Contact Form from #contact?reason=..&class=..&lang=.. ---
+  // --- 1) Prefill Contact Form from #contact?reason=..&class=..&lang=.. (+ workshop fields) ---
   function prefillContactForm(){
     var params = getParamsFromHash();
     if (!params || params.size === 0) return;
@@ -704,15 +724,38 @@
 
     var lang  = params.get('lang') || document.documentElement.lang || 'en';
     var klass = params.get('class') || '';
+    var program = params.get('program') || '';
+    var org  = params.get('org') || '';
+    var loc  = params.get('location') || '';
+    var dates= params.get('dates') || '';
+    var aud  = params.get('audience') || '';
+    var fund = params.get('funding') || '';
 
     // Formspree uses _subject (hidden). We'll set it dynamically.
     var subjectField = form.querySelector("[name='_subject']");
     var msgField     = form.querySelector("textarea[name='message']");
 
-    var subjEN = 'Waitlist request — ' + (klass || 'Bámbula Studio');
-    var subjES = 'Solicitud de lista de espera — ' + (klass || 'Bámbula Studio');
-    var bodyEN = "Hello Bámbula Studio,\n\nI'd like to join the waitlist for: " + (klass || '—') + ".\nMy name is ______ and I'm available ______.\n\nThank you!";
-    var bodyES = "Hola Bámbula Studio,\n\nQuisiera unirme a la lista de espera para: " + (klass || '—') + ".\nMi nombre es ______ y estoy disponible ______.\n\n¡Gracias!";
+    var isWorkshop = (params.get('reason')||'') === 'workshop';
+    var subjEN = isWorkshop ? ('Workshop inquiry — ' + (org || 'Institution')) : ('Waitlist request — ' + (klass || 'Bámbula Studio'));
+    var subjES = isWorkshop ? ('Consulta de taller — ' + (org || 'Institución')) : ('Solicitud de lista de espera — ' + (klass || 'Bámbula Studio'));
+    var bodyEN = isWorkshop
+      ? ("Hello Bámbula Studio,\n\nWe’re interested in an institutional workshop.\n\nOrganization: " + (org||'—') +
+         "\nLocation: " + (loc||'—') +
+         "\nPreferred dates: " + (dates||'—') +
+         "\nAudience: " + (aud||'—') +
+         "\nProgram type: " + (program||'—') +
+         "\nFunding confirmed: " + (fund||'—') +
+         "\n\nGoals / notes: ")
+      : ("Hello Bámbula Studio,\n\nI'd like to join the waitlist for: " + (klass || '—') + ".\nMy name is ______ and I'm available ______.\n\nThank you!");
+    var bodyES = isWorkshop
+      ? ("Hola Bámbula Studio,\n\nNos interesa un taller institucional.\n\nInstitución: " + (org||'—') +
+         "\nUbicación: " + (loc||'—') +
+         "\nFechas preferidas: " + (dates||'—') +
+         "\nPúblico: " + (aud||'—') +
+         "\nTipo de programa: " + (program||'—') +
+         "\nFinanciamiento confirmado: " + (fund||'—') +
+         "\n\nMetas / notas: ")
+      : ("Hola Bámbula Studio,\n\nQuisiera unirme a la lista de espera para: " + (klass || '—') + ".\nMi nombre es ______ y estoy disponible ______.\n\n¡Gracias!");
 
     if (subjectField) subjectField.value = (lang.startsWith('es') ? subjES : subjEN);
     if (msgField)     msgField.value     = (lang.startsWith('es') ? bodyES : bodyEN);
