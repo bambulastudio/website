@@ -431,6 +431,7 @@ const strings = {
     "faq.a2":"Either—your choice. The tradition is Puerto Rican; we honor both languages.",
     "faq.q3":"Where are lessons held?",
     "faq.a3":"In-person (DFW area). No virtual lessons offered.",
+    "faq.q4":"How is workshop pricing determined?",
 
     "contact.title":"Contact",
     "contact.p1":"Reach out to get started!",
@@ -713,6 +714,7 @@ const strings = {
     "faq.a2":"Como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
     "faq.q3":"¿Dónde se ofrecen las clases?",
     "faq.a3":"Presencial (área DFW). No se ofrecen clases virtuales.",
+    "faq.q4":"¿Cómo se determina el precio de los talleres?",
 
     "contact.title":"Contacto",
     "contact.p1":"¡Contáctanos para empezar!",
