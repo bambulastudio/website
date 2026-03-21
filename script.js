@@ -310,6 +310,11 @@ const strings = {
     "classes.subtitle.percussion":"Buleo with Puerto Rican Bomba Drum",
     "classes.subtitle.dance":"Bomba Dance — From Foundations to Piquetes",
     "classes.guide":"Start by choosing Percussion or Dance, then select your level to see the best fit.",
+    "classes.current.eyebrow":"Currently viewing",
+    "classes.details.summary":"See full class description",
+    "classes.plans.eyebrow":"Next step",
+    "classes.plans.title":"Choose a plan",
+    "classes.plans.lead":"If this level looks right, choose one of the plans below.",
     "pricing.basic.title":"Single Class",
     "pricing.single.credit":"If you enroll in the 16-Class Pack within 30 days from booking, this session is credited.",
     "pricing.perhour":"/ hour",
@@ -618,11 +623,16 @@ const strings = {
     "classes.subtitle.percussion":"Buleo con Barril de Bomba Puertorriqueña",
     "classes.subtitle.dance":"Baile de Bomba — De fundamentos a piquetes",
     "classes.guide":"Comienza eligiendo Percusión o Baile, luego selecciona tu nivel para ver la mejor opción.",
+    "classes.current.eyebrow":"Vista actual",
+    "classes.details.summary":"Ver descripción completa",
+    "classes.plans.eyebrow":"Próximo paso",
+    "classes.plans.title":"Elige un plan",
+    "classes.plans.lead":"Si este nivel te parece adecuado, elige uno de los planes a continuación.",
     "pricing.basic.title":"gufia'o (1 clase)",
     "pricing.single.credit":"Si te inscribes en el Paquete fiebrú dentro de los 30 días posteriores a la reserva, esta sesión se acredita.",
     "pricing.perhour":"/clase",
     "pricing.basic.l1":"Ideal para quienes quieren probar o practicar de forma puntual.",
-    "pricing.basic.l2":"1 sesion privada (1 hora)",
+    "pricing.basic.l2":"1 sesión privada (1 hora)",
     "pricing.basic.l3":"Ausencias sin aviso previo de 48 horas no se pueden reprogramar.",
 
     // BASIC (ES) – Mensual (título + nota)
@@ -656,7 +666,7 @@ const strings = {
     "pricing.intermediate.monthly.title":"Paquete de 4 Clases (30 días)",
     "pricing.intermediate.price4":"$459 ($115/clase)",
     "pricing.intermediate.price1":"$125",
-    "pricing.intermediate.full.title":"Paquete afuego (Paquete de 16 Clases)",
+    "pricing.intermediate.full.title":"Paquete a fuego (16 clases)",
     "pricing.intermediate.price16_head":"$1,679 ($105/clase)",
     "pricing.intermediate.l1":"Rudimentos intermedios (control y variaciones)",
     "pricing.intermediate.l2":"Buleo en interacción con el primo",
@@ -715,10 +725,10 @@ const strings = {
 
     // POLÍTICAS
     "policies.title":"Políticas",
-    "policies.transport":"Transporte: si la clase se realiza afuera de Bámbula Studio, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
+    "policies.transport":"Transporte: si la clase se realiza fuera de Bámbula Studio, se aplica un cargo adicional de $0.65 por milla (ida y vuelta).",
     "policies.expire":"Vencimiento: todos los paquetes expiran; clases no son reembolsables ni transferibles.",
     "policies.record":"Grabaciones: no se permite grabar a la maestra durante la clase. Se pueden coordinar grabaciones educativas específicas al finalizar.",
-    "classes.note":"Hacemos una evaluación inicial para confirmar nivel apropriado.",
+    "classes.note":"Hacemos una evaluación inicial para confirmar el nivel apropiado.",
 
     "workshops.title":"Talleres Institucionales",
     "workshops.p1":"Programas para universidades, colegios e instituciones: conferencias-demostración, residencias prácticas y charlas culturalmente fundamentadas sobre la Bomba puertorriqueña.",
@@ -751,9 +761,9 @@ const strings = {
 
     "faq.title":"Preguntas frecuentes",
     "faq.q1":"¿Necesito mi propio barril?",
-    "faq.a1":"No es requerido; pero si tienes, tráelo.",
+    "faq.a1":"No es necesario, pero si tienes uno, tráelo.",
     "faq.q2":"¿Las clases son en español o inglés?",
-    "faq.a2":"Como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
+    "faq.a2":"En español o en inglés, como prefieras. La tradición es puertorriqueña; honramos ambos idiomas.",
     "faq.q3":"¿Dónde se ofrecen las clases?",
     "faq.a3":"Presencial (área DFW). No se ofrecen clases virtuales.",
     "faq.q4":"¿Cómo se determina el precio de los talleres?",
@@ -851,24 +861,18 @@ function isOptionDisabled(category, level, plan){
 // Visually disable any matching "Book" buttons currently on screen
 // script.js — replace the whole function with this
 function hideLevelBulletLists(){
-  const isMobile = window.matchMedia('(max-width: 900px)').matches;
-
-  // 1) Only toggle lists INSIDE the Classes section
+  // Keep the original level-description lists hidden in the Classes section.
+  // The expandable details block is now the single source of that content.
   const classesRoot = document.getElementById('classes');
   if (classesRoot){
     classesRoot.querySelectorAll('.class-group').forEach(group=>{
-      group.querySelectorAll(':scope > ul, :scope .syllabus').forEach(ul=>{
-        if (isMobile){
-          ul.setAttribute('hidden','');
-        } else {
-          ul.removeAttribute('hidden');
-        }
+      group.querySelectorAll('.group-head > ul, .syllabus').forEach(ul=>{
+        ul.setAttribute('hidden','');
       });
     });
   }
 
-  // 2) DEFENSIVE CLEANUP: ensure bullets OUTSIDE #classes are always visible.
-  //    This recovers from any previous code that may have hidden them.
+  // Defensive cleanup: ensure bullets outside #classes are never affected.
   document.querySelectorAll('section:not(#classes) ul[hidden], section:not(#classes) .syllabus[hidden]').forEach(el=>{
     el.removeAttribute('hidden');
   });
@@ -1006,6 +1010,7 @@ function setLang(lang){
       const lvl = classesSection.getAttribute('data-level') || 'basic';
       updateSharedPricing(lvl);
       try { hideLevelBulletLists(); } catch(_){}
+      try { refreshClassesCurrent(); } catch(_){}
     }
   } catch(_){}
 }
@@ -1232,6 +1237,46 @@ EN: Updates the shared pricing grid for the selected level and current language,
     and adjusts the savings pills.
 */
 
+function refreshClassesCurrent(){
+  const section = document.getElementById('classes');
+  const titleEl = document.getElementById('classesCurrentTitle');
+  const summaryEl = document.getElementById('classesCurrentSummary');
+  const detailsTitleEl = document.getElementById('classesDetailsTitle');
+  const detailsListEl = document.getElementById('classesDetailsList');
+  if (!section || !titleEl || !summaryEl) return;
+
+  const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+  const map = strings[lang] || {};
+  const category = section.getAttribute('data-category') || 'percussion';
+  const level = section.getAttribute('data-level') || 'basic';
+  const groupId = (category === 'dance') ? `dance-${level}` : `group-${level}`;
+  const group = section.querySelector(`#${groupId}`);
+  if (!group) return;
+
+  const categoryKey = (category === 'dance') ? 'category.dance' : 'category.percussion';
+  const levelKey = (category === 'dance') ? `dance.group.${level}` : `classes.group.${level}`;
+  const categoryLabel = map[categoryKey] || category;
+  const levelLabel = map[levelKey] || (group.querySelector('.group-head .subsection')?.textContent || '').trim();
+  const fullTitle = `${categoryLabel} · ${levelLabel}`;
+  titleEl.textContent = fullTitle;
+  if (detailsTitleEl) detailsTitleEl.textContent = fullTitle;
+
+  const items = Array.from(group.querySelectorAll('.group-head li'))
+    .map(li => (li.textContent || '').trim())
+    .filter(Boolean);
+
+  summaryEl.textContent = items.slice(0, 3).join(' • ');
+
+  if (detailsListEl){
+    detailsListEl.innerHTML = '';
+    items.forEach(item => {
+      const li = document.createElement('li');
+      li.textContent = item;
+      detailsListEl.appendChild(li);
+    });
+  }
+}
+
 function updateSharedPricing(level){
   const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
   const map = strings[lang] || {};
@@ -1308,6 +1353,7 @@ function updateSharedPricing(level){
 
   try { installPriceCardPopovers(); } catch(_){}
   try { decorateBookButtons(); } catch(_){}
+  try { refreshClassesCurrent(); } catch(_){}
   syncNoteHeights();
 }
 
@@ -1517,9 +1563,8 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
   const planTabs = section.querySelectorAll('.plan-switch [role="tab"]');
   if (!planTabs.length) return;
 
-  // const savedPlan = localStorage.getItem('bambula_plan');
-  // const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'single';
-  // setPlan(defaultPlan);
+  const savedPlan = localStorage.getItem('bambula_plan');
+  const defaultPlan = ['single','monthly','full'].includes(savedPlan) ? savedPlan : 'single';
 
   planTabs.forEach(btn => {
     btn.addEventListener('click', (e)=>{
@@ -1530,8 +1575,7 @@ EN: Plan switch (Single / Monthly / Complete) for mobile.
     });
   });
 
-  // ADD this line after you get planTabs:
-  planTabs.forEach(btn => btn.setAttribute('aria-selected','false'));
+  setPlan(defaultPlan);
 
   // helper: only scroll if the selectors bar isn't mostly visible
   function isMostlyInView(el, threshold = 0.6){
@@ -1829,6 +1873,7 @@ try { applyMobilePricingUX(); } catch(_){}
 try { decorateBookButtons(); } catch(_){}
 try { installLevelInfoPopovers(); } catch(_){}
 try { installPriceCardPopovers(); } catch(_){}
+try { refreshClassesCurrent(); } catch(_){}
 setTimeout(syncNoteHeights, 0);
 
 // --- Mobile: level syllabus popover (uses <dialog>) --------------------------------

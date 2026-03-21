@@ -115,11 +115,17 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 .explore-strip__grid{
   display:grid;
   gap:1rem;
+  align-items:stretch;
 }
 .explore-card{
   display:grid;
+  grid-template-rows:auto 1fr auto;
   gap:.75rem;
   align-content:start;
+  height:100%;
+}
+.explore-card h3{
+  margin:0;
 }
 .explore-card p{
   margin:0;
@@ -127,12 +133,114 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 }
 .explore-card .btn{
   justify-self:start;
+  align-self:end;
 }
 .classes-guide{
   margin:.15rem 0 1rem;
   color:var(--muted);
   max-width:62ch;
   font-weight:600;
+}
+.classes-current{
+  display:grid;
+  gap:1rem;
+  margin:0 0 1.25rem;
+  align-items:start;
+}
+.classes-current .eyebrow,
+.classes-plans-intro .eyebrow{
+  margin:0 0 .25rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:700;
+  font-size:.8rem;
+  color:var(--mustard);
+}
+.classes-current__text{
+  display:grid;
+  gap:.35rem;
+}
+.classes-current__text h3,
+.classes-plans-intro h3{
+  margin:0;
+}
+.classes-current__summary,
+.classes-plans-intro p:last-child{
+  margin:0;
+  color:#333;
+}
+.classes-plans-intro{
+  display:grid;
+  gap:.35rem;
+  margin:1.1rem 0 .9rem;
+}
+.classes-details{
+  margin:0 0 1rem;
+}
+.classes-details summary{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:.75rem;
+  cursor:pointer;
+  padding:.75rem 1rem;
+  font-weight:800;
+  list-style:none;
+  border:2px solid var(--mustard);
+  border-radius:8px;
+  background:transparent;
+  color:var(--fg);
+  transition:transform .05s ease, box-shadow .2s ease, background .2s ease;
+}
+.classes-details summary:hover{
+  transform:translateY(-1px);
+  box-shadow:0 6px 18px -6px var(--ring);
+}
+.classes-details summary:focus-visible{
+  outline:2px solid var(--ring);
+  outline-offset:2px;
+}
+.classes-details summary::-webkit-details-marker,
+.classes-details summary::marker{ display:none; }
+.classes-details summary::after{
+  content:'+';
+  font-size:1.1rem;
+  font-weight:700;
+  line-height:1;
+}
+.classes-details[open] summary{
+  background:var(--mustard);
+  color:#000;
+}
+.classes-details[open] summary::after{
+  content:'−';
+}
+.classes-details__body{
+  padding:1rem 1.1rem 1rem;
+  background:#fff;
+  border:1px solid #eee;
+  border-top:0;
+  border-radius:0 0 12px 12px;
+  margin-top:.35rem;
+}
+.classes-details__body h3{
+  margin:0 0 .5rem;
+}
+.classes-details__body ul{
+  margin:0;
+  padding-left:1.1rem;
+}
+.classes-details__body li{
+  margin:.45rem 0;
+}
+@media(max-width:900px){
+  .classes-details{ display:block; }
+}
+@media(min-width:900px){
+  .classes-current{
+    grid-template-columns:minmax(0, 1fr) auto;
+    gap:1.25rem;
+  }
 }
 @media(min-width:700px){
   .explore-strip__grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); }
@@ -540,6 +648,12 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
 
 /* Classes: tighten space between level switches and group titles */
 #classes .group-head .subsection{ margin-top: .75rem; }
+
+/* Hide original class-group bullet lists; expandable details is the source of truth */
+.class-group .group-head > ul,
+.class-group .syllabus{
+  display:none !important;
+}
 
 /* Two-column variant for smaller groups */
 @media(min-width:900px){
