@@ -1,32 +1,63 @@
-# Bámbula Studio — Static Site
+# Bámbula Studio Website
 
-A clean, bilingual (EN/ES) one‑page website you can host for free.
+This repository is the source of truth for the live site.
+
+## Branches
+- `main` = live site published by GitHub Pages
+- `dev` = local development branch
 
 ## Files
-- `index.html` — the page
-- `styles.css` — theme & layout (black/white/mustard)
-- `script.js` — language toggle & small UX
-- `assets/logo_placeholder.svg` — replace with your logo SVG/PNG
-- `assets/favicon.svg` — browser icon
+- `index.html` — main page
+- `styles.css` — layout and theme
+- `script.js` — interactions and bilingual content
+- `book.html` — booking page
+- `ThankYou.html` — thank-you page
+- `assets/` — images and icons
 
-## Edit
-- Replace copy inside `index.html` as needed.
-- Update prices or text in both English and Spanish blocks (see `data-i18n` keys in `script.js`).
-- Replace `action` URL in the contact `<form>` with your own Formspree endpoint (free tier).
+## Local Workflow
+Run your local server from this repository while you are on `dev`.
 
-## Deploy (GitHub Pages — Free)
-1. Create a GitHub repo named `bambula-site` (or any name).
-2. Upload all files at the repo root.
-3. In repo Settings → Pages → set Source to `Deploy from a branch`, branch = `main`, folder = `/ (root)`.
-4. Wait ~1 minute; your site will be live at `https://<your-username>.github.io/<repo-name>/`.
-5. Optional: Buy a custom domain (e.g., Namecheap/Google Domains), then connect it to GitHub Pages (add DNS A/AAAA + CNAME).
+Create the `dev` branch once:
 
-## Deploy (Cloudflare Pages — Free)
-1. Push the repo to GitHub.
-2. In Cloudflare Pages → Create a project → Connect to the repo → Framework preset: `None`.
-3. Build settings: leave defaults, just deploy. Add your custom domain if desired.
+```bash
+git checkout main
+git pull origin main
+git checkout -b dev
+```
 
-## Notes
-- Keep images small and compressed (under 200 KB) for speed.
-- Accessibility: good color contrast, focus outlines, alt text on images.
-- SEO: page `<title>` and `<meta name="description">` already set; adjust as needed.
+Daily development:
+
+```bash
+git checkout dev
+git pull origin dev
+# edit files
+# run local server
+git add .
+git commit -m "Describe the change"
+git push -u origin dev
+```
+
+Publish to live:
+
+```bash
+git checkout main
+git pull origin main
+git merge --ff-only dev
+git push origin main
+git checkout dev
+```
+
+If `git merge --ff-only dev` fails, `main` and `dev` have diverged. Rebase or merge `main` into `dev` first, test again, then publish.
+
+## GitHub Pages
+This repo is connected to GitHub Pages and should publish from:
+- branch: `main`
+- folder: `/ (root)`
+
+Custom domain is set through `CNAME`.
+
+## Maintenance
+- `.DS_Store` is ignored via `.gitignore`
+- Keep images compressed for page speed
+- Update bilingual copy in both HTML and `script.js` where applicable
+- Review `git diff` before publishing to `main`
