@@ -742,7 +742,8 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
 /* Classes: tighten space between level switches and group titles */
 #classes .group-head .subsection{ margin-top: .75rem; }
 
-/* Hide original class-group bullet lists; expandable details is the source of truth */
+/* Hide original class-group headers/lists; the current-view card and details panel are the source of truth */
+.class-group .group-head .subsection,
 .class-group .group-head > ul,
 .class-group .syllabus{
   display:none !important;
