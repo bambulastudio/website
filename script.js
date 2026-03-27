@@ -138,6 +138,7 @@ function installPriceCardPopovers(){
 function setCardInfoTriggerLabel(btn){
   const isDesktop = window.matchMedia('(min-width: 901px)').matches;
   if (isDesktop){
+    btn.hidden = false;
     btn.classList.add('card-info--text');
     // btn.innerHTML = '<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg><span>Details</span>';
     const label = document.documentElement.lang === 'es' ? 'Incluye' : 'Includes';
@@ -145,6 +146,7 @@ function setCardInfoTriggerLabel(btn){
     btn.setAttribute('title','View details');
     btn.setAttribute('aria-label','View details');
   } else {
+    btn.hidden = false;
     btn.classList.remove('card-info--text');
     btn.textContent = '✍🏾';
     btn.setAttribute('title', document.documentElement.lang==='es' ? '¿Qué incluye?' : "What's included?");
@@ -264,10 +266,11 @@ const strings = {
     "group_classes.pricing.eyebrow":"Series details",
     "group_classes.pricing.title":"4-Class Group Series",
     "group_classes.pricing.price":"$260 per person",
-    "group_classes.pricing.l1":"Fixed 4-class series",
+    "group_classes.pricing.l1":"Fixed 4-class series: Apr 4, 11, 25, and May 2",
     "group_classes.pricing.l2":"1 hour per class",
     "group_classes.pricing.l3":"$65 per class",
-    "group_classes.pricing.l4":"Non-refundable",
+    "group_classes.pricing.l4":"Bonus Bombazo celebration on May 16",
+    "group_classes.pricing.l5":"Non-refundable",
     "group_classes.cta":"Join waitlist",
     "group_classes.note":"Scheduling will be confirmed once the minimum number of students is reached for a session.",
     "explore.workshops.title":"Institutional Workshops",
@@ -602,10 +605,11 @@ const strings = {
     "group_classes.pricing.eyebrow":"Detalles de la serie",
     "group_classes.pricing.title":"Serie grupal de 4 clases",
     "group_classes.pricing.price":"$260 por persona",
-    "group_classes.pricing.l1":"Serie fija de 4 clases",
+    "group_classes.pricing.l1":"Serie fija de 4 clases: 4, 11, 25 de abril y 2 de mayo",
     "group_classes.pricing.l2":"1 hora por clase",
     "group_classes.pricing.l3":"$65 por clase",
-    "group_classes.pricing.l4":"No reembolsable",
+    "group_classes.pricing.l4":"Bombazo de celebración adicional el 16 de mayo",
+    "group_classes.pricing.l5":"No reembolsable",
     "group_classes.cta":"Unirme a la lista",
     "group_classes.note":"La programación se confirmará cuando se alcance el mínimo de estudiantes para una sesión.",
     "explore.workshops.title":"Talleres institucionales",
@@ -1986,42 +1990,8 @@ function installLevelInfoPopovers(){
     return ul;
   }
 
-  // Add/refresh info buttons in each .group-head
-  document.querySelectorAll('.class-group').forEach(group => {
-    const head = group.querySelector('.group-head');
-    if (!head) return;
-    let btn = head.querySelector('.level-info-btn');
-    if (!btn){
-      btn = document.createElement('button');
-      btn.className = 'level-info-btn';
-      btn.type = 'button';
-      btn.setAttribute('aria-haspopup','dialog');
-      btn.setAttribute('title', currentLang()==='es' ? 'Ver contenido' : 'View contents');
-      btn.innerText = '✍🏾';
-      head.appendChild(btn);
-    }
-    // Click opens dialog with current category + this level syllabus
-    btn.onclick = ()=>{
-      const section = document.getElementById('classes');
-      const category = section ? (section.getAttribute('data-category') || 'percussion') : 'percussion';
-      // Accept both percussion ids like "group-basic" and dance ids like "dance-basic"
-      let level = 'basic';
-      if (group.id){
-        level = group.id.replace(/^group-/, '').replace(/^dance-/, '');
-      }
-      const h = dlg.querySelector('h3');
-      h.textContent = head.querySelector('.subsection')?.textContent || '';
-      const sheet = dlg.querySelector('.sheet');
-      const newUl = buildList(category, level);
-      const oldUl = sheet.querySelector('ul');
-      if (oldUl) {
-        oldUl.replaceWith(newUl);
-      } else {
-        sheet.appendChild(newUl);
-      }
-      try{ dlg.showModal(); }catch{ dlg.show(); }
-    };
-  });
+  // Remove legacy mobile-only level info buttons if present.
+  document.querySelectorAll('.level-info-btn').forEach(btn => btn.remove());
 }
 
 function refreshGallerySummaryLabel(force){
