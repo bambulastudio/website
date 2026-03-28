@@ -1318,6 +1318,278 @@ body.with-texture::before{
 
 /* contrast for text from image */
 
+/* --- Connect page --- */
+.connect-page{
+  min-height:100vh;
+}
+
+.connect-page .site-header{
+  background:rgba(255,255,255,0.88);
+}
+
+.connect-header .container{
+  padding-top:6px;
+  padding-bottom:6px;
+}
+
+.connect-brand{
+  text-decoration:none;
+}
+
+.connect-nav{
+  display:flex;
+  margin-left:auto;
+}
+
+.connect-nav .btn{
+  white-space:nowrap;
+}
+
+.connect-lang{
+  margin-left:.65rem;
+  flex:0 0 auto;
+}
+
+.connect-main{
+  position:relative;
+  z-index:1;
+}
+
+.connect-hero{
+  padding:clamp(24px, 6vw, 56px) 0 40px;
+}
+
+.connect-hero .container{
+  display:flex;
+  justify-content:center;
+}
+
+.connect-card{
+  width:min(100%, 760px);
+  display:grid;
+  gap:1.25rem;
+  padding:clamp(20px, 5vw, 32px);
+  background:rgba(255,255,255,0.9);
+  border-color:rgba(255,255,255,0.55);
+  box-shadow:0 20px 48px -28px rgba(0,0,0,.45);
+}
+
+.connect-card__media{
+  display:flex;
+  justify-content:center;
+}
+
+.connect-portrait{
+  width:124px;
+  height:124px;
+  object-fit:cover;
+  border-radius:50%;
+  border:4px solid rgba(217,163,36,0.65);
+  box-shadow:0 18px 36px -24px rgba(0,0,0,.45);
+}
+
+.connect-card__content{
+  display:grid;
+  gap:.85rem;
+}
+
+.connect-eyebrow{
+  margin:0;
+  text-transform:uppercase;
+  letter-spacing:.16em;
+  font-size:.76rem;
+  font-weight:800;
+  color:var(--mustard);
+}
+
+.connect-card h1{
+  margin:0;
+  font-size:clamp(2rem, 7vw, 3.3rem);
+  line-height:1;
+}
+
+.connect-name,
+.connect-role,
+.connect-descriptor,
+.connect-support{
+  margin:0;
+}
+
+.connect-name{
+  font-size:clamp(1.15rem, 4.4vw, 1.45rem);
+  font-weight:800;
+}
+
+.connect-role{
+  color:#222;
+  font-weight:700;
+}
+
+.connect-descriptor{
+  font-size:1.02rem;
+  line-height:1.55;
+}
+
+.connect-support{
+  color:var(--muted);
+  max-width:44ch;
+}
+
+.connect-actions{
+  display:grid;
+  gap:.8rem;
+  margin-top:.35rem;
+}
+
+.connect-btn{
+  width:100%;
+  text-align:center;
+  justify-content:center;
+}
+
+.connect-contact{
+  display:grid;
+  gap:.8rem;
+  margin-top:.15rem;
+  padding:1rem 1.1rem;
+  background:rgba(255,255,255,0.95);
+}
+
+.connect-contact__row{
+  display:grid;
+  gap:.18rem;
+}
+
+.connect-contact__label{
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  font-weight:800;
+  color:var(--muted);
+}
+
+.connect-contact a{
+  color:var(--fg);
+  font-weight:700;
+  text-decoration:none;
+  word-break:break-word;
+}
+
+.connect-contact a:hover{
+  color:var(--mustard);
+}
+
+.connect-secondary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.75rem;
+}
+
+.connect-secondary .btn{
+  text-align:center;
+}
+
+.connect-footer{
+  position:relative;
+  z-index:1;
+  background:rgba(250,250,250,0.9);
+}
+
+@media (min-width: 700px){
+  .connect-card{
+    grid-template-columns:auto minmax(0, 1fr);
+    align-items:start;
+    gap:1.5rem;
+  }
+
+  .connect-card__media{
+    justify-content:flex-start;
+    padding-top:.25rem;
+  }
+
+  .connect-portrait{
+    width:152px;
+    height:152px;
+  }
+
+  .connect-actions{
+    grid-template-columns:repeat(3, minmax(0, 1fr));
+  }
+
+  .connect-secondary{
+    grid-template-columns:auto auto;
+    justify-content:start;
+  }
+}
+
+@media (max-width: 520px){
+  .connect-page .logo{
+    height:58px;
+  }
+
+  .connect-header .container{
+    position:relative;
+    gap:.75rem;
+    align-items:center;
+    justify-content:center;
+  }
+
+  .connect-nav{
+    display:none;
+  }
+
+  .connect-nav .btn{
+    padding:.45rem .7rem;
+    font-size:.82rem;
+  }
+
+  .connect-lang{
+    position:absolute;
+    right:clamp(20px, 3vw, 48px);
+    top:50%;
+    transform:translateY(-50%);
+    margin-left:0;
+  }
+
+  .connect-hero{
+    padding-top:16px;
+    padding-bottom:24px;
+  }
+
+  .connect-card{
+    gap:1rem;
+    padding:16px;
+  }
+
+  .connect-portrait{
+    width:108px;
+    height:108px;
+  }
+
+  .connect-card__content{
+    gap:.65rem;
+  }
+
+  .connect-card h1{
+    font-size:clamp(1.8rem, 9vw, 2.4rem);
+  }
+
+  .connect-actions{
+    gap:.65rem;
+    margin-top:.2rem;
+  }
+
+  .connect-contact{
+    margin-top:0;
+    gap:.65rem;
+    padding:.9rem 1rem;
+  }
+
+  .connect-secondary{
+    grid-template-columns:1fr;
+  }
+}
+
 /* === Reusable legibility scrim utility =================================== */
 /* Add class="legibility-scrim" to any text block that sits on photos.       */
 .legibility-scrim{ position: relative; z-index: 1; }
