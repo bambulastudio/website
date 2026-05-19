@@ -518,7 +518,7 @@ h3{margin:0 0 8px 0}
 }
 @media (min-width: 900px){
   .group-classes__combo{
-    grid-template-columns:minmax(0,1.3fr) minmax(220px,.58fr);
+    grid-template-columns:minmax(220px,.58fr) minmax(0,1.3fr);
     align-items:stretch;
   }
   .group-classes__pricing{
