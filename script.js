@@ -255,7 +255,8 @@ const strings = {
     "group_classes.eyebrow":"Shared learning",
     "group_classes.title":"Group Classes",
     "group_classes.lead":"Group classes will be offered in rotating series for students who want a shared learning experience.",
-    "group_classes.p1":"The current series focuses on beginner Yubá across the bomba instrument family. Additional group offerings will be added over time.",
+    "group_classes.p1":"The current offering focuses on beginner drum Buleo in the rhythm of Sicá. Additional group offerings will be added over time.",
+    // "group_classes.p1":"The current series focuses on beginner Yubá across the bomba instrument family. Additional group offerings will be added over time.",
     "group_classes.offer.eyebrow":"Current series",
     "group_classes.offer.title":"Beginner Yubá Group Class (Percussion)",
     "group_classes.offer.l1":"History of bomba as an Afro-Puerto Rican tradition",
@@ -594,7 +595,7 @@ const strings = {
     "group_classes.eyebrow":"Aprendizaje compartido",
     "group_classes.title":"Clases grupales",
     "group_classes.lead":"Las clases grupales se ofrecerán en series rotativas para estudiantes que buscan una experiencia de aprendizaje compartida.",
-    "group_classes.p1":"La serie actual se enfoca en Yubá básico a través de la familia de instrumentos de la bomba. Se añadirán otras ofertas grupales con el tiempo.",
+    "group_classes.p1":"La serie actual se enfoca en la ejecucion del barril buleador de bomba en el ritmo de Sicá. Se añadirán otras ofertas grupales con el tiempo.",
     "group_classes.offer.eyebrow":"Serie actual",
     "group_classes.offer.title":"Clase Grupal Básica de Yubá (Percusión)",
     "group_classes.offer.l1":"Historia de la bomba como tradición afro-puertorriqueña",
@@ -1209,8 +1210,8 @@ function renderGroupClassesCatalog(){
     offerCtaWrap.appendChild(note);
     offer.appendChild(offerCtaWrap);
 
-    combo.appendChild(offer);
     combo.appendChild(pricing);
+    combo.appendChild(offer);
 
     layout.appendChild(combo);
     mount.appendChild(layout);
