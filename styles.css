@@ -434,19 +434,39 @@ h3{margin:0 0 8px 0}
   font-size:.8rem;
   color:var(--mustard);
 }
-.group-classes__grid{
+.group-classes__catalog{
+  display:grid;
+  gap:1.1rem;
+}
+.group-classes__offering{
   display:grid;
   gap:1rem;
-  align-items:start;
 }
-.group-classes__main{
+.group-classes__combo{
   display:grid;
   gap:0;
   padding:0;
   overflow:hidden;
 }
 .group-classes__offer{
-  border-top:1px solid #eee;
+  display:grid;
+  gap:.6rem;
+  padding:1.25rem;
+}
+.group-classes__offer-cta{
+  display:grid;
+  gap:.75rem;
+  margin-top:.65rem;
+}
+.group-classes__offer-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.65rem;
+  justify-content:center;
+}
+.group-classes__offer-cta .note{
+  margin:0;
+  max-width:none;
 }
 .group-classes__card h3{
   margin:0;
@@ -480,6 +500,7 @@ h3{margin:0 0 8px 0}
   gap:.85rem;
   align-content:start;
   padding:1.25rem;
+  border-top:1px solid #eee;
 }
 .group-classes__pricing .price{
   margin:0;
@@ -496,8 +517,14 @@ h3{margin:0 0 8px 0}
   max-width:28ch;
 }
 @media (min-width: 900px){
-  .group-classes__grid{ grid-template-columns: minmax(0, 1.3fr) minmax(220px, .58fr); gap:1.2rem; align-items:start; }
-  .group-classes__pricing{ position:sticky; top:calc(var(--header-offset) + .75rem); align-self:start; }
+  .group-classes__combo{
+    grid-template-columns:minmax(0,1.3fr) minmax(220px,.58fr);
+    align-items:stretch;
+  }
+  .group-classes__pricing{
+    border-top:0;
+    border-left:1px solid #eee;
+  }
 }
 
 /* --- Workshops layout refresh --- */
