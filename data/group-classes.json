@@ -1,0 +1,126 @@
+{
+  "offerings": [
+    {
+      "id": "yuba-beginner-series-2026-04",
+      "status": "archived",
+      "offer_eyebrow": {
+        "en": "What you'll cover",
+        "es": "Lo que cubrirás"
+      },
+      "title": {
+        "en": "Beginner Yubá Group Class (Percussion)",
+        "es": "Clase Grupal Básica de Yubá (Percusión)"
+      },
+      "offer_points": {
+        "en": [
+          "History of bomba as an Afro-Puerto Rican tradition",
+          "Introduction to bomba instruments: barril (1 class), maraca (1 class), cuá (1 class)",
+          "Introduction to basic playing technique for each bomba instrument",
+          "Fundamental barril sounds in Yubá: abierto, caja",
+          "One selected Yubá variation on barril (1 class): masón, cuartiao, or leró"
+        ],
+        "es": [
+          "Historia de la bomba como tradición afro-puertorriqueña",
+          "Introducción a los instrumentos de la bomba: barril (1 clase), maraca (1 clase), cuá (1 clase)",
+          "Introducción a técnicas básicas de toque para cada instrumento de la bomba",
+          "Sonidos fundamentales del barril en yubá: abierto, caja",
+          "Selección de una variación de yubá en barril (1 clase): masón, cuartiao o leró"
+        ]
+      },
+      "pricing_eyebrow": {
+        "en": "Series details",
+        "es": "Detalles de la serie"
+      },
+      "pricing_title": {
+        "en": "4-Class Group Series",
+        "es": "Serie grupal de 4 clases"
+      },
+      "price_html": {
+        "en": "$260 <span>per person</span>",
+        "es": "$260 <span>por persona</span>"
+      },
+      "pricing_points": {
+        "en": [
+          "Fixed 4-class series: Apr 4, 11, 25, and May 2",
+          "1 hour per class",
+          "$65 per class",
+          "Bonus Bombazo celebration on May 16",
+          "Non-refundable"
+        ],
+        "es": [
+          "Serie fija de 4 clases: 4, 11, 25 de abril y 2 de mayo",
+          "1 hora por clase",
+          "$65 por clase",
+          "Bombazo de celebración adicional el 16 de mayo",
+          "No reembolsable"
+        ]
+      },
+      "note": {
+        "en": "Scheduling will be confirmed once the minimum number of students is reached for a session.",
+        "es": "La programación se confirmará cuando se alcance el mínimo de estudiantes para una sesión."
+      },
+      "show_waitlist": false,
+      "show_book": false,
+      "book_href": "https://square.link/u/RTCZRo1g"
+    },
+    {
+      "id": "sica-beginner-series-2026-06",
+      "status": "active",
+      "offer_eyebrow": {
+        "en": "What you'll cover",
+        "es": "Lo que cubrirás"
+      },
+      "title": {
+        "en": "Beginner Buleo - Group Class (Sicá)",
+        "es": "Clase Grupal Básica de Buleo (Sicá)"
+      },
+      "offer_points": {
+        "en": [
+          "History of bomba as an Afro-Puerto Rican tradition",
+          "Introduction to bomba instruments: barril",
+          "Introduction to technique, endurance, and sound quality for barril buleador",
+          "Fundamental barril sounds in Sicá: abierto, caja"
+        ],
+        "es": [
+          "Historia de la bomba como tradición afro-puertorriqueña",
+          "Introducción a los instrumentos de la bomba: barril",
+          "Introducción a técnica, resistencia, y calidad de sonido para barril buleador",
+          "Sonidos fundamentales del barril en sicá: abierto, caja"
+        ]
+      },
+      "pricing_eyebrow": {
+        "en": "Series details",
+        "es": "Detalles de la serie"
+      },
+      "pricing_title": {
+        "en": "2-Hour Group Session",
+        "es": "Sesión grupal de 2 horas"
+      },
+      "price_html": {
+        "en": "$130 <span>per person</span>",
+        "es": "$130 <span>por persona</span>"
+      },
+      "pricing_points": {
+        "en": [
+          "1-Class (2 hours): June 20",
+          "$65 per hour",
+          "Closing Bombazo: June 21",
+          "Non-refundable"
+        ],
+        "es": [
+          "Clase de 2 hours: 20 de junio",
+          "$65 por hora",
+          "Bombazo de cierre: 21 de junio",
+          "No reembolsable"
+        ]
+      },
+      "note": {
+        "en": "Scheduling will be confirmed once the minimum number of students is reached for a session.",
+        "es": "La programación se confirmará cuando se alcance el mínimo de estudiantes para una sesión."
+      },
+      "show_waitlist": false,
+      "show_book": true,
+      "book_href": "https://square.link/u/8UdRxUMm"
+    }
+  ]
+}

@@ -894,8 +894,8 @@ window.bookingDisabled = new Set([
   'percussion:advanced:single',
   'percussion:advanced:monthly',
   'percussion:advanced:full',
-  'dance:basic:single',
-  'dance:basic:monthly',
+  // 'dance:basic:single',
+  // 'dance:basic:monthly',
   // 'dance:basic:full',
   'dance:intermediate:single',
   'dance:intermediate:monthly',
@@ -1065,6 +1065,156 @@ function setLang(lang){
       try { refreshClassesCurrent(); } catch(_){}
     }
   } catch(_){}
+  try { renderGroupClassesCatalog(); } catch(_){}
+}
+
+let __groupClassesCatalogData = null;
+
+function __groupClassText(value, lang){
+  if (value == null) return '';
+  if (typeof value === 'string') return value;
+  if (typeof value === 'object') return value[lang] || value.en || '';
+  return '';
+}
+
+async function loadGroupClassesCatalog(){
+  if (__groupClassesCatalogData) return __groupClassesCatalogData;
+  const res = await fetch('data/group-classes.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error('Failed to load group classes catalog');
+  __groupClassesCatalogData = await res.json();
+  return __groupClassesCatalogData;
+}
+
+function renderGroupClassesCatalog(){
+  const mount = document.getElementById('groupClassesCatalog');
+  if (!mount) return;
+
+  const lang = (document.documentElement.lang === 'es') ? 'es' : 'en';
+  const data = __groupClassesCatalogData;
+  const offerings = (data && Array.isArray(data.offerings)) ? data.offerings : [];
+  const active = offerings.filter(o => (o.status || '').toLowerCase() === 'active');
+
+  mount.innerHTML = '';
+
+  if (!active.length){
+    const empty = document.createElement('p');
+    empty.className = 'note';
+    empty.textContent = (lang === 'es')
+      ? 'No hay clases grupales publicadas en este momento. Únete a la lista de espera para recibir avisos.'
+      : 'No group classes are published at the moment. Join the waitlist for updates.';
+    mount.appendChild(empty);
+    return;
+  }
+
+
+  active.forEach((offering) => {
+    const layout = document.createElement('div');
+    layout.className = 'group-classes__offering';
+
+    const combo = document.createElement('div');
+    combo.className = 'card group-classes__card group-classes__combo';
+
+    const offer = document.createElement('div');
+    offer.className = 'group-classes__offer';
+
+    const offerEyebrow = document.createElement('p');
+    offerEyebrow.className = 'eyebrow';
+    offerEyebrow.textContent = __groupClassText(offering.offer_eyebrow, lang);
+
+    const offerTitle = document.createElement('h3');
+    offerTitle.textContent = __groupClassText(offering.title, lang);
+
+    const offerList = document.createElement('ul');
+    const offerPoints = __groupClassText(offering.offer_points, lang);
+    if (Array.isArray(offerPoints)){
+      offerPoints.forEach((point) => {
+        const li = document.createElement('li');
+        li.textContent = point;
+        offerList.appendChild(li);
+      });
+    }
+
+    offer.appendChild(offerEyebrow);
+    offer.appendChild(offerTitle);
+    offer.appendChild(offerList);
+
+    const pricing = document.createElement('div');
+    pricing.className = 'group-classes__pricing';
+
+    const pricingEyebrow = document.createElement('p');
+    pricingEyebrow.className = 'eyebrow';
+    pricingEyebrow.textContent = __groupClassText(offering.pricing_eyebrow, lang);
+
+    const pricingTitle = document.createElement('h3');
+    pricingTitle.textContent = __groupClassText(offering.pricing_title, lang);
+
+    const price = document.createElement('p');
+    price.className = 'price';
+    price.innerHTML = __groupClassText(offering.price_html, lang);
+
+    const pricingList = document.createElement('ul');
+    const pricingPoints = __groupClassText(offering.pricing_points, lang);
+    if (Array.isArray(pricingPoints)){
+      pricingPoints.forEach((point) => {
+        const li = document.createElement('li');
+        li.textContent = point;
+        pricingList.appendChild(li);
+      });
+    }
+
+    pricing.appendChild(pricingEyebrow);
+    pricing.appendChild(pricingTitle);
+    pricing.appendChild(price);
+    pricing.appendChild(pricingList);
+
+    const actionsWrap = document.createElement('div');
+    actionsWrap.className = 'group-classes__offer-actions';
+
+    if (offering.show_waitlist){
+      const waitlistBtn = document.createElement('a');
+      waitlistBtn.className = 'btn btn--ghost';
+      waitlistBtn.href = '#waitlist';
+      waitlistBtn.target = '_self';
+      waitlistBtn.removeAttribute('rel');
+      waitlistBtn.textContent = (lang === 'es') ? 'Unirme a la lista' : 'Join waitlist';
+      waitlistBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.getElementById('waitlist');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      actionsWrap.appendChild(waitlistBtn);
+    }
+
+    if (offering.show_book){
+      const bookBtn = document.createElement('a');
+      bookBtn.className = 'btn btn--primary';
+      bookBtn.href = offering.book_href || '#contact';
+      if (/^https?:\/\//i.test(bookBtn.href)){
+        bookBtn.target = '_blank';
+        bookBtn.rel = 'noopener noreferrer';
+      } else {
+        bookBtn.target = '_self';
+      }
+      bookBtn.textContent = (lang === 'es') ? 'Reservar' : 'Book';
+      actionsWrap.appendChild(bookBtn);
+    }
+
+    const note = document.createElement('p');
+    note.className = 'note';
+    note.textContent = __groupClassText(offering.note, lang);
+
+    const offerCtaWrap = document.createElement('div');
+    offerCtaWrap.className = 'group-classes__offer-cta';
+    offerCtaWrap.appendChild(actionsWrap);
+    offerCtaWrap.appendChild(note);
+    offer.appendChild(offerCtaWrap);
+
+    combo.appendChild(offer);
+    combo.appendChild(pricing);
+
+    layout.appendChild(combo);
+    mount.appendChild(layout);
+  });
 }
 
 function moveSavingsToNotes(){
@@ -1234,6 +1384,9 @@ function syncNoteHeights(){
 const saved = localStorage.getItem('bambula_lang') || 'es';
 setLang(saved);
 try { applyMobilePricingUX(); } catch(_){}
+loadGroupClassesCatalog()
+  .then(() => { renderGroupClassesCatalog(); })
+  .catch(() => { /* keep section empty/fallback note if catalog load fails */ });
 
 const __langBtn = document.getElementById('langToggle');
 if (__langBtn){
