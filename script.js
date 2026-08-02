@@ -239,6 +239,13 @@ const strings = {
     "nav.gallery":"Gallery",
     "nav.faq":"FAQ",
     "nav.contact":"Contact",
+    "anniversary_popup.eyebrow":"Anniversary celebration",
+    "anniversary_popup.title":"Bámbula Studio turns one",
+    "anniversary_popup.body":"Join us for three free anniversary events: a conversation, a Bomba workshop, and a community celebration.",
+    "anniversary_popup.events":"View Anniversary Events",
+    "anniversary_popup.rsvp":"Request RSVP",
+    "anniversary_popup.dismiss":"Not now",
+    "anniversary_popup.logo_alt":"Bámbula Studio anniversary logo",
     // Hero section
     "hero.title":"Ancestral rhythm. Living tradition.",
     "hero.subtitle":"Private Bomba drumming lessons, community workshops, and culturally grounded education with commitment and discipline",
@@ -580,6 +587,13 @@ const strings = {
     "nav.gallery":"Galería",
     "nav.faq":"Preguntas",
     "nav.contact":"Contacto",
+    "anniversary_popup.eyebrow":"Celebración de aniversario",
+    "anniversary_popup.title":"Bámbula Studio cumple un año",
+    "anniversary_popup.body":"Celebra con tres eventos gratuitos: una tertulia, un taller de Bomba y una celebración comunitaria.",
+    "anniversary_popup.events":"Ver eventos de aniversario",
+    "anniversary_popup.rsvp":"Solicitar RSVP",
+    "anniversary_popup.dismiss":"Ahora no",
+    "anniversary_popup.logo_alt":"Logotipo de aniversario de Bámbula Studio",
 
     "hero.title":"Ritmo Ancestral. Tradición viva.",
     "hero.subtitle":"Clases privadas de percusión de Bomba, talleres comunitarios y educación cultural con compromiso y disciplina",
@@ -1041,6 +1055,11 @@ function setLang(lang){
     // Default: plain text content
     el.textContent = val;
   });
+  document.querySelectorAll('[data-i18n-alt]').forEach(el=>{
+    const key = el.getAttribute('data-i18n-alt');
+    const val = map && map[key];
+    if (val) el.setAttribute('alt', val);
+  });
   // After content is set, move savings bullets into notes below buttons
   moveSavingsToNotes();
   // Add one-time billing pills into shared pricing
@@ -1051,11 +1070,12 @@ function setLang(lang){
   try { decorateBookButtons(); } catch(_){}
   try { installPriceCardPopovers(); } catch(_){}
   const langBtn = document.getElementById('langToggle');
-  if (langBtn){
+  const popupLangBtn = document.querySelector('[data-anniversary-popup-lang]');
+  [langBtn, popupLangBtn].filter(Boolean).forEach((button) => {
     // Show target language with its flag
-    langBtn.textContent = '';
-    langBtn.innerHTML = (lang==='es') ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
-  }
+    button.textContent = '';
+    button.innerHTML = (lang==='es') ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
+  });
   refreshGallerySummaryLabel(true);
   localStorage.setItem('bambula_lang', lang);
   // Update shared pricing to match current language and selected level
@@ -1397,6 +1417,52 @@ if (__langBtn){
     const current = localStorage.getItem('bambula_lang') || 'en';
     setLang(current==='en'?'es':'en');
   });
+}
+
+const __popupLangBtn = document.querySelector('[data-anniversary-popup-lang]');
+if (__popupLangBtn){
+  __popupLangBtn.addEventListener('click', ()=>{
+    const current = localStorage.getItem('bambula_lang') || 'en';
+    setLang(current==='en'?'es':'en');
+  });
+}
+
+function initAnniversaryPopup(){
+  const dialog = document.getElementById('anniversaryPopup');
+  const navLink = document.querySelector('#siteNav a[href="anniversary.html"]');
+  if (!dialog || !navLink) return;
+
+  let referrerUrl = null;
+  try {
+    referrerUrl = document.referrer ? new URL(document.referrer) : null;
+  } catch (_) {
+    referrerUrl = null;
+  }
+
+  const cameFromSameSite = referrerUrl && referrerUrl.origin === window.location.origin;
+  if (cameFromSameSite) return;
+
+  const closePopup = () => {
+    if (dialog.open) dialog.close();
+  };
+
+  dialog.querySelectorAll('[data-anniversary-popup-close]').forEach((button) => {
+    button.addEventListener('click', closePopup);
+  });
+
+  dialog.addEventListener('click', (event) => {
+    if (event.target === dialog) closePopup();
+  });
+
+  window.setTimeout(() => {
+    try { dialog.showModal(); } catch (_) { dialog.show(); }
+  }, 700);
+}
+
+if (document.readyState === 'loading'){
+  document.addEventListener('DOMContentLoaded', initAnniversaryPopup);
+} else {
+  initAnniversaryPopup();
 }
 
 // Mobile nav toggle
