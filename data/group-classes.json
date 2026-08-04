@@ -65,7 +65,7 @@
     },
     {
       "id": "sica-beginner-series-2026-06",
-      "status": "active",
+      "status": "archived",
       "offer_eyebrow": {
         "en": "What you'll cover",
         "es": "Lo que cubrirás"
@@ -121,6 +121,64 @@
       "show_waitlist": false,
       "show_book": true,
       "book_href": "https://square.link/u/8UdRxUMm"
+    },
+    {
+      "id": "cuembe-beginner-dance-series",
+      "status": "active",
+      "offer_eyebrow": {
+        "en": "What you'll cover",
+        "es": "Lo que cubrirás"
+      },
+      "title": {
+        "en": "Beginner Cuembé Group Class (Dance)",
+        "es": "Clase Grupal Básica de Cuembé (Baile)"
+      },
+      "offer_points": {
+        "en": [
+          "History of bomba as an Afro-Puerto Rican tradition",
+          "Skirt technique, basic step, and paseo as foundations of Cuembé dance",
+          "Posture, movement, and body awareness",
+          "Foundations of improvisation and interaction with the subidor"
+        ],
+        "es": [
+          "Historia de la bomba como tradición afro-puertorriqueña",
+          "Técnica de falda, paso básico y paseo como fundamentos del baile de cuembé",
+          "Postura, desplazamiento y conciencia corporal",
+          "Fundamentos de la improvisación y la interacción con el subidor"]
+      },
+      "pricing_eyebrow": {
+        "en": "Series details",
+        "es": "Detalles de la serie"
+      },
+      "pricing_title": {
+        "en": "2-Hour Group Session",
+        "es": "Sesión grupal de 2 horas"
+      },
+      "price_html": {
+        "en": "$130 <span>per person</span>",
+        "es": "$130 <span>por persona</span>"
+      },
+      "pricing_points": {
+        "en": [
+          "2-hour class",
+          "$65 per hour",
+          "Closing Bombazo",
+          "Non-refundable"
+        ],
+        "es": [
+          "Clase de 2 horas",
+          "$65 por hora",
+          "Bombazo de cierre",
+          "No reembolsable"
+        ]
+      },
+      "note": {
+        "en": "Scheduling will be confirmed once the minimum number of students is reached for a session.",
+        "es": "La programación se confirmará cuando se alcance el mínimo de estudiantes para una sesión."
+      },
+      "show_waitlist": false,
+      "show_book": true,
+      "book_href": "https://square.link/u/QSDGSmZ1"
     }
   ]
 }
