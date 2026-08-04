@@ -33,12 +33,16 @@ body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,'Helv
 .wordmark { font-size: clamp(1rem, 2.4vw, 1.5rem); }
 
 .nav{display:flex;gap:1rem;align-items:center}
-.nav a{color:var(--fg);text-decoration:none;font-weight:600}
+.nav a{display:block;color:var(--fg);text-align:center;text-decoration:none;font-weight:600;line-height:1.2}
+.nav a.btn{display:inline-flex}
 .nav a:hover{color:var(--mustard)}
+@media(min-width:900px){
+  .site-header .nav{margin-inline:clamp(.6rem,1.2vw,1rem)}
+}
 .menu{display:none;border:1px solid #ddd;background:#fff;border-radius:20px;padding:.4rem .6rem;cursor:pointer;margin-right:.5rem;font-size:0;line-height:1}
 .menu::before{content:"\2630"; /* hamburger */ font-size:1.25rem;}
 .menu:hover{border-color:var(--mustard)}
-.btn{display:inline-block;padding:.75rem 1rem;border:2px solid var(--mustard);background:var(--mustard);color:#000;text-decoration:none;font-weight:800;border-radius:8px;transition:transform .05s ease, box-shadow .2s ease}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;padding:.75rem 1rem;border:2px solid var(--mustard);background:var(--mustard);color:#000;text-decoration:none;font-weight:800;border-radius:8px;transition:transform .05s ease, box-shadow .2s ease}
 .btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px -6px var(--ring)}
 .btn--ghost{background:transparent;color:var(--fg)}
 .btn--small{padding:.5rem .75rem;font-size:.9rem}
@@ -1093,7 +1097,7 @@ figcaption a, .caption a { color: inherit; text-decoration: underline; }
   .menu{display:inline-block}
   .nav{display:none;position:absolute;top:100%;left:0;right:0;background:#fff;border-bottom:1px solid #eee;padding:10px 20px;flex-direction:column;gap:.5rem}
   .site-header.open .nav{display:flex}
-  .nav a{padding:.5rem 0}
+  .nav a{width:100%;padding:.5rem 0}
   dialog.anniversary-popup{
     width:100vw;
     max-width:none;
