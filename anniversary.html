@@ -224,7 +224,10 @@
         if (descriptionTag) descriptionTag.setAttribute('content', map["anniversary.meta.description"]);
 
         const langBtn = document.getElementById('langToggle');
-        if (langBtn) langBtn.textContent = normalized === 'es' ? 'EN' : 'ES';
+        if (langBtn) {
+          langBtn.textContent = '';
+          langBtn.innerHTML = normalized === 'es' ? '🇺🇸 <span>EN</span>' : '🇵🇷 <span>ES</span>';
+        }
         localStorage.setItem('bambula_lang', normalized);
       }
 
