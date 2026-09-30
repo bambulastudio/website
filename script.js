@@ -1429,7 +1429,7 @@ if (__popupLangBtn){
 function initAnniversaryPopup(){
   const dialog = document.getElementById('anniversaryPopup');
   const navLink = document.querySelector('#siteNav a[href="anniversary.html"]');
-  if (!dialog || !navLink) return;
+  if (!dialog || !navLink || dialog.hidden || navLink.hidden) return;
 
   let referrerUrl = null;
   try {
